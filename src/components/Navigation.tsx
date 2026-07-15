@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { assetUrl } from "../assetUrl";
 
 const products = [
   {
@@ -75,7 +76,7 @@ export default function Navigation() {
       >
         <div className="mx-auto flex h-[76px] max-w-[1320px] items-center justify-between px-5 sm:px-6 lg:px-10">
           <Link to="/" aria-label="Jibe home" className="shrink-0 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0076CE]">
-            <img src="/assets/logos/jibe.png" alt="Jibe" className="h-[46px] w-auto object-contain" />
+            <img src={assetUrl("assets/logos/jibe.png")} alt="Jibe" className="h-[46px] w-auto object-contain" />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
@@ -150,7 +151,7 @@ export default function Navigation() {
         <div className="fixed inset-0 z-[100] flex flex-col bg-[#F7F7F4] lg:hidden" role="dialog" aria-modal="true" aria-label="Navigation menu">
           <div className="flex h-[76px] items-center justify-between border-b border-[#D9D9D5] px-5 sm:px-6">
             <Link to="/" aria-label="Jibe home">
-              <img src="/assets/logos/jibe.png" alt="Jibe" className="h-[46px] w-auto object-contain" />
+              <img src={assetUrl("assets/logos/jibe.png")} alt="Jibe" className="h-[46px] w-auto object-contain" />
             </Link>
             <button
               type="button"

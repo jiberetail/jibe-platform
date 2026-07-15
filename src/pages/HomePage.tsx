@@ -202,7 +202,7 @@ export default function HomePage() {
           <div className="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
               <div className="mb-6 flex items-center gap-3">
-                <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#6D6D69]">Jibe</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#6D6D69]">Jibe Platform</span>
                 <span className="h-3 w-px bg-[#D9D9D5]" />
                 <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#6D6D69]">Three focused products</span>
               </div>

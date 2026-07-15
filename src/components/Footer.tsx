@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router";
+import { assetUrl } from "../assetUrl";
 
 const productLinks = [
   { label: "Jibe Pro", href: "/jibe-pro" },
@@ -19,7 +20,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 lg:py-20">
         <div className="grid gap-14 border-b border-[#D1D3CF] pb-14 lg:grid-cols-[1.4fr_0.7fr_0.7fr] lg:gap-20">
           <div>
-            <img src="/assets/logos/jibe.png" alt="Jibe" className="h-[58px] w-auto object-contain" />
+            <img src={assetUrl("assets/logos/jibe.png")} alt="Jibe" className="h-[58px] w-auto object-contain" />
             <h2 className="mt-7 max-w-[640px] font-['Instrument_Serif'] text-[42px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[52px]">
               Better signals. Better decisions. Better experiences.
             </h2>

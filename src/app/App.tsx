@@ -86,8 +86,10 @@ function AppContent() {
 }
 
 export default function App() {
+  const baseName = import.meta.env.BASE_URL === "/" ? undefined : import.meta.env.BASE_URL.replace(/\/$/, "");
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={baseName}>
       <AppContent />
     </BrowserRouter>
   );

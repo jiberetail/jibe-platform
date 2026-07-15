@@ -17,6 +17,7 @@ import {
   Sparkles,
   Target,
 } from "lucide-react";
+import { assetUrl } from "../assetUrl";
 
 const flowSteps = [
   {
@@ -110,7 +111,7 @@ const intelligenceDimensions = [
 
 function ProductLogo() {
   return (
-    <img src="/assets/logos/jibe-ai-tight.png" alt="Jibe AI" className="h-[70px] w-auto object-contain sm:h-[78px]" />
+    <img src={assetUrl("assets/logos/jibe-ai-tight.png")} alt="Jibe AI" className="h-[70px] w-auto object-contain sm:h-[78px]" />
   );
 }
 

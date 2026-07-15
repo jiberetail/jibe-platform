@@ -1,11 +1,13 @@
 
-  # Responsive Marketing Website Design
+# Jibe Platform
 
-  This is a code bundle for Responsive Marketing Website Design. The original project is available at https://www.figma.com/design/97kqYOsJKh2rHZpXZpcUxz/Responsive-Marketing-Website-Design.
+The public marketing portal for Jibe Pro, Jibe Retail, and Jibe AI.
 
-  ## Running the code
+## Local development
 
-  Run `npm i` to install the dependencies.
+Install dependencies with `pnpm install`, then run `pnpm dev`.
 
-  Run `npm run dev` to start the development server.
-  
+## Production builds
+
+- `pnpm build` creates the standard production build.
+- `pnpm build:github` creates the GitHub Pages build for `/jibe-platform/`.

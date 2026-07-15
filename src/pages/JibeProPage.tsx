@@ -1,5 +1,6 @@
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { Link } from "react-router";
+import { assetUrl } from "../assetUrl";
 import EnterpriseSection from "../components/sections/EnterpriseSection";
 import FinalCTA from "../components/sections/FinalCTA";
 import JibeLoop from "../components/sections/JibeLoop";
@@ -53,7 +54,7 @@ export default function JibeProPage() {
 
         <div className="relative mx-auto grid max-w-[1320px] gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
           <div>
-            <img src="/assets/logos/jibe-pro-tight.png" alt="Jibe Pro" className="mb-10 h-[72px] w-auto object-contain sm:h-[82px]" />
+            <img src={assetUrl("assets/logos/jibe-pro-tight.png")} alt="Jibe Pro" className="mb-10 h-[72px] w-auto object-contain sm:h-[82px]" />
             <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#777976]">Customer experience intelligence</p>
             <h1 className="mt-6 max-w-[760px] font-['Instrument_Serif'] text-[58px] leading-[0.92] tracking-[-0.035em] text-[#2F2F2F] sm:text-[74px] lg:text-[92px]">
               Understand every <em className="font-normal text-[#0076CE]">customer interaction.</em>

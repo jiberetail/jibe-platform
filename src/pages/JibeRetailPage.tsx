@@ -6,6 +6,7 @@ import {
   PackageSearch,
   ScanLine,
 } from "lucide-react";
+import { assetUrl } from "../assetUrl";
 
 const workflow = [
   {
@@ -36,19 +37,19 @@ const workflow = [
 
 const podiums = [
   {
-    src: "/assets/podiums/jibe-retail-mlb.png",
+    src: assetUrl("assets/podiums/jibe-retail-mlb.png"),
     label: "MLB",
     caption: "Baseball retail environment",
     alt: "Black Jibe Retail feedback podium displayed in a professional baseball venue",
   },
   {
-    src: "/assets/podiums/jibe-retail-nhl.png",
+    src: assetUrl("assets/podiums/jibe-retail-nhl.png"),
     label: "NHL",
     caption: "Hockey retail environment",
     alt: "Black Jibe Retail feedback podium displayed beside an ice hockey rink",
   },
   {
-    src: "/assets/podiums/jibe-retail-rockies.png",
+    src: assetUrl("assets/podiums/jibe-retail-rockies.png"),
     label: "Colorado Rockies",
     caption: "Coors Field retail environment",
     alt: "Black Jibe Retail feedback podium displayed at Coors Field",
@@ -100,7 +101,7 @@ export default function JibeRetailPage() {
         <div className="relative mx-auto grid min-h-[calc(88vh-9rem)] max-w-[1320px] grid-cols-1 items-center gap-12 px-6 pb-16 lg:grid-cols-12 lg:gap-10 lg:px-10 lg:pb-20">
           <div className="lg:col-span-7 lg:pr-8">
             <img
-              src="/assets/logos/jibe-retail-tight.png"
+              src={assetUrl("assets/logos/jibe-retail-tight.png")}
               alt="Jibe Retail"
               className="mb-8 h-[76px] w-auto object-contain sm:h-[84px]"
             />
@@ -145,7 +146,7 @@ export default function JibeRetailPage() {
           <div className="relative lg:col-span-5">
             <div className="relative mx-auto max-w-[475px] overflow-hidden rounded-[22px] border border-[#D9D9D5] bg-[#101113] shadow-[0_28px_80px_rgba(30,34,38,0.18)]">
               <img
-                src="/assets/podiums/jibe-retail-mlb.png"
+                src={assetUrl("assets/podiums/jibe-retail-mlb.png")}
                 alt="Jibe Retail black feedback podium in a baseball retail environment"
                 className="aspect-[2/3] w-full object-cover"
                 fetchPriority="high"
