@@ -153,7 +153,7 @@ export default function PortalHero() {
       />
 
       <div className="portal-copy">
-        <h1 id="portal-heading" className="portal-heading">
+        <h1 id="portal-heading" className="portal-heading" aria-label="Choose your Jibe.">
           <span className="portal-heading-mask">
             <span className="portal-heading-line portal-heading-line--one">
               Choose
