@@ -42,6 +42,8 @@ const aiPixels = Array.from({ length: aiPixelRows * aiPixelColumns }, (_, index)
   const scaleOptions = [0.58, 0.72, 0.86, 1];
   const size = scaleOptions[hash % scaleOptions.length];
   const opacity = accent ? 0.9 : Math.min(0.72, 0.12 + density * 0.58 + (medium ? 0.06 : 0));
+  const duration = accent ? 5.2 : medium ? 5.8 : 6.4;
+  const delay = -((row * 0.31 + column * 0.23 + hash * 0.013) % duration);
 
   return {
     index,
@@ -49,15 +51,16 @@ const aiPixels = Array.from({ length: aiPixelRows * aiPixelColumns }, (_, index)
     column,
     visible,
     accent,
-    active: accent || medium,
     size,
     opacity,
     peakOpacity: Math.min(1, opacity + (accent ? 0.1 : 0.12)),
+    lowOpacity: Math.max(0.08, opacity * 0.84),
     color: accent ? "#0874D2" : medium ? "#4AA2DE" : "#8CC7EE",
-    delay: -((hash / 97) * 6.8),
+    delay,
+    duration,
     driftX: (hash % 3) - 1,
     driftY: -(1 + (hash % 3)),
-    peakScale: accent ? 1.08 : 1.035,
+    peakScale: accent ? 1.16 : medium ? 1.1 : 1.055,
   };
 }).filter((pixel) => pixel.visible);
 
@@ -113,10 +116,10 @@ function RetailSignalArt() {
 function AiPixelArt() {
   return (
     <div className="portal-ai-pixels" aria-hidden="true">
-      {aiPixels.map(({ index, row, column, accent, active, size, opacity, peakOpacity, color, delay, driftX, driftY, peakScale }) => (
+      {aiPixels.map(({ index, row, column, accent, size, opacity, peakOpacity, lowOpacity, color, delay, duration, driftX, driftY, peakScale }) => (
         <span
           key={index}
-          className={`portal-ai-pixel${active ? " portal-ai-pixel--active" : ""}${accent ? " portal-ai-pixel--accent" : ""}`}
+          className={`portal-ai-pixel${accent ? " portal-ai-pixel--accent" : ""}`}
           style={
             {
               gridColumn: column + 1,
@@ -124,7 +127,9 @@ function AiPixelArt() {
               "--pixel-size": `${Math.round(size * 100)}%`,
               "--pixel-opacity": opacity,
               "--pixel-peak-opacity": peakOpacity,
+              "--pixel-low-opacity": lowOpacity,
               "--pixel-delay": `${delay}s`,
+              "--pixel-duration": `${duration}s`,
               "--pixel-drift-x": `${driftX}px`,
               "--pixel-drift-y": `${driftY}px`,
               "--pixel-peak-scale": peakScale,

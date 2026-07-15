@@ -15,8 +15,8 @@ const companyLinks: Array<{ slug: CompanySlug; label: string }> = [
 const pageMeta: Record<CompanySlug, { number: string; title: string; intro: string; seoDescription: string }> = {
   leadership: {
     number: "01",
-    title: "Leadership",
-    intro: "Meet the leaders advancing customer experience intelligence and shaping what Jibe makes possible.",
+    title: "Leadership Team",
+    intro: "Meet the visionary leaders driving innovation in customer experience intelligence at Zacoustic.",
     seoDescription: "Meet the Jibe leadership team spanning customer operations, technology, analytics, product, finance, and client success.",
   },
   history: {
@@ -42,38 +42,38 @@ const pageMeta: Record<CompanySlug, { number: string; title: string; intro: stri
 const leaders = [
   {
     name: "Tim Lavin",
-    title: "CEO & Co-founder",
+    title: "CEO",
     image: "assets/company/tim-lavin.jpg",
-    alt: "Tim Lavin, CEO and co-founder",
-    bio: "Tim brings decades of contact-center leadership to Jibe, including service as COO of TELUS International and senior roles at Cendant, Harte-Hanks, and First USA. A decorated U.S. Army veteran, he leads with an operator’s discipline.",
+    alt: "Tim Lavin, CEO of Zacoustic",
+    bio: "Tim Lavin, the co-founder and CEO of Zacoustic, is a visionary leader in the contact center industry, striving to create a revolutionary tool for customer experience management. With a diverse background that includes serving as the Chief Operating Officer for TELUS International and holding senior positions at prominent companies like Cendant Corp., Harte-Hanks, and First USA Bank, Tim brings extensive expertise in driving operational excellence and fostering customer satisfaction. As a decorated U.S. Army combat veteran and graduate of Maine Central Institute, Tim's leadership is characterized by strategic thinking, dedication, and a strong commitment to Zacoustic's mission.",
   },
   {
     name: "Brad Young",
-    title: "Chief Financial Officer",
+    title: "CFO",
     image: "assets/company/brad-young.jpg",
-    alt: "Brad Young, Chief Financial Officer",
-    bio: "Brad joined in 2012 as an early investor and advisor. A former CEO of Vision Care of Maine, he brings financial and operating experience to investor relations, commercial contracts, and long-term growth.",
+    alt: "Brad Young, CFO of Zacoustic",
+    bio: "Brad Young, the Chief Financial Officer of Zacoustic, joined the company in 2012 as an early investor and advisor. With a strong background in finance and business leadership, Brad brings invaluable expertise to the team. Prior to Zacoustic, he served as the CEO of Vision Care of Maine, successfully driving substantial revenue growth and retiring significant company debt. Brad's passion for innovation and his desire to make a meaningful impact led him to join Zacoustic, where he plays a vital role in investor relations and commercial contract negotiation. His strategic acumen and financial acuity contribute to Zacoustic's vision of revolutionizing the contact center industry.",
   },
   {
     name: "Jacob Raska",
     title: "Head of Client Success",
     image: "assets/company/jacob-raska.jpg",
-    alt: "Jacob Raska, Head of Client Success",
-    bio: "Jacob joined in 2018 with a background in data analytics and organizational transformation. He leads global integrations and helps clients turn complex information into practical strategies.",
+    alt: "Jacob Raska, Head of Client Success at Zacoustic",
+    bio: "Jacob Raska is the Head of Client Success at Zacoustic, where he is dedicated to supporting clients at the forefront of the customer experience revolution. With a strong background in data analytics, Jacob joined the Zacoustic team in 2018 after working on transformative projects that harnessed data insights to drive organizational change for Fortune 500 companies. Throughout his tenure at Zacoustic, Jacob has successfully led integrations across the globe, working with prestigious clients ranging from the largest bank in New Zealand to Fortune 50 companies spanning multiple continents. Passionate about engaging with customers and shaping data-driven strategies, Jacob is instrumental in redefining the customer experience industry through his work at Zacoustic.",
   },
   {
     name: "Archer Alvandi",
     title: "Head of Technology",
     image: "assets/company/archer-alvandi.jpg",
-    alt: "Archer Alvandi, Head of Technology",
-    bio: "Archer has led Jibe technology work since joining in 2018. Drawing on experience with Microsoft, Intel, True Key, and Hypergrid, he guides the team delivering tailored digital products.",
+    alt: "Archer Alvandi, Head of Technology at Zacoustic",
+    bio: "Archer is the Head of Technology at Zacoustic, where he leads and empowers a top-tier software development team to exceed client expectations in delivering cutting-edge, personalized customer experiences through next-generation digital solutions. Joining Zacoustic in 2018, Archer has held increasingly senior positions within the software development group, driving the company's growth as a customer experience innovator. With a career dedicated to innovative software design and development, Archer has collaborated with renowned industry leaders such as Microsoft and Intel, contributing to the development of True Key, as well as smaller disruptive companies like Hypergrid. Archer is proud to be part of Zacoustic's dynamic and disruptive journey, committed to providing exceptional solutions and services to partners and clients worldwide.",
   },
   {
     name: "Isaac Harrison",
     title: "Head of Product and Analytics",
-    image: "assets/company/isaac-harrison.jpg",
-    alt: "Isaac Harrison, Head of Product and Analytics",
-    bio: "Isaac joined in 2023 with more than 20 years of call-center and B2B experience. His work spans product strategy, analytics, audit research, and performance improvement.",
+    image: "assets/company/isaac-harrison-portrait.png",
+    alt: "Isaac Harrison, Head of Product and Analytics at Zacoustic",
+    bio: "Isaac joined Zacoustic in 2023 and has played a key role in driving client success through data, product strategy, and operational insight. With over 20 years of experience in call center and B2B environments, he brings deep expertise in analytics, customer experience, and performance improvement. Isaac has led teams of data scientists and audit researchers, managed large-scale data collection and distribution, and helped clients improve customer satisfaction through practical, data-driven solutions. His strengths span product development, design, analytics, and problem-solving, making him a major contributor to Zacoustic's continued growth and client results.",
   },
 ];
 
@@ -165,30 +165,19 @@ export default function CompanyPage() {
   return (
     <main className="min-h-screen bg-[#F7F7F4]">
       <section className="overflow-hidden border-b border-[#D9D9D5] bg-[#F7F7F4] px-6 pb-16 pt-36 lg:px-10 lg:pb-20 lg:pt-44">
-        <div className={`mx-auto grid max-w-[1320px] gap-12 ${section === "leadership" ? "lg:grid-cols-[0.94fr_1.06fr] lg:items-center" : ""}`}>
-          <div>
-            <div className="mb-7 flex items-center gap-4">
+        <div className="mx-auto max-w-[1320px]">
+          <div className={section === "leadership" ? "mx-auto max-w-[900px] text-center" : ""}>
+            <div className={`mb-7 flex items-center gap-4 ${section === "leadership" ? "justify-center" : ""}`}>
               <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#0076CE]">Company</span>
               <span className="font-mono text-[10px] tracking-[0.18em] text-[#A0A29E]">{meta.number} / 04</span>
             </div>
             <h1 className="max-w-[900px] font-['Instrument_Serif'] text-[56px] leading-[0.92] tracking-[-0.03em] text-[#2F2F2F] sm:text-[72px] lg:text-[88px]">
               {meta.title}
             </h1>
-            <p className="mt-7 max-w-[650px] text-[17px] leading-[1.7] text-[#686A6D] sm:text-[18px]">
+            <p className={`mt-7 max-w-[650px] text-[17px] leading-[1.7] text-[#686A6D] sm:text-[18px] ${section === "leadership" ? "mx-auto" : ""}`}>
               {meta.intro}
             </p>
           </div>
-
-          {section === "leadership" && (
-            <div className="relative overflow-hidden rounded-[28px] border border-[#D9D9D5] bg-[#E7E8E5] shadow-[0_24px_70px_rgba(25,31,38,0.09)]">
-              <img
-                src={assetUrl("assets/company/leadership-hero.jpg")}
-                alt="Guests at a Zacoustic-hosted business dinner"
-                className="aspect-[16/10] h-full w-full object-cover"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#19212A]/25 via-transparent to-transparent" aria-hidden="true" />
-            </div>
-          )}
         </div>
       </section>
 
@@ -245,23 +234,15 @@ function LeadershipContent() {
   return (
     <section aria-labelledby="leadership-list-heading" className="bg-[#EBEBEB] px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1320px]">
-        <div className="mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-8">
-            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-[#6D6D69]">The people behind Jibe</p>
-            <h2 id="leadership-list-heading" className="max-w-[760px] font-['Instrument_Serif'] text-[44px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[58px]">
-              Experience built across operations, technology, analytics, and client success.
-            </h2>
-          </div>
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-2">
+        <h2 id="leadership-list-heading" className="sr-only">Leadership profiles</h2>
+        <div className="space-y-16 lg:space-y-24">
           {leaders.map((leader, index) => (
             <article
               key={leader.name}
-              className={`overflow-hidden rounded-[24px] border border-[#D9D9D5] bg-white ${index === 0 ? "lg:col-span-2" : ""}`}
+              className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16 ${index % 2 === 1 ? "lg:grid-flow-dense" : ""}`}
             >
-              <div className={`grid h-full ${index === 0 ? "md:grid-cols-[0.78fr_1.22fr]" : "sm:grid-cols-[0.82fr_1.18fr]"}`}>
-                <div className="min-h-[330px] overflow-hidden bg-[#E2E3E0]">
+              <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
+                <div className="mx-auto aspect-[4/5] w-full max-w-[460px] overflow-hidden rounded-[24px] border border-[#D2D4D0] bg-[#E2E3E0] shadow-[0_24px_70px_rgba(25,31,38,0.13)] lg:h-[512px] lg:aspect-auto">
                   <img
                     src={assetUrl(leader.image)}
                     alt={leader.alt}
@@ -270,12 +251,15 @@ function LeadershipContent() {
                     className="h-full w-full object-cover object-top"
                   />
                 </div>
-                <div className="flex flex-col p-7 sm:p-8 lg:p-9">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#0076CE]">{leader.title}</span>
-                  <h3 className="mt-4 font-['Instrument_Serif'] text-[38px] leading-none tracking-[-0.02em] text-[#2F2F2F] sm:text-[44px]">
+              </div>
+
+              <div className={index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}>
+                <div className="rounded-[24px] border border-[#D9D9D5] border-l-4 border-l-[#0076CE] bg-white p-7 shadow-[0_18px_50px_rgba(25,31,38,0.08)] sm:p-9 lg:p-10">
+                  <h3 className="font-['Instrument_Serif'] text-[42px] leading-none tracking-[-0.025em] text-[#2F2F2F] sm:text-[50px]">
                     {leader.name}
                   </h3>
-                  <p className="mt-6 text-[14px] leading-[1.75] text-[#686A6D]">{leader.bio}</p>
+                  <p className="mt-3 text-[18px] font-semibold text-[#0076CE] sm:text-[20px]">{leader.title}</p>
+                  <p className="mt-7 text-[15px] leading-[1.8] text-[#5D5F62] sm:text-[16px]">{leader.bio}</p>
                 </div>
               </div>
             </article>
