@@ -439,22 +439,25 @@
 
 .portal-product-card--pro {
   color: #ffffff;
-  background: linear-gradient(150deg, #0279e9 0%, #0065d0 62%, #006fdb 100%);
+  background:
+    radial-gradient(circle at 76% 14%, rgba(128, 205, 255, 0.22), transparent 32%),
+    linear-gradient(150deg, #0874d2 0%, #0068c9 58%, #005db5 100%);
 }
 
 .portal-product-card--retail {
   color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.16);
   background:
-    radial-gradient(circle at 75% 15%, rgba(255, 255, 255, 0.05), transparent 28%),
-    linear-gradient(155deg, #282828 0%, #1b1b1b 100%);
+    radial-gradient(circle at 76% 14%, rgba(92, 181, 255, 0.25), transparent 32%),
+    linear-gradient(150deg, #0b5a91 0%, #064572 58%, #07385b 100%);
 }
 
 .portal-product-card--ai {
-  color: #0870d1;
-  border-color: rgba(8, 112, 209, 0.06);
+  color: #075fae;
+  border-color: rgba(7, 95, 174, 0.1);
   background:
-    radial-gradient(circle at 78% 8%, rgba(255, 255, 255, 0.9), transparent 34%),
-    linear-gradient(155deg, #e4f1fb 0%, #eef7fe 100%);
+    radial-gradient(circle at 76% 14%, rgba(255, 255, 255, 0.92), transparent 32%),
+    linear-gradient(150deg, #d9edfc 0%, #edf7fe 58%, #f6fbff 100%);
 }
 
 .portal-product-card--ai:focus-visible {
@@ -509,7 +512,7 @@
 
 .portal-pro-wave,
 .portal-retail-signal,
-.portal-ai-network {
+.portal-ai-pixels {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -548,7 +551,7 @@
   position: absolute;
   bottom: 0;
   width: clamp(2px, 0.24vw, 4px);
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.52));
+  background: linear-gradient(to top, rgba(167, 218, 255, 0.12), rgba(213, 239, 255, 0.68));
   transform: scaleY(0);
   transform-origin: bottom;
   animation:
@@ -563,120 +566,41 @@
   width: 9px;
   height: 9px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+  background: rgba(224, 243, 255, 0.92);
+  box-shadow: 0 0 0 3px rgba(167, 218, 255, 0.09), 0 0 14px rgba(112, 197, 255, 0.18);
   transform: translateX(-50%);
   animation: portal-node-pulse 3.4s ease-in-out infinite;
 }
 
-.portal-ai-network {
-  inset: auto -18% -5% auto;
-  width: 142%;
+.portal-ai-pixels {
+  top: auto;
+  right: 5%;
+  bottom: 3%;
+  left: 14%;
+  display: grid;
+  height: 64%;
+  grid-template-columns: repeat(13, minmax(0, 1fr));
+  grid-template-rows: repeat(15, minmax(0, 1fr));
+  gap: clamp(3px, 0.3vw, 5px);
+}
+
+.portal-ai-pixel {
+  align-self: center;
+  justify-self: center;
+  width: var(--pixel-size);
   aspect-ratio: 1;
+  border-radius: 1px;
+  opacity: var(--pixel-opacity);
+  transform: translate3d(0, 0, 0) scale(0.96);
 }
 
-.portal-ai-network::before {
-  position: absolute;
-  inset: 17%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(67, 157, 224, 0.24) 0%, rgba(116, 190, 239, 0.09) 36%, transparent 70%);
-  content: "";
-  filter: blur(8px);
-}
-
-.portal-ai-network__field {
-  position: absolute;
-  inset: 0;
-  transform-origin: 58% 54%;
-  animation: portal-ai-network-breathe 7.4s ease-in-out infinite;
+.portal-ai-pixel--active {
+  animation: portal-ai-pixel-live 6.8s var(--pixel-delay) ease-in-out infinite;
   will-change: transform, opacity;
 }
 
-.portal-ai-network__link {
-  --link-low-opacity: 0.24;
-  --link-high-opacity: 0.46;
-  position: absolute;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(76, 161, 224, 0.18), rgba(8, 116, 214, 0.54), rgba(76, 161, 224, 0.16));
-  opacity: 0.4;
-  transform-origin: left center;
-  animation: portal-ai-link-live 6.2s var(--link-delay) ease-in-out infinite;
-  will-change: opacity;
-}
-
-.portal-ai-network__link--strong {
-  --link-low-opacity: 0.42;
-  --link-high-opacity: 0.72;
-  height: 1.5px;
-  background: linear-gradient(90deg, rgba(8, 116, 214, 0.3), rgba(8, 116, 214, 0.78), rgba(8, 116, 214, 0.28));
-  opacity: 0.62;
-}
-
-.portal-ai-network__node {
-  position: absolute;
-  aspect-ratio: 1;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 999px;
-  background: #4fa4df;
-  box-shadow: 0 0 0 3px rgba(79, 164, 223, 0.1), 0 0 14px rgba(8, 116, 214, 0.2);
-  opacity: var(--node-opacity);
-  animation: portal-ai-node-live 5.2s var(--node-delay) ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-.portal-ai-network__halo,
-.portal-ai-network__core {
-  position: absolute;
-  left: 58%;
-  top: 54%;
-  aspect-ratio: 1;
-  border-radius: 999px;
-}
-
-.portal-ai-network__halo {
-  border: 1px solid rgba(8, 116, 214, 0.36);
-  animation: portal-ai-halo-live 5.8s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-.portal-ai-network__halo--outer {
-  width: 27%;
-  animation-delay: -2.7s;
-}
-
-.portal-ai-network__halo--inner {
-  width: 18%;
-  border-color: rgba(8, 116, 214, 0.5);
-  animation-delay: -0.9s;
-}
-
-.portal-ai-network__core {
-  width: 10.5%;
-  border: 1px solid rgba(8, 116, 214, 0.64);
-  background:
-    radial-gradient(circle at 38% 31%, rgba(255, 255, 255, 0.98), rgba(224, 244, 255, 0.9) 32%, rgba(58, 154, 224, 0.96) 100%);
-  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.28), 0 0 28px rgba(8, 116, 214, 0.38);
-  animation: portal-ai-core-live 5.8s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-.portal-ai-network__core-mark,
-.portal-ai-network__core-mark::before {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 2px;
-  height: 38%;
-  border-radius: 999px;
-  background: #0874d6;
-  content: "";
-  transform: translate(-50%, -50%);
-}
-
-.portal-ai-network__core-mark::before {
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%) rotate(90deg);
+.portal-ai-pixel--accent {
+  box-shadow: 0 0 10px rgba(8, 116, 210, 0.2);
 }
 
 .portal-skip-link {
@@ -754,60 +678,22 @@
 
 @keyframes portal-bar-live {
   0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(0.9); }
+  50% { transform: scaleY(0.94); }
 }
 
 @keyframes portal-node-pulse {
-  0%, 100% { opacity: 0.55; transform: translateX(-50%) scale(0.85); }
-  50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+  0%, 100% { opacity: 0.65; transform: translateX(-50%) scale(0.92); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.04); }
 }
 
-@keyframes portal-ai-network-breathe {
-  0%, 100% {
-    opacity: 0.9;
-    transform: translate3d(0, 0, 0) scale(1);
+@keyframes portal-ai-pixel-live {
+  0%, 34%, 100% {
+    opacity: var(--pixel-opacity);
+    transform: translate3d(0, 0, 0) scale(0.96);
   }
-  50% {
-    opacity: 1;
-    transform: translate3d(-3px, -4px, 0) scale(1.012);
-  }
-}
-
-@keyframes portal-ai-link-live {
-  0%, 100% { opacity: var(--link-low-opacity); }
-  50% { opacity: var(--link-high-opacity); }
-}
-
-@keyframes portal-ai-node-live {
-  0%, 100% {
-    opacity: var(--node-opacity);
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-  50% {
-    opacity: 0.94;
-    transform: translate(-50%, -50%) scale(1.16);
-  }
-}
-
-@keyframes portal-ai-halo-live {
-  0%, 100% {
-    opacity: 0.16;
-    transform: translate(-50%, -50%) scale(0.94);
-  }
-  50% {
-    opacity: 0.46;
-    transform: translate(-50%, -50%) scale(1.06);
-  }
-}
-
-@keyframes portal-ai-core-live {
-  0%, 100% {
-    opacity: 0.88;
-    transform: translate(-50%, -50%) scale(0.96);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.04);
+  56% {
+    opacity: var(--pixel-peak-opacity);
+    transform: translate3d(var(--pixel-drift-x), var(--pixel-drift-y), 0) scale(var(--pixel-peak-scale));
   }
 }
 
@@ -979,10 +865,11 @@
     --portal-heading-scale: 1;
   }
 
-  .portal-ai-network {
-    right: -14%;
-    bottom: -8%;
-    width: 128%;
+  .portal-ai-pixels {
+    right: 11%;
+    bottom: 3%;
+    left: 16%;
+    height: 68%;
   }
 }
 
@@ -991,11 +878,7 @@
   .portal-pro-wave span,
   .portal-retail-bar,
   .portal-retail-bar i,
-  .portal-ai-network__field,
-  .portal-ai-network__link,
-  .portal-ai-network__node,
-  .portal-ai-network__halo,
-  .portal-ai-network__core {
+  .portal-ai-pixel {
     animation: none !important;
   }
 
@@ -1008,23 +891,10 @@
     transform: rotate(-7deg);
   }
 
-  .portal-ai-network__field {
-    opacity: 1;
+  .portal-ai-pixel {
+    opacity: var(--pixel-opacity);
     transform: none;
-  }
-
-  .portal-ai-network__link {
-    opacity: var(--link-low-opacity);
-  }
-
-  .portal-ai-network__node {
-    opacity: var(--node-opacity);
-    transform: translate(-50%, -50%);
-  }
-
-  .portal-ai-network__halo,
-  .portal-ai-network__core {
-    transform: translate(-50%, -50%);
+    will-change: auto;
   }
 
   .portal-blueprint,

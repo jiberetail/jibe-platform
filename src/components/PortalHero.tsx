@@ -26,54 +26,40 @@ const portalProducts = [
 
 const retailBars = [24, 36, 22, 30, 48, 42, 57, 34, 66, 51, 78, 40, 91, 61, 84, 52, 96, 70];
 
-type AiNetworkNode = {
-  x: number;
-  y: number;
-  size: number;
-  opacity: number;
-  core?: boolean;
-};
+const aiPixelRows = 15;
+const aiPixelColumns = 13;
 
-const aiNetworkNodes: readonly AiNetworkNode[] = [
-  { x: 13, y: 42, size: 2.7, opacity: 0.44 },
-  { x: 20, y: 65, size: 2.1, opacity: 0.5 },
-  { x: 29, y: 30, size: 2.35, opacity: 0.58 },
-  { x: 33, y: 78, size: 2.55, opacity: 0.52 },
-  { x: 40, y: 50, size: 3.2, opacity: 0.68 },
-  { x: 51, y: 25, size: 2.2, opacity: 0.56 },
-  { x: 58, y: 54, size: 10, opacity: 1, core: true },
-  { x: 51, y: 80, size: 2.75, opacity: 0.62 },
-  { x: 69, y: 28, size: 2.45, opacity: 0.6 },
-  { x: 72, y: 71, size: 3.15, opacity: 0.7 },
-  { x: 81, y: 43, size: 2.75, opacity: 0.66 },
-  { x: 87, y: 62, size: 2.1, opacity: 0.53 },
-  { x: 92, y: 29, size: 2.35, opacity: 0.48 },
-  { x: 94, y: 78, size: 2.45, opacity: 0.46 },
-  { x: 45, y: 66, size: 2.15, opacity: 0.58 },
-];
-
-const aiNetworkLinks = [
-  [0, 2], [0, 4], [1, 3], [1, 4], [2, 4], [2, 5], [3, 7], [3, 14],
-  [4, 6], [4, 14], [5, 6], [5, 8], [14, 6], [14, 7], [6, 8], [6, 9],
-  [6, 10], [7, 9], [8, 10], [8, 12], [9, 10], [9, 11], [9, 13], [10, 11],
-  [10, 12], [11, 13],
-] as const;
-
-const aiNetworkSegments = aiNetworkLinks.map(([from, to], index) => {
-  const start = aiNetworkNodes[from];
-  const end = aiNetworkNodes[to];
-  const deltaX = end.x - start.x;
-  const deltaY = end.y - start.y;
+const aiPixels = Array.from({ length: aiPixelRows * aiPixelColumns }, (_, index) => {
+  const row = Math.floor(index / aiPixelColumns);
+  const column = index % aiPixelColumns;
+  const hash = (row * 29 + column * 17 + row * column * 3) % 97;
+  const leadingEdge = 9.2 - column * 0.54 + Math.sin(column * 0.78) * 1.05;
+  const nearEdge = row >= leadingEdge - 1.8 && hash % 4 === 0;
+  const visible = row >= leadingEdge || nearEdge;
+  const density = Math.min(1, Math.max(0, row / (aiPixelRows - 1) * 0.58 + column / (aiPixelColumns - 1) * 0.42));
+  const accent = hash % 19 === 0 || (row > 10 && column > 8 && hash % 13 === 0);
+  const medium = !accent && hash % 5 === 0;
+  const scaleOptions = [0.58, 0.72, 0.86, 1];
+  const size = scaleOptions[hash % scaleOptions.length];
+  const opacity = accent ? 0.9 : Math.min(0.72, 0.12 + density * 0.58 + (medium ? 0.06 : 0));
 
   return {
     index,
-    x: start.x,
-    y: start.y,
-    length: Math.hypot(deltaX, deltaY),
-    angle: Math.atan2(deltaY, deltaX) * (180 / Math.PI),
-    strong: from === 6 || to === 6,
+    row,
+    column,
+    visible,
+    accent,
+    active: accent || medium,
+    size,
+    opacity,
+    peakOpacity: Math.min(1, opacity + (accent ? 0.1 : 0.12)),
+    color: accent ? "#0874D2" : medium ? "#4AA2DE" : "#8CC7EE",
+    delay: -((hash / 97) * 6.8),
+    driftX: (hash % 3) - 1,
+    driftY: -(1 + (hash % 3)),
+    peakScale: accent ? 1.08 : 1.035,
   };
-});
+}).filter((pixel) => pixel.visible);
 
 function ProWaveArt() {
   return (
@@ -124,56 +110,29 @@ function RetailSignalArt() {
   );
 }
 
-function AiNetworkArt() {
+function AiPixelArt() {
   return (
-    <div className="portal-ai-network" aria-hidden="true">
-      <div className="portal-ai-network__field">
-        {aiNetworkSegments.map(({ index, x, y, length, angle, strong }) => (
-          <span
-            key={`link-${index}`}
-            className={`portal-ai-network__link${strong ? " portal-ai-network__link--strong" : ""}`}
-            style={
-              {
-                left: `${x}%`,
-                top: `${y}%`,
-                width: `${length}%`,
-                transform: `rotate(${angle}deg)`,
-                "--link-delay": `${-0.24 * index}s`,
-              } as CSSProperties
-            }
-          />
-        ))}
-
-        <span className="portal-ai-network__halo portal-ai-network__halo--outer" />
-        <span className="portal-ai-network__halo portal-ai-network__halo--inner" />
-
-        {aiNetworkNodes.map(({ x, y, size, opacity, core }, index) => {
-          if (core) return null;
-
-          return (
-            <span
-              key={`node-${index}`}
-              className="portal-ai-network__node"
-              style={
-                {
-                  left: `${x}%`,
-                  top: `${y}%`,
-                  width: `${size}%`,
-                  "--node-opacity": opacity,
-                  "--node-delay": `${-0.38 * index}s`,
-                } as CSSProperties
-              }
-            />
-          );
-        })}
-
+    <div className="portal-ai-pixels" aria-hidden="true">
+      {aiPixels.map(({ index, row, column, accent, active, size, opacity, peakOpacity, color, delay, driftX, driftY, peakScale }) => (
         <span
-          className="portal-ai-network__core"
-          style={{ left: "58%", top: "54%" }}
-        >
-          <i className="portal-ai-network__core-mark" />
-        </span>
-      </div>
+          key={index}
+          className={`portal-ai-pixel${active ? " portal-ai-pixel--active" : ""}${accent ? " portal-ai-pixel--accent" : ""}`}
+          style={
+            {
+              gridColumn: column + 1,
+              gridRow: row + 1,
+              "--pixel-size": `${Math.round(size * 100)}%`,
+              "--pixel-opacity": opacity,
+              "--pixel-peak-opacity": peakOpacity,
+              "--pixel-delay": `${delay}s`,
+              "--pixel-drift-x": `${driftX}px`,
+              "--pixel-drift-y": `${driftY}px`,
+              "--pixel-peak-scale": peakScale,
+              background: color,
+            } as CSSProperties
+          }
+        />
+      ))}
     </div>
   );
 }
@@ -202,7 +161,7 @@ function PortalCard({
         </span>
         {product.key === "pro" && <ProWaveArt />}
         {product.key === "retail" && <RetailSignalArt />}
-        {product.key === "ai" && <AiNetworkArt />}
+        {product.key === "ai" && <AiPixelArt />}
       </Link>
     </div>
   );
