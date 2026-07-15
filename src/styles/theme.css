@@ -321,12 +321,12 @@
   position: absolute;
   z-index: 2;
   left: 3.7%;
-  top: 29%;
+  top: 35.5%;
   width: 44.5%;
   margin: 0;
   color: #242424;
   font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(92px, 8vw, 138px);
+  font-size: clamp(105px, 9.5vw, 164px);
   font-weight: 400;
   line-height: 0.82;
   letter-spacing: -0.04em;
@@ -345,6 +345,7 @@
 
 .portal-heading-line {
   --portal-heading-scale: 1.03;
+  white-space: nowrap;
   transform: translateY(105%);
   transform-origin: left center;
   animation: portal-heading-reveal 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -356,10 +357,6 @@
 
 .portal-heading-line--two {
   animation-delay: 280ms;
-}
-
-.portal-heading-line--three {
-  animation-delay: 380ms;
 }
 
 .portal-product-index {
@@ -699,7 +696,7 @@
     left: auto;
     width: min(760px, calc(100% - 64px));
     margin: 68px 32px 0;
-    font-size: clamp(72px, 10.5vw, 108px);
+    font-size: clamp(70px, 10vw, 108px);
     line-height: 0.83;
   }
 
@@ -754,8 +751,8 @@
   .portal-heading {
     width: calc(100% - 40px);
     margin: 56px 20px 0;
-    font-size: clamp(56px, 18vw, 72px);
-    line-height: 0.84;
+    font-size: clamp(52px, 16.7vw, 66px);
+    line-height: 0.86;
   }
 
   .portal-product-index {
