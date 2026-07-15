@@ -8,6 +8,7 @@ import {
   ScanLine,
 } from "lucide-react";
 import { assetUrl } from "../assetUrl";
+import ProductHeroSection from "../components/ProductHeroSection";
 
 const workflow = [
   {
@@ -125,74 +126,19 @@ const focusRing =
 export default function JibeRetailPage() {
   return (
     <main className="overflow-hidden bg-white">
-      <section className="relative min-h-[88vh] border-b border-[#D9D9D5] bg-[#F7F7F4] pt-32 lg:pt-36">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-40 top-24 h-[440px] w-[440px] rounded-full bg-[#B9DDF4]/30 blur-3xl"
-        />
-        <div className="relative mx-auto grid min-h-[calc(88vh-9rem)] max-w-[1320px] grid-cols-1 items-center gap-12 px-6 pb-16 lg:grid-cols-12 lg:gap-10 lg:px-10 lg:pb-20">
-          <div className="lg:col-span-7 lg:pr-8">
-            <img
-              src={assetUrl("assets/logos/jibe-retail-tight.png")}
-              alt="Jibe Retail"
-              className="mb-8 h-[76px] w-auto object-contain sm:h-[84px]"
-            />
-
-            <p className="mb-7 font-mono text-[10px] uppercase tracking-[0.24em] text-[#6D6D69]">
-              In-store demand intelligence
-            </p>
-            <h1 className="max-w-[760px] font-['Instrument_Serif'] text-[56px] leading-[0.92] tracking-[-0.025em] text-[#2F2F2F] sm:text-[68px] lg:text-[88px] xl:text-[102px]">
-              See what almost sold. <em className="font-normal text-[#0076CE]">Recover more of it.</em>
-            </h1>
-            <p className="mt-8 max-w-[610px] text-[17px] leading-[1.7] text-[#6D6D69] lg:text-[18px]">
-              Jibe Retail captures what shoppers wanted, why they walked away, and which unmet demand deserves action—before that signal disappears beyond the store exit.
-            </p>
-
-            <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row">
-              <Link
-                to="/demo?product=retail"
-                className={`inline-flex items-center gap-2 rounded-xl bg-[#0076CE] px-7 py-4 text-[14px] font-semibold text-white transition-colors hover:bg-[#004F8C] motion-reduce:transition-none ${focusRing}`}
-              >
-                Book a Retail Demo <ArrowRight aria-hidden="true" size={16} />
-              </Link>
-              <a
-                href="#how-it-works"
-                className={`inline-flex items-center gap-2 rounded-xl border border-[#D9D9D5] bg-white px-7 py-4 text-[14px] font-medium text-[#2F2F2F] transition-colors hover:border-[#2F2F2F] motion-reduce:transition-none ${focusRing}`}
-              >
-                See how it works
-              </a>
-            </div>
-
-            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3" aria-label="Jibe Retail capabilities">
-              {["Exit-moment capture", "Item-level demand", "Fulfillment follow-up", "Actionable reporting"].map(
-                (item) => (
-                  <li key={item} className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.14em] text-[#6D6D69]">
-                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#0076CE]" />
-                    {item}
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
-
-          <div className="relative lg:col-span-5">
-            <div className="relative mx-auto max-w-[475px] overflow-hidden rounded-[22px] border border-[#D9D9D5] bg-[#101113] shadow-[0_28px_80px_rgba(30,34,38,0.18)]">
-              <img
-                src={assetUrl("assets/podiums/jibe-retail-mlb.png")}
-                alt="Jibe Retail black feedback podium in a baseball retail environment"
-                className="aspect-[2/3] w-full object-cover"
-                fetchPriority="high"
-              />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent px-6 pb-6 pt-24 text-white">
-                <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">Capture the no-buy moment</p>
-                <p className="mt-2 max-w-[300px] text-[14px] leading-relaxed text-white/90">
-                  A simple podium experience designed for the place where purchase intent is still present.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProductHeroSection
+        productName="Jibe Retail"
+        productLabel="Retail"
+        descriptor="In-store Demand Intelligence"
+        line1="See what almost sold."
+        line2="Recover more of it."
+        description="Jibe Retail captures what shoppers wanted, why they walked away, and which unmet demand deserves action—before that signal disappears beyond the store exit."
+        primaryHref="/demo?product=retail"
+        primaryLabel="Book a Retail demo"
+        secondaryHref="#how-it-works"
+        secondaryLabel="See how it works"
+        proofPoints={["Exit-moment capture", "Item-level demand", "Fulfillment follow-up", "Actionable reporting"]}
+      />
 
       <section className="border-b border-[#D9D9D5] bg-white py-24 lg:py-36">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">

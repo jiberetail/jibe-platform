@@ -1,24 +1,17 @@
 import { Link } from "react-router";
 import {
-  ArrowDown,
   ArrowRight,
   ArrowUpRight,
-  BarChart3,
   BrainCircuit,
   Check,
-  ClipboardList,
   Compass,
   Gauge,
   Layers3,
-  Mail,
-  MessageSquare,
-  Phone,
-  Quote,
   ScanSearch,
-  Sparkles,
   Target,
 } from "lucide-react";
 import { assetUrl } from "../assetUrl";
+import ProductHeroSection from "../components/ProductHeroSection";
 
 const flowSteps = [
   {
@@ -217,187 +210,22 @@ function ProductScreenshot({
   );
 }
 
-function IntelligenceCanvas() {
-  const channels = [
-    { label: "Voice", icon: Phone },
-    { label: "Chat", icon: MessageSquare },
-    { label: "Email", icon: Mail },
-    { label: "Cases", icon: ClipboardList },
-  ];
-
-  const signalBars = [
-    { label: "Resolution signal", width: "w-[86%]" },
-    { label: "Experience shift", width: "w-[64%]" },
-    { label: "Repeat-contact pattern", width: "w-[74%]" },
-  ];
-
-  return (
-    <div className="relative">
-      <div className="absolute -inset-5 rounded-[36px] bg-[#0076CE]/10 blur-2xl" />
-      <div className="relative overflow-hidden rounded-[28px] border border-[#263545] bg-[#101820] p-3 shadow-[0_28px_80px_rgba(16,24,32,0.18)] sm:p-4">
-        <div className="flex items-center justify-between gap-3 px-2 pb-3 pt-1">
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#40C4FF]" />
-            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/70">
-              Conceptual intelligence view
-            </span>
-          </div>
-          <span className="rounded-full border border-white/15 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.16em] text-white/55">
-            Illustrative
-          </span>
-        </div>
-
-        <div className="rounded-[20px] bg-[#F7F7F4] p-4 sm:p-5">
-          <div className="mb-4 flex items-center justify-between gap-4 border-b border-[#D9D9D5] pb-4">
-            <div>
-              <div className="font-mono text-[8px] uppercase tracking-[0.18em] text-[#6D6D69]">
-                Interaction intelligence
-              </div>
-              <div className="mt-1 text-[13px] font-semibold text-[#2F2F2F]">Signal workspace</div>
-            </div>
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EAF5FC] text-[#0076CE]">
-              <BrainCircuit size={16} />
-            </div>
-          </div>
-
-          <div className="mb-4 grid grid-cols-4 gap-2">
-            {channels.map(({ label, icon: Icon }) => (
-              <div key={label} className="rounded-xl border border-[#D9D9D5] bg-white px-2 py-2.5 text-center">
-                <Icon size={13} className="mx-auto mb-1.5 text-[#0076CE]" />
-                <span className="font-mono text-[8px] uppercase tracking-[0.08em] text-[#6D6D69]">{label}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="mb-4 rounded-2xl border border-[#B9DDF4] bg-[#EAF5FC] p-4">
-            <div className="mb-2 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <Sparkles size={13} className="text-[#0076CE]" />
-                <span className="font-mono text-[8px] uppercase tracking-[0.16em] text-[#004F8C]">
-                  Unified interaction
-                </span>
-              </div>
-              <span className="font-mono text-[8px] text-[#6D6D69]">Context assembled</span>
-            </div>
-            <div className="flex gap-3">
-              <Quote size={15} className="mt-0.5 shrink-0 text-[#0076CE]" />
-              <p className="text-[11px] leading-[1.55] text-[#2F2F2F]">
-                Conversation context, outcome predictions, and available feedback are organized into one evidence trail.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <div className="rounded-2xl border border-[#D9D9D5] bg-white p-4">
-              <div className="mb-4 flex items-center gap-2">
-                <BarChart3 size={13} className="text-[#0076CE]" />
-                <span className="font-mono text-[8px] uppercase tracking-[0.15em] text-[#6D6D69]">
-                  Signal map
-                </span>
-              </div>
-              <div className="space-y-3">
-                {signalBars.map(({ label, width }) => (
-                  <div key={label}>
-                    <div className="mb-1.5 text-[9px] text-[#6D6D69]">{label}</div>
-                    <div className="h-1.5 overflow-hidden rounded-full bg-[#E8E8E4]">
-                      <div className={`h-full rounded-full bg-gradient-to-r from-[#0076CE] to-[#40C4FF] ${width}`} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-[#D9D9D5] bg-white p-4">
-              <div className="mb-3 flex items-center gap-2">
-                <ScanSearch size={13} className="text-[#0076CE]" />
-                <span className="font-mono text-[8px] uppercase tracking-[0.15em] text-[#6D6D69]">
-                  Root-cause trail
-                </span>
-              </div>
-              <div className="space-y-2">
-                {["Experience signal", "Contact driver", "Process friction"].map((item, index) => (
-                  <div key={item} className="flex items-center gap-2">
-                    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#EAF5FC] font-mono text-[7px] text-[#0076CE]">
-                      {index + 1}
-                    </span>
-                    <span className="text-[9px] text-[#2F2F2F]">{item}</span>
-                    {index < 2 && <ArrowRight size={9} className="ml-auto text-[#A2A4A6]" />}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-3 rounded-lg bg-[#101820] px-3 py-2.5 text-[9px] leading-relaxed text-white/80">
-                Recommended focus: simplify the handoff and review the conversations behind the pattern.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p className="px-2 pb-1 pt-3 text-[9px] leading-relaxed text-white/45">
-          Illustrative visualization of the Jibe AI intelligence model — not a product screenshot.
-        </p>
-      </div>
-    </div>
-  );
-}
-
 export default function JibeAIPage() {
   return (
     <main className="overflow-hidden bg-white">
-      <section className="relative border-b border-[#D9D9D5] bg-[#F7F7F4] pt-32 pb-20 lg:pt-40 lg:pb-28">
-        <div className="pointer-events-none absolute right-[-10%] top-[-25%] h-[620px] w-[620px] rounded-full bg-[#0076CE]/[0.06] blur-3xl" />
-        <div className="relative mx-auto grid max-w-[1320px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-10">
-          <div>
-            <div className="mb-8 flex items-center gap-4">
-              <ProductLogo />
-              <span className="h-7 w-px bg-[#D9D9D5]" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#6D6D69]">
-                Interaction intelligence
-              </span>
-            </div>
-
-            <h1
-              className="mb-8 font-['Instrument_Serif'] leading-[0.94] text-[#2F2F2F]"
-              style={{ fontSize: "clamp(54px, 6.2vw, 88px)", letterSpacing: "-0.025em" }}
-            >
-              See what happened.
-              <span className="block italic text-[#0076CE]">Understand why.</span>
-              <span className="block">Know what to do next.</span>
-            </h1>
-
-            <p className="mb-10 max-w-[590px] text-[17px] leading-[1.7] text-[#6D6D69]">
-              Jibe AI brings customer conversations into one intelligence layer—connecting predictions, real feedback,
-              drivers, and verbatims so teams can move from scattered signals to clear action.
-            </p>
-
-            <div className="mb-10 flex flex-col items-start gap-3 sm:flex-row">
-              <Link
-                to="/demo?product=ai"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#0076CE] px-7 py-3.5 text-[14px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#004F8C]"
-              >
-                Book an AI Demo <ArrowRight size={15} />
-              </Link>
-              <a
-                href="#product-views"
-                className="inline-flex items-center gap-2 rounded-xl border border-[#D9D9D5] px-7 py-3.5 text-[14px] font-medium text-[#6D6D69] transition-all hover:-translate-y-0.5 hover:border-[#2F2F2F] hover:text-[#2F2F2F]"
-              >
-                See Jibe AI in action <ArrowDown size={15} />
-              </a>
-            </div>
-
-            <div className="flex flex-wrap gap-x-6 gap-y-2 border-t border-[#D9D9D5] pt-6">
-              {["Unified context", "Calibrated signals", "Root-cause clarity", "Prescriptive insight"].map((item) => (
-                <span key={item} className="font-mono text-[9px] uppercase tracking-[0.14em] text-[#6D6D69]">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:pl-2">
-            <IntelligenceCanvas />
-          </div>
-        </div>
-      </section>
+      <ProductHeroSection
+        productName="Jibe AI"
+        productLabel="AI"
+        descriptor="Interaction Intelligence"
+        line1="See what happened."
+        line2="Know what to do next."
+        description="Jibe AI connects predictions, real feedback, drivers, and verbatims to explain why outcomes moved and turn scattered signals into clear action."
+        primaryHref="/demo?product=ai"
+        primaryLabel="Book an AI demo"
+        secondaryHref="#product-views"
+        secondaryLabel="See Jibe AI in action"
+        proofPoints={["Unified context", "Calibrated signals", "Root-cause clarity", "Prescriptive insight"]}
+      />
 
       <section className="border-b border-[#D9D9D5] bg-white py-24 lg:py-32">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">

@@ -65,7 +65,11 @@ function drawHalo(
   }
 }
 
-export default function HeroVisual3D() {
+type HeroVisual3DProps = {
+  productLabel: "Pro" | "Retail" | "AI";
+};
+
+export default function HeroVisual3D({ productLabel }: HeroVisual3DProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -75,8 +79,6 @@ export default function HeroVisual3D() {
     const SIZE = 560;
     canvas.width  = SIZE * dpr;
     canvas.height = SIZE * dpr;
-    canvas.style.width  = `${SIZE}px`;
-    canvas.style.height = `${SIZE}px`;
     const ctx = canvas.getContext("2d")!;
     ctx.scale(dpr, dpr);
 
@@ -122,7 +124,8 @@ export default function HeroVisual3D() {
           const appleFont = `-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif`;
           ctx.font = `500 100px ${appleFont}`;
           const measured  = ctx.measureText("Jibe").width;
-          const fontSize  = Math.floor(100 * RING_R * 1.8 / measured);
+          const jibeWidth = RING_R * 1.8;
+          const fontSize  = Math.floor(100 * jibeWidth / measured);
           const cy_s      = CY - 38;
           const haloBottom = cy_s + RING_R * HALO_RY + HALO_LW / 2;
 
@@ -144,27 +147,30 @@ export default function HeroVisual3D() {
           ctx.fillText("Jibe", CX, textY);
           ctx.restore();
 
-          // Product identifier beneath the master brand
-          const proText = "PRO";
-          const proFontSize = Math.max(24, Math.floor(fontSize * 0.16));
-          const proTracking = proFontSize * 0.34;
-          const proY = textY + fontSize * 0.88;
+          // Match the supplied product lockups: a compact blue product name
+          // tucked into the lower-right edge of the Jibe wordmark.
+          let productFontSize = Math.max(24, Math.floor(fontSize * 0.18));
+          const productY = textY + fontSize * 0.86;
+          const jibeRight = CX + jibeWidth / 2;
+
+          ctx.font = `450 ${productFontSize}px ${appleFont}`;
+          const initialProductWidth = ctx.measureText(productLabel).width;
+          const initialProductX = jibeRight - productFontSize * 0.68;
+          const productMaxWidth = SIZE - initialProductX - 18;
+
+          if (initialProductWidth > productMaxWidth) {
+            productFontSize = Math.floor(productFontSize * (productMaxWidth / initialProductWidth));
+          }
+
+          const productX = jibeRight - productFontSize * 0.68;
 
           ctx.save();
           ctx.globalAlpha = textAlpha;
-          ctx.font = `650 ${proFontSize}px ${appleFont}`;
+          ctx.font = `450 ${productFontSize}px ${appleFont}`;
           ctx.textAlign = "left";
           ctx.textBaseline = "top";
           ctx.fillStyle = "#0076CE";
-
-          const proWidths = proText.split("").map((character) => ctx.measureText(character).width);
-          const proWidth = proWidths.reduce((total, width) => total + width, 0) + proTracking * (proText.length - 1);
-          let proX = CX - proWidth / 2;
-
-          proText.split("").forEach((character, index) => {
-            ctx.fillText(character, proX, proY);
-            proX += proWidths[index] + proTracking;
-          });
+          ctx.fillText(productLabel, productX, productY);
           ctx.restore();
 
           // Halo redrawn on top
@@ -180,11 +186,15 @@ export default function HeroVisual3D() {
 
     frame = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [productLabel]);
 
   return (
     <div className="relative flex items-center justify-center w-full" aria-hidden="true">
-      <canvas ref={canvasRef} className="w-full" style={{ maxWidth: 560 }} />
+      <canvas
+        ref={canvasRef}
+        className="block w-full"
+        style={{ width: "100%", height: "auto", maxWidth: 560, aspectRatio: "1 / 1" }}
+      />
     </div>
   );
 }
