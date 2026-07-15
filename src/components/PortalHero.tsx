@@ -153,7 +153,7 @@ export default function PortalHero() {
       />
 
       <div className="portal-copy">
-        <h1 id="portal-heading" className="portal-heading" aria-label="Choose your platform.">
+        <h1 id="portal-heading" className="portal-heading" aria-label="Choose your Platform.">
           <span className="portal-heading-mask">
             <span className="portal-heading-line portal-heading-line--one">
               Choose your
@@ -161,7 +161,7 @@ export default function PortalHero() {
           </span>
           <span className="portal-heading-mask">
             <span className="portal-heading-line portal-heading-line--two">
-              platform.
+              Platform.
             </span>
           </span>
         </h1>
