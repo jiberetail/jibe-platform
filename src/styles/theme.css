@@ -326,7 +326,7 @@
   margin: 0;
   color: #242424;
   font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(105px, 9.5vw, 164px);
+  font-size: clamp(92px, 8vw, 138px);
   font-weight: 400;
   line-height: 0.82;
   letter-spacing: -0.04em;
