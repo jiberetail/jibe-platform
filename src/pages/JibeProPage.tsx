@@ -20,8 +20,8 @@ export default function JibeProPage() {
       <Reason02 />
       <Reason03to05 />
       <Reason07to09 />
-      <Reason10to12 />
       <ProductTour />
+      <Reason10to12 />
       <JibeLoop />
       <CustomerProof />
       <EnterpriseSection />
