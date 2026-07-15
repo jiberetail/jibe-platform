@@ -39,7 +39,7 @@ export default function Reason02() {
     <section
       id="reason-02"
       ref={ref}
-      className="py-28 lg:py-40 border-b"
+      className="scroll-mt-24 py-28 lg:py-40 border-b"
       style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}
     >
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">

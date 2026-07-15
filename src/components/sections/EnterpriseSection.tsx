@@ -11,7 +11,7 @@ const pillars = [
 
 export default function EnterpriseSection() {
   return (
-    <section className="py-24 lg:py-32 border-t border-b" style={{ background: "#F7F7F4", borderColor: "#D9D9D5" }}>
+    <section id="enterprise" className="scroll-mt-24 py-24 lg:py-32 border-t border-b" style={{ background: "#F7F7F4", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-16">
           <div className="lg:col-span-5">

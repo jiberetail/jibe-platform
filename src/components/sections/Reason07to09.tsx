@@ -15,7 +15,7 @@ function Reason07() {
   const [hov, setHov] = useState<string | null>(null);
 
   return (
-    <section id="reason-07" className="py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
+    <section id="reason-06" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>06</div>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 items-start">
@@ -104,7 +104,7 @@ function Reason08() {
   };
 
   return (
-    <section id="reason-08" className="py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="reason-07" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>07</div>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 items-start">

@@ -74,7 +74,7 @@ export default function NumberedIntro() {
               {Array.from({ length: 10 }).map((_, i) => (
                 <a
                   key={i}
-                  href={`#reason-0${i + 1}`}
+                  href={`#reason-${String(i + 1).padStart(2, "0")}`}
                   className="transition-colors hover:opacity-100"
                   style={{
                     width: 24,

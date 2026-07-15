@@ -11,7 +11,7 @@ export default function Reason01() {
   }, []);
 
   return (
-    <section id="reason-01" ref={ref} className="py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="reason-01" ref={ref} className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div
           className="font-['Instrument_Serif'] leading-none mb-10 transition-all duration-700"

@@ -114,14 +114,14 @@ export default function HeroSection() {
               }}
             >
               <Link
-                to="/demo"
+                to="/demo?product=pro"
                 className="px-7 py-3.5 font-semibold text-[14px] rounded-xl transition-all hover:opacity-90 hover:-translate-y-0.5"
                 style={{ background: "#0076CE", color: "white" }}
               >
                 Book a demo
               </Link>
               <Link
-                to="/how-it-works"
+                to="/jibe-pro/how-it-works"
                 className="px-7 py-3.5 border font-medium text-[14px] rounded-xl transition-all hover:border-[#2F2F2F] hover:-translate-y-0.5"
                 style={{ borderColor: "#D9D9D5", color: "#6D6D69" }}
               >

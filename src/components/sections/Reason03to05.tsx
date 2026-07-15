@@ -58,7 +58,7 @@ function Reason03() {
   }, [running]);
 
   return (
-    <section id="reason-03" ref={ref} className="py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="reason-03" ref={ref} className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10 transition-all duration-700"
           style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em", opacity: vis ? 1 : 0 }}>
@@ -141,7 +141,7 @@ function Reason04() {
   };
 
   return (
-    <section id="reason-04" className="py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
+    <section id="reason-04" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>04</div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -263,7 +263,7 @@ function Reason05() {
   }, [vis]);
 
   return (
-    <section id="reason-05" ref={ref} className="py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="reason-05" ref={ref} className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>05</div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">

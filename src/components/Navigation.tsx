@@ -32,14 +32,25 @@ export default function Navigation() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const isPortalLanding = location.pathname === "/";
+  const [portalNavVisible, setPortalNavVisible] = useState(!isPortalLanding);
   const productsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 16);
+      if (!isPortalLanding) {
+        setPortalNavVisible(true);
+        return;
+      }
+
+      const portalHero = document.getElementById("portal-hero");
+      setPortalNavVisible(Boolean(portalHero) && portalHero!.getBoundingClientRect().bottom <= 24);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isPortalLanding]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -65,6 +76,8 @@ export default function Navigation() {
       document.removeEventListener("keydown", onKeyDown);
     };
   }, []);
+
+  if (isPortalLanding && !portalNavVisible) return null;
 
   return (
     <>

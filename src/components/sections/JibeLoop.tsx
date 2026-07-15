@@ -33,7 +33,7 @@ export default function JibeLoop() {
   }, []);
 
   return (
-    <section className="py-24 lg:py-32 border-t border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
+    <section id="jibe-loop" className="scroll-mt-24 py-24 lg:py-32 border-t border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="text-center mb-16">
           <span className="font-mono text-[11px] tracking-[0.25em] uppercase block mb-4" style={{ color: "#6D6D69" }}>

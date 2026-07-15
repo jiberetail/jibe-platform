@@ -338,7 +338,7 @@ export default function ProductTour() {
   };
 
   return (
-    <section className="border-t border-b py-24 lg:py-32" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="product-tour" className="scroll-mt-24 border-t border-b py-24 lg:py-32" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="text-center mb-16">
           <span className="font-mono text-[11px] tracking-[0.2em] text-[#686A6D] uppercase block mb-4">Inside Jibe Pro</span>

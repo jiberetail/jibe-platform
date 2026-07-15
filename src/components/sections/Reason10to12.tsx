@@ -57,7 +57,7 @@ function Reason10() {
   }, []);
 
   return (
-    <section id="reason-10" className="py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
+    <section id="reason-08" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>08</div>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-16 items-center">
@@ -122,7 +122,7 @@ function Reason10() {
                 preserveAspectRatio="xMidYMid meet"
               />
             </svg>
-            <p className="px-6 pb-4 font-mono text-[10px] text-center" style={{ color: "#D9D9D5" }}>Category placeholders — integrations confirmed separately.</p>
+            <p className="px-6 pb-4 font-mono text-[10px] text-center" style={{ color: "#6D6D69" }}>Illustrative integration categories — connections are configured to each program.</p>
           </div>
         </div>
       </div>
@@ -145,7 +145,7 @@ function Reason11() {
   const nextStage = open < stages.length - 1 ? open + 1 : null;
 
   return (
-    <section id="reason-11" className="py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="reason-09" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>09</div>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-16 items-start">
@@ -240,7 +240,7 @@ function Reason12() {
   };
 
   return (
-    <section id="reason-12" className="py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
+    <section id="reason-10" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>10</div>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 items-start">

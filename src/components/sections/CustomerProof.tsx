@@ -1,82 +1,80 @@
-import { Play } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router";
 
-const caseStudies = [
-  { industry: "Financial Services", scope: "Enterprise contact center · 2,400 agents · 3 sites" },
-  { industry: "Healthcare Services", scope: "Multi-site contact center · 1,800 agents · 5 regions" },
-  { industry: "Retail & E-commerce", scope: "Customer service operations · 900 agents · Omnichannel" },
+const evidenceAreas = [
+  {
+    number: "01",
+    title: "Baseline and adoption",
+    description: "Establish the starting point, participation level, and signal quality before measuring change.",
+    points: ["Baseline defined before launch", "Coverage and data quality stay visible"],
+  },
+  {
+    number: "02",
+    title: "Performance movement",
+    description: "Track customer, frontline, and operational measures together instead of reading each metric alone.",
+    points: ["Cohort-aware performance views", "Enterprise result to interaction detail"],
+  },
+  {
+    number: "03",
+    title: "A decision the team can use",
+    description: "Turn pilot evidence into a clear recommendation to expand, adjust, extend, or stop.",
+    points: ["Evidence quality labeled clearly", "Recommended action tied to the result"],
+  },
 ];
 
 export default function CustomerProof() {
   return (
-    <section className="py-24 lg:py-32 border-t border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
-      <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+    <section id="customer-impact" className="scroll-mt-24 border-y border-[#D9D9D5] bg-white py-24 lg:py-32">
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+        <div className="mb-16 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <span className="font-mono text-[11px] tracking-[0.25em] uppercase block mb-4" style={{ color: "#6D6D69" }}>Customer Impact</span>
-            <h2 className="font-['Instrument_Serif'] leading-[1.0]" style={{ fontSize: "clamp(36px, 4.8vw, 60px)", color: "#2F2F2F", letterSpacing: "-0.02em" }}>
+            <span className="mb-4 block font-mono text-[11px] uppercase tracking-[0.25em] text-[#6D6D69]">
+              Customer impact
+            </span>
+            <h2 className="max-w-[780px] font-['Instrument_Serif'] text-[clamp(42px,5vw,68px)] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F]">
               Evidence belongs in the operating model.
             </h2>
           </div>
-          <p className="text-[15px] leading-relaxed max-w-[340px]" style={{ color: "#6D6D69" }}>
-            Jibe Pro programs are built to produce measurable results, not just reports.
+          <p className="max-w-[380px] text-[15px] leading-[1.7] text-[#6D6D69]">
+            Jibe Pro programs are structured to show whether the platform is being used, whether behavior is changing, and whether results are moving.
           </p>
         </div>
 
-        {/* Design note */}
-        <div className="mb-8 p-4 border rounded-xl" style={{ borderColor: "#D9D9D5", background: "#EBEBEB" }}>
-          <p className="font-mono text-[11px]" style={{ color: "#6D6D69" }}>
-            ⚠ Replace all case study content with externally approved claims, customer names, logos, and outcomes before publication.
-          </p>
-        </div>
-
-        {/* Case study cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-          {caseStudies.map((cs) => (
-            <div key={cs.industry} className="border rounded-2xl p-6 hover:-translate-y-1 hover:shadow-md transition-all bg-white" style={{ borderColor: "#D9D9D5" }}>
-              <div className="h-8 w-28 rounded mb-6 opacity-20" style={{ background: "#2F2F2F" }} />
-              <div className="font-mono text-[10px] uppercase tracking-widest mb-1" style={{ color: "#0076CE" }}>{cs.industry}</div>
-              <div className="text-[12px] mb-6 leading-relaxed" style={{ color: "#6D6D69" }}>{cs.scope}</div>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-start gap-3 p-3 rounded-xl border" style={{ background: "#E8F4FC", borderColor: "#B9DDF4" }}>
-                  <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: "#0076CE" }} />
-                  <p className="text-[12px]" style={{ color: "#004F8C" }}>[Approved customer outcome placeholder]</p>
-                </div>
-                <div className="flex items-start gap-3 p-3 rounded-xl border" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
-                  <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: "#D9D9D5" }} />
-                  <p className="text-[12px]" style={{ color: "#6D6D69" }}>[Approved operational outcome placeholder]</p>
-                </div>
-              </div>
-              <Link to="/customers" className="inline-flex items-center gap-2 text-[13px] font-semibold transition-colors hover:text-[#004F8C]" style={{ color: "#0076CE" }}>
-                Read the case study →
-              </Link>
-            </div>
+        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[#D9D9D5] bg-[#D9D9D5] md:grid-cols-3">
+          {evidenceAreas.map((area) => (
+            <article key={area.number} className="group flex min-h-[310px] flex-col bg-white p-7 transition-colors hover:bg-[#F7F7F4] lg:p-8">
+              <span className="font-mono text-[10px] text-[#0076CE]">{area.number}</span>
+              <h3 className="mt-10 text-[18px] font-semibold text-[#2F2F2F]">{area.title}</h3>
+              <p className="mt-4 text-[14px] leading-[1.7] text-[#6D6D69]">{area.description}</p>
+              <ul className="mt-auto space-y-3 border-t border-[#E4E4E0] pt-6">
+                {area.points.map((point) => (
+                  <li key={point} className="flex items-start gap-2.5 text-[12px] leading-[1.5] text-[#4E504D]">
+                    <Check size={14} className="mt-0.5 shrink-0 text-[#0076CE]" aria-hidden="true" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
 
-        {/* Testimonial */}
-        <div className="rounded-2xl p-8 md:p-12 lg:p-16 border" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-8">
-              <div className="font-['Instrument_Serif'] italic leading-[1.3] mb-8" style={{ fontSize: "clamp(20px, 2.8vw, 34px)", color: "#2F2F2F" }}>
-                "[Approved customer testimonial — replace with externally verified quote before publication.]"
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full" style={{ background: "#D9D9D5" }} />
-                <div>
-                  <div className="font-semibold text-[14px]" style={{ color: "#2F2F2F" }}>[Customer Name]</div>
-                  <div className="text-[13px]" style={{ color: "#6D6D69" }}>[Title] · [Company]</div>
-                </div>
-              </div>
+        <div className="mt-8 overflow-hidden rounded-2xl border border-[#B9DDF4] bg-[#E8F4FC]">
+          <div className="grid gap-8 p-8 md:grid-cols-[1fr_auto] md:items-end lg:p-12">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#0076CE]">The standard</p>
+              <h3 className="mt-5 max-w-[780px] font-['Instrument_Serif'] text-[36px] leading-[1.02] tracking-[-0.02em] text-[#173A52] sm:text-[46px]">
+                A Jibe Pro program should end with a decision—not a debate over the data.
+              </h3>
+              <p className="mt-5 max-w-[700px] text-[14px] leading-[1.7] text-[#486A80]">
+                The measurement framework, operating views, and reporting cadence are designed together so leaders know what changed and what to do next.
+              </p>
             </div>
-            <div className="lg:col-span-4">
-              <div className="border rounded-2xl aspect-video flex items-center justify-center cursor-pointer hover:border-[#0076CE] transition-colors group" style={{ background: "white", borderColor: "#D9D9D5" }}>
-                <div className="w-14 h-14 rounded-full flex items-center justify-center transition-colors group-hover:opacity-90" style={{ background: "#0076CE" }}>
-                  <Play size={20} fill="white" className="text-white ml-1" />
-                </div>
-              </div>
-            </div>
+            <Link
+              to="/demo?product=pro"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#0076CE] px-6 py-3.5 text-[14px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#004F8C]"
+            >
+              Book a Pro demo <ArrowRight size={15} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </div>
