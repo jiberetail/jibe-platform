@@ -144,6 +144,29 @@ export default function HeroVisual3D() {
           ctx.fillText("Jibe", CX, textY);
           ctx.restore();
 
+          // Product identifier beneath the master brand
+          const proText = "PRO";
+          const proFontSize = Math.max(24, Math.floor(fontSize * 0.16));
+          const proTracking = proFontSize * 0.34;
+          const proY = textY + fontSize * 0.88;
+
+          ctx.save();
+          ctx.globalAlpha = textAlpha;
+          ctx.font = `650 ${proFontSize}px ${appleFont}`;
+          ctx.textAlign = "left";
+          ctx.textBaseline = "top";
+          ctx.fillStyle = "#0076CE";
+
+          const proWidths = proText.split("").map((character) => ctx.measureText(character).width);
+          const proWidth = proWidths.reduce((total, width) => total + width, 0) + proTracking * (proText.length - 1);
+          let proX = CX - proWidth / 2;
+
+          proText.split("").forEach((character, index) => {
+            ctx.fillText(character, proX, proY);
+            proX += proWidths[index] + proTracking;
+          });
+          ctx.restore();
+
           // Halo redrawn on top
           ctx.save();
           ctx.globalAlpha = textAlpha;
