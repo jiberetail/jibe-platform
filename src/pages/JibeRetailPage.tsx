@@ -72,20 +72,14 @@ const podiums = [
   {
     src: assetUrl("assets/podiums/jibe-retail-mlb.png"),
     label: "MLB",
-    caption: "Baseball retail environment",
-    alt: "Black Jibe Retail feedback podium displayed in a professional baseball venue",
+    caption: "MLB-wrapped retail podium",
+    alt: "Slim retail podium with an MLB-branded vinyl wrap and a New York Mets merchandise screen",
   },
   {
     src: assetUrl("assets/podiums/jibe-retail-nhl.png"),
     label: "NHL",
-    caption: "Hockey retail environment",
-    alt: "Black Jibe Retail feedback podium displayed beside an ice hockey rink",
-  },
-  {
-    src: assetUrl("assets/podiums/jibe-retail-rockies.png"),
-    label: "Colorado Rockies",
-    caption: "Coors Field retail environment",
-    alt: "Black Jibe Retail feedback podium displayed at Coors Field",
+    caption: "NHL-wrapped retail podium",
+    alt: "Slim retail podium with an NHL-branded vinyl wrap and an order-and-delivery screen",
   },
 ];
 
@@ -261,14 +255,14 @@ export default function JibeRetailPage() {
           <SectionLabel number="04" label="The podium" />
           <div className="mb-14 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
             <h2 className="font-['Instrument_Serif'] text-[44px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[56px] lg:col-span-8 lg:text-[72px]">
-              Built for the retail floor. Adaptable to the venue.
+              One podium. Wrapped for every venue.
             </h2>
             <p className="max-w-[390px] text-[15px] leading-[1.7] text-[#6D6D69] lg:col-span-4">
-              A compact, all-black footprint gives the experience a premium presence without competing with the store around it.
+              Venue-specific wraps turn the same compact hardware into a natural extension of the store, team, or league around it.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="mx-auto grid max-w-[980px] grid-cols-1 gap-5 md:grid-cols-2">
             {podiums.map((podium) => (
               <figure key={podium.label} className="group">
                 <div className="overflow-hidden rounded-2xl border border-[#D9D9D5] bg-[#EBEBEB]">
