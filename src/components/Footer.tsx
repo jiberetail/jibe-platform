@@ -9,8 +9,11 @@ const productLinks = [
 ];
 
 const companyLinks = [
+  { label: "Leadership", href: "/company/leadership" },
+  { label: "History", href: "/company/history" },
+  { label: "IP Protection", href: "/company/ip-protection" },
+  { label: "Media Inquiries", href: "/company/media-inquiries" },
   { label: "Clients", href: "/#clients" },
-  { label: "Company", href: "/#company" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -47,7 +50,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#777976]">Jibe</p>
+            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#777976]">Company</p>
             <ul className="space-y-3.5">
               {companyLinks.map((link) => (
                 <li key={link.href}>

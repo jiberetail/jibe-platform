@@ -39,6 +39,33 @@ const clients = [
   { src: logoGoDaddy, alt: "GoDaddy", maxHeight: 34 },
 ];
 
+const companyPages = [
+  {
+    number: "01",
+    title: "Leadership",
+    copy: "Meet the operators, technologists, and strategists guiding Jibe.",
+    href: "/company/leadership",
+  },
+  {
+    number: "02",
+    title: "History",
+    copy: "See how a better way to measure customer experience became Jibe.",
+    href: "/company/history",
+  },
+  {
+    number: "03",
+    title: "IP Protection",
+    copy: "Learn how Jibe protects the original technology behind its products.",
+    href: "/company/ip-protection",
+  },
+  {
+    number: "04",
+    title: "Media Inquiries",
+    copy: "Connect with Jibe for interviews, research, events, and commentary.",
+    href: "/company/media-inquiries",
+  },
+] as const;
+
 export default function HomePage() {
   return (
     <main>
@@ -103,17 +130,26 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[#D9D9D5] bg-[#D9D9D5] sm:grid-cols-3">
-                {[
-                  ["01", "Fit the workflow", "Designed around how the team already works."],
-                  ["02", "Make it legible", "Clear views for operators and leaders."],
-                  ["03", "Move to action", "Useful direction, not another data dump."],
-                ].map(([number, title, copy]) => (
-                  <div key={number} className="bg-white p-6">
-                    <span className="mb-8 block font-mono text-[10px] text-[#0076CE]">{number}</span>
-                    <h3 className="mb-2 text-[14px] font-semibold text-[#2F2F2F]">{title}</h3>
-                    <p className="text-[12px] leading-[1.6] text-[#6D6D69]">{copy}</p>
-                  </div>
+              <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[#D9D9D5] bg-[#D9D9D5] sm:grid-cols-2">
+                {companyPages.map((page) => (
+                  <Link
+                    key={page.href}
+                    to={page.href}
+                    className={`group flex min-h-[210px] flex-col bg-white p-6 transition-colors hover:bg-[#F2F7FB] motion-reduce:transition-none ${focusRing}`}
+                  >
+                    <span className="flex items-center justify-between font-mono text-[10px] text-[#0076CE]">
+                      {page.number}
+                      <ArrowRight
+                        aria-hidden="true"
+                        size={16}
+                        className="transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
+                      />
+                    </span>
+                    <div className="mt-auto pt-12">
+                      <h3 className="mb-2 font-['Instrument_Serif'] text-[31px] leading-none text-[#2F2F2F]">{page.title}</h3>
+                      <p className="max-w-[310px] text-[12px] leading-[1.65] text-[#6D6D69]">{page.copy}</p>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -9,6 +9,7 @@ const JibeRetailPage = lazy(() => import("../pages/JibeRetailPage"));
 const JibeAIPage = lazy(() => import("../pages/JibeAIPage"));
 const HowItWorksPage = lazy(() => import("../pages/HowItWorksPage"));
 const BookDemoPage = lazy(() => import("../pages/BookDemoPage"));
+const CompanyPage = lazy(() => import("../pages/CompanyPage"));
 
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -74,8 +75,13 @@ function AppContent() {
           <Route path="/demo" element={<BookDemoPage />} />
           <Route path="/clients" element={<Navigate to="/#clients" replace />} />
           <Route path="/customers" element={<Navigate to="/#clients" replace />} />
-          <Route path="/company" element={<Navigate to="/#company" replace />} />
-          <Route path="/about" element={<Navigate to="/#company" replace />} />
+          <Route path="/company" element={<Navigate to="/company/leadership" replace />} />
+          <Route path="/company/:section" element={<CompanyPage />} />
+          <Route path="/leadership" element={<Navigate to="/company/leadership" replace />} />
+          <Route path="/history" element={<Navigate to="/company/history" replace />} />
+          <Route path="/ip-protection" element={<Navigate to="/company/ip-protection" replace />} />
+          <Route path="/media-inquiries" element={<Navigate to="/company/media-inquiries" replace />} />
+          <Route path="/about" element={<Navigate to="/company/leadership" replace />} />
           <Route path="/contact" element={<Navigate to="/#contact" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

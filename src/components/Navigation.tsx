@@ -21,20 +21,44 @@ const products = [
   },
 ];
 
+const companyPages = [
+  {
+    label: "Leadership",
+    description: "Meet the people guiding Jibe.",
+    href: "/company/leadership",
+  },
+  {
+    label: "History",
+    description: "The thinking and technology behind Jibe.",
+    href: "/company/history",
+  },
+  {
+    label: "IP Protection",
+    description: "How Jibe safeguards original innovation.",
+    href: "/company/ip-protection",
+  },
+  {
+    label: "Media Inquiries",
+    description: "Interviews, research, and event requests.",
+    href: "/company/media-inquiries",
+  },
+];
+
 const sectionLinks = [
   { label: "Clients", href: "/#clients" },
-  { label: "Company", href: "/#company" },
   { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isPortalLanding = location.pathname === "/";
   const [portalNavVisible, setPortalNavVisible] = useState(!isPortalLanding);
   const productsRef = useRef<HTMLDivElement>(null);
+  const companyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -55,6 +79,7 @@ export default function Navigation() {
   useEffect(() => {
     setMobileOpen(false);
     setProductsOpen(false);
+    setCompanyOpen(false);
   }, [location.pathname, location.hash]);
 
   useEffect(() => {
@@ -62,10 +87,14 @@ export default function Navigation() {
       if (!productsRef.current?.contains(event.target as Node)) {
         setProductsOpen(false);
       }
+      if (!companyRef.current?.contains(event.target as Node)) {
+        setCompanyOpen(false);
+      }
     };
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setProductsOpen(false);
+        setCompanyOpen(false);
         setMobileOpen(false);
       }
     };
@@ -96,9 +125,12 @@ export default function Navigation() {
             <div ref={productsRef} className="relative">
               <button
                 type="button"
-                onClick={() => setProductsOpen((open) => !open)}
+                onClick={() => {
+                  setProductsOpen((open) => !open);
+                  setCompanyOpen(false);
+                }}
                 aria-expanded={productsOpen}
-                aria-haspopup="menu"
+                aria-controls="products-navigation"
                 className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2.5 text-[13px] font-semibold text-[#2F2F2F] transition-colors hover:bg-white hover:text-[#0076CE] focus-visible:outline-2 focus-visible:outline-[#0076CE]"
               >
                 Products
@@ -107,19 +139,55 @@ export default function Navigation() {
 
               {productsOpen && (
                 <div
-                  role="menu"
+                  id="products-navigation"
                   className="absolute left-0 top-full mt-2 w-[350px] overflow-hidden rounded-2xl border border-[#D9D9D5] bg-white p-2 shadow-[0_24px_70px_rgba(26,31,37,0.16)]"
                 >
                   {products.map((product) => (
                     <Link
                       key={product.href}
                       to={product.href}
-                      role="menuitem"
                       className="group flex items-start justify-between gap-5 rounded-xl px-4 py-4 transition-colors hover:bg-[#F2F7FB] focus-visible:outline-2 focus-visible:outline-[#0076CE]"
                     >
                       <span>
                         <span className="block text-[14px] font-semibold text-[#2F2F2F]">{product.label}</span>
                         <span className="mt-1 block text-[12px] leading-relaxed text-[#6D6D69]">{product.description}</span>
+                      </span>
+                      <ArrowUpRight size={15} className="mt-0.5 shrink-0 text-[#9B9D9F] transition-colors group-hover:text-[#0076CE]" />
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div ref={companyRef} className="relative">
+              <button
+                type="button"
+                onClick={() => {
+                  setCompanyOpen((open) => !open);
+                  setProductsOpen(false);
+                }}
+                aria-expanded={companyOpen}
+                aria-controls="company-navigation"
+                className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2.5 text-[13px] font-semibold text-[#2F2F2F] transition-colors hover:bg-white hover:text-[#0076CE] focus-visible:outline-2 focus-visible:outline-[#0076CE]"
+              >
+                Company
+                <ChevronDown size={14} className={`transition-transform ${companyOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {companyOpen && (
+                <div
+                  id="company-navigation"
+                  className="absolute left-0 top-full mt-2 w-[330px] overflow-hidden rounded-2xl border border-[#D9D9D5] bg-white p-2 shadow-[0_24px_70px_rgba(26,31,37,0.16)]"
+                >
+                  {companyPages.map((page) => (
+                    <Link
+                      key={page.href}
+                      to={page.href}
+                      className="group flex items-start justify-between gap-5 rounded-xl px-4 py-3.5 transition-colors hover:bg-[#F2F7FB] focus-visible:outline-2 focus-visible:outline-[#0076CE]"
+                    >
+                      <span>
+                        <span className="block text-[14px] font-semibold text-[#2F2F2F]">{page.label}</span>
+                        <span className="mt-1 block text-[12px] leading-relaxed text-[#6D6D69]">{page.description}</span>
                       </span>
                       <ArrowUpRight size={15} className="mt-0.5 shrink-0 text-[#9B9D9F] transition-colors group-hover:text-[#0076CE]" />
                     </Link>
@@ -191,6 +259,16 @@ export default function Navigation() {
             </div>
 
             <div className="mt-8 border-t border-[#D9D9D5] pt-4">
+              <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[#777976]">Company</p>
+              {companyPages.map((page) => (
+                <Link key={page.href} to={page.href} className="flex items-center justify-between border-b border-[#D9D9D5] py-3.5 text-[19px] font-medium text-[#2F2F2F]">
+                  {page.label}
+                  <ArrowUpRight size={17} className="text-[#9B9D9F]" />
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-6 border-t border-[#D9D9D5] pt-1">
               {sectionLinks.map((link) => (
                 <Link key={link.href} to={link.href} className="flex items-center justify-between border-b border-[#D9D9D5] py-4 text-[22px] font-medium text-[#2F2F2F]">
                   {link.label}
