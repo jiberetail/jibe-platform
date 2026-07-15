@@ -28,6 +28,9 @@ const retailBars = [24, 36, 22, 30, 48, 42, 57, 34, 66, 51, 78, 40, 91, 61, 84, 
 
 const aiPixelRows = 15;
 const aiPixelColumns = 13;
+const aiSoftColors = ["#B9DCF5", "#A9D2F0", "#95C8EC"];
+const aiBrightColors = ["#59AFE6", "#3C9CDD", "#278CD5"];
+const aiDeepColors = ["#0874D2", "#0A67BA", "#0B5CA6"];
 
 const aiPixels = Array.from({ length: aiPixelRows * aiPixelColumns }, (_, index) => {
   const row = Math.floor(index / aiPixelColumns);
@@ -37,30 +40,28 @@ const aiPixels = Array.from({ length: aiPixelRows * aiPixelColumns }, (_, index)
   const nearEdge = row >= leadingEdge - 1.8 && hash % 4 === 0;
   const visible = row >= leadingEdge || nearEdge;
   const density = Math.min(1, Math.max(0, row / (aiPixelRows - 1) * 0.58 + column / (aiPixelColumns - 1) * 0.42));
-  const accent = hash % 19 === 0 || (row > 10 && column > 8 && hash % 13 === 0);
-  const medium = !accent && hash % 5 === 0;
-  const scaleOptions = [0.58, 0.72, 0.86, 1];
-  const size = scaleOptions[hash % scaleOptions.length];
-  const opacity = accent ? 0.9 : Math.min(0.72, 0.12 + density * 0.58 + (medium ? 0.06 : 0));
-  const duration = accent ? 5.2 : medium ? 5.8 : 6.4;
-  const delay = -((row * 0.31 + column * 0.23 + hash * 0.013) % duration);
+  const tone = hash % 3;
+  const opacity = Math.min(0.78, 0.24 + density * 0.5);
+  const peakOpacity = Math.min(0.96, opacity + 0.18);
+  const duration = 6.7 + (column % 3) * 0.35;
+  const delay = -((column * 0.49 + row * 0.18 + (hash % 5) * 0.025) % duration);
+  const fallDistance = 30 + (hash % 5) * 8;
 
   return {
     index,
     row,
     column,
     visible,
-    accent,
-    size,
     opacity,
-    peakOpacity: Math.min(1, opacity + (accent ? 0.1 : 0.12)),
-    lowOpacity: Math.max(0.08, opacity * 0.84),
-    color: accent ? "#0874D2" : medium ? "#4AA2DE" : "#8CC7EE",
+    entryOpacity: opacity * 0.58,
+    peakOpacity,
     delay,
     duration,
-    driftX: (hash % 3) - 1,
-    driftY: -(1 + (hash % 3)),
-    peakScale: accent ? 1.16 : medium ? 1.1 : 1.055,
+    fallStart: -fallDistance,
+    fallMid: -Math.round(fallDistance * 0.46),
+    colorSoft: aiSoftColors[tone],
+    colorBright: aiBrightColors[tone],
+    colorDeep: aiDeepColors[tone],
   };
 }).filter((pixel) => pixel.visible);
 
@@ -116,24 +117,24 @@ function RetailSignalArt() {
 function AiPixelArt() {
   return (
     <div className="portal-ai-pixels" aria-hidden="true">
-      {aiPixels.map(({ index, row, column, accent, size, opacity, peakOpacity, lowOpacity, color, delay, duration, driftX, driftY, peakScale }) => (
+      {aiPixels.map(({ index, row, column, opacity, entryOpacity, peakOpacity, delay, duration, fallStart, fallMid, colorSoft, colorBright, colorDeep }) => (
         <span
           key={index}
-          className={`portal-ai-pixel${accent ? " portal-ai-pixel--accent" : ""}`}
+          className="portal-ai-pixel"
           style={
             {
               gridColumn: column + 1,
               gridRow: row + 1,
-              "--pixel-size": `${Math.round(size * 100)}%`,
               "--pixel-opacity": opacity,
+              "--pixel-entry-opacity": entryOpacity,
               "--pixel-peak-opacity": peakOpacity,
-              "--pixel-low-opacity": lowOpacity,
               "--pixel-delay": `${delay}s`,
               "--pixel-duration": `${duration}s`,
-              "--pixel-drift-x": `${driftX}px`,
-              "--pixel-drift-y": `${driftY}px`,
-              "--pixel-peak-scale": peakScale,
-              background: color,
+              "--pixel-fall-start": `${fallStart}px`,
+              "--pixel-fall-mid": `${fallMid}px`,
+              "--pixel-color-soft": colorSoft,
+              "--pixel-color-bright": colorBright,
+              "--pixel-color-deep": colorDeep,
             } as CSSProperties
           }
         />

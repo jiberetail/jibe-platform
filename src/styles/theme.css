@@ -579,28 +579,24 @@
   left: 14%;
   display: grid;
   height: 64%;
+  --portal-ai-pixel-size: clamp(5px, 0.44vw, 7px);
   grid-template-columns: repeat(13, minmax(0, 1fr));
   grid-template-rows: repeat(15, minmax(0, 1fr));
   gap: clamp(3px, 0.3vw, 5px);
-  transform-origin: 72% 74%;
-  animation: portal-ai-field-drift 9s ease-in-out infinite alternate;
-  will-change: transform;
+  contain: layout paint;
 }
 
 .portal-ai-pixel {
   align-self: center;
   justify-self: center;
-  width: var(--pixel-size);
-  aspect-ratio: 1;
+  width: var(--portal-ai-pixel-size);
+  height: var(--portal-ai-pixel-size);
   border-radius: 1px;
   opacity: var(--pixel-opacity);
-  transform: translate3d(0, 0, 0) scale(0.94);
-  animation: portal-ai-pixel-live var(--pixel-duration) var(--pixel-delay) cubic-bezier(0.45, 0, 0.2, 1) infinite;
+  background-color: var(--pixel-color-deep);
+  transform: translate3d(0, 0, 0);
+  animation: portal-ai-matrix-fall var(--pixel-duration) var(--pixel-delay) cubic-bezier(0.4, 0, 0.2, 1) infinite;
   will-change: transform, opacity;
-}
-
-.portal-ai-pixel--accent {
-  box-shadow: 0 0 10px rgba(8, 116, 210, 0.2);
 }
 
 .portal-skip-link {
@@ -686,24 +682,42 @@
   50% { opacity: 1; transform: translateX(-50%) scale(1.04); }
 }
 
-@keyframes portal-ai-pixel-live {
-  0%, 22%, 100% {
-    opacity: var(--pixel-opacity);
-    transform: translate3d(0, 0, 0) scale(0.94);
+@keyframes portal-ai-matrix-fall {
+  0%, 8% {
+    opacity: 0;
+    background-color: var(--pixel-color-soft);
+    transform: translate3d(0, var(--pixel-fall-start), 0);
   }
-  48% {
+  20% {
+    opacity: var(--pixel-entry-opacity);
+    background-color: var(--pixel-color-soft);
+    transform: translate3d(0, var(--pixel-fall-mid), 0);
+  }
+  40% {
     opacity: var(--pixel-peak-opacity);
-    transform: translate3d(var(--pixel-drift-x), var(--pixel-drift-y), 0) scale(var(--pixel-peak-scale));
+    background-color: var(--pixel-color-bright);
+    transform: translate3d(0, 0, 0);
   }
-  72% {
-    opacity: var(--pixel-low-opacity);
-    transform: translate3d(0, 1px, 0) scale(0.91);
+  58% {
+    opacity: var(--pixel-opacity);
+    background-color: var(--pixel-color-deep);
+    transform: translate3d(0, 0, 0);
   }
-}
-
-@keyframes portal-ai-field-drift {
-  from { transform: translate3d(-2px, 2px, 0) rotate(-0.35deg); }
-  to { transform: translate3d(4px, -4px, 0) rotate(0.35deg); }
+  76% {
+    opacity: var(--pixel-peak-opacity);
+    background-color: var(--pixel-color-bright);
+    transform: translate3d(0, 0, 0);
+  }
+  92% {
+    opacity: var(--pixel-opacity);
+    background-color: var(--pixel-color-deep);
+    transform: translate3d(0, 1px, 0);
+  }
+  100% {
+    opacity: 0;
+    background-color: var(--pixel-color-soft);
+    transform: translate3d(0, 3px, 0);
+  }
 }
 
 @media (max-width: 1199px) {
