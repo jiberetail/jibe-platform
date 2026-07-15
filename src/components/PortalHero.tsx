@@ -69,6 +69,7 @@ function RetailSignalArt() {
             {
               "--bar-height": `${height}%`,
               "--bar-delay": `${index * 45}ms`,
+              "--bar-loop-delay": `${1250 + index * 76}ms`,
               left: `${4 + index * 5.35}%`,
               height: `${height}%`,
               opacity: 0.18 + (index % 5) * 0.07,
@@ -88,13 +89,16 @@ function AiPixelArt() {
       {aiPixels.map(({ index, strength, accent, row, column }) => (
         <span
           key={index}
-          className={accent ? "portal-ai-pixel portal-ai-pixel--accent" : "portal-ai-pixel"}
+          className="portal-ai-pixel"
           style={
             {
               "--pixel-opacity": strength,
+              "--pixel-peak-opacity": Math.min(1, strength + (accent ? 0.38 : 0.18)),
+              "--pixel-shift": `${-(2 + ((row + column) % 3))}px`,
+              "--pixel-peak-scale": accent ? 1.2 : 1.08,
               background: accent ? "#0874D6" : "#75B8EC",
               "--pixel-enter-delay": `${420 + (row + column) * 24}ms`,
-              "--pixel-loop-delay": `${1500 + (row + column) * 42}ms`,
+              "--pixel-loop-delay": `${1450 + (row + column) * 48}ms`,
             } as CSSProperties
           }
         />
