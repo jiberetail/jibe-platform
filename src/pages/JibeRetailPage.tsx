@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import {
   ArrowRight,
+  ArrowUpRight,
   BarChart3,
   BellRing,
   PackageSearch,
@@ -34,6 +35,37 @@ const workflow = [
     icon: BarChart3,
   },
 ];
+
+const retailScreens = [
+  {
+    number: "01",
+    title: "Choose the experience",
+    description: "Start with the sport, league, or retail world that fits the venue.",
+    src: assetUrl("assets/jibe-retail/sport-selector.png"),
+    alt: "Jibe Retail Fan Town screen inviting a shopper to select a sport.",
+  },
+  {
+    number: "02",
+    title: "Choose the team",
+    description: "Guide shoppers with familiar team identities in a fully branded flow.",
+    src: assetUrl("assets/jibe-retail/team-selector.png"),
+    alt: "Jibe Retail Major League Baseball screen inviting a shopper to select a team.",
+  },
+  {
+    number: "03",
+    title: "Find the missing item",
+    description: "Capture the exact jersey or product the shopper could not find in store.",
+    src: assetUrl("assets/jibe-retail/product-finder.png"),
+    alt: "Jibe Retail Yankees product finder showing a searchable grid of jerseys.",
+  },
+  {
+    number: "04",
+    title: "Recover the basket",
+    description: "Connect missed demand to a cart, QR checkout, shipping, and a return offer.",
+    src: assetUrl("assets/jibe-retail/cart-recovery.png"),
+    alt: "Jibe Retail NHL cart screen with selected merchandise and a QR code to complete the purchase.",
+  },
+] as const;
 
 const podiums = [
   {
@@ -223,9 +255,64 @@ export default function JibeRetailPage() {
         </div>
       </section>
 
+      <section id="survey-experience" className="scroll-mt-28 border-b border-[#D9D9D5] bg-[#EBEBEB] py-24 lg:py-36">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+          <SectionLabel number="03" label="The shopper experience" />
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
+            <h2 className="font-['Instrument_Serif'] text-[44px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[56px] lg:col-span-8 lg:text-[72px]">
+              Fast enough for the exit. Flexible enough for the venue.
+            </h2>
+            <p className="max-w-[420px] text-[15px] leading-[1.7] text-[#6D6D69] lg:col-span-4">
+              From sport and team selection to product lookup and cart recovery, each flow can reflect the environment around it.
+            </p>
+          </div>
+
+          <div
+            className="-mx-6 mt-16 overflow-x-auto px-6 pb-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0076CE] lg:mx-0 lg:overflow-visible lg:px-0"
+            role="region"
+            aria-label="Jibe Retail shopper experience screens"
+            tabIndex={0}
+          >
+            <div className="flex w-max snap-x snap-mandatory gap-5 lg:grid lg:w-auto lg:grid-cols-4">
+              {retailScreens.map((screen) => (
+                <figure key={screen.number} className="w-[82vw] max-w-[330px] shrink-0 snap-start lg:w-auto lg:max-w-none">
+                  <div className="overflow-hidden rounded-[22px] border border-[#C9CBCB] bg-white shadow-[0_18px_50px_rgba(47,47,47,0.10)]">
+                    <div className="flex items-center justify-between gap-4 border-b border-[#D9D9D5] px-4 py-3">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#6D6D69]">
+                        Screen {screen.number}
+                      </span>
+                      <a
+                        href={screen.src}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={`inline-flex items-center gap-1.5 rounded-md text-[10px] font-semibold text-[#0076CE] transition-colors hover:text-[#004F8C] ${focusRing}`}
+                        aria-label={`Open full-size ${screen.title} screenshot`}
+                      >
+                        Full view <ArrowUpRight aria-hidden="true" size={12} />
+                      </a>
+                    </div>
+                    <img
+                      src={screen.src}
+                      alt={screen.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-auto w-full"
+                    />
+                  </div>
+                  <figcaption className="px-1 pt-5">
+                    <h3 className="text-[15px] font-semibold text-[#2F2F2F]">{screen.title}</h3>
+                    <p className="mt-2 text-[12px] leading-[1.6] text-[#6D6D69]">{screen.description}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="border-b border-[#D9D9D5] bg-white py-24 lg:py-36">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-          <SectionLabel number="03" label="The podium" />
+          <SectionLabel number="04" label="The podium" />
           <div className="mb-14 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
             <h2 className="font-['Instrument_Serif'] text-[44px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[56px] lg:col-span-8 lg:text-[72px]">
               Built for the retail floor. Adaptable to the venue.
@@ -262,7 +349,7 @@ export default function JibeRetailPage() {
 
       <section className="border-b border-[#D9D9D5] bg-[#EBEBEB] py-24 lg:py-36">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-          <SectionLabel number="04" label="Demand made visible" />
+          <SectionLabel number="05" label="Demand made visible" />
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
             <h2 className="font-['Instrument_Serif'] text-[44px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[56px] lg:col-span-8 lg:text-[72px]">
               Evidence for the opportunities that used to walk out unseen.

@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import {
   ArrowDown,
   ArrowRight,
+  ArrowUpRight,
   BarChart3,
   BrainCircuit,
   Check,
@@ -109,9 +110,110 @@ const intelligenceDimensions = [
   "Resolution",
 ];
 
+const productViews = [
+  {
+    number: "01",
+    eyebrow: "Portfolio health",
+    title: "See the program at a glance.",
+    description:
+      "Bring CSAT, resolution, interaction volume, and quartile performance into one operating view.",
+    src: "assets/jibe-ai/performance-overview.png",
+    alt: "Jibe AI overview dashboard showing CSAT, resolution rate, interaction summary, and quartile performance.",
+    label: "Performance overview",
+    imageClassName: "min-w-[760px]",
+    copyClassName: "lg:col-span-3",
+    frameClassName: "lg:col-span-9",
+    copyOrderClassName: "",
+    frameOrderClassName: "",
+  },
+  {
+    number: "02",
+    eyebrow: "Driver prioritization",
+    title: "Know which contact reasons are moving the outcome.",
+    description:
+      "Map volume change against CSAT or resolution impact, then rank the reasons that deserve attention first.",
+    src: "assets/jibe-ai/contact-reason-impact.png",
+    alt: "Jibe AI contact reason impact analysis with a scatter plot and ranked CSAT drivers.",
+    label: "Contact reason impact analysis",
+    imageClassName: "min-w-[760px]",
+    copyClassName: "lg:col-span-3 lg:col-start-10",
+    frameClassName: "lg:col-span-9 lg:col-start-1",
+    copyOrderClassName: "order-1 lg:order-2",
+    frameOrderClassName: "order-2 lg:order-1",
+  },
+  {
+    number: "03",
+    eyebrow: "Prescriptive analysis",
+    title: "Turn a root cause into a practical response.",
+    description:
+      "Move from root-cause analysis to agent impact, transcripts, and best-practice guidance grounded in top-quartile behavior.",
+    src: "assets/jibe-ai/best-practice-opportunity.png",
+    alt: "Jibe AI root cause analysis showing performance metrics, quartile analysis, and recommended best practices.",
+    label: "AI-generated best-practice opportunity",
+    imageClassName: "min-w-[640px]",
+    copyClassName: "lg:col-span-4",
+    frameClassName: "lg:col-span-8",
+    copyOrderClassName: "",
+    frameOrderClassName: "",
+  },
+] as const;
+
 function ProductLogo() {
   return (
     <img src={assetUrl("assets/logos/jibe-ai-tight.png")} alt="Jibe AI" className="h-[70px] w-auto object-contain sm:h-[78px]" />
+  );
+}
+
+function ProductScreenshot({
+  src,
+  alt,
+  label,
+  imageClassName,
+}: {
+  src: string;
+  alt: string;
+  label: string;
+  imageClassName: string;
+}) {
+  const imageUrl = assetUrl(src);
+
+  return (
+    <figure className="overflow-hidden rounded-[24px] border border-white/15 bg-white shadow-[0_28px_80px_rgba(0,0,0,0.24)]">
+      <figcaption className="flex items-center justify-between gap-4 border-b border-[#D9D9D5] bg-white px-4 py-3 sm:px-5">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="flex shrink-0 items-center gap-1.5" aria-hidden="true">
+            <span className="h-2 w-2 rounded-full bg-[#B9DDF4]" />
+            <span className="h-2 w-2 rounded-full bg-[#D9D9D5]" />
+            <span className="h-2 w-2 rounded-full bg-[#D9D9D5]" />
+          </span>
+          <span className="truncate font-mono text-[8px] uppercase tracking-[0.15em] text-[#6D6D69] sm:text-[9px]">
+            {label} · Example data
+          </span>
+        </div>
+        <a
+          href={imageUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-md text-[10px] font-semibold text-[#0076CE] outline-none transition-colors hover:text-[#004F8C] focus-visible:ring-2 focus-visible:ring-[#0076CE] focus-visible:ring-offset-2"
+          aria-label={`Open full-size ${label} screenshot`}
+        >
+          Full view <ArrowUpRight size={12} aria-hidden="true" />
+        </a>
+      </figcaption>
+      <div
+        className="overflow-x-auto bg-[#F5F8FA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#40C4FF]"
+        tabIndex={0}
+        aria-label={`Scrollable ${label} product screenshot`}
+      >
+        <img
+          src={imageUrl}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          className={`h-auto w-full max-w-none lg:min-w-0 ${imageClassName}`}
+        />
+      </div>
+    </figure>
   );
 }
 
@@ -275,10 +377,10 @@ export default function JibeAIPage() {
                 Book an AI Demo <ArrowRight size={15} />
               </Link>
               <a
-                href="#intelligence-loop"
+                href="#product-views"
                 className="inline-flex items-center gap-2 rounded-xl border border-[#D9D9D5] px-7 py-3.5 text-[14px] font-medium text-[#6D6D69] transition-all hover:-translate-y-0.5 hover:border-[#2F2F2F] hover:text-[#2F2F2F]"
               >
-                Explore the intelligence loop <ArrowDown size={15} />
+                See Jibe AI in action <ArrowDown size={15} />
               </a>
             </div>
 
@@ -328,6 +430,51 @@ export default function JibeAIPage() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="product-views" className="scroll-mt-24 border-b border-[#263545] bg-[#101820] py-24 lg:py-32">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+          <div className="mb-20 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <span className="mb-7 block font-mono text-[10px] uppercase tracking-[0.22em] text-[#40C4FF]">
+                Jibe AI in action
+              </span>
+              <h2 className="font-['Instrument_Serif'] text-[44px] leading-[1.02] text-white md:text-[58px]">
+                From portfolio signal to root cause to a better next move.
+              </h2>
+            </div>
+            <div className="lg:col-span-3 lg:col-start-10">
+              <p className="text-[15px] leading-[1.7] text-white/55">
+                Explore real Jibe AI product views shown with example program data.
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-24 lg:space-y-32">
+            {productViews.map((view) => (
+              <article key={view.number} className="grid grid-cols-1 items-center gap-9 lg:grid-cols-12 lg:gap-10">
+                <div className={`${view.copyOrderClassName} ${view.copyClassName}`}>
+                  <span className="mb-5 block font-mono text-[9px] uppercase tracking-[0.2em] text-[#40C4FF]">
+                    {view.number} / {view.eyebrow}
+                  </span>
+                  <h3 className="mb-5 font-['Instrument_Serif'] text-[38px] leading-[1.04] text-white lg:text-[44px]">
+                    {view.title}
+                  </h3>
+                  <p className="text-[14px] leading-[1.75] text-white/55">{view.description}</p>
+                </div>
+
+                <div className={`${view.frameOrderClassName} ${view.frameClassName}`}>
+                  <ProductScreenshot
+                    src={view.src}
+                    alt={view.alt}
+                    label={view.label}
+                    imageClassName={view.imageClassName}
+                  />
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
