@@ -42,12 +42,14 @@ function ProWaveArt() {
           key={index}
           style={
             {
-              "--wave-index": index,
+              "--wave-opacity": 0.3 + index * 0.025,
+              "--wave-peak-opacity": 0.5 + index * 0.027,
+              "--wave-enter-delay": `${430 + index * 34}ms`,
+              "--wave-loop-delay": `${1450 + index * 72}ms`,
               width: `${82 + index * 6.5}%`,
               height: `${50 + index * 3.1}%`,
               left: `${-34 - index * 0.8}%`,
               bottom: `${-18 - index * 1.5}%`,
-              opacity: 0.3 + index * 0.025,
             } as CSSProperties
           }
         />
@@ -86,11 +88,13 @@ function AiPixelArt() {
       {aiPixels.map(({ index, strength, accent, row, column }) => (
         <span
           key={index}
+          className={accent ? "portal-ai-pixel portal-ai-pixel--accent" : "portal-ai-pixel"}
           style={
             {
-              opacity: strength,
+              "--pixel-opacity": strength,
               background: accent ? "#0874D6" : "#75B8EC",
-              "--pixel-delay": `${(row + column) * 24}ms`,
+              "--pixel-enter-delay": `${420 + (row + column) * 24}ms`,
+              "--pixel-loop-delay": `${1500 + (row + column) * 42}ms`,
             } as CSSProperties
           }
         />

@@ -517,7 +517,7 @@
 }
 
 .portal-pro-wave {
-  animation: portal-wave-float 9s ease-in-out infinite alternate;
+  animation: portal-wave-float 6.8s ease-in-out infinite alternate;
 }
 
 .portal-pro-wave span {
@@ -527,7 +527,13 @@
   border-bottom-color: transparent;
   border-left-color: transparent;
   border-radius: 50%;
+  opacity: var(--wave-opacity);
   transform: rotate(-7deg);
+  transform-origin: right bottom;
+  animation:
+    portal-pro-contour-in 760ms var(--wave-enter-delay) cubic-bezier(0.22, 1, 0.36, 1) both,
+    portal-pro-ripple 4.8s var(--wave-loop-delay) ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 .portal-retail-signal {
@@ -575,13 +581,40 @@
   align-content: end;
 }
 
-.portal-ai-pixels span {
+.portal-ai-pixels::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: -22% -28%;
+  background: linear-gradient(
+    135deg,
+    transparent 41%,
+    rgba(0, 118, 206, 0.02) 45%,
+    rgba(0, 118, 206, 0.34) 50%,
+    rgba(255, 255, 255, 0.72) 52%,
+    transparent 58%
+  );
+  opacity: 0;
+  transform: translate3d(-62%, 62%, 0);
+  animation: portal-ai-scan 4.8s 1100ms cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.portal-ai-pixel {
   align-self: end;
   width: 100%;
   aspect-ratio: 1;
-  transform: scale(0.75);
-  animation: portal-pixel-breathe 4.6s ease-in-out infinite;
-  animation-delay: var(--pixel-delay);
+  opacity: var(--pixel-opacity);
+  transform: scale(1);
+  animation: portal-pixel-enter 620ms var(--pixel-enter-delay) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.portal-ai-pixel--accent {
+  animation:
+    portal-pixel-enter 620ms var(--pixel-enter-delay) cubic-bezier(0.22, 1, 0.36, 1) both,
+    portal-pixel-pulse 2.9s var(--pixel-loop-delay) ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 .portal-skip-link {
@@ -608,7 +641,29 @@
 
 @keyframes portal-wave-float {
   from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(9px, -7px, 0); }
+  to { transform: translate3d(14px, -11px, 0); }
+}
+
+@keyframes portal-pro-contour-in {
+  from {
+    opacity: 0;
+    transform: rotate(-7deg) translate3d(-20px, 16px, 0) scale(0.93);
+  }
+  to {
+    opacity: var(--wave-opacity);
+    transform: rotate(-7deg) translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes portal-pro-ripple {
+  0%, 100% {
+    opacity: var(--wave-opacity);
+    transform: rotate(-7deg) translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: var(--wave-peak-opacity);
+    transform: rotate(-7deg) translate3d(13px, -10px, 0) scale(1.018);
+  }
 }
 
 @keyframes portal-fade-in {
@@ -640,9 +695,43 @@
   50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
 }
 
-@keyframes portal-pixel-breathe {
-  0%, 100% { transform: scale(0.72); }
-  50% { transform: scale(1); }
+@keyframes portal-pixel-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.38);
+  }
+  to {
+    opacity: var(--pixel-opacity);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes portal-pixel-pulse {
+  0%, 100% {
+    opacity: var(--pixel-opacity);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, -4px, 0) scale(1.28);
+  }
+}
+
+@keyframes portal-ai-scan {
+  0%, 18% {
+    opacity: 0;
+    transform: translate3d(-62%, 62%, 0);
+  }
+  28% {
+    opacity: 0.88;
+  }
+  72% {
+    opacity: 0.72;
+  }
+  82%, 100% {
+    opacity: 0;
+    transform: translate3d(62%, -62%, 0);
+  }
 }
 
 @media (max-width: 1199px) {
@@ -816,14 +905,30 @@
 
 @media (prefers-reduced-motion: reduce) {
   .portal-pro-wave,
+  .portal-pro-wave span,
   .portal-retail-bar,
   .portal-retail-bar i,
-  .portal-ai-pixels span {
+  .portal-ai-pixel,
+  .portal-ai-pixels::after {
     animation: none !important;
   }
 
   .portal-retail-bar {
     transform: scaleY(1);
+  }
+
+  .portal-pro-wave span {
+    opacity: var(--wave-opacity);
+    transform: rotate(-7deg);
+  }
+
+  .portal-ai-pixel {
+    opacity: var(--pixel-opacity);
+    transform: scale(1);
+  }
+
+  .portal-ai-pixels::after {
+    display: none;
   }
 
   .portal-blueprint,
