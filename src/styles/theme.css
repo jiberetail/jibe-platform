@@ -579,7 +579,7 @@
   left: 14%;
   display: grid;
   height: 64%;
-  --portal-ai-pixel-size: clamp(5px, 0.44vw, 7px);
+  --portal-ai-pixel-size: clamp(9px, 0.68vw, 12px);
   grid-template-columns: repeat(13, minmax(0, 1fr));
   grid-template-rows: repeat(15, minmax(0, 1fr));
   gap: clamp(3px, 0.3vw, 5px);

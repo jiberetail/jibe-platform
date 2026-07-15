@@ -169,7 +169,9 @@ export default function CompanyPage() {
           <div className={section === "leadership" ? "mx-auto max-w-[900px] text-center" : ""}>
             <div className={`mb-7 flex items-center gap-4 ${section === "leadership" ? "justify-center" : ""}`}>
               <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#0076CE]">Company</span>
-              <span className="font-mono text-[10px] tracking-[0.18em] text-[#A0A29E]">{meta.number} / 04</span>
+              {section !== "leadership" && (
+                <span className="font-mono text-[10px] tracking-[0.18em] text-[#A0A29E]">{meta.number} / 04</span>
+              )}
             </div>
             <h1 className="max-w-[900px] font-['Instrument_Serif'] text-[56px] leading-[0.92] tracking-[-0.03em] text-[#2F2F2F] sm:text-[72px] lg:text-[88px]">
               {meta.title}
