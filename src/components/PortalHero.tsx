@@ -26,12 +26,53 @@ const portalProducts = [
 
 const retailBars = [24, 36, 22, 30, 48, 42, 57, 34, 66, 51, 78, 40, 91, 61, 84, 52, 96, 70];
 
-const aiPixels = Array.from({ length: 168 }, (_, index) => {
-  const row = Math.floor(index / 12);
-  const column = index % 12;
-  const strength = Math.max(0, Math.min(1, (row + column - 5) / 16));
-  const accent = (row * 7 + column * 11) % 17 === 0 || (row > 10 && column > 8 && (row + column) % 3 === 0);
-  return { index, strength, accent, row, column };
+type AiNetworkNode = {
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  core?: boolean;
+};
+
+const aiNetworkNodes: readonly AiNetworkNode[] = [
+  { x: 13, y: 42, size: 2.7, opacity: 0.44 },
+  { x: 20, y: 65, size: 2.1, opacity: 0.5 },
+  { x: 29, y: 30, size: 2.35, opacity: 0.58 },
+  { x: 33, y: 78, size: 2.55, opacity: 0.52 },
+  { x: 40, y: 50, size: 3.2, opacity: 0.68 },
+  { x: 51, y: 25, size: 2.2, opacity: 0.56 },
+  { x: 58, y: 54, size: 10, opacity: 1, core: true },
+  { x: 51, y: 80, size: 2.75, opacity: 0.62 },
+  { x: 69, y: 28, size: 2.45, opacity: 0.6 },
+  { x: 72, y: 71, size: 3.15, opacity: 0.7 },
+  { x: 81, y: 43, size: 2.75, opacity: 0.66 },
+  { x: 87, y: 62, size: 2.1, opacity: 0.53 },
+  { x: 92, y: 29, size: 2.35, opacity: 0.48 },
+  { x: 94, y: 78, size: 2.45, opacity: 0.46 },
+  { x: 45, y: 66, size: 2.15, opacity: 0.58 },
+];
+
+const aiNetworkLinks = [
+  [0, 2], [0, 4], [1, 3], [1, 4], [2, 4], [2, 5], [3, 7], [3, 14],
+  [4, 6], [4, 14], [5, 6], [5, 8], [14, 6], [14, 7], [6, 8], [6, 9],
+  [6, 10], [7, 9], [8, 10], [8, 12], [9, 10], [9, 11], [9, 13], [10, 11],
+  [10, 12], [11, 13],
+] as const;
+
+const aiNetworkSegments = aiNetworkLinks.map(([from, to], index) => {
+  const start = aiNetworkNodes[from];
+  const end = aiNetworkNodes[to];
+  const deltaX = end.x - start.x;
+  const deltaY = end.y - start.y;
+
+  return {
+    index,
+    x: start.x,
+    y: start.y,
+    length: Math.hypot(deltaX, deltaY),
+    angle: Math.atan2(deltaY, deltaX) * (180 / Math.PI),
+    strong: from === 6 || to === 6,
+  };
 });
 
 function ProWaveArt() {
@@ -83,26 +124,56 @@ function RetailSignalArt() {
   );
 }
 
-function AiPixelArt() {
+function AiNetworkArt() {
   return (
-    <div className="portal-ai-pixels" aria-hidden="true">
-      {aiPixels.map(({ index, strength, accent, row, column }) => (
+    <div className="portal-ai-network" aria-hidden="true">
+      <div className="portal-ai-network__field">
+        {aiNetworkSegments.map(({ index, x, y, length, angle, strong }) => (
+          <span
+            key={`link-${index}`}
+            className={`portal-ai-network__link${strong ? " portal-ai-network__link--strong" : ""}`}
+            style={
+              {
+                left: `${x}%`,
+                top: `${y}%`,
+                width: `${length}%`,
+                transform: `rotate(${angle}deg)`,
+                "--link-delay": `${-0.24 * index}s`,
+              } as CSSProperties
+            }
+          />
+        ))}
+
+        <span className="portal-ai-network__halo portal-ai-network__halo--outer" />
+        <span className="portal-ai-network__halo portal-ai-network__halo--inner" />
+
+        {aiNetworkNodes.map(({ x, y, size, opacity, core }, index) => {
+          if (core) return null;
+
+          return (
+            <span
+              key={`node-${index}`}
+              className="portal-ai-network__node"
+              style={
+                {
+                  left: `${x}%`,
+                  top: `${y}%`,
+                  width: `${size}%`,
+                  "--node-opacity": opacity,
+                  "--node-delay": `${-0.38 * index}s`,
+                } as CSSProperties
+              }
+            />
+          );
+        })}
+
         <span
-          key={index}
-          className="portal-ai-pixel"
-          style={
-            {
-              "--pixel-opacity": strength,
-              "--pixel-peak-opacity": Math.min(1, strength + (accent ? 0.38 : 0.18)),
-              "--pixel-shift": `${-(2 + ((row + column) % 3))}px`,
-              "--pixel-peak-scale": accent ? 1.2 : 1.08,
-              background: accent ? "#0874D6" : "#75B8EC",
-              "--pixel-enter-delay": `${420 + (row + column) * 24}ms`,
-              "--pixel-loop-delay": `${1450 + (row + column) * 48}ms`,
-            } as CSSProperties
-          }
-        />
-      ))}
+          className="portal-ai-network__core"
+          style={{ left: "58%", top: "54%" }}
+        >
+          <i className="portal-ai-network__core-mark" />
+        </span>
+      </div>
     </div>
   );
 }
@@ -131,7 +202,7 @@ function PortalCard({
         </span>
         {product.key === "pro" && <ProWaveArt />}
         {product.key === "retail" && <RetailSignalArt />}
-        {product.key === "ai" && <AiPixelArt />}
+        {product.key === "ai" && <AiNetworkArt />}
       </Link>
     </div>
   );

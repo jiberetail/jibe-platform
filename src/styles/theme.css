@@ -509,7 +509,7 @@
 
 .portal-pro-wave,
 .portal-retail-signal,
-.portal-ai-pixels {
+.portal-ai-network {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -569,28 +569,114 @@
   animation: portal-node-pulse 3.4s ease-in-out infinite;
 }
 
-.portal-ai-pixels {
-  top: auto;
-  right: 6%;
-  bottom: 1%;
-  left: 12%;
-  display: grid;
-  height: 52%;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: repeat(14, minmax(0, 1fr));
-  gap: clamp(4px, 0.42vw, 8px);
-  align-content: end;
+.portal-ai-network {
+  inset: auto -18% -5% auto;
+  width: 142%;
+  aspect-ratio: 1;
 }
 
-.portal-ai-pixel {
-  align-self: end;
-  width: 100%;
+.portal-ai-network::before {
+  position: absolute;
+  inset: 17%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(67, 157, 224, 0.24) 0%, rgba(116, 190, 239, 0.09) 36%, transparent 70%);
+  content: "";
+  filter: blur(8px);
+}
+
+.portal-ai-network__field {
+  position: absolute;
+  inset: 0;
+  transform-origin: 58% 54%;
+  animation: portal-ai-network-breathe 7.4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.portal-ai-network__link {
+  --link-low-opacity: 0.24;
+  --link-high-opacity: 0.46;
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(76, 161, 224, 0.18), rgba(8, 116, 214, 0.54), rgba(76, 161, 224, 0.16));
+  opacity: 0.4;
+  transform-origin: left center;
+  animation: portal-ai-link-live 6.2s var(--link-delay) ease-in-out infinite;
+  will-change: opacity;
+}
+
+.portal-ai-network__link--strong {
+  --link-low-opacity: 0.42;
+  --link-high-opacity: 0.72;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(8, 116, 214, 0.3), rgba(8, 116, 214, 0.78), rgba(8, 116, 214, 0.28));
+  opacity: 0.62;
+}
+
+.portal-ai-network__node {
+  position: absolute;
   aspect-ratio: 1;
-  opacity: var(--pixel-opacity);
-  transform: scale(1);
-  animation:
-    portal-pixel-enter 620ms var(--pixel-enter-delay) cubic-bezier(0.22, 1, 0.36, 1) both,
-    portal-pixel-drift 4.6s var(--pixel-loop-delay) ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  background: #4fa4df;
+  box-shadow: 0 0 0 3px rgba(79, 164, 223, 0.1), 0 0 14px rgba(8, 116, 214, 0.2);
+  opacity: var(--node-opacity);
+  animation: portal-ai-node-live 5.2s var(--node-delay) ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.portal-ai-network__halo,
+.portal-ai-network__core {
+  position: absolute;
+  left: 58%;
+  top: 54%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+}
+
+.portal-ai-network__halo {
+  border: 1px solid rgba(8, 116, 214, 0.36);
+  animation: portal-ai-halo-live 5.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.portal-ai-network__halo--outer {
+  width: 27%;
+  animation-delay: -2.7s;
+}
+
+.portal-ai-network__halo--inner {
+  width: 18%;
+  border-color: rgba(8, 116, 214, 0.5);
+  animation-delay: -0.9s;
+}
+
+.portal-ai-network__core {
+  width: 10.5%;
+  border: 1px solid rgba(8, 116, 214, 0.64);
+  background:
+    radial-gradient(circle at 38% 31%, rgba(255, 255, 255, 0.98), rgba(224, 244, 255, 0.9) 32%, rgba(58, 154, 224, 0.96) 100%);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.28), 0 0 28px rgba(8, 116, 214, 0.38);
+  animation: portal-ai-core-live 5.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.portal-ai-network__core-mark,
+.portal-ai-network__core-mark::before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 38%;
+  border-radius: 999px;
+  background: #0874d6;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.portal-ai-network__core-mark::before {
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .portal-skip-link {
@@ -676,25 +762,52 @@
   50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
 }
 
-@keyframes portal-pixel-enter {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 8px, 0) scale(0.38);
-  }
-  to {
-    opacity: var(--pixel-opacity);
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes portal-pixel-drift {
+@keyframes portal-ai-network-breathe {
   0%, 100% {
-    opacity: var(--pixel-opacity);
+    opacity: 0.9;
     transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    opacity: var(--pixel-peak-opacity);
-    transform: translate3d(0, var(--pixel-shift), 0) scale(var(--pixel-peak-scale));
+    opacity: 1;
+    transform: translate3d(-3px, -4px, 0) scale(1.012);
+  }
+}
+
+@keyframes portal-ai-link-live {
+  0%, 100% { opacity: var(--link-low-opacity); }
+  50% { opacity: var(--link-high-opacity); }
+}
+
+@keyframes portal-ai-node-live {
+  0%, 100% {
+    opacity: var(--node-opacity);
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  50% {
+    opacity: 0.94;
+    transform: translate(-50%, -50%) scale(1.16);
+  }
+}
+
+@keyframes portal-ai-halo-live {
+  0%, 100% {
+    opacity: 0.16;
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+  50% {
+    opacity: 0.46;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+@keyframes portal-ai-core-live {
+  0%, 100% {
+    opacity: 0.88;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.04);
   }
 }
 
@@ -865,6 +978,12 @@
   .portal-heading-line {
     --portal-heading-scale: 1;
   }
+
+  .portal-ai-network {
+    right: -14%;
+    bottom: -8%;
+    width: 128%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -872,7 +991,11 @@
   .portal-pro-wave span,
   .portal-retail-bar,
   .portal-retail-bar i,
-  .portal-ai-pixel {
+  .portal-ai-network__field,
+  .portal-ai-network__link,
+  .portal-ai-network__node,
+  .portal-ai-network__halo,
+  .portal-ai-network__core {
     animation: none !important;
   }
 
@@ -885,9 +1008,23 @@
     transform: rotate(-7deg);
   }
 
-  .portal-ai-pixel {
-    opacity: var(--pixel-opacity);
-    transform: scale(1);
+  .portal-ai-network__field {
+    opacity: 1;
+    transform: none;
+  }
+
+  .portal-ai-network__link {
+    opacity: var(--link-low-opacity);
+  }
+
+  .portal-ai-network__node {
+    opacity: var(--node-opacity);
+    transform: translate(-50%, -50%);
+  }
+
+  .portal-ai-network__halo,
+  .portal-ai-network__core {
+    transform: translate(-50%, -50%);
   }
 
   .portal-blueprint,

@@ -81,6 +81,12 @@ const podiums = [
     caption: "NHL-wrapped retail podium",
     alt: "Slim retail podium with an NHL-branded vinyl wrap and an order-and-delivery screen",
   },
+  {
+    src: assetUrl("assets/podiums/jibe-retail-fan-town.png"),
+    label: "The Fan Town",
+    caption: "Fan Town-wrapped retail podium · Mexico",
+    alt: "Slim Fan Town-branded retail podium in a Mexico store with a Spanish-language product finder on screen",
+  },
 ];
 
 const caseStudies = [
@@ -262,7 +268,7 @@ export default function JibeRetailPage() {
             </p>
           </div>
 
-          <div className="mx-auto grid max-w-[980px] grid-cols-1 gap-5 md:grid-cols-2">
+          <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-5 md:grid-cols-3">
             {podiums.map((podium) => (
               <figure key={podium.label} className="group">
                 <div className="overflow-hidden rounded-2xl border border-[#D9D9D5] bg-[#EBEBEB]">
