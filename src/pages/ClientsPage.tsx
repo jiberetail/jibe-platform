@@ -148,7 +148,7 @@ export default function ClientsPage() {
                   alt={client.alt}
                   loading="lazy"
                   decoding="async"
-                  className="max-h-12 w-full max-w-[170px] object-contain grayscale"
+                  className="max-h-12 w-full max-w-[170px] object-contain"
                 />
               </li>
             ))}
