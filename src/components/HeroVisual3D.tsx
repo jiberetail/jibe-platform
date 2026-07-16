@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { assetUrl } from "../assetUrl";
 
 const RING_R   = 195;
 const RING_W   = 22;
@@ -65,137 +66,250 @@ function drawHalo(
 
 type HeroVisual3DProps = {
   productLabel: "Pro" | "Retail" | "AI";
+  reducedMotion?: boolean;
 };
 
-export default function HeroVisual3D({ productLabel }: HeroVisual3DProps) {
+type NavigatorWithPerformanceHints = Navigator & {
+  deviceMemory?: number;
+  connection?: {
+    saveData?: boolean;
+    effectiveType?: string;
+  };
+};
+
+export default function HeroVisual3D({ productLabel, reducedMotion = false }: HeroVisual3DProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [showStaticFallback, setShowStaticFallback] = useState(reducedMotion);
+  const [fallbackImageFailed, setFallbackImageFailed] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr  = Math.min(window.devicePixelRatio || 1, 2);
+
+    if (reducedMotion) {
+      setShowStaticFallback(true);
+      return;
+    }
+
+    setShowStaticFallback(false);
+
     const SIZE = 560;
-    canvas.width  = SIZE * dpr;
-    canvas.height = SIZE * dpr;
-    const ctx = canvas.getContext("2d")!;
-    ctx.scale(dpr, dpr);
+    const performanceNavigator = navigator as NavigatorWithPerformanceHints;
+    const connection = performanceNavigator.connection;
+    const lowPower =
+      (performanceNavigator.hardwareConcurrency ?? 8) <= 4 ||
+      (performanceNavigator.deviceMemory ?? 8) <= 4 ||
+      connection?.saveData === true ||
+      connection?.effectiveType === "2g" ||
+      window.matchMedia("(max-width: 767px)").matches;
+    const renderDpr = Math.min(window.devicePixelRatio || 1, lowPower ? 1 : 1.5);
+    const cssSize = Math.min(canvas.clientWidth || SIZE, SIZE);
+    const backingSize = Math.max(1, Math.round(cssSize * renderDpr));
+    canvas.width = backingSize;
+    canvas.height = backingSize;
+
+    const ctx = canvas.getContext("2d", { alpha: true, desynchronized: true });
+    if (!ctx) {
+      setShowStaticFallback(true);
+      return;
+    }
+    ctx.setTransform(backingSize / SIZE, 0, 0, backingSize / SIZE, 0, 0);
 
     const CX = SIZE / 2;
     const CY = SIZE / 2 - 40;
+    const haloSegments = lowPower ? 64 : 104;
+    const minimumFrameInterval = lowPower ? 1000 / 30 : 0;
+    let startTime: number | null = null;
+    let lastDrawTime = 0;
+    let frame: number | null = null;
+    let stopped = false;
+    let finished = false;
+    let watchdog: number | null = null;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let startTime: number | null = reduceMotion ? performance.now() - FINAL_TIME * 1000 : null;
-    let frame: number;
+    const stopAnimation = () => {
+      stopped = true;
+      if (frame !== null) window.cancelAnimationFrame(frame);
+      if (watchdog !== null) window.clearTimeout(watchdog);
+      frame = null;
+      watchdog = null;
+    };
+
+    const useStaticFallback = () => {
+      stopAnimation();
+      setShowStaticFallback(true);
+    };
 
     const draw = (now: number) => {
-      if (startTime === null) startTime = now;
-      const elapsed = (now - startTime) / 1000;
-      ctx.clearRect(0, 0, SIZE, SIZE);
+      if (stopped) return;
+      if (minimumFrameInterval && lastDrawTime && now - lastDrawTime < minimumFrameInterval) {
+        frame = window.requestAnimationFrame(draw);
+        return;
+      }
+      lastDrawTime = now;
 
-      if (elapsed < DRAW_DUR) {
-        const p   = elapsed / DRAW_DUR;
-        const end = -Math.PI/2 + easeInOut(p) * Math.PI * 2;
-        drawArc(ctx, CX, CY, RING_R, RING_R, -Math.PI/2, end, RING_W);
+      try {
+        if (startTime === null) startTime = now;
+        const elapsed = (now - startTime) / 1000;
+        ctx.clearRect(0, 0, SIZE, SIZE);
 
-      } else {
-        const tiltT = Math.min((elapsed - DRAW_DUR) / TILT_DUR, 1);
-        const tiltE = easeOut(tiltT);
-        const ry    = RING_R - (RING_R - RING_R * HALO_RY) * tiltE;
-        const lw    = RING_W  + (HALO_LW - RING_W) * tiltE;
-        const cy    = CY - 38 * tiltE;
+        if (elapsed < DRAW_DUR) {
+          const p   = elapsed / DRAW_DUR;
+          const end = -Math.PI/2 + easeInOut(p) * Math.PI * 2;
+          drawArc(ctx, CX, CY, RING_R, RING_R, -Math.PI/2, end, RING_W);
 
-        if (tiltE < 0.7) {
-          ctx.save();
-          ctx.globalAlpha = 1 - tiltE/0.7;
-          drawArc(ctx, CX, cy, RING_R, ry, 0, Math.PI*2, lw);
-          ctx.restore();
-        }
-        if (tiltE > 0.25) {
-          ctx.save();
-          ctx.globalAlpha = (tiltE-0.25)/0.75;
-          drawHalo(ctx, CX, cy, RING_R, ry, lw);
-          ctx.restore();
-        }
+        } else {
+          const tiltT = Math.min((elapsed - DRAW_DUR) / TILT_DUR, 1);
+          const tiltE = easeOut(tiltT);
+          const ry    = RING_R - (RING_R - RING_R * HALO_RY) * tiltE;
+          const lw    = RING_W  + (HALO_LW - RING_W) * tiltE;
+          const cy    = CY - 38 * tiltE;
 
-        // Text after halo is settled
-        if (elapsed > SETTLED) {
-          const textAlpha = easeOut(Math.min((elapsed - SETTLED) / TEXT_DUR, 1));
-          const appleFont = `-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif`;
-          ctx.font = `500 100px ${appleFont}`;
-          const measured  = ctx.measureText("Jibe").width;
-          const jibeWidth = RING_R * 1.8;
-          const fontSize  = Math.floor(100 * jibeWidth / measured);
-          const cy_s      = CY - 38;
-          const haloBottom = cy_s + RING_R * HALO_RY + HALO_LW / 2;
+          if (tiltE < 0.7) {
+            ctx.save();
+            ctx.globalAlpha = 1 - tiltE/0.7;
+            drawArc(ctx, CX, cy, RING_R, ry, 0, Math.PI*2, lw);
+            ctx.restore();
+          }
+          if (tiltE > 0.25) {
+            ctx.save();
+            ctx.globalAlpha = (tiltE-0.25)/0.75;
+            drawHalo(ctx, CX, cy, RING_R, ry, lw, haloSegments);
+            ctx.restore();
+          }
+
+          // Text after halo is settled
+          if (elapsed > SETTLED) {
+            const textAlpha = easeOut(Math.min((elapsed - SETTLED) / TEXT_DUR, 1));
+            const appleFont = `-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif`;
+            ctx.font = `500 100px ${appleFont}`;
+            const measured  = ctx.measureText("Jibe").width;
+            const jibeWidth = RING_R * 1.8;
+            const fontSize  = Math.floor(100 * jibeWidth / measured);
+            const cy_s      = CY - 38;
+            const haloBottom = cy_s + RING_R * HALO_RY + HALO_LW / 2;
 
           // Subtract the em-box top padding (~15% of em height) so cap letters
           // start right at the halo bottom rather than 15-20px below it
-          const textY = haloBottom + 8;
+            const textY = haloBottom + 8;
 
-          const textGrad = ctx.createLinearGradient(0, textY, 0, textY + fontSize);
-          textGrad.addColorStop(0,    "#080808");
-          textGrad.addColorStop(0.45, "#1A1A1A");
-          textGrad.addColorStop(1,    "#707070");
+            const textGrad = ctx.createLinearGradient(0, textY, 0, textY + fontSize);
+            textGrad.addColorStop(0,    "#080808");
+            textGrad.addColorStop(0.45, "#1A1A1A");
+            textGrad.addColorStop(1,    "#707070");
 
-          ctx.save();
-          ctx.globalAlpha  = textAlpha;
-          ctx.font         = `500 ${fontSize}px ${appleFont}`;
-          ctx.textAlign    = "center";
-          ctx.textBaseline = "top";
-          ctx.fillStyle    = textGrad;
-          ctx.fillText("Jibe", CX, textY);
-          ctx.restore();
+            ctx.save();
+            ctx.globalAlpha  = textAlpha;
+            ctx.font         = `500 ${fontSize}px ${appleFont}`;
+            ctx.textAlign    = "center";
+            ctx.textBaseline = "top";
+            ctx.fillStyle    = textGrad;
+            ctx.fillText("Jibe", CX, textY);
+            ctx.restore();
 
           // Match the supplied product lockups: a compact blue product name
           // tucked into the lower-right edge of the Jibe wordmark.
-          let productFontSize = Math.max(24, Math.floor(fontSize * 0.18));
-          const productY = textY + fontSize * 0.86;
-          const jibeRight = CX + jibeWidth / 2;
+            let productFontSize = Math.max(24, Math.floor(fontSize * 0.18));
+            const productY = textY + fontSize * 0.86;
+            const jibeRight = CX + jibeWidth / 2;
 
-          ctx.font = `450 ${productFontSize}px ${appleFont}`;
-          const initialProductWidth = ctx.measureText(productLabel).width;
-          const initialProductX = jibeRight - productFontSize * 0.68;
-          const productMaxWidth = SIZE - initialProductX - 18;
+            ctx.font = `450 ${productFontSize}px ${appleFont}`;
+            const initialProductWidth = ctx.measureText(productLabel).width;
+            const initialProductX = jibeRight - productFontSize * 0.68;
+            const productMaxWidth = SIZE - initialProductX - 18;
 
-          if (initialProductWidth > productMaxWidth) {
-            productFontSize = Math.floor(productFontSize * (productMaxWidth / initialProductWidth));
-          }
+            if (initialProductWidth > productMaxWidth) {
+              productFontSize = Math.floor(productFontSize * (productMaxWidth / initialProductWidth));
+            }
 
-          const productX = jibeRight - productFontSize * 0.68;
+            const productX = jibeRight - productFontSize * 0.68;
 
-          ctx.save();
-          ctx.globalAlpha = textAlpha;
-          ctx.font = `450 ${productFontSize}px ${appleFont}`;
-          ctx.textAlign = "left";
-          ctx.textBaseline = "top";
-          ctx.fillStyle = "#0076CE";
-          ctx.fillText(productLabel, productX, productY);
-          ctx.restore();
+            ctx.save();
+            ctx.globalAlpha = textAlpha;
+            ctx.font = `450 ${productFontSize}px ${appleFont}`;
+            ctx.textAlign = "left";
+            ctx.textBaseline = "top";
+            ctx.fillStyle = "#0076CE";
+            ctx.fillText(productLabel, productX, productY);
+            ctx.restore();
 
           // Halo redrawn on top
-          ctx.save();
-          ctx.globalAlpha = textAlpha;
-          drawHalo(ctx, CX, cy_s, RING_R, RING_R * HALO_RY, HALO_LW);
-          ctx.restore();
+            ctx.save();
+            ctx.globalAlpha = textAlpha;
+            drawHalo(ctx, CX, cy_s, RING_R, RING_R * HALO_RY, HALO_LW, haloSegments);
+            ctx.restore();
+          }
         }
-      }
 
-      if (elapsed < FINAL_TIME) {
-        frame = requestAnimationFrame(draw);
+        if (elapsed < FINAL_TIME) {
+          frame = window.requestAnimationFrame(draw);
+        } else {
+          finished = true;
+          frame = null;
+          if (watchdog !== null) window.clearTimeout(watchdog);
+          watchdog = null;
+        }
+      } catch {
+        useStaticFallback();
       }
     };
 
-    frame = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(frame);
-  }, [productLabel]);
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (frame !== null) window.cancelAnimationFrame(frame);
+        frame = null;
+        return;
+      }
+
+      if (!stopped && !finished) {
+        // A backgrounded page should not resume a long intro several seconds
+        // after the visitor returns. Draw its meaningful settled state instead.
+        startTime = performance.now() - FINAL_TIME * 1000;
+        frame = window.requestAnimationFrame(draw);
+      }
+    };
+
+    const handleContextLoss = (event: Event) => {
+      event.preventDefault();
+      useStaticFallback();
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    canvas.addEventListener("contextlost", handleContextLoss);
+    watchdog = window.setTimeout(useStaticFallback, (FINAL_TIME + 2) * 1000);
+    frame = window.requestAnimationFrame(draw);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      canvas.removeEventListener("contextlost", handleContextLoss);
+      stopAnimation();
+    };
+  }, [productLabel, reducedMotion]);
 
   return (
-    <div className="relative flex items-center justify-center w-full" aria-hidden="true">
+    <div
+      className="hero-visual-lockup relative flex w-full items-center justify-center"
+      data-static-fallback={showStaticFallback ? "true" : "false"}
+      aria-hidden="true"
+    >
       <canvas
         ref={canvasRef}
-        className="block w-full"
+        className="hero-visual-lockup__canvas block w-full"
         style={{ width: "100%", height: "auto", maxWidth: 560, aspectRatio: "1 / 1" }}
       />
+      <div className="hero-visual-lockup__static">
+        <div className="hero-visual-lockup__static-inner">
+          {fallbackImageFailed ? (
+            <span className="hero-visual-lockup__wordmark">Jibe</span>
+          ) : (
+            <img
+              src={assetUrl("assets/logos/jibe.png")}
+              alt=""
+              onError={() => setFallbackImageFailed(true)}
+            />
+          )}
+          <span className="hero-visual-lockup__product">{productLabel}</span>
+        </div>
+      </div>
     </div>
   );
 }

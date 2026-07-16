@@ -49,6 +49,7 @@ export type ProductMediaItem = {
 
 export type ProductWorkflowStep = {
   number: string;
+  label?: string;
   title: string;
   description: string;
 };
@@ -74,18 +75,14 @@ export type ProductPageConfig = {
   slug: ProductSlug;
   hero: ProductHeroContent;
   pathways: ProductSectionIntro & {
-    items: readonly [ProductPathway, ProductPathway, ProductPathway];
+    items: readonly ProductPathway[];
   };
   media: ProductSectionIntro & {
     items: readonly ProductMediaItem[];
   };
   workflow: ProductSectionIntro & {
-    steps: readonly [
-      ProductWorkflowStep,
-      ProductWorkflowStep,
-      ProductWorkflowStep,
-      ProductWorkflowStep,
-    ];
+    layout?: "steps" | "paired";
+    steps: readonly ProductWorkflowStep[];
   };
   capabilities: ProductSectionIntro & {
     items: readonly ProductCapability[];

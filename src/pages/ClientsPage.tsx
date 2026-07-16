@@ -12,6 +12,8 @@ import logoTMobile from "../imports/t-mobile-logo-png-transparent.png";
 import logoTXHB from "../imports/txhb-logo-blue-1.png";
 import logoUbiquity from "../imports/ubiquity_logo.png";
 
+// VERIFY / BLOCKED — CLIENT-01: every relationship, name, logo, alt label, and
+// public-use right must be approved before this review-only portfolio ships.
 const clients = [
   { src: logoMeta, alt: "Meta" },
   { src: logoATT, alt: "AT&T" },
@@ -105,15 +107,17 @@ export default function ClientsPage() {
           </div>
 
           <div className="border-t-2 border-[#0076CE] pt-7 lg:col-span-4">
+            {/* VERIFY / BLOCKED — CLIENT-01: relationship language requires approval with the logo set. */}
             <p className="text-[17px] leading-[1.7] text-[#5F5F5F]">
               Jibe works with teams across customer operations and live retail environments, configuring each program around the signals, workflows, and decisions that matter.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
+              {/* COPY REVIEW / BLOCKED — CONTACT-01 / D-10: neutral interim CTA pending approved scheduling details. */}
               <Link
-                to="/demo"
+                to="/contact"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#0076CE] px-6 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-[#005FA7] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#0076CE]"
               >
-                Book a demo <ArrowRight aria-hidden="true" size={15} />
+                Start a conversation <ArrowRight aria-hidden="true" size={15} />
               </Link>
               <a
                 href="#portfolio"
@@ -220,11 +224,12 @@ export default function ClientsPage() {
             <p className="mb-7 text-[15px] leading-[1.75] text-white/65">
               Tell us what the team needs to understand, improve, or make easier for the customer.
             </p>
+            {/* COPY REVIEW / BLOCKED — CONTACT-01 / D-10: neutral interim CTA pending approved scheduling details. */}
             <Link
-              to="/demo"
+              to="/contact"
               className="inline-flex items-center gap-2 rounded-xl bg-[#0076CE] px-7 py-4 text-[14px] font-semibold text-white transition-colors hover:bg-[#005FA7] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
-              Book a demo <ArrowRight aria-hidden="true" size={15} />
+              Start a conversation <ArrowRight aria-hidden="true" size={15} />
             </Link>
           </div>
         </div>

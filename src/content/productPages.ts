@@ -7,15 +7,23 @@ export const productPages = {
       productName: "Jibe Pro",
       productLabel: "Pro",
       descriptor: "Customer Experience Performance",
-      line1: "Understand every",
-      line2: "customer interaction.",
+      // COPY REVIEW — PRO-01 / D-01: agent-centered hero draft requires final approval.
+      line1: "Make every agent",
+      line2: "the voice of the customer.",
       description:
         "Jibe Pro connects frontline predictions, customer feedback, and operational performance so leaders can focus quality, coach with evidence, and prove what changed.",
-      primaryHref: "/demo?product=pro",
-      primaryLabel: "Book a Pro demo",
+      // COPY REVIEW / BLOCKED — CONTACT-01 / D-10: interim label only; duration and direct scheduling are not approved.
+      primaryHref: "/contact?product=pro",
+      primaryLabel: "Start a conversation",
       secondaryHref: "#overview",
       secondaryLabel: "Explore Jibe Pro",
-      proofPoints: ["Under-10-second capture", "Role-based views", "Focused QA and coaching", "Measurable program impact"],
+      // COPY REVIEW — PRO-02 / D-02A: keep these static until anchor behavior is approved.
+      proofPoints: [
+        "Agent survey predictions",
+        "Compare where customer responses are available",
+        "Broader predicted coverage",
+        "Evidence for QA and CX",
+      ],
     },
     pathways: {
       eyebrow: "What Jibe Pro does",
@@ -31,20 +39,21 @@ export const productPages = {
             "Structured frontline predictions add context to customer feedback and operational data, creating a broader view of satisfaction, resolution, and risk across the interaction stream.",
           outcomes: [
             "Increase visibility without replacing valuable customer surveys",
-            "Compare frontline judgment with actual customer outcomes",
+            "Where a customer survey response is available, compare it with the earlier frontline prediction",
             "Keep participation, coverage, and data quality visible",
           ],
         },
         {
           id: "improve",
           label: "Improve",
-          title: "Focus quality and coaching where they can matter most.",
+          // COPY REVIEW — PRO-04: behavior-and-empathy lead draft.
+          title: "Help agents represent the customer more deliberately.",
           description:
-            "Supervisors can move from a changing metric to the teams, agents, contact reasons, and interactions behind it—then turn that evidence into a specific coaching action.",
+            "Making a structured prediction asks agents to consider how the customer experienced the interaction. Leaders can then connect prediction patterns, available customer feedback, QA evidence, and coaching actions to focus improvement.",
           outcomes: [
             "Prioritize QA around risk and opportunity instead of random sampling",
-            "Give agents a personal view of progress and prediction accuracy",
-            "Measure whether coaching changed customer and operational results",
+            "Encourage closer attention to customer cues and established QA guidance",
+            "Give agents a personal view of progress, prediction accuracy, and coaching actions",
           ],
         },
         {
@@ -56,12 +65,13 @@ export const productPages = {
           outcomes: [
             "Establish a defensible baseline before launch",
             "Track performance movement with data-quality context",
-            "End pilots with a clear decision to expand, adjust, or stop",
+            "Use the evidence to recommend whether to expand, adjust, or stop",
           ],
         },
       ],
     },
     media: {
+      // VERIFY / BLOCKED — G-03: review every name, date, figure, and test-data field in these screenshots before release.
       eyebrow: "Jibe Pro in action",
       title: "One customer signal. The right view for every role.",
       description:
@@ -137,33 +147,38 @@ export const productPages = {
     },
     workflow: {
       eyebrow: "The Jibe Pro loop",
-      title: "A continuous system for frontline improvement.",
+      // COPY REVIEW — PRO-07 / D-03: four-step presentation retained pending the four-versus-five decision.
+      title: "A continuous loop from agent prediction to measurable action.",
       description:
-        "Each interaction adds evidence. Each action creates a new opportunity to validate what worked.",
+        "Each interaction can add frontline context. Where customer feedback is available, teams can compare it with the earlier prediction and use the combined evidence to focus improvement.",
       steps: [
         {
           number: "01",
-          title: "Predict",
+          label: "Predict",
+          title: "Agent Prediction",
           description:
-            "Immediately after the interaction, the frontline employee records a fast, structured prediction of satisfaction, resolution, and confidence.",
+            "Immediately after an interaction, the frontline employee predicts the customer's responses against the client's current structured survey or KPI model.",
         },
         {
           number: "02",
-          title: "Validate",
+          label: "Audit",
+          title: "Customer Audit",
           description:
-            "Customer feedback and operational results confirm or challenge the prediction, making alignment and blind spots measurable.",
+            "Where an actual customer survey response is available, compare it with the earlier agent prediction to make alignment and blind spots measurable.",
         },
         {
           number: "03",
-          title: "Focus",
+          label: "Behavior",
+          title: "Agent Behavior",
           description:
-            "Jibe Pro connects results with teams, contact reasons, channels, and interactions so leaders can identify the right QA and coaching priority.",
+            "Responsibility for representing the customer's voice can encourage closer attention to QA guidance and help agents surface fixable process, policy, product, or interaction problems.",
         },
         {
           number: "04",
-          title: "Improve",
+          label: "Improve",
+          title: "Turn evidence into focused action",
           description:
-            "Teams act, measure the effect, and feed the result into the next cycle—turning isolated interventions into continuous improvement.",
+            "Broader predicted-outcome coverage and contact-reason analysis can surface specific opportunities. Teams can act on those insights, measure what changes, and carry the evidence into the next cycle.",
         },
       ],
     },
@@ -195,13 +210,14 @@ export const productPages = {
         },
         {
           title: "Program governance",
-          description: "Support structured pilots and rollout with access controls, hierarchy management, and data-quality visibility.",
+          description: "Support rollout with access controls, hierarchy management, governance, and data-quality visibility.",
         },
       ],
     },
     proof: {
       eyebrow: "Evidence by design",
-      title: "A program should end with a decision—not a debate over the data.",
+      // COPY REVIEW — PRO-09 / D-04: data-led headline draft requires final approval.
+      title: "Your data should lead to a decision—not a debate.",
       description:
         "Jibe Pro pairs the product with a disciplined implementation and measurement model from the beginning.",
       items: [
@@ -230,8 +246,9 @@ export const productPages = {
       title: "Turn more customer interactions into measurable improvement.",
       description:
         "Bring your current CX, quality, coaching, or performance challenge. We will show how Jibe Pro can fit the operating model around it.",
-      href: "/demo?product=pro",
-      label: "Book a Pro demo",
+      // COPY REVIEW / BLOCKED — CONTACT-01 / D-10.
+      href: "/contact?product=pro",
+      label: "Start a conversation",
     },
   },
 
@@ -240,62 +257,54 @@ export const productPages = {
     hero: {
       productName: "Jibe Retail",
       productLabel: "Retail",
-      descriptor: "In-Venue Surveys & Ecommerce",
-      line1: "Survey. Ecommerce.",
-      line2: "Or both.",
+      descriptor: "In-Venue Surveys & E-commerce",
+      line1: "Survey, e-commerce,",
+      line2: "or both.",
       description:
         "Jibe Retail helps venues collect feedback, find missing merchandise, and continue purchases for home delivery through a branded survey, an ecommerce experience, or both.",
-      primaryHref: "/demo?product=retail",
-      primaryLabel: "Book a Retail demo",
+      // COPY REVIEW / BLOCKED — CONTACT-01 / D-10: interim label only; duration and direct scheduling are not approved.
+      primaryHref: "/contact?product=retail",
+      primaryLabel: "Start a conversation",
       secondaryHref: "#overview",
       secondaryLabel: "Explore Jibe Retail",
-      proofPoints: ["Branded surveys", "Extended-aisle ecommerce", "Connected journeys", "Item-level insight"],
+      proofPoints: ["Branded surveys", "Extended-aisle e-commerce", "Connected journeys", "Item-level insight"],
     },
     pathways: {
-      eyebrow: "Choose the experience",
-      title: "One platform. Three ways to meet the moment.",
+      eyebrow: "Two connected capabilities",
+      title: "Recover the sale. Understand what stopped it.",
       description:
-        "Deploy the capability the venue needs today, then connect survey and commerce when the customer journey calls for both.",
+        "Use ecommerce to keep a purchase moving, use survey to learn why a shopper did not buy, or connect the two in one branded experience.",
       items: [
-        {
-          id: "survey",
-          label: "Survey",
-          title: "Ask while the experience is still fresh.",
-          description:
-            "Run a fast, branded, multilingual survey at the point of experience. Capture satisfaction, product availability, service, and the specific friction behind the response.",
-          outcomes: [
-            "Measure satisfaction and the quality of the visit",
-            "Understand whether shoppers found what they came to buy",
-            "Capture feedback about associate assistance and the reason behind a poor experience",
-          ],
-        },
         {
           id: "ecommerce",
           label: "Ecommerce",
-          title: "Extend the aisle beyond what is available in the venue.",
+          // COPY REVIEW — RET-03: revenue-first ecommerce draft.
+          title: "Recover the sale when the shelf cannot.",
           description:
-            "Help shoppers browse by league, team, category, product, and size. When the basket is ready, a QR code lets the shopper continue checkout on their phone and choose home delivery.",
+            "When a product or size is unavailable—or the shopper would rather have it delivered—help them find the item, continue on their phone, and choose home delivery.",
           outcomes: [
-            "Make a broader merchandise catalog available in the store",
-            "Guide shoppers directly to the item, variation, and size they want",
-            "Continue checkout by QR without creating another register line",
+            "Keep an unavailable product or size from ending the purchase journey",
+            "Guide shoppers to the relevant item, variation, and delivery option",
+            "Continue the basket by QR on the shopper's phone",
           ],
         },
         {
-          id: "combined",
-          label: "Both",
-          title: "Let the answer determine the next useful step.",
+          id: "survey",
+          label: "Survey",
+          // COPY REVIEW — RET-04: nonpurchase-focused survey draft.
+          title: "When shoppers cannot find it, let them tell you why.",
           description:
-            "Connect survey and ecommerce in one adaptive journey. A shopper who could not find an item can move directly into product search, while the venue still captures why the sale was at risk.",
+            "Ask a concise, branded question about the purchase that did not happen. Capture whether availability, product, size, or another merchandise need prevented the shopper from buying what they wanted.",
           outcomes: [
-            "Branch from feedback into the right follow-up or product discovery",
-            "Create a cart and a path to purchase while intent is still high",
-            "Analyze experience friction and unmet merchandise demand together",
+            "Understand whether the shopper found the product they came to buy",
+            "Organize missing merchandise demand by product, variation, and size",
+            "Use the answer to reveal a relevant follow-up or product-discovery path",
           ],
         },
       ],
     },
     media: {
+      // VERIFY / BLOCKED — RET-09 / D-08: all Fan Town, MLB, NHL, team, venue, catalog, and podium assets require written public-use approval.
       eyebrow: "Jibe Retail in action",
       title: "Designed around the venue, the brand, and the shopper.",
       description:
@@ -380,33 +389,39 @@ export const productPages = {
     },
     workflow: {
       eyebrow: "The Jibe Retail flow",
-      title: "Listen, solve, fulfill, and learn in one journey.",
+      // COPY REVIEW — RET-06 / D-06: paired capability-to-outcome draft requires final label approval.
+      title: "Understand the need. Save the sale.",
       description:
-        "The deployment can stop after a short survey, operate as ecommerce, or connect both based on the shopper's response.",
+        "Jibe Retail supports two connected paths: one keeps a purchase moving; the other turns customer feedback into a useful operating signal.",
+      layout: "paired",
       steps: [
         {
           number: "01",
-          title: "Engage",
+          label: "Transact",
+          title: "Keep the purchase moving.",
           description:
-            "Invite the shopper into a fast, branded experience on a podium, kiosk, mobile device, or another venue touchpoint.",
+            "When stock, size, carrying, or delivery creates friction, guide the shopper toward a relevant product and continue the basket on their phone.",
         },
         {
           number: "02",
-          title: "Understand",
+          label: "Increased Revenue",
+          title: "Create another path to purchase.",
           description:
-            "Ask what happened, what the shopper was looking for, and which availability, service, or experience issue shaped the visit.",
+            "An extended-aisle journey gives the shopper another way to complete a purchase that might otherwise end when the item is unavailable or inconvenient to carry.",
         },
         {
           number: "03",
-          title: "Fulfill",
+          label: "Understand",
+          title: "Learn what shaped the visit.",
           description:
-            "When commerce is enabled, guide the shopper to the right item and use QR to continue checkout on their phone for home delivery.",
+            "Ask about product, service, staff engagement, checkout, and the specific reason the shopper did not find or buy what they wanted.",
         },
         {
           number: "04",
-          title: "Learn",
+          label: "Actionable Insights",
+          title: "Turn feedback into a specific operating signal.",
           description:
-            "Organize feedback and unmet demand by venue, product, category, size, experience issue, and time so teams can act at scale.",
+            "Organize feedback and unmet demand by venue, product, category, size, experience issue, and time so the team can see where attention is warranted.",
         },
       ],
     },
@@ -449,39 +464,33 @@ export const productPages = {
         "Survey responses, product intent, and in-venue behavior create a more complete view of what shoppers wanted and what stood in the way.",
       items: [
         {
-          eyebrow: "Fan Town · Mexico",
-          title: "Localize the journey without changing the platform underneath it.",
+          eyebrow: "Localized venue journey",
+          title: "Fit the market without changing the platform underneath it.",
           description:
-            "Fan Town shows how language, sport, brand, and journey logic can be configured for the market while preserving the same survey, product-discovery, and reporting foundation.",
+            "Language, brand, sport, and journey logic can be configured for a venue while preserving the same survey, product-discovery, and reporting foundation.",
         },
         {
-          eyebrow: "MLB NYC Flagship Store",
-          title: "Captured unmet merchandise demand at item level.",
+          eyebrow: "Item-level demand",
+          title: "Make unmet merchandise demand visible.",
           description:
-            "Recorded shopper intent exposed patterns across merchandise category, product availability, sizing, and navigation—signals that were absent from the transaction record.",
-          metrics: [
-            { value: "$1.2M", label: "Scaled demand opportunity identified" },
-            { value: "3,972", label: "Unfulfilled merchandise requests" },
-            { value: "68%", label: "Size-related friction in recorded demand" },
-          ],
+            "Recorded shopper intent can expose patterns across merchandise category, product availability, sizing, and navigation—signals that do not appear in completed transaction data.",
         },
         {
-          eyebrow: "NHL · Ecommerce journey",
+          eyebrow: "Connected ecommerce journey",
           title: "Keep an unavailable item from ending the purchase journey.",
           description:
-            "The NHL experience demonstrates guided product discovery, cart review, QR handoff to the shopper's phone, and home delivery through the connected commerce environment.",
+            "Guided product discovery, cart review, and QR handoff can move the basket to the shopper's phone and continue the configured commerce journey.",
         },
       ],
-      note:
-        "Reporting note: deployment figures describe captured responses, expressed unmet demand, and estimated opportunity identified through Jibe Retail. Dollar values do not represent booked, realized, or recovered revenue.",
     },
     cta: {
       eyebrow: "Build the right Retail experience",
       title: "Start with surveys, ecommerce, or the power of both.",
       description:
         "Show us the venue, customer journey, and commerce environment. We will demonstrate how Jibe Retail can fit the moment and the brand around it.",
-      href: "/demo?product=retail",
-      label: "Book a Retail demo",
+      // COPY REVIEW / BLOCKED — CONTACT-01 / D-10.
+      href: "/contact?product=retail",
+      label: "Start a conversation",
     },
   },
 
@@ -490,33 +499,41 @@ export const productPages = {
     hero: {
       productName: "Jibe AI",
       productLabel: "AI",
-      descriptor: "Interaction Intelligence",
-      line1: "Find the signal.",
-      line2: "Know the next move.",
+      descriptor: "Structured Survey Intelligence",
+      // COPY REVIEW — AI-01 / D-09: precise draft avoids unverified autonomous or accuracy claims.
+      line1: "Predict the survey.",
+      line2: "Explain the change.",
       description:
-        "Jibe AI turns the interaction stream into explainable intelligence—connecting performance shifts with root causes, evidence, and practical recommendations.",
-      primaryHref: "/demo?product=ai",
-      primaryLabel: "Book an AI demo",
+        "Jibe AI creates AI-generated structured survey predictions from interaction transcripts, organizes changing patterns and evidence, and surfaces recommended next actions. Where actual customer survey responses are available, teams can compare them with the earlier predictions.",
+      // COPY REVIEW / BLOCKED — CONTACT-01 / D-10: interim label only; duration and direct scheduling are not approved.
+      primaryHref: "/contact?product=ai",
+      primaryLabel: "Start a conversation",
       secondaryHref: "#overview",
       secondaryLabel: "Explore Jibe AI",
-      proofPoints: ["Full-interaction analytics", "Calibrated against feedback", "KPI-to-verbatim drill-down", "Prescriptive recommendations"],
+      proofPoints: [
+        "AI-generated survey predictions",
+        "No frontline prediction step",
+        "Evidence-linked root cause",
+        "Recommended next actions",
+      ],
     },
     pathways: {
       eyebrow: "What Jibe AI does",
-      title: "Move from a changing metric to a clear next move.",
+      title: "From structured prediction to evidence and action.",
       description:
-        "Jibe AI organizes the wider interaction stream, explains what is driving the result, and keeps every recommendation connected to evidence.",
+        "Jibe AI organizes interaction transcripts into structured survey predictions, explains what is driving a change, and keeps recommended next actions connected to evidence.",
       items: [
         {
           id: "understand",
           label: "Understand",
-          title: "Bring the customer story together across interactions.",
+          // COPY REVIEW — AI-03: more-than-sentiment differentiator draft.
+          title: "Go beyond binary sentiment with a structured survey prediction.",
           description:
-            "Unify chat, email, case, and voice context around the customer journey, while preserving real survey responses as an important outcome and calibration signal.",
+            "Jibe AI produces an AI-generated prediction against a structured survey model. That prediction is not an actual customer response; where a response is available, the two can be compared without blurring the distinction.",
           outcomes: [
-            "Create a coherent view across interaction channels",
-            "Structure sentiment, emotion, contact reason, root cause, and resolution",
-            "Use customer responses to audit and strengthen confidence in predictions",
+            "Generate a structured survey prediction from an interaction transcript",
+            "Organize contact reason, root cause, resolution, and trend movement",
+            "Compare with an actual customer response where one is available",
           ],
         },
         {
@@ -546,6 +563,7 @@ export const productPages = {
       ],
     },
     media: {
+      // VERIFY / BLOCKED — AI-02 / D-09: screenshots contain visible accuracy and demonstration values; sanitize or approve them before release.
       eyebrow: "Jibe AI in action",
       title: "From portfolio signal to root cause to a better response.",
       description:
@@ -555,12 +573,12 @@ export const productPages = {
           id: "overview",
           label: "Portfolio health",
           eyebrow: "Performance overview",
-          title: "See the program at a glance.",
+          title: "See predicted outcomes and operating signals together.",
           description:
-            "Bring CSAT, resolution, interaction volume, response volume, accuracy, and quartile performance into one operating view.",
+            "Bring structured survey predictions, available customer responses, resolution, interaction volume, and quartile movement into one operating view.",
           src: "assets/jibe-ai/performance-overview.png",
           alt: "Jibe AI overview showing CSAT, resolution, interaction summary, accuracy, and quartile performance.",
-          disclosure: "Product interface shown with example program data.",
+          disclosure: "Interface illustration with fictional demonstration data. Figures shown are not customer results or performance claims.",
         },
         {
           id: "impact",
@@ -571,7 +589,7 @@ export const productPages = {
             "Map volume change against CSAT or resolution impact, then rank the issues that warrant attention first.",
           src: "assets/jibe-ai/contact-reason-impact.png",
           alt: "Jibe AI contact reason impact analysis showing a scatter plot and ranked CSAT drivers.",
-          disclosure: "Product interface shown with example program data.",
+          disclosure: "Interface illustration with fictional demonstration data. Figures shown are not customer results or performance claims.",
         },
         {
           id: "opportunity",
@@ -583,33 +601,33 @@ export const productPages = {
           src: "assets/jibe-ai/best-practice-opportunity.png",
           alt: "Jibe AI root cause analysis showing performance, quartile analysis, agent impact, and recommended best practices.",
           orientation: "tall",
-          disclosure: "Product interface shown with example program data.",
+          disclosure: "Interface illustration with fictional demonstration data. Figures shown are not customer results or performance claims.",
         },
       ],
     },
     workflow: {
       eyebrow: "The Jibe AI flow",
-      title: "A traceable path from conversation to recommendation.",
+      title: "A traceable path from transcript to structured prediction and action.",
       description:
-        "The system expands context, structures the signal, checks confidence, and surfaces the action the evidence supports.",
+        "The system structures the prediction, explains the evidence, compares available customer feedback, and surfaces the next action the analysis supports.",
       steps: [
         {
           number: "01",
           title: "Ingest",
           description:
-            "Bring relevant chat, email, case, voice, survey, and operational context together around the interaction and customer journey.",
+            "Bring supported interaction transcripts and approved survey or operating context into the analysis.",
         },
         {
           number: "02",
           title: "Analyze",
           description:
-            "Structure sentiment, emotion, reason for contact, root cause, resolution, volume, and outcome impact across the interaction stream.",
+            "Generate structured survey predictions and organize sentiment, contact reason, root cause, resolution, volume, and movement across the available transcript set.",
         },
         {
           number: "03",
-          title: "Validate",
+          title: "Compare",
           description:
-            "Use available customer responses and observed outcomes to audit predictions, compare quartiles, and make confidence visible.",
+            "Where actual customer survey responses are available, compare them with the earlier AI-generated predictions while keeping the two sources distinct.",
         },
         {
           number: "04",
@@ -621,13 +639,13 @@ export const productPages = {
     },
     capabilities: {
       eyebrow: "Structured interaction intelligence",
-      title: "Query the pattern without losing the conversation behind it.",
+      title: "More than sentiment—without losing the conversation behind it.",
       description:
-        "Jibe AI connects the operating signal with the evidence needed to understand and act on it.",
+        "Jibe AI connects a structured survey prediction with the evidence needed to understand what changed and decide what to examine next.",
       items: [
         {
-          title: "Unified interaction context",
-          description: "Organize relevant conversation, case, survey, and operating signals around the customer narrative.",
+          title: "Structured survey prediction",
+          description: "Generate an AI prediction against the survey or KPI structure defined for the interaction program.",
         },
         {
           title: "Contact-reason impact",
@@ -653,27 +671,28 @@ export const productPages = {
     },
     proof: {
       eyebrow: "Evidence stays attached",
-      title: "Every recommendation should show its work.",
+      // COPY REVIEW — AI-03: explicit prediction-versus-response distinction draft.
+      title: "A prediction is not a customer response—and the distinction matters.",
       description:
-        "Jibe AI is designed to preserve the path from the operating signal to the conversations and comparisons behind the next action.",
+        "Jibe AI preserves the path from an AI-generated structured survey prediction to the transcript, operating context, and available customer feedback behind the next action.",
       items: [
         {
-          eyebrow: "Program signal",
-          title: "Start with the outcome that moved.",
+          eyebrow: "Structured prediction",
+          title: "Create a consistent survey-shaped signal from the transcript.",
           description:
-            "A leader can begin with CSAT, resolution, interaction volume, accuracy, or quartile performance and see where the change is concentrated.",
+            "The prediction follows the defined survey or KPI structure so teams can examine movement across a broader interaction set without presenting it as direct customer feedback.",
         },
         {
-          eyebrow: "Root cause",
-          title: "Move from the metric to the reasons and interactions behind it.",
+          eyebrow: "Customer comparison",
+          title: "Use real customer feedback where it is available.",
           description:
-            "Contact-reason impact, volume, agent effect, and verbatims make the finding explainable rather than leaving it as an isolated score.",
+            "An actual customer survey response can be compared with the earlier prediction for the same interaction, making agreement and blind spots visible without implying blanket response coverage.",
         },
         {
-          eyebrow: "Best practice",
-          title: "Ground the next move in behavior already producing better outcomes.",
+          eyebrow: "Evidence to action",
+          title: "Trace a changing signal to the conversations behind it.",
           description:
-            "Quartile comparison and transcript evidence reveal practical approaches the organization can reinforce through process, QA, and coaching.",
+            "Contact-reason movement, transcript evidence, and comparison views help teams identify the issues and practices that warrant closer review.",
         },
       ],
     },
@@ -682,8 +701,9 @@ export const productPages = {
       title: "Turn the conversations you already have into clearer decisions.",
       description:
         "Bring your CX, operations, quality, or coaching question. We will show how Jibe AI connects the signal, evidence, and next action behind it.",
-      href: "/demo?product=ai",
-      label: "Book an AI demo",
+      // COPY REVIEW / BLOCKED — CONTACT-01 / D-10.
+      href: "/contact?product=ai",
+      label: "Start a conversation",
     },
   },
 } satisfies Record<ProductSlug, ProductPageConfig>;

@@ -36,9 +36,14 @@ const routeMetadata = {
     title: "Jibe AI | Interaction Intelligence",
     description: "Analyze the interaction stream, connect performance shifts to root causes and evidence, and surface the next practical action.",
   },
+  // COPY REVIEW / BLOCKED — CONTACT-01 / D-10: neutral interim metadata pending approved scheduling details.
+  contact: {
+    title: "Start a Conversation | Jibe",
+    description: "Ask a question, share the challenge, or explore which Jibe product may fit your operation.",
+  },
   demo: {
-    title: "Book a Jibe Demo",
-    description: "Book a tailored demonstration of Jibe Pro, Jibe Retail, Jibe AI, or the complete Jibe platform.",
+    title: "Contact Jibe",
+    description: "Legacy route for starting a conversation with Jibe about Jibe Pro, Jibe Retail, or Jibe AI.",
   },
   clients: {
     title: "Clients | Jibe Platform",

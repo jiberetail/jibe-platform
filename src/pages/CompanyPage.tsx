@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router";
 import { assetUrl } from "../assetUrl";
 
@@ -35,6 +35,8 @@ const pageMeta: Record<CompanySlug, { title: string; intro: string; seoDescripti
   },
 };
 
+// VERIFY / BLOCKED — COMPANY-01 / D-11: names, roles, portraits, and bios are
+// retained for private review only and require owner approval before release.
 const leaders = [
   {
     name: "Tim Lavin",
@@ -73,6 +75,8 @@ const leaders = [
   },
 ];
 
+// VERIFY / BLOCKED — COMPANY-01 / D-11: history, entity, IP, copyright, and
+// media statements require factual and legal verification before release.
 const articlePages: Record<Exclude<CompanySlug, "leadership">, {
   image: string;
   imageAlt: string;
@@ -212,11 +216,12 @@ export default function CompanyPage() {
             <p className="mb-6 text-[15px] leading-[1.7] text-white/75">
               Bring us the challenge. We’ll shape a focused conversation around your customers, operation, and goals.
             </p>
+            {/* COPY REVIEW / BLOCKED — CONTACT-01 / D-10: neutral interim CTA pending approved scheduling details. */}
             <Link
-              to="/demo"
+              to="/contact"
               className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-[14px] font-semibold text-[#0076CE] transition-colors hover:bg-[#F2F2F2] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
-              Book a demo <ArrowRight aria-hidden="true" size={15} />
+              Start a conversation <ArrowRight aria-hidden="true" size={15} />
             </Link>
           </div>
         </div>
@@ -304,19 +309,15 @@ function ArticleContent({ section }: { section: Exclude<CompanySlug, "leadership
             </p>
           )}
 
+          {/* VERIFY / BLOCKED — COMPANY-01 / D-11: do not restore a mailto until the media inbox is approved. */}
           {isMedia && (
-            <a
-              href="mailto:info@zacoustic.com"
-              className="mt-9 inline-flex items-center gap-4 border-y border-[#CCCCCC] py-4 transition-colors hover:border-[#0076CE] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#0076CE]"
-            >
-              <span className="flex h-10 w-10 items-center justify-center text-[#0076CE]">
-                <Mail aria-hidden="true" size={17} />
+            <div className="mt-9 border-y border-[#CCCCCC] py-5">
+              <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#777777]">Media relations</span>
+              <span className="mt-2 block text-[14px] font-semibold text-[#2F2F2F]">Contact channel under review</span>
+              <span className="mt-2 block max-w-[560px] text-[12px] leading-[1.65] text-[#6D6D6D]">
+                Jibe is verifying the correct media contact before publishing a destination.
               </span>
-              <span>
-                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#777777]">Media relations</span>
-                <span className="mt-1 block text-[14px] font-semibold text-[#2F2F2F]">info@zacoustic.com</span>
-              </span>
-            </a>
+            </div>
           )}
         </article>
       </div>

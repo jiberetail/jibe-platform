@@ -201,7 +201,9 @@ function ProductPathways({ config }: { config: ProductPageConfig["pathways"] }) 
             role="tablist"
             aria-label={config.eyebrow}
             aria-describedby={`${idPrefix}-pathway-instructions`}
-            className="product-page__pathway-tabs mt-3 grid grid-cols-1 gap-2 rounded-2xl border border-[#D9D9D9] bg-[#F5F5F5] p-2 sm:grid-cols-3"
+            className={`product-page__pathway-tabs mt-3 grid grid-cols-1 gap-2 rounded-2xl border border-[#D9D9D9] bg-[#F5F5F5] p-2 ${
+              config.items.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"
+            }`}
           >
             {config.items.map((item, index) => {
               const selected = index === activeIndex;
@@ -462,6 +464,14 @@ function ProductMediaStage({
 }
 
 function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) {
+  return config.layout === "paired" ? (
+    <ProductPairedWorkflow config={config} />
+  ) : (
+    <ProductSequentialWorkflow config={config} />
+  );
+}
+
+function ProductSequentialWorkflow({ config }: { config: ProductPageConfig["workflow"] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const activeStep = config.steps[activeIndex];
@@ -514,7 +524,7 @@ function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) 
                     } ${focusRing}`}
                   >
                     <span className={`text-[10px] font-bold tracking-[0.16em] ${selected ? "text-white/65" : "text-[#888888]"}`}>{step.number}</span>
-                    <span className="text-[14px] font-semibold">{step.title}</span>
+                    <span className="text-[14px] font-semibold">{step.label ?? step.title}</span>
                     <ChevronRight aria-hidden="true" size={15} className={`ml-auto ${selected ? "text-white/75" : "text-[#888888] group-hover:text-[#0076CE]"}`} />
                   </button>
                 </li>
@@ -542,6 +552,64 @@ function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) 
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductPairedWorkflow({ config }: { config: ProductPageConfig["workflow"] }) {
+  const pairs = [config.steps.slice(0, 2), config.steps.slice(2, 4)];
+
+  return (
+    <section
+      id="how-it-works"
+      className="product-page__workflow scroll-mt-32 border-b border-[#D9D9D9] bg-[#F5F5F5] py-20 lg:py-28"
+    >
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+        <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
+
+        <ol className="mt-14 grid gap-4 lg:mt-16 lg:grid-cols-2">
+          {pairs.map((pair, pairIndex) => {
+            const capability = pair[0];
+            const outcome = pair[1];
+            if (!capability || !outcome) return null;
+
+            return (
+              <li
+                key={`${capability.number}-${outcome.number}`}
+                className="border-y border-[#D9D9D9] bg-white px-6 py-8 sm:px-8 lg:px-10 lg:py-10"
+              >
+                <div className="grid gap-7 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+                  <div>
+                    <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-[#0076CE]">
+                      Path {String(pairIndex + 1).padStart(2, "0")} · Capability
+                    </p>
+                    <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#0076CE]">
+                      {capability.label ?? capability.title}
+                    </p>
+                    <h3 className="mt-2 text-[26px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#26364A]">
+                      {capability.title}
+                    </h3>
+                    <p className="mt-4 text-[14px] leading-[1.7] text-[#5F5F5F]">{capability.description}</p>
+                  </div>
+
+                  <ArrowRight aria-hidden="true" size={20} className="hidden text-[#0076CE] sm:block" />
+
+                  <div className="border-t border-[#D9D9D9] pt-7 sm:border-l sm:border-t-0 sm:pl-7 sm:pt-0">
+                    <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-[#777777]">Outcome</p>
+                    <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#0076CE]">
+                      {outcome.label ?? outcome.title}
+                    </p>
+                    <h3 className="mt-2 text-[26px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#26364A]">
+                      {outcome.title}
+                    </h3>
+                    <p className="mt-4 text-[14px] leading-[1.7] text-[#5F5F5F]">{outcome.description}</p>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ const companyLinks = [
 
 const exploreLinks = [
   { label: "Clients", href: "/clients" },
-  { label: "Contact", href: "/demo" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
@@ -30,11 +30,12 @@ export default function Footer() {
             <h2 className="mt-7 max-w-[640px] font-['Instrument_Serif'] text-[42px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[52px]">
               Better signals. Better decisions. Better experiences.
             </h2>
+            {/* COPY REVIEW / BLOCKED — CONTACT-01 / D-10: neutral interim CTA pending approved scheduling details. */}
             <Link
-              to="/demo"
+              to="/contact"
               className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#0076CE] px-6 py-3.5 text-[14px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#005FA7]"
             >
-              Book a Demo
+              Start a conversation
               <ArrowUpRight size={15} />
             </Link>
           </div>

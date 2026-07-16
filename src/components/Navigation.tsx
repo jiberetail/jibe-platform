@@ -6,17 +6,17 @@ import { assetUrl } from "../assetUrl";
 const products = [
   {
     label: "Jibe Pro",
-    description: "Coach with evidence. Prove what changed.",
+    description: "Frontline predictions compared with customer feedback where available.",
     href: "/jibe-pro",
   },
   {
     label: "Jibe Retail",
-    description: "Survey, extend the aisle, or connect both.",
+    description: "E-commerce first, surveys too—or connect both.",
     href: "/jibe-retail",
   },
   {
     label: "Jibe AI",
-    description: "Explain outcomes. Know the next move.",
+    description: "AI-generated structured survey predictions from interaction transcripts.",
     href: "/jibe-ai",
   },
 ];
@@ -46,7 +46,7 @@ const companyPages = [
 
 const sectionLinks = [
   { label: "Clients", href: "/clients" },
-  { label: "Contact", href: "/demo" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navigation() {
@@ -267,11 +267,12 @@ export default function Navigation() {
           </nav>
 
           <div className="hidden lg:block">
+            {/* COPY REVIEW / BLOCKED — CONTACT-01 / D-10: neutral interim CTA pending approved scheduling details. */}
             <Link
-              to="/demo"
+              to="/contact"
               className="inline-flex items-center gap-2 rounded-xl bg-[#0076CE] px-5 py-3 text-[13px] font-semibold text-white shadow-[0_8px_20px_rgba(0,118,206,0.22)] transition-all hover:-translate-y-0.5 hover:bg-[#005FA7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0076CE]"
             >
-              Book a Demo
+              Start a conversation
               <ArrowUpRight size={14} />
             </Link>
           </div>
@@ -361,12 +362,13 @@ export default function Navigation() {
           </div>
 
           <div className="border-t border-[#D9D9D9] p-5 sm:p-6">
+            {/* COPY REVIEW / BLOCKED — CONTACT-01 / D-10: neutral interim CTA pending approved scheduling details. */}
             <Link
-              to="/demo"
+              to="/contact"
               onClick={() => setMobileOpen(false)}
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0076CE] px-6 py-4 text-[15px] font-semibold text-white"
             >
-              Book a Demo
+              Start a conversation
               <ArrowUpRight size={16} />
             </Link>
           </div>

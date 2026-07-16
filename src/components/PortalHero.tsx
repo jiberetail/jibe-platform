@@ -1,28 +1,89 @@
-import type { CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { CSSProperties, MouseEvent as ReactMouseEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { assetUrl } from "../assetUrl";
 
 const portalProducts = [
   {
     key: "pro",
     label: "PRO",
+    name: "Jibe Pro",
     href: "/jibe-pro",
     ariaLabel: "Explore Jibe Pro, customer experience performance",
   },
   {
     key: "retail",
     label: "RETAIL",
+    name: "Jibe Retail",
     href: "/jibe-retail",
     ariaLabel: "Explore Jibe Retail, in-venue surveys and ecommerce",
   },
   {
     key: "ai",
     label: "AI",
+    name: "Jibe AI",
     href: "/jibe-ai",
     ariaLabel: "Explore Jibe AI, interaction intelligence",
   },
 ] as const;
+
+type PortalProduct = (typeof portalProducts)[number];
+type PortalProductKey = PortalProduct["key"];
+type NavigatorWithPortalHints = Navigator & {
+  deviceMemory?: number;
+  connection?: EventTarget & {
+    saveData?: boolean;
+    effectiveType?: string;
+  };
+};
+
+const productRouteLoaders: Record<PortalProductKey, () => Promise<unknown>> = {
+  pro: () => import("../pages/JibeProPage"),
+  retail: () => import("../pages/JibeRetailPage"),
+  ai: () => import("../pages/JibeAIPage"),
+};
+
+const routePreloads = new Map<PortalProductKey, Promise<unknown>>();
+
+function preloadProductRoute(key: PortalProductKey) {
+  const cached = routePreloads.get(key);
+  if (cached) return cached;
+
+  const request = productRouteLoaders[key]().catch((error) => {
+    routePreloads.delete(key);
+    throw error;
+  });
+  routePreloads.set(key, request);
+  return request;
+}
+
+function isPlainLeftClick(event: ReactMouseEvent<HTMLAnchorElement>) {
+  return (
+    event.button === 0 &&
+    !event.metaKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.altKey
+  );
+}
+
+function productDocumentUrl(href: string) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return `${base}${href}` || href;
+}
+
+function shouldUseEfficientPortalMotion() {
+  const performanceNavigator = navigator as NavigatorWithPortalHints;
+  return (
+    (performanceNavigator.hardwareConcurrency ?? 8) <= 4 ||
+    (performanceNavigator.deviceMemory ?? 8) <= 4 ||
+    performanceNavigator.connection?.saveData === true ||
+    performanceNavigator.connection?.effectiveType === "2g" ||
+    window.matchMedia("(update: slow)").matches ||
+    window.matchMedia("(max-width: 767px)").matches
+  );
+}
 
 const retailBars = [24, 36, 22, 30, 48, 42, 57, 34, 66, 51, 78, 40, 91, 61, 84, 52, 96, 70];
 
@@ -146,9 +207,15 @@ function AiPixelArt() {
 function PortalCard({
   product,
   index,
+  isOpening,
+  onPreload,
+  onSelect,
 }: {
-  product: (typeof portalProducts)[number];
+  product: PortalProduct;
   index: number;
+  isOpening: boolean;
+  onPreload: (product: PortalProduct) => void;
+  onSelect: (product: PortalProduct, event: ReactMouseEvent<HTMLAnchorElement>) => void;
 }) {
   return (
     <div
@@ -159,11 +226,20 @@ function PortalCard({
         to={product.href}
         className={`portal-product-card portal-product-card--${product.key}`}
         aria-label={product.ariaLabel}
+        aria-busy={isOpening || undefined}
+        data-transition-state={isOpening ? "opening" : "idle"}
+        onClick={(event) => onSelect(product, event)}
+        onFocus={() => onPreload(product)}
+        onPointerEnter={() => onPreload(product)}
+        onTouchStart={() => onPreload(product)}
       >
         <span className="portal-card-kicker">JIBE</span>
         <h2 className="portal-card-name">{product.label}</h2>
         <span className="portal-card-explore">
           Explore <ArrowUpRight size={16} aria-hidden="true" />
+        </span>
+        <span className="portal-card-opening" aria-hidden={!isOpening}>
+          <i aria-hidden="true" /> Opening {product.name}
         </span>
         {product.key === "pro" && <ProWaveArt />}
         {product.key === "retail" && <RetailSignalArt />}
@@ -174,8 +250,128 @@ function PortalCard({
 }
 
 export default function PortalHero() {
+  const navigate = useNavigate();
+  const [openingProduct, setOpeningProduct] = useState<PortalProductKey | null>(null);
+  const [brandFailed, setBrandFailed] = useState(false);
+  const [efficientMotion, setEfficientMotion] = useState(shouldUseEfficientPortalMotion);
+  const transitionIdRef = useRef(0);
+  const firstFrameRef = useRef<number | null>(null);
+  const secondFrameRef = useRef<number | null>(null);
+  const fallbackTimerRef = useRef<number | null>(null);
+
+  const clearScheduledNavigation = useCallback(() => {
+    if (firstFrameRef.current !== null) window.cancelAnimationFrame(firstFrameRef.current);
+    if (secondFrameRef.current !== null) window.cancelAnimationFrame(secondFrameRef.current);
+    if (fallbackTimerRef.current !== null) window.clearTimeout(fallbackTimerRef.current);
+    firstFrameRef.current = null;
+    secondFrameRef.current = null;
+    fallbackTimerRef.current = null;
+  }, []);
+
+  const resetTransition = useCallback(() => {
+    transitionIdRef.current += 1;
+    clearScheduledNavigation();
+    setOpeningProduct(null);
+  }, [clearScheduledNavigation]);
+
+  useEffect(() => {
+    // A page restored from the browser's back-forward cache must never retain
+    // the previous card's busy state.
+    window.addEventListener("pageshow", resetTransition);
+    window.addEventListener("popstate", resetTransition);
+    return () => {
+      window.removeEventListener("pageshow", resetTransition);
+      window.removeEventListener("popstate", resetTransition);
+      transitionIdRef.current += 1;
+      clearScheduledNavigation();
+    };
+  }, [clearScheduledNavigation, resetTransition]);
+
+  useEffect(() => {
+    const slowUpdateQuery = window.matchMedia("(update: slow)");
+    const narrowViewportQuery = window.matchMedia("(max-width: 767px)");
+    const connection = (navigator as NavigatorWithPortalHints).connection;
+    const updateProfile = () => setEfficientMotion(shouldUseEfficientPortalMotion());
+
+    slowUpdateQuery.addEventListener("change", updateProfile);
+    narrowViewportQuery.addEventListener("change", updateProfile);
+    connection?.addEventListener("change", updateProfile);
+    return () => {
+      slowUpdateQuery.removeEventListener("change", updateProfile);
+      narrowViewportQuery.removeEventListener("change", updateProfile);
+      connection?.removeEventListener("change", updateProfile);
+    };
+  }, []);
+
+  const handlePreload = useCallback((product: PortalProduct) => {
+    void preloadProductRoute(product.key).catch(() => undefined);
+  }, []);
+
+  const handleSelect = useCallback(
+    (product: PortalProduct, event: ReactMouseEvent<HTMLAnchorElement>) => {
+      if (!isPlainLeftClick(event)) return;
+      event.preventDefault();
+
+      clearScheduledNavigation();
+      const transitionId = transitionIdRef.current + 1;
+      transitionIdRef.current = transitionId;
+      setOpeningProduct(product.key);
+
+      const routeRequest = preloadProductRoute(product.key);
+      let routeReady = false;
+      let feedbackPainted = false;
+
+      const finishNavigation = () => {
+        if (transitionIdRef.current !== transitionId) return;
+        clearScheduledNavigation();
+        navigate(product.href);
+      };
+
+      routeRequest
+        .then(() => {
+          routeReady = true;
+          // Navigation waits for the opening state to receive a paint. When
+          // the route chunk is already cached, the feedback is still immediate.
+          if (feedbackPainted) finishNavigation();
+        })
+        .catch(() => {
+          if (
+            transitionIdRef.current === transitionId ||
+            window.location.pathname.endsWith(product.href)
+          ) {
+            // A full document request gives a transient chunk failure one clean
+            // retry instead of leaving the visitor in a broken SPA state.
+            window.location.assign(productDocumentUrl(product.href));
+          }
+        });
+
+      firstFrameRef.current = window.requestAnimationFrame(() => {
+        firstFrameRef.current = null;
+        secondFrameRef.current = window.requestAnimationFrame(() => {
+          secondFrameRef.current = null;
+          feedbackPainted = true;
+          if (routeReady) {
+            finishNavigation();
+            return;
+          }
+
+          // On a throttled connection, keep the visible selection feedback for
+          // a short beat, then hand off to the shared route loading state.
+          fallbackTimerRef.current = window.setTimeout(finishNavigation, 900);
+        });
+      });
+    },
+    [clearScheduledNavigation, navigate],
+  );
+
   return (
-    <section id="portal-hero" className="portal-hero" aria-labelledby="portal-heading">
+    <section
+      id="portal-hero"
+      className="portal-hero"
+      aria-labelledby="portal-heading"
+      aria-busy={openingProduct !== null || undefined}
+      data-motion-profile={efficientMotion ? "efficient" : "full"}
+    >
       <a href="#product-choices" className="portal-skip-link">
         Skip to product choices
       </a>
@@ -190,11 +386,18 @@ export default function PortalHero() {
         <span className="portal-arc" />
       </div>
 
-      <img
-        src={assetUrl("assets/logos/jibe.png")}
-        alt="Jibe"
-        className="portal-brand"
-      />
+      {brandFailed ? (
+        <span className="portal-brand portal-brand--fallback" role="img" aria-label="Jibe">
+          Jibe
+        </span>
+      ) : (
+        <img
+          src={assetUrl("assets/logos/jibe.png")}
+          alt="Jibe"
+          className="portal-brand"
+          onError={() => setBrandFailed(true)}
+        />
+      )}
 
       <div className="portal-copy">
         <h1 id="portal-heading" className="portal-heading" aria-label="Choose your Platform.">
@@ -214,7 +417,15 @@ export default function PortalHero() {
           {portalProducts.map((product, index) => (
             <span key={product.key} className="portal-product-index-item">
               {index > 0 && <span aria-hidden="true">•</span>}
-              <Link to={product.href}>{product.label}</Link>
+              <Link
+                to={product.href}
+                aria-busy={openingProduct === product.key || undefined}
+                onClick={(event) => handleSelect(product, event)}
+                onFocus={() => handlePreload(product)}
+                onPointerEnter={() => handlePreload(product)}
+              >
+                {product.label}
+              </Link>
             </span>
           ))}
         </nav>
@@ -222,9 +433,22 @@ export default function PortalHero() {
 
       <nav id="product-choices" className="portal-card-deck" aria-label="Choose a Jibe product" tabIndex={-1}>
         {portalProducts.map((product, index) => (
-          <PortalCard key={product.key} product={product} index={index} />
+          <PortalCard
+            key={product.key}
+            product={product}
+            index={index}
+            isOpening={openingProduct === product.key}
+            onPreload={handlePreload}
+            onSelect={handleSelect}
+          />
         ))}
       </nav>
+
+      <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {openingProduct
+          ? `Opening ${portalProducts.find((product) => product.key === openingProduct)?.name}.`
+          : ""}
+      </p>
     </section>
   );
 }

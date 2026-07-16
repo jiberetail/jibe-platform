@@ -8,7 +8,6 @@ const HomePage = lazy(() => import("../pages/HomePage"));
 const JibeProPage = lazy(() => import("../pages/JibeProPage"));
 const JibeRetailPage = lazy(() => import("../pages/JibeRetailPage"));
 const JibeAIPage = lazy(() => import("../pages/JibeAIPage"));
-const HowItWorksPage = lazy(() => import("../pages/HowItWorksPage"));
 const BookDemoPage = lazy(() => import("../pages/BookDemoPage"));
 const CompanyPage = lazy(() => import("../pages/CompanyPage"));
 const ClientsPage = lazy(() => import("../pages/ClientsPage"));
@@ -92,6 +91,11 @@ function PageLoader() {
   );
 }
 
+function LegacyDemoRedirect() {
+  const { search } = useLocation();
+  return <Navigate to={`/contact${search}`} replace />;
+}
+
 function AppContent() {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
@@ -107,9 +111,10 @@ function AppContent() {
           <Route path="/jibe-pro" element={<JibeProPage />} />
           <Route path="/jibe-retail" element={<JibeRetailPage />} />
           <Route path="/jibe-ai" element={<JibeAIPage />} />
-          <Route path="/jibe-pro/how-it-works" element={<HowItWorksPage />} />
-          <Route path="/how-it-works" element={<Navigate to="/jibe-pro/how-it-works" replace />} />
-          <Route path="/demo" element={<BookDemoPage />} />
+          <Route path="/jibe-pro/how-it-works" element={<Navigate to="/jibe-pro#how-it-works" replace />} />
+          <Route path="/how-it-works" element={<Navigate to="/jibe-pro#how-it-works" replace />} />
+          <Route path="/contact" element={<BookDemoPage />} />
+          <Route path="/demo" element={<LegacyDemoRedirect />} />
           <Route path="/clients" element={<ClientsPage />} />
           <Route path="/customers" element={<Navigate to="/clients" replace />} />
           <Route path="/company" element={<Navigate to="/company/leadership" replace />} />
@@ -119,7 +124,6 @@ function AppContent() {
           <Route path="/ip-protection" element={<Navigate to="/company/ip-protection" replace />} />
           <Route path="/media-inquiries" element={<Navigate to="/company/media-inquiries" replace />} />
           <Route path="/about" element={<Navigate to="/company/leadership" replace />} />
-          <Route path="/contact" element={<Navigate to="/demo" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

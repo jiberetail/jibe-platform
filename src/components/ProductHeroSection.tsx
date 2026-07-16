@@ -6,6 +6,24 @@ import ScrollCue from "./ScrollCue";
 
 const TYPE_SPEED = 51;
 
+function usePrefersReducedMotion() {
+  const [reducedMotion, setReducedMotion] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false,
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleChange = (event: MediaQueryListEvent) => setReducedMotion(event.matches);
+    setReducedMotion(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  return reducedMotion;
+}
+
 type ProductHeroSectionProps = {
   productName: string;
   descriptor: string;
@@ -42,20 +60,31 @@ export default function ProductHeroSection({
   productLabel,
 }: ProductHeroSectionProps) {
   const fullText = useMemo(() => line1 + line2, [line1, line2]);
-  const [typedCount, setTypedCount] = useState(0);
-  const [contentVisible, setContentVisible] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
+  const [typedCount, setTypedCount] = useState(() => (reducedMotion ? fullText.length : 0));
+  const [contentVisible, setContentVisible] = useState(reducedMotion);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const revealRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const safetyRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setTypedCount(0);
     setContentVisible(false);
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const completeWithoutMotion = () => {
       setTypedCount(fullText.length);
       setContentVisible(true);
+    };
+
+    if (reducedMotion) {
+      completeWithoutMotion();
       return;
     }
+
+    // If timer throttling or a busy main thread interrupts the type/reveal
+    // sequence, never leave meaningful controls and the product lockup hidden.
+    const expectedDuration = 300 + fullText.length * TYPE_SPEED + 180;
+    safetyRef.current = setTimeout(completeWithoutMotion, expectedDuration + 1200);
 
     const pause = setTimeout(() => {
       intervalRef.current = setInterval(() => {
@@ -77,8 +106,9 @@ export default function ProductHeroSection({
       clearTimeout(pause);
       if (intervalRef.current) clearInterval(intervalRef.current);
       if (revealRef.current) clearTimeout(revealRef.current);
+      if (safetyRef.current) clearTimeout(safetyRef.current);
     };
-  }, [fullText]);
+  }, [fullText, reducedMotion]);
 
   const secondaryClasses =
     "rounded-md border border-[#CCCCCC] px-7 py-3.5 text-[14px] font-semibold text-[#26364A] transition-colors hover:border-[#0076CE] hover:text-[#0076CE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0076CE] focus-visible:ring-offset-3";
@@ -222,7 +252,7 @@ export default function ProductHeroSection({
             }}
           >
             <div className="jibe-product-hero__halo w-full max-w-[580px]">
-              <HeroVisual3D productLabel={productLabel} />
+              <HeroVisual3D productLabel={productLabel} reducedMotion={reducedMotion} />
             </div>
           </div>
         </div>
