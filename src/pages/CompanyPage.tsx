@@ -12,27 +12,23 @@ const companyLinks: Array<{ slug: CompanySlug; label: string }> = [
   { slug: "media-inquiries", label: "Media Inquiries" },
 ];
 
-const pageMeta: Record<CompanySlug, { number: string; title: string; intro: string; seoDescription: string }> = {
+const pageMeta: Record<CompanySlug, { title: string; intro: string; seoDescription: string }> = {
   leadership: {
-    number: "01",
     title: "Leadership Team",
     intro: "Meet the visionary leaders driving innovation in customer experience intelligence at Zacoustic.",
     seoDescription: "Meet the Jibe leadership team spanning customer operations, technology, analytics, product, finance, and client success.",
   },
   history: {
-    number: "02",
     title: "Our History",
     intro: "A different way to make customer experience measurable, operational, and useful.",
     seoDescription: "Explore Jibe's history and the idea that made customer perception an actionable operating metric.",
   },
   "ip-protection": {
-    number: "03",
     title: "Intellectual Property Protection",
     intro: "Safeguarding innovation in customer experience technology.",
     seoDescription: "Learn how Jibe protects the patents, algorithms, features, and original technology behind its customer experience products.",
   },
   "media-inquiries": {
-    number: "04",
     title: "Media Inquiries",
     intro: "Ideas, research, and informed perspectives for the customer experience conversation.",
     seoDescription: "Contact Jibe for interviews, research collaborations, expert commentary, events, and media opportunities.",
@@ -164,16 +160,13 @@ export default function CompanyPage() {
 
   return (
     <main className="min-h-screen bg-[#F7F7F4]">
-      <section className="overflow-hidden border-b border-[#D9D9D5] bg-[#F7F7F4] px-6 pb-16 pt-36 lg:px-10 lg:pb-20 lg:pt-44">
+      <section className="jibe-ui-page-hero flex min-h-[58svh] items-center overflow-hidden border-b border-[#D9D9D5] bg-[#F7F7F4] px-6 pb-16 pt-36 lg:px-10 lg:pb-20 lg:pt-44">
         <div className="mx-auto max-w-[1320px]">
           <div className={section === "leadership" ? "mx-auto max-w-[900px] text-center" : ""}>
             <div className={`mb-7 flex items-center gap-4 ${section === "leadership" ? "justify-center" : ""}`}>
-              <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#0076CE]">Company</span>
-              {section !== "leadership" && (
-                <span className="font-mono text-[10px] tracking-[0.18em] text-[#A0A29E]">{meta.number} / 04</span>
-              )}
+              <span className="jibe-ui-eyebrow">Company</span>
             </div>
-            <h1 className="max-w-[900px] font-['Instrument_Serif'] text-[56px] leading-[0.92] tracking-[-0.03em] text-[#2F2F2F] sm:text-[72px] lg:text-[88px]">
+            <h1 className="max-w-[900px] font-['Inter'] text-[48px] font-semibold leading-[0.98] tracking-[-0.04em] text-[#2F2F2F] sm:text-[62px] lg:text-[76px]">
               {meta.title}
             </h1>
             <p className={`mt-7 max-w-[650px] text-[17px] leading-[1.7] text-[#686A6D] sm:text-[18px] ${section === "leadership" ? "mx-auto" : ""}`}>
@@ -183,7 +176,7 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      <nav aria-label="Company pages" className="border-b border-[#D9D9D5] bg-[#EBEBEB]">
+      <nav aria-label="Company pages" className="border-b border-[#D9D9D5] bg-[#EEF2F6]">
         <div className="mx-auto flex max-w-[1320px] gap-2 overflow-x-auto px-6 py-4 lg:px-10">
           {companyLinks.map((link) => {
             const active = link.slug === section;
@@ -256,7 +249,7 @@ function LeadershipContent() {
               </div>
 
               <div className={index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}>
-                <div className="rounded-[24px] border border-[#D9D9D5] border-l-4 border-l-[#0076CE] bg-white p-7 shadow-[0_18px_50px_rgba(25,31,38,0.08)] sm:p-9 lg:p-10">
+                <div className="jibe-ui-panel rounded-[24px] border border-[#D9D9D5] border-l-4 border-l-[#0076CE] bg-white p-7 shadow-[0_18px_50px_rgba(25,31,38,0.08)] sm:p-9 lg:p-10">
                   <h3 className="font-['Instrument_Serif'] text-[42px] leading-none tracking-[-0.025em] text-[#2F2F2F] sm:text-[50px]">
                     {leader.name}
                   </h3>

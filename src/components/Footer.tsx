@@ -13,8 +13,8 @@ const companyLinks = [
   { label: "History", href: "/company/history" },
   { label: "IP Protection", href: "/company/ip-protection" },
   { label: "Media Inquiries", href: "/company/media-inquiries" },
-  { label: "Clients", href: "/#clients" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Clients", href: "/jibe-pro#reason-02" },
+  { label: "Contact", href: "/demo" },
 ];
 
 export default function Footer() {

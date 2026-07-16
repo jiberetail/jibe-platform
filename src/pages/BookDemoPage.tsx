@@ -69,11 +69,11 @@ export default function BookDemoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F7F7F4] px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
+    <main className="jibe-demo-page min-h-screen bg-[#F7F7F4] px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
       <div className="mx-auto grid max-w-[1240px] gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#777976]">Book a demo</p>
-          <h1 className="mt-6 font-['Instrument_Serif'] text-[58px] leading-[0.94] tracking-[-0.03em] text-[#2F2F2F] sm:text-[72px]">
+        <div className="jibe-demo-intro">
+          <p className="jibe-ui-eyebrow inline-flex">Book a demo</p>
+          <h1 className="mt-6 font-['Inter'] text-[46px] font-semibold leading-[1] tracking-[-0.04em] text-[#2F2F2F] sm:text-[62px]">
             Let&apos;s make every interaction count.
           </h1>
           <p className="mt-7 max-w-[500px] text-[16px] leading-[1.7] text-[#686A6D]">
@@ -103,7 +103,7 @@ export default function BookDemoPage() {
           </div>
         </div>
 
-        <div className="rounded-[28px] border border-[#D9D9D5] bg-white p-6 shadow-[0_24px_70px_rgba(25,31,38,0.09)] sm:p-8 lg:p-10">
+        <div className="jibe-ui-panel rounded-[28px] border border-[#D9D9D5] border-l-4 border-l-[#0076CE] bg-white p-6 shadow-[0_24px_70px_rgba(25,31,38,0.09)] sm:p-8 lg:p-10">
           <div className="border-b border-[#E1E3DF] pb-7">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#777976]">Choose your conversation</p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -113,7 +113,7 @@ export default function BookDemoPage() {
                   key={option.value}
                   onClick={() => setProduct(option.value)}
                   aria-pressed={product === option.value}
-                  className={`rounded-xl border p-4 text-left transition-all focus-visible:outline-2 focus-visible:outline-[#0076CE] ${
+                  className={`rounded-lg border p-4 text-left transition-all focus-visible:outline-2 focus-visible:outline-[#0076CE] ${
                     product === option.value ? "border-[#0076CE] bg-[#EDF7FD]" : "border-[#D9D9D5] bg-white hover:border-[#9FCFEB]"
                   }`}
                 >
@@ -151,7 +151,7 @@ export default function BookDemoPage() {
               <textarea id="message" value={form.message} onChange={(event) => setField("message", event.target.value)} className={`${fieldClass(false)} min-h-[120px] resize-y`} placeholder="Tell us about the challenge, team, or customer journey you want to explore." />
             </Field>
 
-            <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0076CE] px-6 py-4 text-[15px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#005FA7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0076CE]">
+            <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0076CE] px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-[#005FA7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0076CE]">
               Prepare My Demo Request
               <ArrowRight size={16} />
             </button>
@@ -185,5 +185,5 @@ function Field({ id, label, error, required, children }: { id: string; label: st
 }
 
 function fieldClass(invalid: boolean) {
-  return `w-full rounded-xl border bg-white px-4 py-3.5 text-[14px] text-[#2F2F2F] outline-none transition-all placeholder:text-[#A7AAA5] focus:border-[#0076CE] focus:ring-4 focus:ring-[#0076CE]/10 ${invalid ? "border-[#B85A50]" : "border-[#D2D4D0]"}`;
+  return `w-full rounded-lg border bg-white px-4 py-3.5 text-[14px] text-[#2F2F2F] outline-none transition-all placeholder:text-[#A7AAA5] focus:border-[#0076CE] focus:ring-4 focus:ring-[#0076CE]/10 ${invalid ? "border-[#B85A50]" : "border-[#D2D4D0]"}`;
 }

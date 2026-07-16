@@ -176,8 +176,8 @@ function PortalCard({
 export default function PortalHero() {
   return (
     <section id="portal-hero" className="portal-hero" aria-labelledby="portal-heading">
-      <a href="#clients" className="portal-skip-link">
-        Skip to clients and company information
+      <a href="#product-choices" className="portal-skip-link">
+        Skip to product choices
       </a>
 
       <div className="portal-blueprint" aria-hidden="true">
@@ -220,7 +220,7 @@ export default function PortalHero() {
         </nav>
       </div>
 
-      <nav className="portal-card-deck" aria-label="Choose a Jibe product">
+      <nav id="product-choices" className="portal-card-deck" aria-label="Choose a Jibe product" tabIndex={-1}>
         {portalProducts.map((product, index) => (
           <PortalCard key={product.key} product={product} index={index} />
         ))}

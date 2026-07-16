@@ -25,10 +25,10 @@ const faqs = [
 export default function HowItWorksPage() {
   return (
     <main>
-      <section className="bg-[#F7F7F4] pt-32 pb-20 border-b border-[#D8DADC]">
+      <section className="jibe-ui-page-hero flex min-h-[62svh] items-center border-b border-[#D8DADC] bg-[#F7F7F4] pb-20 pt-32">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
-          <span className="font-mono text-[11px] tracking-[0.2em] text-[#686A6D] uppercase block mb-8">How It Works</span>
-          <h1 className="font-['Instrument_Serif'] text-[56px] md:text-[72px] lg:text-[88px] leading-[0.95] text-[#2F2F2F] mb-8 max-w-[800px]">
+          <span className="jibe-ui-eyebrow mb-8 inline-flex">How It Works</span>
+          <h1 className="mb-8 max-w-[800px] font-['Inter'] text-[48px] font-semibold leading-[0.98] tracking-[-0.04em] text-[#2F2F2F] md:text-[62px] lg:text-[76px]">
             From interaction to action.
           </h1>
           <p className="text-[18px] text-[#686A6D] leading-relaxed max-w-[560px]">
@@ -41,9 +41,9 @@ export default function HowItWorksPage() {
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <div className="space-y-0">
             {steps.map((step, i) => (
-              <div key={step.n} className={`grid grid-cols-1 lg:grid-cols-12 gap-8 py-12 ${i < steps.length - 1 ? "border-b border-[#D8DADC]" : ""}`}>
+              <div key={step.n} className={`grid grid-cols-1 gap-6 py-9 lg:grid-cols-12 lg:gap-8 ${i < steps.length - 1 ? "border-b border-[#D8DADC]" : ""}`}>
                 <div className="lg:col-span-2">
-                  <span className="font-['Instrument_Serif'] text-[60px] leading-none text-[#D8DADC]">{step.n}</span>
+                  <span className="inline-flex h-10 min-w-10 items-center justify-center rounded-lg border border-[#B9DDF4] bg-[#EAF5FC] px-3 text-[12px] font-bold text-[#0076CE]">{step.n}</span>
                 </div>
                 <div className="lg:col-span-10">
                   <h2 className="font-semibold text-[#2F2F2F] text-[20px] mb-3">{step.label}</h2>
@@ -70,7 +70,7 @@ export default function HowItWorksPage() {
             ))}
           </div>
           <div className="mt-12">
-            <Link to="/demo?product=pro" className="inline-flex items-center gap-2 px-7 py-4 bg-[#0076CE] text-white font-semibold rounded-xl hover:bg-[#004F8C] transition-colors">
+            <Link to="/demo?product=pro" className="inline-flex items-center gap-2 rounded-lg bg-[#0076CE] px-7 py-4 font-semibold text-white transition-colors hover:bg-[#004F8C]">
               Book a Demo <ArrowRight size={16} />
             </Link>
           </div>

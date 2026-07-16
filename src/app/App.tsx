@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from "react-router";
 import Footer from "../components/Footer";
+import InteriorPageScrollCue from "../components/InteriorPageScrollCue";
 import Navigation from "../components/Navigation";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
@@ -16,17 +17,51 @@ function ScrollManager() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const frame = window.requestAnimationFrame(() => {
-      if (hash) {
-        const target = document.getElementById(hash.slice(1));
-        if (target) {
-          target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
-          return;
-        }
+    let cancelled = false;
+    let observer: MutationObserver | null = null;
+    let timeoutId: number | undefined;
+
+    const stopWaiting = () => {
+      observer?.disconnect();
+      observer = null;
+      if (timeoutId !== undefined) {
+        window.clearTimeout(timeoutId);
+        timeoutId = undefined;
       }
+    };
+
+    const scrollToHashTarget = () => {
+      if (cancelled || !hash) return false;
+      const target = document.getElementById(hash.slice(1));
+      if (!target) return false;
+
+      stopWaiting();
+      target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+      return true;
+    };
+
+    const frame = window.requestAnimationFrame(() => {
+      if (!hash) {
+        window.scrollTo({ top: 0, behavior: "auto" });
+        return;
+      }
+
+      if (scrollToHashTarget()) return;
+
+      // Lazy route chunks can mount after this effect. Start at the top, then
+      // watch briefly for the requested section instead of dropping the hash.
       window.scrollTo({ top: 0, behavior: "auto" });
+      observer = new MutationObserver(scrollToHashTarget);
+      observer.observe(document.body, { childList: true, subtree: true });
+      timeoutId = window.setTimeout(stopWaiting, 4000);
+      scrollToHashTarget();
     });
-    return () => window.cancelAnimationFrame(frame);
+
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(frame);
+      stopWaiting();
+    };
   }, [pathname, hash]);
 
   return null;
@@ -60,10 +95,14 @@ function PageLoader() {
 }
 
 function AppContent() {
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
+
   return (
-    <div className="min-h-screen bg-white font-['Inter',sans-serif] text-[#2F2F2F]">
+    <div className={`min-h-screen bg-white font-['Inter',sans-serif] text-[#2F2F2F] ${isHome ? "jibe-portal-shell" : "jibe-interior"}`}>
       <Navigation />
       <ScrollManager />
+      <InteriorPageScrollCue />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -73,8 +112,8 @@ function AppContent() {
           <Route path="/jibe-pro/how-it-works" element={<HowItWorksPage />} />
           <Route path="/how-it-works" element={<Navigate to="/jibe-pro/how-it-works" replace />} />
           <Route path="/demo" element={<BookDemoPage />} />
-          <Route path="/clients" element={<Navigate to="/#clients" replace />} />
-          <Route path="/customers" element={<Navigate to="/#clients" replace />} />
+          <Route path="/clients" element={<Navigate to="/jibe-pro#reason-02" replace />} />
+          <Route path="/customers" element={<Navigate to="/jibe-pro#reason-02" replace />} />
           <Route path="/company" element={<Navigate to="/company/leadership" replace />} />
           <Route path="/company/:section" element={<CompanyPage />} />
           <Route path="/leadership" element={<Navigate to="/company/leadership" replace />} />
@@ -82,11 +121,11 @@ function AppContent() {
           <Route path="/ip-protection" element={<Navigate to="/company/ip-protection" replace />} />
           <Route path="/media-inquiries" element={<Navigate to="/company/media-inquiries" replace />} />
           <Route path="/about" element={<Navigate to="/company/leadership" replace />} />
-          <Route path="/contact" element={<Navigate to="/#contact" replace />} />
+          <Route path="/contact" element={<Navigate to="/demo" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-      <Footer />
+      {!isHome && <Footer />}
     </div>
   );
 }

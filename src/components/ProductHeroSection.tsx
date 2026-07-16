@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { Link } from "react-router";
 import HeroVisual3D from "./HeroVisual3D";
+import ScrollCue from "./ScrollCue";
 
 const TYPE_SPEED = 51;
 
@@ -21,7 +22,7 @@ type ProductHeroSectionProps = {
 
 const headlineBase: CSSProperties = {
   fontFamily: "'Instrument Serif', Georgia, serif",
-  fontSize: "clamp(52px, 6.5vw, 96px)",
+  fontSize: "clamp(50px, 6.1vw, 90px)",
   lineHeight: 0.93,
   letterSpacing: "-0.025em",
   display: "block",
@@ -74,19 +75,30 @@ export default function ProductHeroSection({
   }, [fullText]);
 
   const secondaryClasses =
-    "px-7 py-3.5 border font-medium text-[14px] rounded-xl transition-all hover:border-[#2F2F2F] hover:-translate-y-0.5";
+    "rounded-lg border px-7 py-3.5 text-[14px] font-semibold transition-colors hover:border-[#0076CE] hover:text-[#0076CE]";
   const secondaryStyle = { borderColor: "#D9D9D5", color: "#6D6D69" };
+  const fallbackScrollTarget = `product-details-${productLabel.toLowerCase()}`;
+  const scrollTargetHref = secondaryHref.startsWith("#")
+    ? secondaryHref
+    : `#${fallbackScrollTarget}`;
 
   return (
     <section
-      className="relative flex min-h-screen items-center overflow-hidden border-b"
-      style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}
+      className="jibe-product-hero relative flex min-h-screen items-center overflow-hidden border-b"
     >
-      <div className="relative mx-auto w-full max-w-[1320px] px-6 pb-16 pt-28 lg:px-10">
-        <div className="grid min-h-[calc(100vh-7rem)] grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_1fr] lg:gap-4 xl:grid-cols-[1fr_1.05fr]">
-          <div className="flex flex-col justify-center py-8 lg:py-0">
+      {!secondaryHref.startsWith("#") && (
+        <span
+          id={fallbackScrollTarget}
+          className="pointer-events-none absolute bottom-0 left-0 h-px w-px scroll-mt-24"
+          aria-hidden="true"
+        />
+      )}
+
+      <div className="relative mx-auto w-full max-w-[1320px] px-6 pb-20 pt-28 lg:px-10">
+        <div className="grid min-h-[calc(100svh-12rem)] grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_1fr] lg:gap-4 xl:grid-cols-[1fr_1.05fr]">
+          <div className="jibe-product-hero__copy flex flex-col justify-center py-8 lg:py-10">
             <div
-              className="mb-10 flex items-center gap-3 transition-all duration-500"
+              className="jibe-product-eyebrow mb-8 flex w-fit items-center gap-3 transition-all duration-500"
               style={{
                 opacity: contentVisible ? 1 : 0,
                 transform: contentVisible ? "translateY(0)" : "translateY(8px)",
@@ -101,7 +113,7 @@ export default function ProductHeroSection({
               </span>
             </div>
 
-            <h1 className="mb-10" aria-label={`${line1} ${line2}`}>
+            <h1 className="mb-8" aria-label={`${line1} ${line2}`}>
               <span className="mb-2 block text-[#2F2F2F]" style={headlineBase} aria-hidden="true">
                 {line1.split("").map((character, index) => (
                   <span key={`${character}-${index}`} style={{ opacity: index < typedCount ? 1 : 0 }}>
@@ -126,7 +138,7 @@ export default function ProductHeroSection({
             </h1>
 
             <p
-              className="mb-10 text-[17px] leading-[1.65] text-[#6D6D69]"
+              className="mb-8 text-[16px] leading-[1.7] text-[#5B6B80]"
               style={{
                 maxWidth: 460,
                 opacity: contentVisible ? 1 : 0,
@@ -147,7 +159,7 @@ export default function ProductHeroSection({
             >
               <Link
                 to={primaryHref}
-                className="rounded-xl bg-[#0076CE] px-7 py-3.5 text-[14px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:opacity-90"
+                className="rounded-lg bg-[#0076CE] px-7 py-3.5 text-[14px] font-semibold text-white shadow-[0_2px_8px_rgba(0,118,206,0.22)] transition-colors hover:bg-[#005FA7]"
               >
                 {primaryLabel}
               </Link>
@@ -163,17 +175,25 @@ export default function ProductHeroSection({
             </div>
 
             <div
-              className="flex flex-wrap gap-x-6 gap-y-2"
+              className="grid max-w-[520px] grid-cols-2 gap-2"
               style={{ opacity: contentVisible ? 1 : 0, transition: "opacity 0.5s ease 0.24s" }}
             >
               {proofPoints.map((label) => (
                 <span
                   key={label}
-                  className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#6D6D69]"
+                  className="jibe-product-proof"
                 >
+                  <i aria-hidden="true" />
                   {label}
                 </span>
               ))}
+            </div>
+
+            <div
+              className="mt-8 lg:hidden"
+              style={{ opacity: contentVisible ? 1 : 0, transition: "opacity 0.5s ease 0.3s" }}
+            >
+              <ScrollCue href={scrollTargetHref} />
             </div>
           </div>
 
@@ -185,11 +205,25 @@ export default function ProductHeroSection({
               transition: "opacity 0.7s ease 0.12s, transform 0.7s ease 0.12s",
             }}
           >
-            <div className="w-full max-w-[580px]">
-              <HeroVisual3D productLabel={productLabel} />
+            <div className="jibe-product-window w-full max-w-[580px]">
+              <div className="jibe-product-window__bar" aria-hidden="true">
+                <span className="jibe-product-window__lights"><i /><i /><i /></span>
+                <span>Jibe {productLabel} / Platform view</span>
+                <span className="jibe-product-window__status">Live</span>
+              </div>
+              <div className="jibe-product-window__canvas">
+                <HeroVisual3D productLabel={productLabel} />
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div
+        className="absolute bottom-5 left-1/2 z-10 hidden -translate-x-1/2 lg:block"
+        style={{ opacity: contentVisible ? 1 : 0, transition: "opacity 0.5s ease 0.3s" }}
+      >
+        <ScrollCue href={scrollTargetHref} />
       </div>
     </section>
   );
