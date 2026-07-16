@@ -283,17 +283,6 @@
   position: relative;
 }
 
-.jibe-product-hero__visual::before {
-  position: absolute;
-  z-index: -1;
-  width: min(74vw, 520px);
-  height: min(74vw, 520px);
-  border: 1px solid rgba(0, 118, 206, 0.12);
-  border-radius: 50%;
-  content: "";
-  transform: translate(8%, -2%);
-}
-
 .jibe-product-hero__halo {
   position: relative;
   filter: drop-shadow(0 24px 34px rgba(0, 79, 140, 0.08));
