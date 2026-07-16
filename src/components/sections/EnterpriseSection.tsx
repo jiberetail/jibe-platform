@@ -11,11 +11,11 @@ const pillars = [
 
 export default function EnterpriseSection() {
   return (
-    <section id="enterprise" className="scroll-mt-24 py-24 lg:py-32 border-t border-b" style={{ background: "#F7F7F4", borderColor: "#D9D9D5" }}>
+    <section id="enterprise" className="scroll-mt-24 py-24 lg:py-32 border-t border-b" style={{ background: "#F7F7F7", borderColor: "#D9D9D9" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-16">
           <div className="lg:col-span-5">
-            <span className="font-mono text-[11px] tracking-[0.25em] uppercase block mb-6" style={{ color: "#6D6D69" }}>
+            <span className="font-mono text-[11px] tracking-[0.25em] uppercase block mb-6" style={{ color: "#6D6D6D" }}>
               Built for Enterprise Operations
             </span>
             <h2
@@ -24,7 +24,7 @@ export default function EnterpriseSection() {
             >
               Clear enough for executives. Detailed enough for operators.
             </h2>
-            <p className="text-[16px] leading-relaxed" style={{ color: "#6D6D69" }}>
+            <p className="text-[16px] leading-relaxed" style={{ color: "#6D6D6D" }}>
               Jibe Pro is designed for the complexity of enterprise contact-center operations — multi-site, multi-team, multi-channel, with the performance governance and reporting depth that large organizations require.
             </p>
           </div>
@@ -34,11 +34,11 @@ export default function EnterpriseSection() {
               <div
                 key={label}
                 className="border rounded-2xl p-5 hover:border-[#0076CE] transition-colors"
-                style={{ borderColor: "#D9D9D5", background: "#FFFFFF" }}
+                style={{ borderColor: "#D9D9D9", background: "#FFFFFF" }}
               >
                 <div className="w-6 h-px mb-4" style={{ background: "#0076CE" }} />
                 <div className="font-semibold text-[14px] mb-2" style={{ color: "#2F2F2F" }}>{label}</div>
-                <div className="text-[13px] leading-relaxed" style={{ color: "#6D6D69" }}>{desc}</div>
+                <div className="text-[13px] leading-relaxed" style={{ color: "#6D6D6D" }}>{desc}</div>
               </div>
             ))}
           </div>

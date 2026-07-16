@@ -25,7 +25,7 @@ const faqs = [
 export default function HowItWorksPage() {
   return (
     <main>
-      <section className="flex min-h-[58svh] items-center border-b border-[#D7E0E8] bg-white pb-20 pt-32">
+      <section className="flex min-h-[58svh] items-center border-b border-[#D9D9D9] bg-white pb-20 pt-32">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <span className="mb-8 block font-mono text-[10px] uppercase tracking-[0.24em] text-[#0076CE]">How It Works</span>
           <h1 className="mb-8 max-w-[800px] font-['Instrument_Serif'] text-[54px] leading-[0.96] tracking-[-0.025em] text-[#243443] md:text-[70px] lg:text-[86px]">
@@ -39,9 +39,9 @@ export default function HowItWorksPage() {
 
       <section className="bg-white py-24">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
-          <div className="border-t border-[#D7E0E8]">
+          <div className="border-t border-[#D9D9D9]">
             {steps.map((step, i) => (
-              <div key={step.label} className={`grid grid-cols-1 gap-4 py-9 lg:grid-cols-12 lg:gap-10 ${i < steps.length - 1 ? "border-b border-[#D7E0E8]" : ""}`}>
+              <div key={step.label} className={`grid grid-cols-1 gap-4 py-9 lg:grid-cols-12 lg:gap-10 ${i < steps.length - 1 ? "border-b border-[#D9D9D9]" : ""}`}>
                 <div className="lg:col-span-4">
                   <h2 className="font-['Instrument_Serif'] text-[28px] leading-tight text-[#243443] lg:text-[32px]">{step.label}</h2>
                 </div>
@@ -55,14 +55,14 @@ export default function HowItWorksPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-[#F4F7F9] border-t border-[#D7E0E8] py-24">
+      <section className="bg-[#F5F5F5] border-t border-[#D9D9D9] py-24">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <h2 className="font-['Instrument_Serif'] text-[40px] lg:text-[52px] leading-[1.0] text-[#2F2F2F] mb-12">
             Frequently asked questions.
           </h2>
-          <div className="grid max-w-[1000px] grid-cols-1 gap-x-10 gap-y-0 border-t border-[#D7E0E8] md:grid-cols-2">
+          <div className="grid max-w-[1000px] grid-cols-1 gap-x-10 gap-y-0 border-t border-[#D9D9D9] md:grid-cols-2">
             {faqs.map(({ q, a }) => (
-              <div key={q} className="border-b border-[#D7E0E8] py-7">
+              <div key={q} className="border-b border-[#D9D9D9] py-7">
                 <h3 className="font-semibold text-[#2F2F2F] text-[15px] mb-3">{q}</h3>
                 <p className="text-[14px] text-[#686A6D] leading-relaxed">{a}</p>
               </div>

@@ -72,7 +72,7 @@ function SectionIntro({
       <div className="lg:col-span-8">
         <p
           className={`mb-5 text-[10px] font-bold uppercase tracking-[0.2em] ${
-            dark ? "text-[#40A7DF]" : "text-[#0076CE]"
+            dark ? "text-[#4A9CFF]" : "text-[#0076CE]"
           }`}
         >
           {eyebrow}
@@ -87,7 +87,7 @@ function SectionIntro({
       </div>
       <p
         className={`max-w-[450px] text-[15px] leading-[1.75] lg:col-span-4 ${
-          dark ? "text-white/65" : "text-[#5B6B80]"
+          dark ? "text-white/65" : "text-[#5F5F5F]"
         }`}
       >
         {description}
@@ -106,7 +106,7 @@ function ProductAnchorNav({ productName }: { productName: string }) {
 
   return (
     <nav
-      className="product-page__anchor-nav sticky top-[76px] z-20 border-b border-[#D7E0EA] bg-white/95 backdrop-blur-sm"
+      className="product-page__anchor-nav sticky top-[76px] z-20 border-b border-[#D9D9D9] bg-white/95 backdrop-blur-sm"
       aria-label={`${productName} page sections`}
     >
       <div className="mx-auto flex max-w-[1320px] gap-7 overflow-x-auto px-6 py-4 lg:px-10">
@@ -114,7 +114,7 @@ function ProductAnchorNav({ productName }: { productName: string }) {
           <a
             key={href}
             href={href}
-            className={`shrink-0 border-b border-transparent pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5B6B80] transition-colors hover:border-[#0076CE] hover:text-[#0076CE] ${focusRing}`}
+            className={`shrink-0 border-b border-transparent pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5F5F5F] transition-colors hover:border-[#0076CE] hover:text-[#0076CE] ${focusRing}`}
           >
             {label}
           </a>
@@ -133,16 +133,16 @@ function ProductPathways({ config }: { config: ProductPageConfig["pathways"] }) 
   return (
     <section
       id="overview"
-      className="product-page__pathways scroll-mt-32 border-b border-[#D7E0EA] bg-white py-20 lg:py-28"
+      className="product-page__pathways scroll-mt-32 border-b border-[#D9D9D9] bg-white py-20 lg:py-28"
     >
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
-        <div className="mt-14 border-y border-[#D7E0EA] lg:mt-16">
+        <div className="mt-14 border-y border-[#D9D9D9] lg:mt-16">
           <div
             role="tablist"
             aria-label={config.eyebrow}
-            className="product-page__pathway-tabs flex overflow-x-auto border-b border-[#D7E0EA]"
+            className="product-page__pathway-tabs flex overflow-x-auto border-b border-[#D9D9D9]"
           >
             {config.items.map((item, index) => {
               const selected = index === activeIndex;
@@ -163,10 +163,10 @@ function ProductPathways({ config }: { config: ProductPageConfig["pathways"] }) 
                     focusAndSelectTab(event, index, config.items.length, tabRefs, setActiveIndex)
                   }
                   className={`relative min-w-[150px] flex-1 px-5 py-5 text-left text-[13px] font-semibold transition-colors sm:px-7 ${
-                    selected ? "text-[#0076CE]" : "text-[#5B6B80] hover:text-[#26364A]"
+                    selected ? "text-[#0076CE]" : "text-[#5F5F5F] hover:text-[#26364A]"
                   } ${focusRing}`}
                 >
-                  <span className="mr-3 text-[10px] font-bold tracking-[0.15em] text-[#8A9AAD]">
+                  <span className="mr-3 text-[10px] font-bold tracking-[0.15em] text-[#888888]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   {item.label}
@@ -201,11 +201,11 @@ function PathwayPanel({ pathway, idPrefix }: { pathway: ProductPathway; idPrefix
         <h3 className="max-w-[620px] text-[clamp(28px,3.2vw,44px)] font-semibold leading-[1.04] tracking-[-0.03em] text-[#26364A]">
           {pathway.title}
         </h3>
-        <p className="mt-5 max-w-[590px] text-[15px] leading-[1.75] text-[#5B6B80]">
+        <p className="mt-5 max-w-[590px] text-[15px] leading-[1.75] text-[#5F5F5F]">
           {pathway.description}
         </p>
       </div>
-      <ul className="divide-y divide-[#D7E0EA] border-y border-[#D7E0EA] lg:col-span-5 lg:col-start-8">
+      <ul className="divide-y divide-[#D9D9D9] border-y border-[#D9D9D9] lg:col-span-5 lg:col-start-8">
         {pathway.outcomes.map((outcome) => (
           <li key={outcome} className="flex items-start gap-3 py-4 text-[14px] leading-[1.6] text-[#26364A]">
             <Check aria-hidden="true" size={15} className="mt-1 shrink-0 text-[#0076CE]" strokeWidth={2} />
@@ -262,12 +262,12 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                   }
                   className={`relative shrink-0 pb-4 text-[12px] font-semibold transition-colors ${
                     selected ? "text-white" : "text-white/50 hover:text-white/80"
-                  } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#40A7DF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]`}
+                  } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]`}
                 >
                   {item.label}
                   <span
                     aria-hidden="true"
-                    className={`absolute inset-x-0 bottom-0 h-0.5 bg-[#40A7DF] transition-opacity ${
+                    className={`absolute inset-x-0 bottom-0 h-0.5 bg-[#4A9CFF] transition-opacity ${
                       selected ? "opacity-100" : "opacity-0"
                     }`}
                   />
@@ -281,10 +281,10 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
             role="tabpanel"
             aria-labelledby={`${idPrefix}-media-tab-${activeItem.id}`}
             tabIndex={0}
-            className="product-page__media-panel grid items-center gap-10 py-10 lg:grid-cols-12 lg:gap-12 lg:py-14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#40A7DF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
+            className="product-page__media-panel grid items-center gap-10 py-10 lg:grid-cols-12 lg:gap-12 lg:py-14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
           >
             <div className="lg:col-span-4">
-              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#40A7DF]">
+              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">
                 {activeItem.eyebrow}
               </p>
               <h3 className="mt-4 text-[clamp(28px,3.2vw,44px)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
@@ -296,7 +296,7 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                   href={imageUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-7 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#40A7DF] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#40A7DF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
+                  className="mt-7 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#4A9CFF] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
                 >
                   View full image <ArrowUpRight aria-hidden="true" size={14} />
                 </a>
@@ -327,7 +327,7 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                       target="_blank"
                       rel="noreferrer"
                       aria-label={`View full image: ${image.alt}`}
-                      className="block overflow-hidden rounded-2xl bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#40A7DF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
+                      className="block overflow-hidden rounded-2xl bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
                     >
                       <img
                         src={image.url}
@@ -361,26 +361,26 @@ function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) 
   return (
     <section
       id="how-it-works"
-      className="product-page__workflow scroll-mt-32 border-b border-[#D7E0EA] bg-[#F5F7FA] py-20 lg:py-28"
+      className="product-page__workflow scroll-mt-32 border-b border-[#D9D9D9] bg-[#F5F5F5] py-20 lg:py-28"
     >
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
-        <div className="mt-14 border-y border-[#D7E0EA] lg:mt-16">
+        <div className="mt-14 border-y border-[#D9D9D9] lg:mt-16">
           <ol className="grid grid-cols-1 md:grid-cols-4">
             {config.steps.map((step, index) => {
               const selected = index === activeIndex;
               return (
-                <li key={step.number} className="border-b border-[#D7E0EA] last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+                <li key={step.number} className="border-b border-[#D9D9D9] last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
                   <button
                     type="button"
                     aria-pressed={selected}
                     onClick={() => setActiveIndex(index)}
                     className={`product-page__workflow-step relative flex min-h-[104px] w-full items-center gap-4 px-5 py-5 text-left transition-colors hover:bg-white ${
-                      selected ? "bg-white text-[#0076CE]" : "text-[#5B6B80]"
+                      selected ? "bg-white text-[#0076CE]" : "text-[#5F5F5F]"
                     } ${focusRing}`}
                   >
-                    <span className="text-[10px] font-bold tracking-[0.16em] text-[#8A9AAD]">{step.number}</span>
+                    <span className="text-[10px] font-bold tracking-[0.16em] text-[#888888]">{step.number}</span>
                     <span className="text-[14px] font-semibold">{step.title}</span>
                     <span
                       aria-hidden="true"
@@ -397,7 +397,7 @@ function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) 
           <div
             key={activeStep.number}
             id={`${idPrefix}-workflow-panel`}
-            className="product-page__workflow-panel grid gap-5 border-t border-[#D7E0EA] bg-white px-6 py-8 sm:px-8 lg:grid-cols-12 lg:px-10 lg:py-10"
+            className="product-page__workflow-panel grid gap-5 border-t border-[#D9D9D9] bg-white px-6 py-8 sm:px-8 lg:grid-cols-12 lg:px-10 lg:py-10"
             aria-live="polite"
           >
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#0076CE] lg:col-span-2">
@@ -405,7 +405,7 @@ function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) 
             </p>
             <div className="lg:col-span-8">
               <h3 className="text-[24px] font-semibold tracking-[-0.025em] text-[#26364A]">{activeStep.title}</h3>
-              <p className="mt-3 max-w-[720px] text-[15px] leading-[1.75] text-[#5B6B80]">
+              <p className="mt-3 max-w-[720px] text-[15px] leading-[1.75] text-[#5F5F5F]">
                 {activeStep.description}
               </p>
             </div>
@@ -418,11 +418,11 @@ function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) 
 
 function ProductCapabilities({ config }: { config: ProductPageConfig["capabilities"] }) {
   return (
-    <section className="product-page__capabilities border-b border-[#D7E0EA] bg-white py-20 lg:py-28">
+    <section className="product-page__capabilities border-b border-[#D9D9D9] bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
-        <ol className="mt-14 grid grid-cols-1 border-y border-[#D7E0EA] md:grid-cols-2 lg:mt-16">
+        <ol className="mt-14 grid grid-cols-1 border-y border-[#D9D9D9] md:grid-cols-2 lg:mt-16">
           {config.items.map((item, index) => {
             const isLastItem = index === config.items.length - 1;
             const isInLastDesktopRow = index >= config.items.length - 2;
@@ -430,7 +430,7 @@ function ProductCapabilities({ config }: { config: ProductPageConfig["capabiliti
             return (
               <li
                 key={item.title}
-                className={`grid grid-cols-[auto_1fr] gap-5 border-b border-[#D7E0EA] py-7 md:px-7 ${
+                className={`grid grid-cols-[auto_1fr] gap-5 border-b border-[#D9D9D9] py-7 md:px-7 ${
                   index % 2 === 0 ? "md:border-r" : ""
                 } ${isInLastDesktopRow ? "md:border-b-0" : ""} ${isLastItem ? "border-b-0" : ""}`}
               >
@@ -439,7 +439,7 @@ function ProductCapabilities({ config }: { config: ProductPageConfig["capabiliti
                 </span>
                 <div>
                   <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-[#26364A]">{item.title}</h3>
-                  <p className="mt-2 max-w-[480px] text-[13px] leading-[1.7] text-[#5B6B80]">{item.description}</p>
+                  <p className="mt-2 max-w-[480px] text-[13px] leading-[1.7] text-[#5F5F5F]">{item.description}</p>
                 </div>
               </li>
             );
@@ -454,22 +454,22 @@ function ProductProof({ config }: { config: ProductPageConfig["proof"] }) {
   return (
     <section
       id="proof"
-      className="product-page__proof scroll-mt-32 border-b border-[#D7E0EA] bg-[#F5F7FA] py-20 lg:py-28"
+      className="product-page__proof scroll-mt-32 border-b border-[#D9D9D9] bg-[#F5F5F5] py-20 lg:py-28"
     >
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
         {config.logos && (
           <div id="clients" className="product-page__client-strip mt-14 scroll-mt-32 lg:mt-16">
-            <p className="mb-5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#5B6B80]">
+            <p className="mb-5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#5F5F5F]">
               {config.logos.label}
             </p>
-            <ul className="grid grid-cols-2 border-y border-[#D7E0EA] sm:grid-cols-3 lg:grid-cols-9">
+            <ul className="grid grid-cols-2 border-y border-[#D9D9D9] sm:grid-cols-3 lg:grid-cols-9">
               {config.logos.items.map((logo, index) => (
                 <li
                   key={logo.alt}
                   className={`flex min-h-[92px] items-center justify-center px-5 py-6 ${
-                    index > 0 ? "border-l border-[#D7E0EA]" : ""
+                    index > 0 ? "border-l border-[#D9D9D9]" : ""
                   }`}
                 >
                   <img src={logo.src} alt={logo.alt} loading="lazy" className="max-h-10 w-full object-contain grayscale" />
@@ -479,7 +479,7 @@ function ProductProof({ config }: { config: ProductPageConfig["proof"] }) {
           </div>
         )}
 
-        <div className="mt-14 divide-y divide-[#D7E0EA] border-y border-[#D7E0EA] lg:mt-16">
+        <div className="mt-14 divide-y divide-[#D9D9D9] border-y border-[#D9D9D9] lg:mt-16">
           {config.items.map((item, index) => (
             <div key={item.title} className="product-page__proof-item grid gap-8 py-9 lg:grid-cols-12 lg:items-start lg:py-11">
               <div className={item.metrics && item.metrics.length > 0 ? "lg:col-span-5" : "lg:col-span-8"}>
@@ -489,19 +489,19 @@ function ProductProof({ config }: { config: ProductPageConfig["proof"] }) {
                 <h3 className="mt-4 text-[clamp(26px,3vw,40px)] font-semibold leading-[1.05] tracking-[-0.03em] text-[#26364A]">
                   {item.title}
                 </h3>
-                <p className="mt-4 max-w-[580px] text-[14px] leading-[1.75] text-[#5B6B80]">{item.description}</p>
+                <p className="mt-4 max-w-[580px] text-[14px] leading-[1.75] text-[#5F5F5F]">{item.description}</p>
               </div>
 
               {item.metrics && item.metrics.length > 0 && (
-                <dl className="grid grid-cols-1 border-y border-[#D7E0EA] sm:grid-cols-3 lg:col-span-6 lg:col-start-7">
+                <dl className="grid grid-cols-1 border-y border-[#D9D9D9] sm:grid-cols-3 lg:col-span-6 lg:col-start-7">
                   {item.metrics.map((metric, metricIndex) => (
                     <div
                       key={metric.label}
                       className={`flex flex-col py-5 sm:px-5 ${
-                        metricIndex > 0 ? "border-t border-[#D7E0EA] sm:border-l sm:border-t-0" : ""
+                        metricIndex > 0 ? "border-t border-[#D9D9D9] sm:border-l sm:border-t-0" : ""
                       }`}
                     >
-                      <dt className="order-2 mt-3 text-[11px] leading-[1.55] text-[#5B6B80]">{metric.label}</dt>
+                      <dt className="order-2 mt-3 text-[11px] leading-[1.55] text-[#5F5F5F]">{metric.label}</dt>
                       <dd className="order-1 text-[clamp(30px,3.6vw,48px)] font-semibold leading-none tracking-[-0.035em] text-[#0076CE]">
                         {metric.value}
                       </dd>
@@ -513,7 +513,7 @@ function ProductProof({ config }: { config: ProductPageConfig["proof"] }) {
           ))}
         </div>
 
-        {config.note && <p className="mt-5 max-w-[960px] text-[10px] leading-[1.7] text-[#5B6B80]">{config.note}</p>}
+        {config.note && <p className="mt-5 max-w-[960px] text-[10px] leading-[1.7] text-[#5F5F5F]">{config.note}</p>}
       </div>
     </section>
   );
@@ -523,14 +523,14 @@ function ProductFinalCTA({ config }: { config: ProductPageConfig["cta"] }) {
   return (
     <section className="product-page__cta bg-[#101820] py-24 text-white lg:py-32">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#40A7DF]">{config.eyebrow}</p>
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">{config.eyebrow}</p>
         <h2 className="mt-6 max-w-[930px] text-[clamp(42px,6vw,76px)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
           {config.title}
         </h2>
         <p className="mt-7 max-w-[600px] text-[16px] leading-[1.75] text-white/65">{config.description}</p>
         <Link
           to={config.href}
-          className="mt-9 inline-flex items-center gap-2 bg-[#0076CE] px-7 py-4 text-[14px] font-semibold text-white transition-colors hover:bg-[#005FA7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#40A7DF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
+          className="mt-9 inline-flex items-center gap-2 bg-[#0076CE] px-7 py-4 text-[14px] font-semibold text-white transition-colors hover:bg-[#005FA7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
         >
           {config.label} <ArrowRight aria-hidden="true" size={16} />
         </Link>

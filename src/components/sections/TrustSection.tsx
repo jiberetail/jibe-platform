@@ -2,7 +2,7 @@ export default function TrustSection() {
   return (
     <section
       className="border-b"
-      style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}
+      style={{ background: "#FFFFFF", borderColor: "#D9D9D9" }}
     >
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-5">
         <div className="flex items-center justify-center gap-12 lg:gap-20 flex-wrap">

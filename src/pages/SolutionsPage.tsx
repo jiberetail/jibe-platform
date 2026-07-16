@@ -74,7 +74,7 @@ const solutions = [
 export default function SolutionsPage() {
   return (
     <main>
-      <section className="bg-[#F7F7F4] pt-32 pb-20 border-b border-[#D8DADC]">
+      <section className="bg-[#F7F7F7] pt-32 pb-20 border-b border-[#DADADA]">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <span className="font-mono text-[11px] tracking-[0.2em] text-[#686A6D] uppercase block mb-8">Solutions</span>
           <h1 className="font-['Instrument_Serif'] text-[56px] md:text-[72px] lg:text-[80px] leading-[0.95] text-[#2F2F2F] mb-8 max-w-[700px]">
@@ -87,7 +87,7 @@ export default function SolutionsPage() {
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {solutions.map(({ id, label, desc, points }) => (
-              <div key={id} className="border border-[#D8DADC] rounded-2xl p-6 hover:-translate-y-1 hover:shadow-md transition-all bg-white">
+              <div key={id} className="border border-[#DADADA] rounded-2xl p-6 hover:-translate-y-1 hover:shadow-md transition-all bg-white">
                 <div className="w-8 h-px bg-[#0076CE] mb-5" />
                 <h2 className="font-semibold text-[#2F2F2F] text-[18px] mb-3">{label}</h2>
                 <p className="text-[14px] text-[#686A6D] leading-relaxed mb-5">{desc}</p>

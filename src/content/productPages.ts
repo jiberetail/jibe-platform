@@ -16,8 +16,8 @@ export const productPages = {
       productName: "Jibe Pro",
       productLabel: "Pro",
       descriptor: "Customer Experience Performance",
-      line1: "Coach with evidence.",
-      line2: "Prove what changed.",
+      line1: "Understand every",
+      line2: "customer interaction.",
       description:
         "Jibe Pro connects frontline predictions, customer feedback, and operational performance so leaders can focus quality, coach with evidence, and prove what changed.",
       primaryHref: "/demo?product=pro",

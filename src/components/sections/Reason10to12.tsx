@@ -57,7 +57,7 @@ function Reason10() {
   }, []);
 
   return (
-    <section id="reason-08" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
+    <section id="reason-08" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D9" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>08</div>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-16 items-center">
@@ -65,12 +65,12 @@ function Reason10() {
             <h2 className="font-['Instrument_Serif'] leading-[1.04] mb-6" style={{ fontSize: "clamp(32px, 3.6vw, 52px)", color: "#2F2F2F", letterSpacing: "-0.02em" }}>
               Work with the systems your operation already uses.
             </h2>
-            <p className="text-[16px] leading-[1.65]" style={{ color: "#6D6D69", maxWidth: 400 }}>
+            <p className="text-[16px] leading-[1.65]" style={{ color: "#6D6D6D", maxWidth: 400 }}>
               Jibe Pro connects customer feedback, CRM information, operational metrics, and interaction data without forcing leaders to manage another isolated reporting environment.
             </p>
           </div>
           {/* SVG-based hub diagram */}
-          <div className="rounded-2xl border overflow-hidden" style={{ borderColor: "#D9D9D5", background: "#EBEBEB" }}>
+          <div className="rounded-2xl border overflow-hidden" style={{ borderColor: "#D9D9D9", background: "#EBEBEB" }}>
             <svg viewBox="0 0 560 300" className="w-full" style={{ display: "block" }}>
               {/* Lines — drawn one at a time */}
               {LINE_PATHS.map((d, i) => (
@@ -85,12 +85,12 @@ function Reason10() {
               {SOURCES.slice(0,4).map((s,i) => (
                 <g key={s}>
                   <rect x={N_CX[i]-55} y={TOP_Y-20} width={110} height={40} rx={8}
-                    fill="white" stroke={i < drawnCount ? "#0076CE" : "#D9D9D5"}
+                    fill="white" stroke={i < drawnCount ? "#0076CE" : "#D9D9D9"}
                     strokeWidth={i < drawnCount ? 1.5 : 1}
                     style={{ transition: "stroke 0.3s" }}
                   />
                   <text x={N_CX[i]} y={TOP_Y+4} textAnchor="middle" fontSize={10} fontFamily="IBM Plex Mono, monospace"
-                    fill={i < drawnCount ? "#0076CE" : "#6D6D69"} style={{ transition: "fill 0.3s" }}>
+                    fill={i < drawnCount ? "#0076CE" : "#6D6D6D"} style={{ transition: "fill 0.3s" }}>
                     {s}
                   </text>
                 </g>
@@ -99,19 +99,19 @@ function Reason10() {
               {SOURCES.slice(4).map((s,i) => (
                 <g key={s}>
                   <rect x={N_CX[i]-55} y={BOT_Y-20} width={110} height={40} rx={8}
-                    fill="white" stroke={i+4 < drawnCount ? "#0076CE" : "#D9D9D5"}
+                    fill="white" stroke={i+4 < drawnCount ? "#0076CE" : "#D9D9D9"}
                     strokeWidth={i+4 < drawnCount ? 1.5 : 1}
                     style={{ transition: "stroke 0.3s" }}
                   />
                   <text x={N_CX[i]} y={BOT_Y+4} textAnchor="middle" fontSize={10} fontFamily="IBM Plex Mono, monospace"
-                    fill={i+4 < drawnCount ? "#0076CE" : "#6D6D69"} style={{ transition: "fill 0.3s" }}>
+                    fill={i+4 < drawnCount ? "#0076CE" : "#6D6D6D"} style={{ transition: "fill 0.3s" }}>
                     {s}
                   </text>
                 </g>
               ))}
               {/* Jibe Pro center box — white with logo */}
               <rect x={JP_LEFT} y={JP_TOP} width={JP_RIGHT-JP_LEFT} height={JP_BOT-JP_TOP} rx={14}
-                fill="white" stroke={drawnCount >= LINE_PATHS.length ? "#0076CE" : "#D9D9D5"} strokeWidth={drawnCount >= LINE_PATHS.length ? 2 : 1}
+                fill="white" stroke={drawnCount >= LINE_PATHS.length ? "#0076CE" : "#D9D9D9"} strokeWidth={drawnCount >= LINE_PATHS.length ? 2 : 1}
                 style={{ filter: drawnCount >= LINE_PATHS.length ? "drop-shadow(0 0 10px rgba(0,118,206,0.25))" : "none", transition: "filter 0.4s, stroke 0.4s" }}
               />
               {/* Logo image — centered in box, 100% larger */}
@@ -122,7 +122,7 @@ function Reason10() {
                 preserveAspectRatio="xMidYMid meet"
               />
             </svg>
-            <p className="px-6 pb-4 font-mono text-[10px] text-center" style={{ color: "#6D6D69" }}>Illustrative integration categories — connections are configured to each program.</p>
+            <p className="px-6 pb-4 font-mono text-[10px] text-center" style={{ color: "#6D6D6D" }}>Illustrative integration categories — connections are configured to each program.</p>
           </div>
         </div>
       </div>
@@ -145,7 +145,7 @@ function Reason11() {
   const nextStage = open < stages.length - 1 ? open + 1 : null;
 
   return (
-    <section id="reason-09" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="reason-09" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D9" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>09</div>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-16 items-start">
@@ -153,7 +153,7 @@ function Reason11() {
             <h2 className="font-['Instrument_Serif'] leading-[1.04] mb-6" style={{ fontSize: "clamp(32px, 3.6vw, 52px)", color: "#2F2F2F", letterSpacing: "-0.02em" }}>
               Run pilots designed to produce a decision.
             </h2>
-            <p className="text-[16px] leading-[1.65] mb-8" style={{ color: "#6D6D69", maxWidth: 400 }}>
+            <p className="text-[16px] leading-[1.65] mb-8" style={{ color: "#6D6D6D", maxWidth: 400 }}>
               A pilot should not end with conflicting results. Jibe brings a disciplined five-stage measurement framework to implementation from day one.
             </p>
             {/* Progress indicator */}
@@ -167,7 +167,7 @@ function Reason11() {
                     width: open === i ? 24 : 8,
                     height: 8,
                     borderRadius: 4,
-                    background: open === i ? "#0076CE" : i < open ? "#B9DDF4" : "#D9D9D5",
+                    background: open === i ? "#0076CE" : i < open ? "#4A8FE7" : "#D9D9D9",
                   }}
                   aria-label={`Stage ${i + 1}`}
                 />
@@ -177,28 +177,28 @@ function Reason11() {
           <div className="space-y-2">
             {stages.map((s, i) => (
               <div key={s.n} className="border rounded-2xl overflow-hidden transition-all" style={{
-                borderColor: open === i ? "#0076CE" : "#D9D9D5",
+                borderColor: open === i ? "#0076CE" : "#D9D9D9",
                 background: "white",
               }}>
                 <button
                   className="w-full flex items-center gap-5 px-6 py-4 text-left transition-colors hover:bg-[#EBEBEB]"
                   onClick={() => setOpen(open === i ? -1 : i)}
                 >
-                  <span className="font-['Instrument_Serif'] text-[32px] leading-none" style={{ color: open === i ? "#0076CE" : "#D9D9D5" }}>{s.n}</span>
+                  <span className="font-['Instrument_Serif'] text-[32px] leading-none" style={{ color: open === i ? "#0076CE" : "#D9D9D9" }}>{s.n}</span>
                   <span className="font-semibold text-[14px] flex-1" style={{ color: open === i ? "#0076CE" : "#2F2F2F" }}>{s.label}</span>
                   {/* Next-step nudge arrow for unopened stages above current */}
                   {open === -1 && i === 0 ? (
                     <span className="font-mono text-[11px] flex items-center gap-1 px-2 py-1 rounded-full border animate-pulse"
-                      style={{ color: "#0076CE", borderColor: "#B9DDF4", background: "#E8F4FC" }}>
+                      style={{ color: "#0076CE", borderColor: "#4A8FE7", background: "#F2F2F2" }}>
                       Click to explore
                     </span>
                   ) : nextStage === i && open !== i ? (
                     <span className="font-mono text-[11px] flex items-center gap-1 px-2 py-1 rounded-full border"
-                      style={{ color: "#0076CE", borderColor: "#B9DDF4", background: "#E8F4FC" }}>
+                      style={{ color: "#0076CE", borderColor: "#4A8FE7", background: "#F2F2F2" }}>
                       → Next
                     </span>
                   ) : (
-                    <span className="font-mono text-[18px]" style={{ color: "#D9D9D5", transform: open === i ? "rotate(45deg)" : "none", display: "inline-block", transition: "transform 0.2s" }}>+</span>
+                    <span className="font-mono text-[18px]" style={{ color: "#D9D9D9", transform: open === i ? "rotate(45deg)" : "none", display: "inline-block", transition: "transform 0.2s" }}>+</span>
                   )}
                 </button>
                 {open === i && (
@@ -207,7 +207,7 @@ function Reason11() {
                       {s.items.map((item) => (
                         <div key={item} className="flex items-start gap-2">
                           <div className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ background: "#0076CE" }} />
-                          <span className="text-[13px]" style={{ color: "#6D6D69" }}>{item}</span>
+                          <span className="text-[13px]" style={{ color: "#6D6D6D" }}>{item}</span>
                         </div>
                       ))}
                     </div>
@@ -234,13 +234,13 @@ function Reason12() {
   ];
 
   const qColor = (q: string) => {
-    if (q === "Sufficient volume") return { color: "#0076CE", bg: "#E8F4FC" };
-    if (q === "Directional") return { color: "#6D6D69", bg: "#EBEBEB" };
+    if (q === "Sufficient volume") return { color: "#0076CE", bg: "#F2F2F2" };
+    if (q === "Directional") return { color: "#6D6D6D", bg: "#EBEBEB" };
     return { color: "#2F2F2F", bg: "#EBEBEB" };
   };
 
   return (
-    <section id="reason-10" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
+    <section id="reason-10" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D9" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>10</div>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 items-start">
@@ -248,26 +248,26 @@ function Reason12() {
             <h2 className="font-['Instrument_Serif'] leading-[1.04] mb-6" style={{ fontSize: "clamp(32px, 3.6vw, 52px)", color: "#2F2F2F", letterSpacing: "-0.02em" }}>
               Prove what changed.
             </h2>
-            <p className="text-[16px] leading-[1.65] mb-6" style={{ color: "#6D6D69", maxWidth: 400 }}>
+            <p className="text-[16px] leading-[1.65] mb-6" style={{ color: "#6D6D6D", maxWidth: 400 }}>
               Jibe Pro brings customer outcomes, frontline signals, and operational performance into one reporting environment. Leaders can see whether a program is being used, whether behavior is changing, and whether results are moving.
             </p>
-            <div className="p-5 rounded-xl border" style={{ borderColor: "#E8F4FC", background: "#E8F4FC" }}>
+            <div className="p-5 rounded-xl border" style={{ borderColor: "#F2F2F2", background: "#F2F2F2" }}>
               <div className="font-mono text-[10px] uppercase mb-2" style={{ color: "#0076CE" }}>Recommended next action</div>
               <p className="text-[13px] leading-relaxed" style={{ color: "#004F8C" }}>
                 CSAT and NPS improvements have sufficient volume to support expansion. FCR result is directional — extend the measurement period before including in executive scorecard.
               </p>
             </div>
           </div>
-          <div className="border rounded-2xl overflow-hidden" style={{ borderColor: "#D9D9D5" }}>
-            <div className="px-5 py-4 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
-              <div className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "#6D6D69" }}>Executive Impact Report — Q4 Pilot</div>
+          <div className="border rounded-2xl overflow-hidden" style={{ borderColor: "#D9D9D9" }}>
+            <div className="px-5 py-4 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D9" }}>
+              <div className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "#6D6D6D" }}>Executive Impact Report — Q4 Pilot</div>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-[12px]">
                 <thead>
-                  <tr className="border-b" style={{ borderColor: "#D9D9D5" }}>
+                  <tr className="border-b" style={{ borderColor: "#D9D9D9" }}>
                     {["Metric", "Baseline", "Current", "Change", "Data Quality"].map((h) => (
-                      <th key={h} className="px-4 py-3 text-left font-mono text-[10px] uppercase tracking-wide whitespace-nowrap" style={{ color: "#6D6D69" }}>{h}</th>
+                      <th key={h} className="px-4 py-3 text-left font-mono text-[10px] uppercase tracking-wide whitespace-nowrap" style={{ color: "#6D6D6D" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -275,11 +275,11 @@ function Reason12() {
                   {rows.map((r) => {
                     const { color, bg } = qColor(r.quality);
                     return (
-                      <tr key={r.name} className="border-b hover:bg-[#EBEBEB] transition-colors" style={{ borderColor: "#D9D9D5" }}>
+                      <tr key={r.name} className="border-b hover:bg-[#EBEBEB] transition-colors" style={{ borderColor: "#D9D9D9" }}>
                         <td className="px-4 py-3 font-medium" style={{ color: "#2F2F2F" }}>{r.name}</td>
-                        <td className="px-4 py-3 font-mono" style={{ color: "#6D6D69" }}>{r.baseline}</td>
+                        <td className="px-4 py-3 font-mono" style={{ color: "#6D6D6D" }}>{r.baseline}</td>
                         <td className="px-4 py-3 font-mono font-medium" style={{ color: "#2F2F2F" }}>{r.current}</td>
-                        <td className="px-4 py-3 font-mono font-medium" style={{ color: r.change.startsWith("+") ? "#0076CE" : "#6D6D69" }}>{r.change}</td>
+                        <td className="px-4 py-3 font-mono font-medium" style={{ color: r.change.startsWith("+") ? "#0076CE" : "#6D6D6D" }}>{r.change}</td>
                         <td className="px-4 py-3">
                           <span className="font-mono text-[10px] px-2 py-0.5 rounded" style={{ color, background: bg }}>{r.quality}</span>
                         </td>
@@ -289,8 +289,8 @@ function Reason12() {
                 </tbody>
               </table>
             </div>
-            <div className="px-5 py-3 border-t" style={{ borderColor: "#D9D9D5", background: "#EBEBEB" }}>
-              <span className="font-mono text-[10px]" style={{ color: "#D9D9D5" }}>Sample data — fictional program outcomes.</span>
+            <div className="px-5 py-3 border-t" style={{ borderColor: "#D9D9D9", background: "#EBEBEB" }}>
+              <span className="font-mono text-[10px]" style={{ color: "#D9D9D9" }}>Sample data — fictional program outcomes.</span>
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@ export default function NumberedIntro() {
     <section
       ref={ref}
       className="py-32 lg:py-44 border-b"
-      style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}
+      style={{ background: "#EBEBEB", borderColor: "#D9D9D9" }}
     >
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         {/* Eyebrow */}
@@ -61,7 +61,7 @@ export default function NumberedIntro() {
 
             <p
               className={`text-[17px] leading-relaxed max-w-[560px] transition-all duration-700 ${vis ? "opacity-100" : "opacity-0"}`}
-              style={{ color: "#6D6D69", transitionDelay: "350ms" }}
+              style={{ color: "#6D6D6D", transitionDelay: "350ms" }}
             >
               Surveys matter. They also represent only a fraction of customer interactions. Jibe Pro brings customer feedback, frontline judgment, and operational data together so leaders can understand more, act sooner, and measure what changed.
             </p>
@@ -79,7 +79,7 @@ export default function NumberedIntro() {
                   style={{
                     width: 24,
                     height: 2,
-                    background: i < 1 ? "#0076CE" : "#D9D9D5",
+                    background: i < 1 ? "#0076CE" : "#D9D9D9",
                     display: "block",
                     borderRadius: 1,
                   }}

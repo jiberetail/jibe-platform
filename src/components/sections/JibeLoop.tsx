@@ -33,10 +33,10 @@ export default function JibeLoop() {
   }, []);
 
   return (
-    <section id="jibe-loop" className="scroll-mt-24 py-24 lg:py-32 border-t border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
+    <section id="jibe-loop" className="scroll-mt-24 py-24 lg:py-32 border-t border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D9" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="text-center mb-16">
-          <span className="font-mono text-[11px] tracking-[0.25em] uppercase block mb-4" style={{ color: "#6D6D69" }}>
+          <span className="font-mono text-[11px] tracking-[0.25em] uppercase block mb-4" style={{ color: "#6D6D6D" }}>
             The Jibe Loop
           </span>
           <h2
@@ -61,8 +61,8 @@ export default function JibeLoop() {
                     animation: haloOrbit 4.2s linear infinite;
                   }
                 `}</style>
-                <circle cx="160" cy="160" r="140" fill="none" stroke="#D9D9D5" strokeWidth="1" />
-                <circle cx="160" cy="160" r="100" fill="none" stroke="#D9D9D5" strokeWidth="0.5" />
+                <circle cx="160" cy="160" r="140" fill="none" stroke="#D9D9D9" strokeWidth="1" />
+                <circle cx="160" cy="160" r="100" fill="none" stroke="#D9D9D9" strokeWidth="0.5" />
                 {/* Main progress arc */}
                 <circle
                   cx="160" cy="160" r="140"
@@ -106,10 +106,10 @@ export default function JibeLoop() {
                       height: isActive ? 52 : 40,
                       borderRadius: "50%",
                       background: isActive ? "#0076CE" : "white",
-                      border: `1.5px solid ${isActive ? "#0076CE" : "#D9D9D5"}`,
+                      border: `1.5px solid ${isActive ? "#0076CE" : "#D9D9D9"}`,
                     }}
                   >
-                    <span className="font-mono text-[10px] font-medium" style={{ color: isActive ? "white" : "#6D6D69" }}>
+                    <span className="font-mono text-[10px] font-medium" style={{ color: isActive ? "white" : "#6D6D6D" }}>
                       {s.n}
                     </span>
                   </button>
@@ -117,10 +117,10 @@ export default function JibeLoop() {
               })}
 
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="font-['Instrument_Serif'] text-[18px] text-center" style={{ color: "#6D6D69" }}>
+                <div className="font-['Instrument_Serif'] text-[18px] text-center" style={{ color: "#6D6D6D" }}>
                   {stages[active].label}
                 </div>
-                <div className="w-6 h-px bg-[#D9D9D5] mt-2" />
+                <div className="w-6 h-px bg-[#D9D9D9] mt-2" />
               </div>
             </div>
           </div>
@@ -134,27 +134,27 @@ export default function JibeLoop() {
                 aria-pressed={active === i}
                 className="w-full text-left p-5 rounded-2xl border transition-all"
                 style={{
-                  borderColor: active === i ? "#0076CE" : "#D9D9D5",
-                  background: active === i ? "#E8F4FC" : "white",
+                  borderColor: active === i ? "#0076CE" : "#D9D9D9",
+                  background: active === i ? "#F2F2F2" : "white",
                 }}
               >
                 <div className="flex items-center gap-4 mb-2">
-                  <span className="font-mono text-[11px]" style={{ color: "#D9D9D5" }}>{s.n}</span>
+                  <span className="font-mono text-[11px]" style={{ color: "#D9D9D9" }}>{s.n}</span>
                   <span className="font-semibold text-[15px]" style={{ color: active === i ? "#0076CE" : "#2F2F2F" }}>
                     {s.label}
                   </span>
                   {active === i && <div className="ml-auto w-2 h-2 rounded-full" style={{ background: "#0076CE" }} />}
                 </div>
                 {active === i && (
-                  <p className="text-[14px] leading-relaxed ml-10" style={{ color: "#6D6D69" }}>
+                  <p className="text-[14px] leading-relaxed ml-10" style={{ color: "#6D6D6D" }}>
                     {s.desc}
                   </p>
                 )}
               </button>
             ))}
             <div className="flex items-center gap-3 px-5 pt-2">
-              <div className="w-10 h-px" style={{ background: "#D9D9D5" }} />
-              <p className="font-mono text-[11px]" style={{ color: "#D9D9D5" }}>
+              <div className="w-10 h-px" style={{ background: "#D9D9D9" }} />
+              <p className="font-mono text-[11px]" style={{ color: "#D9D9D9" }}>
                 Act feeds back into Predict — continuous improvement.
               </p>
             </div>

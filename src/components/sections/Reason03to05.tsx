@@ -58,7 +58,7 @@ function Reason03() {
   }, [running]);
 
   return (
-    <section id="reason-03" ref={ref} className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="reason-03" ref={ref} className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D9" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10 transition-all duration-700"
           style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em", opacity: vis ? 1 : 0 }}>
@@ -69,10 +69,10 @@ function Reason03() {
             <h2 className="font-['Instrument_Serif'] leading-[1.04] mb-6" style={{ fontSize: "clamp(32px, 3.6vw, 52px)", color: "#2F2F2F", letterSpacing: "-0.02em" }}>
               See beyond the customers who answer.
             </h2>
-            <p className="text-[16px] leading-[1.65] mb-8" style={{ color: "#6D6D69", maxWidth: 440 }}>
+            <p className="text-[16px] leading-[1.65] mb-8" style={{ color: "#6D6D6D", maxWidth: 440 }}>
               Survey results are valuable, but response volume leaves most interactions unseen. Jibe Pro adds structured frontline predictions to survey and operational data, giving leaders a broader view of customer experience.
             </p>
-            <div className="flex items-start gap-3 p-4 rounded-xl border" style={{ borderColor: "#B9DDF4", background: "#E8F4FC" }}>
+            <div className="flex items-start gap-3 p-4 rounded-xl border" style={{ borderColor: "#4A8FE7", background: "#F2F2F2" }}>
               <div className="w-2 h-2 rounded-full mt-1 shrink-0" style={{ background: "#0076CE" }} />
               <p className="text-[13px] leading-relaxed" style={{ color: "#004F8C" }}>
                 <strong>Outcome:</strong> Understand more interactions. Reduce dependence on survey response volume.
@@ -82,8 +82,8 @@ function Reason03() {
           <div className={`transition-all duration-700 ${vis ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "200ms" }}>
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <div className="overflow-hidden rounded-lg mb-4"><DotField lit={SURVEY_COUNT} total={TOTAL} color="#6D6D69" /></div>
-                <div className="font-mono text-[9px] tracking-[0.2em] uppercase mb-0.5" style={{ color: "#6D6D69" }}>Survey Responses</div>
+                <div className="overflow-hidden rounded-lg mb-4"><DotField lit={SURVEY_COUNT} total={TOTAL} color="#6D6D6D" /></div>
+                <div className="font-mono text-[9px] tracking-[0.2em] uppercase mb-0.5" style={{ color: "#6D6D6D" }}>Survey Responses</div>
                 <div className="font-mono text-[11px] font-medium" style={{ color: "#2F2F2F" }}>16% of interactions</div>
               </div>
               <div>
@@ -92,7 +92,7 @@ function Reason03() {
                 <div className="font-mono text-[11px] font-medium" style={{ color: "#2F2F2F" }}>Predictions + Surveys + Ops</div>
               </div>
             </div>
-            <p className="mt-4 font-mono text-[10px]" style={{ color: "#D9D9D5" }}>Sample — {TOTAL} interactions illustrated</p>
+            <p className="mt-4 font-mono text-[10px]" style={{ color: "#D9D9D9" }}>Sample — {TOTAL} interactions illustrated</p>
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@ function Reason04() {
   };
 
   return (
-    <section id="reason-04" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
+    <section id="reason-04" className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D9" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>04</div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -149,21 +149,21 @@ function Reason04() {
             <h2 className="font-['Instrument_Serif'] leading-[1.04] mb-6" style={{ fontSize: "clamp(32px, 3.6vw, 52px)", color: "#2F2F2F", letterSpacing: "-0.02em" }}>
               Capture the outcome while it is still fresh.
             </h2>
-            <p className="text-[16px] leading-[1.65]" style={{ color: "#6D6D69", maxWidth: 420 }}>
+            <p className="text-[16px] leading-[1.65]" style={{ color: "#6D6D6D", maxWidth: 420 }}>
               Immediately after an interaction, the agent records a fast prediction of customer satisfaction and resolution. The signal is structured, consistent, and captured inside the existing workflow.
             </p>
           </div>
           <div>
-            <div className="rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: "#D9D9D5", background: "white" }}>
-              <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}>
-                <div className="flex gap-1.5">{["#D9D9D5","#D9D9D5","#D9D9D5"].map((c,i)=><div key={i} className="w-2.5 h-2.5 rounded-full" style={{background:c}}/>)}</div>
-                <span className="ml-2 font-mono text-[10px]" style={{ color: "#6D6D69" }}>Jibe Pro — Outcome Capture</span>
+            <div className="rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: "#D9D9D9", background: "white" }}>
+              <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ background: "#EBEBEB", borderColor: "#D9D9D9" }}>
+                <div className="flex gap-1.5">{["#D9D9D9","#D9D9D9","#D9D9D9"].map((c,i)=><div key={i} className="w-2.5 h-2.5 rounded-full" style={{background:c}}/>)}</div>
+                <span className="ml-2 font-mono text-[10px]" style={{ color: "#6D6D6D" }}>Jibe Pro — Outcome Capture</span>
               </div>
               {!submitted ? (
               <div className="p-6 space-y-5">
                 <div className="pb-5 border-b" style={{ borderColor: "#EBEBEB" }}>
                   <div className="font-mono text-[10px] tracking-wide uppercase mb-1" style={{ color: "#0076CE" }}>Interaction complete</div>
-                  <div className="flex gap-4 text-[12px]" style={{ color: "#6D6D69" }}><span>Case CAS-29483</span><span>·</span><span>Phone</span><span>·</span><span>6m 14s</span></div>
+                  <div className="flex gap-4 text-[12px]" style={{ color: "#6D6D6D" }}><span>Case CAS-29483</span><span>·</span><span>Phone</span><span>·</span><span>6m 14s</span></div>
                 </div>
                 <div className="text-[15px] font-medium" style={{ color: "#2F2F2F" }}>How did this interaction go?</div>
                 <FG label="Customer satisfaction">
@@ -180,7 +180,7 @@ function Reason04() {
                   className="w-full py-3.5 font-semibold text-[13px] rounded-lg transition-all cursor-pointer"
                   style={{
                     background: (sat&&res&&conf) ? "#0076CE" : "#EBEBEB",
-                    color: (sat&&res&&conf) ? "white" : "#D9D9D5",
+                    color: (sat&&res&&conf) ? "white" : "#D9D9D9",
                     boxShadow: pulseBtn && (sat&&res&&conf) ? "0 0 0 4px rgba(0,118,206,0.2)" : "none",
                     transform: pulseBtn && (sat&&res&&conf) ? "scale(1.01)" : "scale(1)",
                   }}
@@ -196,11 +196,11 @@ function Reason04() {
               </div>
               ) : (
               <div className="p-8 text-center">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "#E8F4FC" }}>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "#F2F2F2" }}>
                   <div className="w-5 h-5 rounded-full" style={{ background: "#0076CE" }} />
                 </div>
                 <div className="font-medium text-[15px] mb-1" style={{ color: "#2F2F2F" }}>Signal recorded</div>
-                <div className="text-[13px]" style={{ color: "#6D6D69" }}>Positive · Resolved · High confidence</div>
+                <div className="text-[13px]" style={{ color: "#6D6D6D" }}>Positive · Resolved · High confidence</div>
               </div>
               )}
             </div>
@@ -212,11 +212,11 @@ function Reason04() {
 }
 
 function FG({ label, children }: { label: string; children: React.ReactNode }) {
-  return <div><div className="font-mono text-[10px] tracking-wide uppercase mb-2" style={{ color: "#6D6D69" }}>{label}</div>{children}</div>;
+  return <div><div className="font-mono text-[10px] tracking-wide uppercase mb-2" style={{ color: "#6D6D6D" }}>{label}</div>{children}</div>;
 }
 function TB({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) {
   return (
-    <button onClick={onClick} className="px-3.5 py-2 rounded-lg text-[12px] font-medium border transition-all" style={{ borderColor: selected?"#0076CE":"#D9D9D5", background: selected?"#E8F4FC":"white", color: selected?"#0076CE":"#6D6D69" }}>
+    <button onClick={onClick} className="px-3.5 py-2 rounded-lg text-[12px] font-medium border transition-all" style={{ borderColor: selected?"#0076CE":"#D9D9D9", background: selected?"#F2F2F2":"white", color: selected?"#0076CE":"#6D6D6D" }}>
       {label}
     </button>
   );
@@ -263,7 +263,7 @@ function Reason05() {
   }, [vis]);
 
   return (
-    <section id="reason-05" ref={ref} className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="reason-05" ref={ref} className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D9" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>05</div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -271,24 +271,24 @@ function Reason05() {
             <h2 className="font-['Instrument_Serif'] leading-[1.04] mb-6" style={{ fontSize: "clamp(32px, 3.6vw, 52px)", color: "#2F2F2F", letterSpacing: "-0.02em" }}>
               Coach with evidence.
             </h2>
-            <p className="text-[16px] leading-[1.65]" style={{ color: "#6D6D69", maxWidth: 420 }}>
+            <p className="text-[16px] leading-[1.65]" style={{ color: "#6D6D6D", maxWidth: 420 }}>
               Jibe Pro gives supervisors a structured view of agent behavior, customer outcomes, prediction accuracy, participation, and performance over time. Coaching becomes specific, measurable, and tied to actual results.
             </p>
           </div>
-          <div className="border rounded-2xl overflow-hidden bg-white" style={{ borderColor: "#D9D9D5" }}>
+          <div className="border rounded-2xl overflow-hidden bg-white" style={{ borderColor: "#D9D9D9" }}>
             <div className="flex items-center gap-4 px-6 py-5 border-b" style={{ borderColor: "#EBEBEB" }}>
               <div className="w-12 h-12 rounded-full flex items-center justify-center font-semibold text-white text-[15px]" style={{ background: "#0076CE" }}>SR</div>
               <div>
                 <div className="font-semibold text-[15px]" style={{ color: "#2F2F2F" }}>S. Reyes</div>
-                <div className="text-[12px]" style={{ color: "#6D6D69" }}>Team Alpha · Phoenix · 18 months</div>
+                <div className="text-[12px]" style={{ color: "#6D6D6D" }}>Team Alpha · Phoenix · 18 months</div>
               </div>
-              <span className="ml-auto font-mono text-[10px] px-2.5 py-1 rounded-full border" style={{ borderColor: "#D9D9D5", color: "#6D6D69" }}>Active</span>
+              <span className="ml-auto font-mono text-[10px] px-2.5 py-1 rounded-full border" style={{ borderColor: "#D9D9D9", color: "#6D6D6D" }}>Active</span>
             </div>
             <div className="p-6">
               <div className="grid grid-cols-3 gap-3 mb-5">
                 {[{l:"Participation",v:"96%",b:true},{l:"Accuracy",v:"89%",b:true},{l:"NPS Score",v:"47",b:false},{l:"Match Rate",v:"87%",b:false},{l:"Surveys",v:"142",b:false},{l:"FCR",v:"75%",b:false}].map(({l,v,b})=>(
                   <div key={l} className="border rounded-xl px-3 py-3" style={{ borderColor: "#EBEBEB" }}>
-                    <div className="font-mono text-[9px] uppercase tracking-wide mb-0.5" style={{ color: "#6D6D69" }}>{l}</div>
+                    <div className="font-mono text-[9px] uppercase tracking-wide mb-0.5" style={{ color: "#6D6D6D" }}>{l}</div>
                     <div className="font-semibold text-[18px]" style={{ color: b?"#0076CE":"#2F2F2F" }}>{v}</div>
                   </div>
                 ))}
@@ -296,7 +296,7 @@ function Reason05() {
               {/* Sequential NPS bar chart */}
               <div className="border rounded-xl p-4 mb-4" style={{ borderColor: "#EBEBEB" }}>
                 <div className="flex items-center justify-between mb-3">
-                  <div className="font-mono text-[10px] uppercase tracking-wide" style={{ color: "#6D6D69" }}>30-Day NPS</div>
+                  <div className="font-mono text-[10px] uppercase tracking-wide" style={{ color: "#6D6D6D" }}>30-Day NPS</div>
                   <div className="font-mono text-[11px]" style={{ color: "#0076CE" }}>
                     {visibleBars >= NPS_DATA.length ? `+${NPS_DATA[NPS_DATA.length-1] - NPS_DATA[0]} pts` : "…"}
                   </div>
@@ -306,23 +306,23 @@ function Reason05() {
                     <div key={i} className="flex-1 rounded-t"
                       style={{
                         height: i < visibleBars ? `${(v / maxNPS) * 56}px` : "0px",
-                        background: i >= NPS_DATA.length - 3 ? "#0076CE" : "#D9D9D5",
+                        background: i >= NPS_DATA.length - 3 ? "#0076CE" : "#D9D9D9",
                         transition: "height 0.22s cubic-bezier(0.34,1.56,0.64,1)",
                       }}
                     />
                   ))}
                 </div>
                 <div className="flex justify-between mt-1">
-                  <span className="font-mono text-[9px]" style={{ color: "#D9D9D5" }}>Day 1</span>
-                  <span className="font-mono text-[9px]" style={{ color: "#D9D9D5" }}>Day 30</span>
+                  <span className="font-mono text-[9px]" style={{ color: "#D9D9D9" }}>Day 1</span>
+                  <span className="font-mono text-[9px]" style={{ color: "#D9D9D9" }}>Day 30</span>
                 </div>
               </div>
               <div className="mb-5">
-                <div className="font-mono text-[10px] uppercase tracking-wide mb-2.5" style={{ color: "#6D6D69" }}>Coaching Opportunities</div>
+                <div className="font-mono text-[10px] uppercase tracking-wide mb-2.5" style={{ color: "#6D6D6D" }}>Coaching Opportunities</div>
                 {["Billing dissatisfaction rate elevated vs. team","Negative prediction volume increasing","AHT above team avg on technical contacts"].map(s=>(
                   <div key={s} className="flex items-start gap-2.5 mb-1.5">
-                    <div className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{background:"#D9D9D5"}}/>
-                    <span className="text-[13px]" style={{color:"#6D6D69"}}>{s}</span>
+                    <div className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{background:"#D9D9D9"}}/>
+                    <span className="text-[13px]" style={{color:"#6D6D6D"}}>{s}</span>
                   </div>
                 ))}
               </div>
@@ -331,7 +331,7 @@ function Reason05() {
                   + Create coaching plan
                 </button>
               ) : (
-                <div className="p-4 rounded-xl border" style={{borderColor:"#B9DDF4",background:"#E8F4FC"}}>
+                <div className="p-4 rounded-xl border" style={{borderColor:"#4A8FE7",background:"#F2F2F2"}}>
                   <div className="font-mono text-[10px] uppercase mb-2" style={{color:"#0076CE"}}>Plan created</div>
                   <div className="text-[13px]" style={{color:"#004F8C"}}>Focus: billing dissatisfaction. Review 3 interactions/week. Check-in in 2 weeks.</div>
                 </div>

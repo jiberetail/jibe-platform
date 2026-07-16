@@ -28,9 +28,9 @@ const retailBars = [24, 36, 22, 30, 48, 42, 57, 34, 66, 51, 78, 40, 91, 61, 84, 
 
 const aiPixelRows = 15;
 const aiPixelColumns = 13;
-const aiSoftColors = ["#B9DCF5", "#A9D2F0", "#95C8EC"];
-const aiBrightColors = ["#59AFE6", "#3C9CDD", "#278CD5"];
-const aiDeepColors = ["#0874D2", "#0A67BA", "#0B5CA6"];
+const aiSoftColors = ["#B8C9FF", "#A4BAF7", "#91ACF0"];
+const aiBrightColors = ["#5F8FEA", "#477DDD", "#326DCE"];
+const aiDeepColors = ["#145CB8", "#164E9D", "#173F82"];
 
 const aiPixels = Array.from({ length: aiPixelRows * aiPixelColumns }, (_, index) => {
   const row = Math.floor(index / aiPixelColumns);

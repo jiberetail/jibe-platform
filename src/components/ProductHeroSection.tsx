@@ -82,7 +82,7 @@ export default function ProductHeroSection({
 
   const secondaryClasses =
     "rounded-md border px-7 py-3.5 text-[14px] font-semibold transition-colors hover:border-[#0076CE] hover:text-[#0076CE]";
-  const secondaryStyle = { borderColor: "#C9D3DE", color: "#26364A" };
+  const secondaryStyle = { borderColor: "#CCCCCC", color: "#26364A" };
   const fallbackScrollTarget = `product-details-${productLabel.toLowerCase()}`;
   const scrollTargetHref = secondaryHref.startsWith("#")
     ? secondaryHref
@@ -114,8 +114,8 @@ export default function ProductHeroSection({
               <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0076CE]">
                 {productName}
               </span>
-              <span className="h-3 w-px bg-[#C9D3DE]" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#5B6B80]">
+              <span className="h-3 w-px bg-[#CCCCCC]" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#5F5F5F]">
                 {descriptor}
               </span>
             </div>
@@ -145,7 +145,7 @@ export default function ProductHeroSection({
             </h1>
 
             <p
-              className="mb-8 text-[16px] leading-[1.7] text-[#5B6B80]"
+              className="mb-8 text-[16px] leading-[1.7] text-[#5F5F5F]"
               style={{
                 maxWidth: 460,
                 opacity: contentVisible ? 1 : 0,

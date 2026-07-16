@@ -19,9 +19,9 @@ const companyLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#D9D9D5] bg-[#ECEDEA]">
+    <footer className="border-t border-[#D9D9D9] bg-[#ECECEC]">
       <div className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 lg:py-20">
-        <div className="grid gap-14 border-b border-[#D1D3CF] pb-14 lg:grid-cols-[1.4fr_0.7fr_0.7fr] lg:gap-20">
+        <div className="grid gap-14 border-b border-[#D1D1D1] pb-14 lg:grid-cols-[1.4fr_0.7fr_0.7fr] lg:gap-20">
           <div>
             <img src={assetUrl("assets/logos/jibe.png")} alt="Jibe" className="h-[58px] w-auto object-contain" />
             <h2 className="mt-7 max-w-[640px] font-['Instrument_Serif'] text-[42px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[52px]">
@@ -37,11 +37,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#777976]">Products</p>
+            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#777777]">Products</p>
             <ul className="space-y-3.5">
               {productLinks.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-[14px] font-medium text-[#4E504D] transition-colors hover:text-[#0076CE]">
+                  <Link to={link.href} className="text-[14px] font-medium text-[#4E4E4E] transition-colors hover:text-[#0076CE]">
                     {link.label}
                   </Link>
                 </li>
@@ -50,11 +50,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#777976]">Company</p>
+            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#777777]">Company</p>
             <ul className="space-y-3.5">
               {companyLinks.map((link) => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-[14px] font-medium text-[#4E504D] transition-colors hover:text-[#0076CE]">
+                  <Link to={link.href} className="text-[14px] font-medium text-[#4E4E4E] transition-colors hover:text-[#0076CE]">
                     {link.label}
                   </Link>
                 </li>
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 pt-6 text-[12px] text-[#777976] sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 pt-6 text-[12px] text-[#777777] sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Jibe. All rights reserved.</p>
           <p>Frontline performance, in-venue experiences, and interaction intelligence.</p>
         </div>

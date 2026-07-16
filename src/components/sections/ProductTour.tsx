@@ -103,7 +103,7 @@ export default function ProductTour() {
   return (
     <section
       id="product-tour"
-      className="scroll-mt-24 border-y border-[#D9D9D5] bg-white py-24 lg:py-32"
+      className="scroll-mt-24 border-y border-[#D9D9D9] bg-white py-24 lg:py-32"
     >
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <div className="mx-auto mb-14 max-w-[980px] text-center lg:mb-16">
@@ -119,7 +119,7 @@ export default function ProductTour() {
           </p>
         </div>
 
-        <div className="rounded-[24px] border border-[#D9D9D5] bg-[#F7F7F4] p-3 shadow-[0_24px_70px_rgba(23,35,48,0.12)] sm:p-5 lg:p-7">
+        <div className="rounded-[24px] border border-[#D9D9D9] bg-[#F7F7F7] p-3 shadow-[0_24px_70px_rgba(23,35,48,0.12)] sm:p-5 lg:p-7">
           <div className="mb-5 overflow-x-auto pb-2 [scrollbar-width:thin] lg:mb-7">
             <div className="flex min-w-max gap-6 pr-3 lg:gap-10">
               {screenGroups.map((group) => (
@@ -142,7 +142,7 @@ export default function ProductTour() {
                             className={`rounded-full border px-4 py-2.5 text-[12px] font-medium whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0076CE] focus-visible:ring-offset-2 sm:text-[13px] ${
                               isActive
                                 ? "border-[#0076CE] bg-[#0076CE] text-white"
-                                : "border-[#D9D9D5] bg-white text-[#53565A] hover:border-[#0076CE] hover:text-[#0076CE]"
+                                : "border-[#D9D9D9] bg-white text-[#53565A] hover:border-[#0076CE] hover:text-[#0076CE]"
                             }`}
                           >
                             {screen.label}
@@ -155,7 +155,7 @@ export default function ProductTour() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[18px] border border-[#D9D9D5] bg-white">
+          <div className="overflow-hidden rounded-[18px] border border-[#D9D9D9] bg-white">
             <div className="flex flex-col gap-4 border-b border-[#EBEBEB] px-5 py-5 sm:px-7 lg:flex-row lg:items-end lg:justify-between lg:gap-8 lg:px-8">
               <div className="max-w-[760px]">
                 <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[#0076CE]">
@@ -199,7 +199,7 @@ export default function ProductTour() {
               />
             </a>
 
-            <div className="border-t border-[#EBEBEB] bg-[#F7F7F4] px-5 py-3.5 sm:px-7 lg:px-8">
+            <div className="border-t border-[#EBEBEB] bg-[#F7F7F7] px-5 py-3.5 sm:px-7 lg:px-8">
               <p className="font-mono text-[9px] leading-4 text-[#686A6D] sm:text-[10px]">
                 Product interface shown with demonstration data. Configurations and metrics vary by program.
               </p>

@@ -11,7 +11,7 @@ export default function Reason01() {
   }, []);
 
   return (
-    <section id="reason-01" ref={ref} className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D5" }}>
+    <section id="reason-01" ref={ref} className="scroll-mt-24 py-28 lg:py-40 border-b" style={{ background: "#FFFFFF", borderColor: "#D9D9D9" }}>
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div
           className="font-['Instrument_Serif'] leading-none mb-10 transition-all duration-700"
@@ -32,10 +32,10 @@ export default function Reason01() {
             >
               The only platform that connects what frontline teams see with what customers actually say.
             </h2>
-            <p className="text-[16px] leading-[1.65] mb-6" style={{ color: "#6D6D69", maxWidth: 520 }}>
+            <p className="text-[16px] leading-[1.65] mb-6" style={{ color: "#6D6D6D", maxWidth: 520 }}>
               CRMs track cases. Survey tools collect responses. QA platforms review calls. Every category handles one piece. None of them connect agent judgment, customer feedback, and operational performance in a single operating picture.
             </p>
-            <p className="text-[16px] leading-[1.65]" style={{ color: "#6D6D69", maxWidth: 520 }}>
+            <p className="text-[16px] leading-[1.65]" style={{ color: "#6D6D6D", maxWidth: 520 }}>
               Jibe Pro is the only platform built to close that gap — giving contact center leaders a view of customer experience no other tool can produce.
             </p>
           </div>
@@ -45,9 +45,9 @@ export default function Reason01() {
             className={`transition-all duration-700 ${vis ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             style={{ transitionDelay: "200ms" }}
           >
-            <div className="border rounded-2xl p-8 bg-white" style={{ borderColor: "#D9D9D5" }}>
+            <div className="border rounded-2xl p-8 bg-white" style={{ borderColor: "#D9D9D9" }}>
               {/* What exists */}
-              <div className="font-mono text-[10px] uppercase tracking-widest mb-6" style={{ color: "#6D6D69" }}>
+              <div className="font-mono text-[10px] uppercase tracking-widest mb-6" style={{ color: "#6D6D6D" }}>
                 What exists today
               </div>
               <div className="space-y-3 mb-8">
@@ -57,25 +57,25 @@ export default function Reason01() {
                   { label: "QA system", desc: "Sampled call reviews" },
                   { label: "Workforce tools", desc: "Schedule and attendance" },
                 ].map(({ label, desc }) => (
-                  <div key={label} className="flex items-center gap-4 px-4 py-3 rounded-xl border" style={{ borderColor: "#D9D9D5", background: "#EBEBEB" }}>
+                  <div key={label} className="flex items-center gap-4 px-4 py-3 rounded-xl border" style={{ borderColor: "#D9D9D9", background: "#EBEBEB" }}>
                     <span className="font-semibold text-[13px] w-36 shrink-0" style={{ color: "#2F2F2F" }}>{label}</span>
-                    <span className="text-[12px]" style={{ color: "#6D6D69" }}>{desc}</span>
-                    <span className="ml-auto font-mono text-[10px] px-2 py-0.5 rounded" style={{ background: "#D9D9D5", color: "#6D6D69" }}>Isolated</span>
+                    <span className="text-[12px]" style={{ color: "#6D6D6D" }}>{desc}</span>
+                    <span className="ml-auto font-mono text-[10px] px-2 py-0.5 rounded" style={{ background: "#D9D9D9", color: "#6D6D6D" }}>Isolated</span>
                   </div>
                 ))}
               </div>
 
               {/* The divider */}
               <div className="flex items-center gap-3 mb-6">
-                <div className="flex-1 h-px" style={{ background: "#D9D9D5" }} />
-                <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full" style={{ background: "#EAF5FC", color: "#0076CE", border: "1px solid #B9DDF4" }}>
+                <div className="flex-1 h-px" style={{ background: "#D9D9D9" }} />
+                <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full" style={{ background: "#F2F2F2", color: "#0076CE", border: "1px solid #4A8FE7" }}>
                   Jibe Pro
                 </span>
-                <div className="flex-1 h-px" style={{ background: "#D9D9D5" }} />
+                <div className="flex-1 h-px" style={{ background: "#D9D9D9" }} />
               </div>
 
               {/* What Jibe connects */}
-              <div className="px-4 py-4 rounded-xl border" style={{ borderColor: "#B9DDF4", background: "#EAF5FC" }}>
+              <div className="px-4 py-4 rounded-xl border" style={{ borderColor: "#4A8FE7", background: "#F2F2F2" }}>
                 <div className="font-mono text-[10px] uppercase tracking-widest mb-3" style={{ color: "#0076CE" }}>
                   One unified view
                 </div>

@@ -13,21 +13,21 @@
   --secondary: #EBEBEB;
   --secondary-foreground: #2F2F2F;
   --muted: #EBEBEB;
-  --muted-foreground: #6D6D69;
-  --accent: #E8F4FC;
+  --muted-foreground: #6D6D6D;
+  --accent: #F2F2F2;
   --accent-foreground: #0076CE;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: #D9D9D5;
+  --border: #D9D9D9;
   --input: transparent;
-  --input-background: #F1F3F4;
+  --input-background: #F2F2F2;
   --switch-background: #cbced4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --ring: #0076CE;
   --chart-1: #0076CE;
   --chart-2: #004F8C;
-  --chart-3: #B9DDF4;
+  --chart-3: #4A8FE7;
   --chart-4: #686A6D;
   --chart-5: #2F2F2F;
   --radius: 0.75rem;
@@ -64,7 +64,7 @@
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-2: oklch(0.58 0.2 255);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
@@ -155,8 +155,8 @@
   }
 
   ::selection {
-    background: #B9DDF4;
-    color: #12344D;
+    background: #0076CE;
+    color: #ffffff;
   }
 
   h1 {
@@ -224,23 +224,21 @@
 }
 
 .jibe-interior > header {
-  border-color: #d7e0ea !important;
+  border-color: #d9d9d9 !important;
   background: rgba(255, 255, 255, 0.94) !important;
   box-shadow: none !important;
 }
 
 .jibe-interior > footer {
-  border-color: #d7e0ea !important;
-  background: #f5f7fa !important;
+  border-color: #d9d9d9 !important;
+  background: #ececec !important;
 }
 
 .jibe-product-hero {
-  border-color: #d7e0ea;
+  border-color: #d9d9d9;
   position: relative;
   isolation: isolate;
-  background:
-    radial-gradient(circle at 78% 48%, rgba(0, 118, 206, 0.08), transparent 24%),
-    linear-gradient(180deg, #ffffff 0%, #ffffff 82%, #f7f9fb 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #f5f5f5 100%);
 }
 
 .jibe-product-hero__copy {
@@ -253,8 +251,8 @@
 }
 
 .jibe-product-proof-list {
-  border-top: 1px solid #d7e0ea;
-  border-bottom: 1px solid #d7e0ea;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .jibe-product-proof {
@@ -262,7 +260,7 @@
   min-height: 44px;
   align-items: center;
   padding: 10px 14px 10px 0;
-  color: #516277;
+  color: #5F5F5F;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -272,11 +270,11 @@
 
 .jibe-product-proof:nth-child(even) {
   padding-left: 18px;
-  border-left: 1px solid #d7e0ea;
+  border-left: 1px solid #d9d9d9;
 }
 
 .jibe-product-proof:nth-child(n + 3) {
-  border-top: 1px solid #d7e0ea;
+  border-top: 1px solid #d9d9d9;
 }
 
 .jibe-product-hero__visual {
@@ -290,9 +288,7 @@
 
 @media (max-width: 1023px) {
   .jibe-product-hero {
-    background:
-      radial-gradient(circle at 50% 72%, rgba(0, 118, 206, 0.08), transparent 22%),
-      #ffffff;
+    background: #ffffff;
   }
 }
 
@@ -567,7 +563,7 @@
 .portal-product-card--pro {
   color: #ffffff;
   background:
-    radial-gradient(circle at 76% 14%, rgba(128, 205, 255, 0.22), transparent 32%),
+    radial-gradient(circle at 76% 14%, rgba(255, 255, 255, 0.18), transparent 32%),
     linear-gradient(150deg, #0874d2 0%, #0068c9 58%, #005db5 100%);
 }
 
@@ -575,7 +571,7 @@
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.16);
   background:
-    radial-gradient(circle at 76% 14%, rgba(92, 181, 255, 0.25), transparent 32%),
+    radial-gradient(circle at 76% 14%, rgba(255, 255, 255, 0.16), transparent 32%),
     linear-gradient(150deg, #0b5a91 0%, #064572 58%, #07385b 100%);
 }
 
@@ -584,7 +580,7 @@
   border-color: rgba(7, 95, 174, 0.1);
   background:
     radial-gradient(circle at 76% 14%, rgba(255, 255, 255, 0.92), transparent 32%),
-    linear-gradient(150deg, #d9edfc 0%, #edf7fe 58%, #f6fbff 100%);
+    linear-gradient(150deg, #e1e8ff 0%, #f0f3ff 58%, #fafbff 100%);
 }
 
 .portal-product-card--ai:focus-visible {
@@ -678,7 +674,7 @@
   position: absolute;
   bottom: 0;
   width: clamp(2px, 0.24vw, 4px);
-  background: linear-gradient(to top, rgba(167, 218, 255, 0.12), rgba(213, 239, 255, 0.68));
+  background: linear-gradient(to top, rgba(74, 126, 235, 0.14), rgba(192, 210, 255, 0.7));
   transform: scaleY(0);
   transform-origin: bottom;
   animation:
@@ -693,8 +689,8 @@
   width: 9px;
   height: 9px;
   border-radius: 999px;
-  background: rgba(224, 243, 255, 0.92);
-  box-shadow: 0 0 0 3px rgba(167, 218, 255, 0.09), 0 0 14px rgba(112, 197, 255, 0.18);
+  background: rgba(229, 235, 255, 0.94);
+  box-shadow: 0 0 0 3px rgba(94, 133, 232, 0.1), 0 0 14px rgba(74, 126, 235, 0.2);
   transform: translateX(-50%);
   animation: portal-node-pulse 3.4s ease-in-out infinite;
 }

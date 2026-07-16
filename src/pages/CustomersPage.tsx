@@ -16,13 +16,13 @@ export default function CustomersPage() {
 
   return (
     <main>
-      <section className="bg-[#F7F7F4] pt-32 pb-20 border-b border-[#D8DADC]">
+      <section className="bg-[#F7F7F7] pt-32 pb-20 border-b border-[#DADADA]">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <span className="font-mono text-[11px] tracking-[0.2em] text-[#686A6D] uppercase block mb-8">Customers</span>
           <h1 className="font-['Instrument_Serif'] text-[56px] md:text-[72px] lg:text-[88px] leading-[0.95] text-[#2F2F2F] mb-8 max-w-[800px]">
             Customer-experience programs built to produce evidence.
           </h1>
-          <div className="p-4 border border-[#D8DADC] bg-white rounded-xl max-w-[640px]">
+          <div className="p-4 border border-[#DADADA] bg-white rounded-xl max-w-[640px]">
             <p className="font-mono text-[11px] text-[#686A6D]">
               ⚠ PLACEHOLDER — All customer names, logos, outcomes, and testimonials on this page must be replaced with externally approved content before publication.
             </p>
@@ -31,7 +31,7 @@ export default function CustomersPage() {
       </section>
 
       {/* Filters */}
-      <section className="bg-white border-b border-[#D8DADC] py-6 sticky top-16 z-30">
+      <section className="bg-white border-b border-[#DADADA] py-6 sticky top-16 z-30">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <div className="flex flex-wrap gap-4">
             {Object.entries(filters).map(([key, opts]) => (
@@ -53,8 +53,8 @@ export default function CustomersPage() {
                         }}
                         className="px-3 py-1 text-[11px] rounded-full border transition-all"
                         style={{
-                          borderColor: selected ? "#0076CE" : "#D8DADC",
-                          background: selected ? "#EAF5FC" : "white",
+                          borderColor: selected ? "#0076CE" : "#DADADA",
+                          background: selected ? "#F2F2F2" : "white",
                           color: selected ? "#0076CE" : "#686A6D",
                         }}
                       >
@@ -70,19 +70,19 @@ export default function CustomersPage() {
       </section>
 
       {/* Case study grid */}
-      <section className="bg-[#F7F7F4] py-24">
+      <section className="bg-[#F7F7F7] py-24">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="bg-white border border-[#D8DADC] rounded-2xl p-6 hover:-translate-y-0.5 hover:shadow-md transition-all">
-                <div className="h-8 w-28 bg-[#D8DADC] rounded mb-5 opacity-30" title="Logo placeholder" />
+              <div key={i} className="bg-white border border-[#DADADA] rounded-2xl p-6 hover:-translate-y-0.5 hover:shadow-md transition-all">
+                <div className="h-8 w-28 bg-[#DADADA] rounded mb-5 opacity-30" title="Logo placeholder" />
                 <div className="font-mono text-[10px] text-[#0076CE] uppercase tracking-widest mb-1">[Industry Placeholder]</div>
                 <div className="text-[12px] text-[#686A6D] mb-5">[Program scope placeholder]</div>
                 <div className="space-y-2 mb-6">
-                  <div className="p-3 bg-[#EAF5FC] rounded-xl border border-[#B9DDF4]">
+                  <div className="p-3 bg-[#F2F2F2] rounded-xl border border-[#4A8FE7]">
                     <p className="text-[12px] text-[#004F8C]">[Approved customer outcome placeholder]</p>
                   </div>
-                  <div className="p-3 bg-[#F7F7F4] rounded-xl border border-[#D8DADC]">
+                  <div className="p-3 bg-[#F7F7F7] rounded-xl border border-[#DADADA]">
                     <p className="text-[12px] text-[#686A6D]">[Approved operational outcome placeholder]</p>
                   </div>
                 </div>

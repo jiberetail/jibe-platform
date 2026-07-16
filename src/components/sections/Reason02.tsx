@@ -40,14 +40,14 @@ export default function Reason02() {
       id="reason-02"
       ref={ref}
       className="scroll-mt-24 py-28 lg:py-40 border-b"
-      style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}
+      style={{ background: "#EBEBEB", borderColor: "#D9D9D9" }}
     >
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div
           className="font-['Instrument_Serif'] leading-none mb-10 transition-all duration-700"
           style={{
             fontSize: "clamp(72px, 8vw, 110px)",
-            color: "#D9D9D5",
+            color: "#D9D9D9",
             letterSpacing: "-0.03em",
             opacity: vis ? 1 : 0,
           }}
@@ -71,12 +71,12 @@ export default function Reason02() {
             >
               Trusted by industry giants and the teams building what's next.
             </h2>
-            <p className="text-[16px] leading-[1.65] mb-8" style={{ color: "#6D6D69", maxWidth: 420 }}>
+            <p className="text-[16px] leading-[1.65] mb-8" style={{ color: "#6D6D6D", maxWidth: 420 }}>
               From Fortune 500 enterprises managing millions of interactions to high-growth innovators building the contact center of the future — Jibe Pro operates across industries, scales, and contact-center models.
             </p>
             <div
               className="flex items-start gap-3 p-4 rounded-xl border"
-              style={{ borderColor: "#B9DDF4", background: "#E8F4FC" }}
+              style={{ borderColor: "#4A8FE7", background: "#F2F2F2" }}
             >
               <div className="w-2 h-2 rounded-full mt-1 shrink-0" style={{ background: "#0076CE" }} />
               <p className="text-[13px] leading-relaxed" style={{ color: "#004F8C" }}>
@@ -95,7 +95,7 @@ export default function Reason02() {
                 <div
                   key={alt}
                   className="bg-white border rounded-xl flex items-center justify-center p-4 hover:-translate-y-0.5 hover:shadow-sm transition-all"
-                  style={{ borderColor: "#D9D9D5", height: 80 }}
+                  style={{ borderColor: "#D9D9D9", height: 80 }}
                 >
                   <ImageWithFallback
                     src={src}

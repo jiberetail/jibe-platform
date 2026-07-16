@@ -42,8 +42,8 @@ export default function SignalFlow({ className = "", aligned = false }: Props) {
             <stop offset="100%" stopColor="#0076CE" stopOpacity="0.3" />
           </linearGradient>
           <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#B9DDF4" stopOpacity="0" />
-            <stop offset="60%" stopColor="#B9DDF4" stopOpacity="0.6" />
+            <stop offset="0%" stopColor="#4A8FE7" stopOpacity="0" />
+            <stop offset="60%" stopColor="#4A8FE7" stopOpacity="0.6" />
             <stop offset="100%" stopColor="#0076CE" stopOpacity="0.4" />
           </linearGradient>
           <linearGradient id="lineGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -72,7 +72,7 @@ export default function SignalFlow({ className = "", aligned = false }: Props) {
               cx={40 + i * 65}
               cy={30 + j * 60}
               r={1.5}
-              fill="#D8DADC"
+              fill="#DADADA"
               opacity={0.5}
             />
           ))
@@ -106,7 +106,7 @@ export default function SignalFlow({ className = "", aligned = false }: Props) {
             {/* Signal 3: left center */}
             <path
               d="M 10 220 C 70 210, 130 215, 200 220 C 250 224, 290 228, 340 230"
-              stroke="#B9DDF4"
+              stroke="#4A8FE7"
               strokeWidth="1"
               strokeLinecap="round"
               opacity={0.7}
@@ -141,7 +141,7 @@ export default function SignalFlow({ className = "", aligned = false }: Props) {
             {/* Signal 6: top-center gentle */}
             <path
               d="M 380 10 C 385 80, 388 130, 390 180 C 392 210, 393 220, 393 240"
-              stroke="#B9DDF4"
+              stroke="#4A8FE7"
               strokeWidth="1.2"
               strokeLinecap="round"
               opacity={0.5}
@@ -204,7 +204,7 @@ export default function SignalFlow({ className = "", aligned = false }: Props) {
         </path>
         <path
           d="M 395 228 C 430 228, 480 227, 530 227 C 580 226, 640 226, 690 225 C 730 225, 760 225, 790 225"
-          stroke="#B9DDF4"
+          stroke="#4A8FE7"
           strokeWidth="1"
           opacity={0.4}
           strokeLinecap="round"
@@ -247,8 +247,8 @@ export default function SignalFlow({ className = "", aligned = false }: Props) {
               width={52}
               height={24}
               rx={6}
-              fill="#F7F7F4"
-              stroke="#D8DADC"
+              fill="#F7F7F7"
+              stroke="#DADADA"
               strokeWidth={1}
             >
               <animate

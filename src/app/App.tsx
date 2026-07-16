@@ -69,9 +69,9 @@ function ScrollManager() {
 
 function NotFound() {
   return (
-    <main className="flex min-h-[78vh] items-center bg-[#F7F7F4] px-6 pb-24 pt-36">
+    <main className="flex min-h-[78vh] items-center bg-[#F7F7F7] px-6 pb-24 pt-36">
       <div className="mx-auto w-full max-w-[1320px]">
-        <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-[#777976]">404 · Page not found</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-[#777777]">404 · Page not found</p>
         <h1 className="mt-6 max-w-[720px] font-['Instrument_Serif'] text-[64px] leading-[0.94] tracking-[-0.03em] text-[#2F2F2F] md:text-[88px]">
           Let&apos;s get you back in the loop.
         </h1>
@@ -85,8 +85,8 @@ function NotFound() {
 
 function PageLoader() {
   return (
-    <div className="flex min-h-[70vh] items-center justify-center bg-[#F7F7F4] pt-24" role="status" aria-live="polite">
-      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#777976]">Loading Jibe</p>
+    <div className="flex min-h-[70vh] items-center justify-center bg-[#F7F7F7] pt-24" role="status" aria-live="polite">
+      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#777777]">Loading Jibe</p>
     </div>
   );
 }

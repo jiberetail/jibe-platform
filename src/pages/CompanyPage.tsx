@@ -159,8 +159,8 @@ export default function CompanyPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#F4F7F9]">
-      <section className="flex min-h-[54svh] items-center overflow-hidden border-b border-[#D7E0E8] bg-white px-6 pb-16 pt-36 lg:px-10 lg:pb-20 lg:pt-44">
+    <main className="min-h-screen bg-[#F5F5F5]">
+      <section className="flex min-h-[54svh] items-center overflow-hidden border-b border-[#D9D9D9] bg-white px-6 pb-16 pt-36 lg:px-10 lg:pb-20 lg:pt-44">
         <div className="mx-auto w-full max-w-[1320px]">
           <div className={section === "leadership" ? "mx-auto max-w-[900px] text-center" : ""}>
             <div className={`mb-7 flex items-center gap-4 ${section === "leadership" ? "justify-center" : ""}`}>
@@ -176,7 +176,7 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      <nav aria-label="Company pages" className="border-b border-[#D7E0E8] bg-white">
+      <nav aria-label="Company pages" className="border-b border-[#D9D9D9] bg-white">
         <div className="mx-auto flex max-w-[1320px] gap-8 overflow-x-auto px-6 lg:px-10">
           {companyLinks.map((link) => {
             const active = link.slug === section;
@@ -188,7 +188,7 @@ export default function CompanyPage() {
                 className={`shrink-0 border-b-2 px-0 py-5 text-[12px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0076CE] ${
                   active
                     ? "border-[#0076CE] text-[#0076CE]"
-                    : "border-transparent text-[#5B6874] hover:border-[#9FCFEB] hover:text-[#0076CE]"
+                    : "border-transparent text-[#5F5F5F] hover:border-[#0076CE] hover:text-[#0076CE]"
                 }`}
               >
                 {link.label}
@@ -214,7 +214,7 @@ export default function CompanyPage() {
             </p>
             <Link
               to="/demo"
-              className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-[14px] font-semibold text-[#0076CE] transition-colors hover:bg-[#E8F4FC] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-[14px] font-semibold text-[#0076CE] transition-colors hover:bg-[#F2F2F2] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               Book a demo <ArrowRight aria-hidden="true" size={15} />
             </Link>
@@ -227,7 +227,7 @@ export default function CompanyPage() {
 
 function LeadershipContent() {
   return (
-    <section aria-labelledby="leadership-list-heading" className="bg-[#F4F7F9] px-6 py-20 lg:px-10 lg:py-28">
+    <section aria-labelledby="leadership-list-heading" className="bg-[#F5F5F5] px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1320px]">
         <h2 id="leadership-list-heading" className="sr-only">Leadership profiles</h2>
         <div className="space-y-16 lg:space-y-24">
@@ -237,7 +237,7 @@ function LeadershipContent() {
               className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16 ${index % 2 === 1 ? "lg:grid-flow-dense" : ""}`}
             >
               <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
-                <div className="mx-auto aspect-[4/5] w-full max-w-[460px] overflow-hidden rounded-[18px] border border-[#D7E0E8] bg-[#E9EEF2] lg:h-[512px] lg:aspect-auto">
+                <div className="mx-auto aspect-[4/5] w-full max-w-[460px] overflow-hidden rounded-[18px] border border-[#D9D9D9] bg-[#E9E9E9] lg:h-[512px] lg:aspect-auto">
                   <img
                     src={assetUrl(leader.image)}
                     alt={leader.alt}
@@ -254,7 +254,7 @@ function LeadershipContent() {
                     {leader.name}
                   </h3>
                   <p className="mt-3 text-[18px] font-semibold text-[#0076CE] sm:text-[20px]">{leader.title}</p>
-                  <p className="mt-7 text-[15px] leading-[1.8] text-[#566676] sm:text-[16px]">{leader.bio}</p>
+                  <p className="mt-7 text-[15px] leading-[1.8] text-[#5F5F5F] sm:text-[16px]">{leader.bio}</p>
                 </div>
               </div>
             </article>
@@ -270,36 +270,36 @@ function ArticleContent({ section }: { section: Exclude<CompanySlug, "leadership
   const isMedia = section === "media-inquiries";
 
   return (
-    <section aria-labelledby={`${section}-content-heading`} className="bg-[#F4F7F9] px-6 py-20 lg:px-10 lg:py-28">
+    <section aria-labelledby={`${section}-content-heading`} className="bg-[#F5F5F5] px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
-          <div className="overflow-hidden rounded-[18px] border border-[#D7E0E8] bg-white lg:sticky lg:top-28">
+          <div className="overflow-hidden rounded-[18px] border border-[#D9D9D9] bg-white lg:sticky lg:top-28">
             <img
               src={assetUrl(article.image)}
               alt={article.imageAlt}
-              className={`aspect-[4/3] w-full ${section === "ip-protection" ? "bg-[#F7F9FB] object-contain p-4 sm:p-6" : "object-cover"}`}
+              className={`aspect-[4/3] w-full ${section === "ip-protection" ? "bg-[#F7F7F7] object-contain p-4 sm:p-6" : "object-cover"}`}
             />
           </div>
         </div>
 
         <article className="lg:col-span-7">
-          <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-[#6D6D69]">Company perspective</p>
+          <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-[#6D6D6D]">Company perspective</p>
           <h2 id={`${section}-content-heading`} className="max-w-[680px] font-['Instrument_Serif'] text-[43px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[54px]">
             {section === "history" && "Customer perception became the point of truth."}
             {section === "ip-protection" && "Innovation is strongest when original work is respected."}
             {section === "media-inquiries" && "Let’s add useful evidence to the conversation."}
           </h2>
 
-          <div className="mt-9 border-t border-[#D2D4D0] pt-8">
+          <div className="mt-9 border-t border-[#D2D2D2] pt-8">
             {article.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="mb-6 max-w-[720px] text-[16px] leading-[1.8] text-[#4E504D] last:mb-0">
+              <p key={paragraph} className="mb-6 max-w-[720px] text-[16px] leading-[1.8] text-[#4E4E4E] last:mb-0">
                 {paragraph}
               </p>
             ))}
           </div>
 
           {section === "ip-protection" && (
-            <p className="mt-9 border-t border-[#D2D4D0] pt-6 font-mono text-[10px] tracking-[0.08em] text-[#777976]">
+            <p className="mt-9 border-t border-[#D2D2D2] pt-6 font-mono text-[10px] tracking-[0.08em] text-[#777777]">
               © 2023 BalanceCXI, Inc. All rights reserved.
             </p>
           )}
@@ -307,13 +307,13 @@ function ArticleContent({ section }: { section: Exclude<CompanySlug, "leadership
           {isMedia && (
             <a
               href="mailto:info@zacoustic.com"
-              className="mt-9 inline-flex items-center gap-4 border-y border-[#C9D4DE] py-4 transition-colors hover:border-[#0076CE] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#0076CE]"
+              className="mt-9 inline-flex items-center gap-4 border-y border-[#CCCCCC] py-4 transition-colors hover:border-[#0076CE] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#0076CE]"
             >
               <span className="flex h-10 w-10 items-center justify-center text-[#0076CE]">
                 <Mail aria-hidden="true" size={17} />
               </span>
               <span>
-                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#777976]">Media relations</span>
+                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#777777]">Media relations</span>
                 <span className="mt-1 block text-[14px] font-semibold text-[#2F2F2F]">info@zacoustic.com</span>
               </span>
             </a>

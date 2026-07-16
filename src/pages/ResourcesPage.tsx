@@ -29,7 +29,7 @@ export default function ResourcesPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="bg-[#F7F7F4] pt-32 pb-16 border-b border-[#D8DADC]">
+      <section className="bg-[#F7F7F7] pt-32 pb-16 border-b border-[#DADADA]">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <span className="font-mono text-[11px] tracking-[0.2em] text-[#686A6D] uppercase block mb-8">Resources</span>
           <h1 className="font-['Instrument_Serif'] text-[56px] md:text-[72px] leading-[0.95] text-[#2F2F2F] mb-8 max-w-[700px]">
@@ -37,7 +37,7 @@ export default function ResourcesPage() {
           </h1>
 
           {/* Featured resource */}
-          <div className="bg-white border border-[#D8DADC] rounded-2xl p-8 max-w-[680px]">
+          <div className="bg-white border border-[#DADADA] rounded-2xl p-8 max-w-[680px]">
             <span className="font-mono text-[10px] text-[#0076CE] uppercase tracking-widest block mb-3">Featured Guide</span>
             <h2 className="font-['Instrument_Serif'] text-[28px] text-[#2F2F2F] leading-snug mb-3">
               Five principles for a contact-center pilot that produces a decision.
@@ -53,7 +53,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Search + filters */}
-      <section className="bg-white border-b border-[#D8DADC] py-5 sticky top-16 z-30">
+      <section className="bg-white border-b border-[#DADADA] py-5 sticky top-16 z-30">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
             <div className="relative flex-1 max-w-[320px]">
@@ -63,7 +63,7 @@ export default function ResourcesPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search resources…"
-                className="w-full pl-9 pr-4 py-2.5 border border-[#D8DADC] rounded-xl text-[13px] text-[#2F2F2F] placeholder-[#D8DADC] outline-none focus:border-[#0076CE] transition-colors"
+                className="w-full pl-9 pr-4 py-2.5 border border-[#DADADA] rounded-xl text-[13px] text-[#2F2F2F] placeholder-[#DADADA] outline-none focus:border-[#0076CE] transition-colors"
               />
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -73,8 +73,8 @@ export default function ResourcesPage() {
                   onClick={() => setType(t)}
                   className="px-3 py-1 text-[11px] rounded-full border transition-all"
                   style={{
-                    borderColor: type === t ? "#0076CE" : "#D8DADC",
-                    background: type === t ? "#EAF5FC" : "white",
+                    borderColor: type === t ? "#0076CE" : "#DADADA",
+                    background: type === t ? "#F2F2F2" : "white",
                     color: type === t ? "#0076CE" : "#686A6D",
                   }}
                 >
@@ -87,7 +87,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Resource grid */}
-      <section className="bg-[#F7F7F4] py-16">
+      <section className="bg-[#F7F7F7] py-16">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
           <div className="flex flex-wrap gap-1.5 mb-10">
             {topics.map((t) => (
@@ -96,8 +96,8 @@ export default function ResourcesPage() {
                 onClick={() => setTopic(t)}
                 className="px-3 py-1 text-[11px] rounded-full border transition-all"
                 style={{
-                  borderColor: topic === t ? "#0076CE" : "#D8DADC",
-                  background: topic === t ? "#EAF5FC" : "white",
+                  borderColor: topic === t ? "#0076CE" : "#DADADA",
+                  background: topic === t ? "#F2F2F2" : "white",
                   color: topic === t ? "#0076CE" : "#686A6D",
                 }}
               >
@@ -111,10 +111,10 @@ export default function ResourcesPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map((r) => (
-                <div key={r.title} className="bg-white border border-[#D8DADC] rounded-2xl p-6 hover:-translate-y-0.5 hover:shadow-md transition-all">
+                <div key={r.title} className="bg-white border border-[#DADADA] rounded-2xl p-6 hover:-translate-y-0.5 hover:shadow-md transition-all">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="font-mono text-[10px] text-[#0076CE] uppercase tracking-widest">{r.type}</span>
-                    <span className="font-mono text-[10px] text-[#D8DADC]">·</span>
+                    <span className="font-mono text-[10px] text-[#DADADA]">·</span>
                     <span className="font-mono text-[10px] text-[#686A6D]">{r.topic}</span>
                   </div>
                   <h3 className="font-semibold text-[#2F2F2F] text-[15px] mb-3 leading-snug">{r.title}</h3>

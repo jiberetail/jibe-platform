@@ -69,7 +69,7 @@ export default function BookDemoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F4F7F9] px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
+    <main className="min-h-screen bg-[#F5F5F5] px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
       <div className="mx-auto grid max-w-[1240px] gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#0076CE]">Book a demo</p>
@@ -82,25 +82,25 @@ export default function BookDemoPage() {
 
           <div className="mt-10 space-y-3">
             {["A focused 30-minute conversation", "A product walkthrough tailored to your use case", "Clear next steps—without a generic sales script"].map((item) => (
-              <div key={item} className="flex items-center gap-3 text-[14px] text-[#4E504D]">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EAF5FC] text-[#0076CE]"><Check size={13} /></span>
+              <div key={item} className="flex items-center gap-3 text-[14px] text-[#4E4E4E]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#F2F2F2] text-[#0076CE]"><Check size={13} /></span>
                 {item}
               </div>
             ))}
           </div>
 
-          <div className="mt-12 divide-y divide-[#D7E0E8] border-y border-[#D7E0E8]">
+          <div className="mt-12 divide-y divide-[#D9D9D9] border-y border-[#D9D9D9]">
             <a href="mailto:info@zacoustic.com" className="flex items-center gap-4 py-5 transition-colors hover:text-[#0076CE]">
               <Mail size={18} className="text-[#0076CE]" />
               <span>
-                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#7A8792]">Email</span>
+                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#777777]">Email</span>
                 <span className="mt-1 block text-[13px] font-semibold text-[#2F3D49]">info@zacoustic.com</span>
               </span>
             </a>
             <a href="tel:+18777342473" className="flex items-center gap-4 py-5 transition-colors hover:text-[#0076CE]">
               <Phone size={18} className="text-[#0076CE]" />
               <span>
-                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#7A8792]">Phone</span>
+                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#777777]">Phone</span>
                 <span className="mt-1 block text-[13px] font-semibold text-[#2F3D49]">(877) 734-2473</span>
               </span>
             </a>
@@ -108,9 +108,9 @@ export default function BookDemoPage() {
         </div>
 
         <div className="border-t-2 border-[#0076CE] pt-8">
-          <div className="border-b border-[#E1E3DF] pb-7">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#777976]">Choose your conversation</p>
-            <div className="mt-4 grid gap-px border border-[#D7E0E8] bg-[#D7E0E8] sm:grid-cols-2">
+          <div className="border-b border-[#E1E1E1] pb-7">
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#777777]">Choose your conversation</p>
+            <div className="mt-4 grid gap-px border border-[#D9D9D9] bg-[#D9D9D9] sm:grid-cols-2">
               {productOptions.map((option) => (
                 <button
                   type="button"
@@ -118,11 +118,11 @@ export default function BookDemoPage() {
                   onClick={() => setProduct(option.value)}
                   aria-pressed={product === option.value}
                   className={`p-4 text-left transition-colors focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-[#0076CE] ${
-                    product === option.value ? "bg-[#EDF7FD]" : "bg-white hover:bg-[#F5F7FA]"
+                    product === option.value ? "bg-[#F2F2F2]" : "bg-white hover:bg-[#F5F5F5]"
                   }`}
                 >
                   <span className={`block text-[13px] font-semibold ${product === option.value ? "text-[#0076CE]" : "text-[#2F2F2F]"}`}>{option.label}</span>
-                  <span className="mt-1 block text-[11px] leading-relaxed text-[#777976]">{option.description}</span>
+                  <span className="mt-1 block text-[11px] leading-relaxed text-[#777777]">{option.description}</span>
                 </button>
               ))}
             </div>
@@ -160,12 +160,12 @@ export default function BookDemoPage() {
               <ArrowRight size={16} />
             </button>
 
-            <p className="text-center text-[11px] leading-relaxed text-[#8B8D89]">
+            <p className="text-center text-[11px] leading-relaxed text-[#8B8B8B]">
               Your email app will open with your request ready to send. Jibe does not store this form data on the site.
             </p>
 
             {emailPrepared && (
-              <div role="status" className="border border-[#B9DDF4] bg-[#EDF7FD] p-4 text-[12px] leading-relaxed text-[#005A9C]">
+              <div role="status" className="border border-[#4A8FE7] bg-[#F2F2F2] p-4 text-[12px] leading-relaxed text-[#005A9C]">
                 Your demo request is ready in your email app. If it did not open, email <a className="font-semibold underline" href="mailto:info@zacoustic.com">info@zacoustic.com</a>.
               </div>
             )}
@@ -179,7 +179,7 @@ export default function BookDemoPage() {
 function Field({ id, label, error, required, children }: { id: string; label: string; error?: string; required?: boolean; children: React.ReactNode }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block font-mono text-[10px] uppercase tracking-[0.16em] text-[#6D6D69]">
+      <label htmlFor={id} className="mb-2 block font-mono text-[10px] uppercase tracking-[0.16em] text-[#6D6D6D]">
         {label}{required && <span className="ml-1 text-[#0076CE]">*</span>}
       </label>
       {children}
@@ -189,5 +189,5 @@ function Field({ id, label, error, required, children }: { id: string; label: st
 }
 
 function fieldClass(invalid: boolean) {
-  return `w-full rounded-md border bg-white px-4 py-3.5 text-[14px] text-[#2F2F2F] outline-none transition-all placeholder:text-[#A7AAA5] focus:border-[#0076CE] focus:ring-4 focus:ring-[#0076CE]/10 ${invalid ? "border-[#B85A50]" : "border-[#D2D4D0]"}`;
+  return `w-full rounded-md border bg-white px-4 py-3.5 text-[14px] text-[#2F2F2F] outline-none transition-all placeholder:text-[#A7A7A7] focus:border-[#0076CE] focus:ring-4 focus:ring-[#0076CE]/10 ${invalid ? "border-[#B85A50]" : "border-[#D2D2D2]"}`;
 }

@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 const quadrants = [
-  { id: "sr", sat: "Satisfied", res: "Resolved", count: 3240, pct: "62.5%", bg: "#FFFFFF", border: "#D9D9D5", numColor: "#2F2F2F", desc: "Positive outcome" },
-  { id: "su", sat: "Satisfied", res: "Not resolved", count: 890, pct: "17.2%", bg: "#EBEBEB", border: "#D9D9D5", numColor: "#6D6D69", desc: "Latent risk — may return" },
-  { id: "dr", sat: "Dissatisfied", res: "Resolved", count: 640, pct: "12.4%", bg: "#EBEBEB", border: "#D9D9D5", numColor: "#6D6D69", desc: "Experience gap despite resolution" },
+  { id: "sr", sat: "Satisfied", res: "Resolved", count: 3240, pct: "62.5%", bg: "#FFFFFF", border: "#D9D9D9", numColor: "#2F2F2F", desc: "Positive outcome" },
+  { id: "su", sat: "Satisfied", res: "Not resolved", count: 890, pct: "17.2%", bg: "#EBEBEB", border: "#D9D9D9", numColor: "#6D6D6D", desc: "Latent risk — may return" },
+  { id: "dr", sat: "Dissatisfied", res: "Resolved", count: 640, pct: "12.4%", bg: "#EBEBEB", border: "#D9D9D9", numColor: "#6D6D6D", desc: "Experience gap despite resolution" },
   { id: "du", sat: "Dissatisfied", res: "Not resolved", count: 410, pct: "7.9%", bg: "#FFFFFF", border: "#2F2F2F", numColor: "#2F2F2F", desc: "Highest risk — QA and coaching priority" },
 ];
 
@@ -16,7 +16,7 @@ export default function Reason06() {
     <section
       id="reason-06"
       className="py-28 lg:py-40 border-b"
-      style={{ background: "#EBEBEB", borderColor: "#D9D9D5" }}
+      style={{ background: "#EBEBEB", borderColor: "#D9D9D9" }}
     >
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
         <div className="font-['Instrument_Serif'] leading-none mb-10" style={{ fontSize: "clamp(72px, 8vw, 110px)", color: "#0076CE", letterSpacing: "-0.03em" }}>06</div>
@@ -30,7 +30,7 @@ export default function Reason06() {
             >
               Separate satisfaction from resolution.
             </h2>
-            <p className="text-[16px] leading-[1.65] mb-8" style={{ color: "#6D6D69", maxWidth: 400 }}>
+            <p className="text-[16px] leading-[1.65] mb-8" style={{ color: "#6D6D6D", maxWidth: 400 }}>
               A customer may be satisfied even when an issue remains unresolved, or dissatisfied despite a technical resolution. Jibe Pro keeps these outcomes separate so leaders can understand what actually happened.
             </p>
 
@@ -38,7 +38,7 @@ export default function Reason06() {
             <div
               className="border rounded-xl p-5 transition-all"
               style={{
-                borderColor: "#D9D9D5",
+                borderColor: "#D9D9D9",
                 background: "#EBEBEB",
                 minHeight: 88,
                 opacity: hov ? 1 : 0.4,
@@ -52,10 +52,10 @@ export default function Reason06() {
                   <div className="font-semibold text-[20px] mb-1" style={{ color: "#2F2F2F" }}>
                     {hov.count.toLocaleString()} interactions
                   </div>
-                  <div className="text-[13px]" style={{ color: "#6D6D69" }}>{hov.desc}</div>
+                  <div className="text-[13px]" style={{ color: "#6D6D6D" }}>{hov.desc}</div>
                 </>
               ) : (
-                <div className="font-mono text-[11px]" style={{ color: "#D9D9D5" }}>Hover a quadrant to explore</div>
+                <div className="font-mono text-[11px]" style={{ color: "#D9D9D9" }}>Hover a quadrant to explore</div>
               )}
             </div>
           </div>
@@ -64,8 +64,8 @@ export default function Reason06() {
           <div>
             {/* Axis labels */}
             <div className="grid grid-cols-2 gap-0.5 mb-0.5">
-              <div className="text-center font-mono text-[10px] uppercase py-1" style={{ color: "#D9D9D5" }}>Not resolved</div>
-              <div className="text-center font-mono text-[10px] uppercase py-1" style={{ color: "#D9D9D5" }}>Resolved</div>
+              <div className="text-center font-mono text-[10px] uppercase py-1" style={{ color: "#D9D9D9" }}>Not resolved</div>
+              <div className="text-center font-mono text-[10px] uppercase py-1" style={{ color: "#D9D9D9" }}>Resolved</div>
             </div>
 
             <div className="grid grid-cols-2 gap-0.5">
@@ -80,7 +80,7 @@ export default function Reason06() {
                 >
                   <div
                     className="font-mono text-[9px] uppercase tracking-wide mb-3"
-                    style={{ color: "#6D6D69" }}
+                    style={{ color: "#6D6D6D" }}
                   >
                     {q.sat}
                   </div>
@@ -92,14 +92,14 @@ export default function Reason06() {
                   </div>
                   <div
                     className="font-mono text-[10px]"
-                    style={{ color: "#D9D9D5" }}
+                    style={{ color: "#D9D9D9" }}
                   >
                     {q.pct}
                   </div>
                 </div>
               ))}
             </div>
-            <p className="mt-4 font-mono text-[10px] text-center" style={{ color: "#D9D9D5" }}>Sample data</p>
+            <p className="mt-4 font-mono text-[10px] text-center" style={{ color: "#D9D9D9" }}>Sample data</p>
           </div>
         </div>
       </div>
