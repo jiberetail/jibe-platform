@@ -45,7 +45,7 @@ const companyPages = [
 ];
 
 const sectionLinks = [
-  { label: "Clients", href: "/jibe-pro#clients" },
+  { label: "Clients", href: "/clients" },
   { label: "Contact", href: "/demo" },
 ];
 

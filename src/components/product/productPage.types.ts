@@ -69,11 +69,6 @@ export type ProductProofItem = {
   metrics?: readonly ProductProofMetric[];
 };
 
-export type ProductLogo = {
-  src: string;
-  alt: string;
-};
-
 export type ProductPageConfig = {
   slug: ProductSlug;
   hero: ProductHeroContent;
@@ -96,10 +91,6 @@ export type ProductPageConfig = {
   };
   proof: ProductSectionIntro & {
     items: readonly ProductProofItem[];
-    logos?: {
-      label: string;
-      items: readonly ProductLogo[];
-    };
     note?: string;
   };
   cta: {

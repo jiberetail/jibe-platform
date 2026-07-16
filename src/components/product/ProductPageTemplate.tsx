@@ -459,26 +459,6 @@ function ProductProof({ config }: { config: ProductPageConfig["proof"] }) {
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
-        {config.logos && (
-          <div id="clients" className="product-page__client-strip mt-14 scroll-mt-32 lg:mt-16">
-            <p className="mb-5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#5F5F5F]">
-              {config.logos.label}
-            </p>
-            <ul className="grid grid-cols-2 border-y border-[#D9D9D9] sm:grid-cols-3 lg:grid-cols-9">
-              {config.logos.items.map((logo, index) => (
-                <li
-                  key={logo.alt}
-                  className={`flex min-h-[92px] items-center justify-center px-5 py-6 ${
-                    index > 0 ? "border-l border-[#D9D9D9]" : ""
-                  }`}
-                >
-                  <img src={logo.src} alt={logo.alt} loading="lazy" className="max-h-10 w-full object-contain grayscale" />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
         <div className="mt-14 divide-y divide-[#D9D9D9] border-y border-[#D9D9D9] lg:mt-16">
           {config.items.map((item, index) => (
             <div key={item.title} className="product-page__proof-item grid gap-8 py-9 lg:grid-cols-12 lg:items-start lg:py-11">

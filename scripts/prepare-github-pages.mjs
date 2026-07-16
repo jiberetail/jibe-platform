@@ -40,6 +40,14 @@ const routeMetadata = {
     title: "Book a Jibe Demo",
     description: "Book a tailored demonstration of Jibe Pro, Jibe Retail, Jibe AI, or the complete Jibe platform.",
   },
+  clients: {
+    title: "Clients | Jibe Platform",
+    description: "See how Jibe supports customer operations, venues, retailers, and experience teams with programs configured around real workflows and decisions.",
+  },
+  customers: {
+    title: "Clients | Jibe Platform",
+    description: "See how Jibe supports customer operations, venues, retailers, and experience teams with programs configured around real workflows and decisions.",
+  },
   company: {
     title: "Leadership | Jibe",
     description: "Meet the Jibe leadership team spanning customer operations, technology, analytics, product, finance, and client success.",

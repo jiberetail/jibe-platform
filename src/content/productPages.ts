@@ -1,13 +1,4 @@
 import type { ProductPageConfig, ProductSlug } from "../components/product/productPage.types";
-import logoATT from "../imports/AT_T-logo_2016.png";
-import logoGoDaddy from "../imports/GD_LOCKUP_RGB_BLACK.png";
-import logoHughesNet from "../imports/HughesNet-Logo.png";
-import logoMLB from "../imports/Major_League_Baseball_logo.svg.png";
-import logoMeta from "../imports/Meta-Logo.png";
-import logoSutherland from "../imports/Image_6-17-26_at_5.58_PM.png";
-import logoTMobile from "../imports/t-mobile-logo-png-transparent.png";
-import logoTXHB from "../imports/txhb-logo-blue-1.png";
-import logoUbiquity from "../imports/ubiquity_logo.png";
 
 export const productPages = {
   pro: {
@@ -233,20 +224,6 @@ export const productPages = {
             "Outcome movement is reviewed with data quality and operational context, producing a defensible recommendation to expand, adjust, extend, or stop.",
         },
       ],
-      logos: {
-        label: "Organizations represented in Jibe's client portfolio",
-        items: [
-          { src: logoMeta, alt: "Meta" },
-          { src: logoATT, alt: "AT&T" },
-          { src: logoTMobile, alt: "T-Mobile" },
-          { src: logoSutherland, alt: "Sutherland" },
-          { src: logoMLB, alt: "Major League Baseball" },
-          { src: logoGoDaddy, alt: "GoDaddy" },
-          { src: logoHughesNet, alt: "HughesNet" },
-          { src: logoUbiquity, alt: "Ubiquity" },
-          { src: logoTXHB, alt: "Texas Health Benefits Pool" },
-        ],
-      },
     },
     cta: {
       eyebrow: "See Jibe Pro in context",
