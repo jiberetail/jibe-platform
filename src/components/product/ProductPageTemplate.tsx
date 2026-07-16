@@ -311,7 +311,7 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                   alt={activeItem.alt ?? ""}
                   loading="lazy"
                   decoding="async"
-                  className={`block bg-white ${
+                  className={`block rounded-2xl bg-white ${
                     activeItem.orientation === "portrait"
                       ? "mx-auto max-h-[760px] w-auto max-w-full"
                       : "h-auto w-full"
@@ -327,14 +327,14 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                       target="_blank"
                       rel="noreferrer"
                       aria-label={`View full image: ${image.alt}`}
-                      className="block bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#40A7DF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
+                      className="block overflow-hidden rounded-2xl bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#40A7DF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
                     >
                       <img
                         src={image.url}
                         alt={image.alt}
                         loading="lazy"
                         decoding="async"
-                        className="h-auto w-full"
+                        className="h-auto w-full rounded-2xl"
                       />
                     </a>
                   ))}

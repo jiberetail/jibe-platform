@@ -74,19 +74,8 @@ export const productPages = {
       eyebrow: "Jibe Pro in action",
       title: "One customer signal. The right view for every role.",
       description:
-        "Executives, managers, supervisors, agents, QA teams, and coaches see the level of detail their work requires.",
+        "Managers, supervisors, agents, QA teams, coaches, and reporting users see the level of detail their work requires.",
       items: [
-        {
-          id: "executive",
-          label: "Executive",
-          eyebrow: "Executive performance",
-          title: "Turn operating performance into a decision-ready view.",
-          description:
-            "Track outcome movement, adoption, volume, and prediction accuracy together in a concise leadership report.",
-          src: "assets/jibe-pro/screens/executive-performance-report.png",
-          alt: "Jibe Pro executive report showing performance, NPS, resolution, adoption, volume, and prediction accuracy.",
-          disclosure: "Product interface shown with demonstration data. Configurations and metrics vary by program.",
-        },
         {
           id: "manager",
           label: "Manager",
