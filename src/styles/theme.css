@@ -325,15 +325,6 @@
   background: linear-gradient(145deg, #203654 0%, #0b1220 72%);
 }
 
-.product-page__media-stage-meta {
-  display: flex;
-  min-height: 34px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 0 4px 9px;
-}
-
 .product-page__media-stage-canvas {
   position: relative;
   z-index: 1;

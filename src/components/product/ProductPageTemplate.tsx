@@ -9,7 +9,6 @@ import {
 import {
   ArrowRight,
   Check,
-  ChevronLeft,
   ChevronRight,
   Maximize2,
   MousePointerClick,
@@ -289,8 +288,6 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
     ...image,
     url: assetUrl(image.src),
   }));
-  const previousItem = () => setActiveIndex((current) => (current - 1 + config.items.length) % config.items.length);
-  const nextItem = () => setActiveIndex((current) => (current + 1) % config.items.length);
 
   return (
     <section
@@ -301,35 +298,22 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} dark />
 
         <div className="mt-14 lg:mt-16">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div className="min-w-[240px] flex-1">
-              <InteractionPrompt
-                id={`${idPrefix}-media-instructions`}
-                title="Choose a product view"
-                description="Select a role or experience to update the showcase."
-                current={activeIndex + 1}
-                total={config.items.length}
-                dark
-              />
+          <div
+            id={`${idPrefix}-media-instructions`}
+            className="flex flex-wrap items-center justify-between gap-3 px-1 py-1"
+          >
+            <div className="flex items-center gap-2.5 text-[12px] text-white/55">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#0076CE] text-white">
+                <MousePointerClick aria-hidden="true" size={15} />
+              </span>
+              <span>
+                <strong className="font-semibold text-white">Choose a product view</strong>
+                <span className="ml-2">— the preview updates directly below.</span>
+              </span>
             </div>
-            <div className="flex shrink-0 gap-2" aria-label="Browse product views">
-              <button
-                type="button"
-                onClick={previousItem}
-                aria-label="Show previous product view"
-                className="flex h-12 w-12 cursor-pointer touch-manipulation items-center justify-center rounded-xl border border-white/15 bg-white/[0.06] text-white transition-colors hover:border-[#4A9CFF] hover:bg-[#0076CE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
-              >
-                <ChevronLeft aria-hidden="true" size={18} />
-              </button>
-              <button
-                type="button"
-                onClick={nextItem}
-                aria-label="Show next product view"
-                className="flex h-12 w-12 cursor-pointer touch-manipulation items-center justify-center rounded-xl border border-white/15 bg-white/[0.06] text-white transition-colors hover:border-[#4A9CFF] hover:bg-[#0076CE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
-              >
-                <ChevronRight aria-hidden="true" size={18} />
-              </button>
-            </div>
+            <span aria-live="polite" className="font-mono text-[10px] font-semibold tracking-[0.16em] text-white/55">
+              {String(activeIndex + 1).padStart(2, "0")} / {String(config.items.length).padStart(2, "0")}
+            </span>
           </div>
 
           <div
@@ -376,19 +360,9 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
             role="tabpanel"
             aria-labelledby={`${idPrefix}-media-tab-${activeItem.id}`}
             tabIndex={0}
-            className="product-page__media-panel grid gap-10 py-10 lg:grid-cols-12 lg:gap-12 lg:py-14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
+            className="product-page__media-panel pt-3 pb-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
           >
-            <div className="max-w-[760px] lg:col-span-8">
-              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">
-                {activeItem.eyebrow}
-              </p>
-              <h3 className="mt-4 text-[clamp(28px,3.2vw,44px)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
-                {activeItem.title}
-              </h3>
-              <p className="mt-5 text-[14px] leading-[1.75] text-white/60">{activeItem.description}</p>
-            </div>
-
-            <figure className="product-page__media-figure lg:col-span-12">
+            <figure className="product-page__media-figure">
               <ProductMediaStage
                 key={activeItem.id}
                 item={activeItem}
@@ -401,6 +375,20 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                 </figcaption>
               )}
             </figure>
+
+            <div className="mt-8 grid gap-6 border-t border-white/10 pt-8 lg:grid-cols-12 lg:items-start lg:gap-10">
+              <div className="lg:col-span-6">
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">
+                  {activeItem.eyebrow}
+                </p>
+                <h3 className="mt-3 text-[clamp(27px,3vw,42px)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
+                  {activeItem.title}
+                </h3>
+              </div>
+              <p className="max-w-[680px] text-[14px] leading-[1.75] text-white/60 lg:col-span-5 lg:col-start-8 lg:pt-5">
+                {activeItem.description}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -422,22 +410,6 @@ function ProductMediaStage({
 
   return (
     <div className="product-page__media-stage-shell">
-      <div className="product-page__media-stage-meta">
-        <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-white/55">{item.label} / Product view</span>
-        {imageUrl ? (
-          <a
-            href={imageUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white/55 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF]"
-          >
-            Open full size <Maximize2 aria-hidden="true" size={13} />
-          </a>
-        ) : (
-          <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/45">{galleryImages?.length ?? 0} views</span>
-        )}
-      </div>
-
       <div className={`product-page__media-stage ${portrait ? "product-page__media-stage--portrait" : tall ? "product-page__media-stage--tall" : "product-page__media-stage--landscape"}`}>
         <div className={`product-page__media-stage-canvas ${portrait ? "product-page__media-stage-canvas--portrait" : tall ? "product-page__media-stage-canvas--tall" : "product-page__media-stage-canvas--landscape"}`}>
           {imageUrl && (
