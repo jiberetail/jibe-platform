@@ -23,7 +23,23 @@ const routes = [
   "contact",
 ];
 
-const companyMetadata = {
+const routeMetadata = {
+  "jibe-pro": {
+    title: "Jibe Pro | Customer Experience Performance",
+    description: "Connect frontline predictions, customer feedback, and operating results to focus quality, coach with evidence, and prove what changed.",
+  },
+  "jibe-retail": {
+    title: "Jibe Retail | In-Venue Surveys & Ecommerce",
+    description: "Deploy a branded survey, an extended-aisle ecommerce experience, or both to capture feedback, find merchandise, and continue purchases.",
+  },
+  "jibe-ai": {
+    title: "Jibe AI | Interaction Intelligence",
+    description: "Analyze the interaction stream, connect performance shifts to root causes and evidence, and surface the next practical action.",
+  },
+  demo: {
+    title: "Book a Jibe Demo",
+    description: "Book a tailored demonstration of Jibe Pro, Jibe Retail, Jibe AI, or the complete Jibe platform.",
+  },
   company: {
     title: "Leadership | Jibe",
     description: "Meet the Jibe leadership team spanning customer operations, technology, analytics, product, finance, and client success.",
@@ -77,7 +93,7 @@ function applyMetadata(html, { title, description }) {
 for (const route of routes) {
   const routeDirectory = join("dist", route);
   await mkdir(routeDirectory, { recursive: true });
-  const metadata = companyMetadata[route];
+  const metadata = routeMetadata[route];
   if (metadata) {
     await writeFile(join(routeDirectory, "index.html"), applyMetadata(sourceHtml, metadata));
   } else {

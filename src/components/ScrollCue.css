@@ -1,16 +1,14 @@
 .scroll-cue {
   appearance: none;
   display: inline-flex;
-  min-height: 42px;
+  flex-direction: column;
   align-items: center;
-  gap: 0.7rem;
-  padding: 0.35rem 0.4rem 0.35rem 0.8rem;
-  border: 1px solid #d9d9d5;
-  border-left: 3px solid #0076ce;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 8px 24px rgba(18, 52, 77, 0.08);
-  color: #4f565c;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #4d5f6d;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 10px;
   font-weight: 650;
@@ -20,8 +18,6 @@
   text-decoration: none;
   cursor: pointer;
   transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
     color 180ms ease,
     transform 180ms ease;
 }
@@ -47,10 +43,8 @@
 }
 
 .scroll-cue:hover {
-  border-color: #b9ddf4;
-  color: #12344d;
-  box-shadow: 0 10px 28px rgba(0, 118, 206, 0.12);
-  transform: translateY(-1px);
+  color: #0076ce;
+  transform: translateY(2px);
 }
 
 .scroll-cue:focus-visible {
@@ -60,12 +54,8 @@
 
 .scroll-cue__icon {
   display: grid;
-  width: 30px;
-  height: 30px;
   place-items: center;
-  border-radius: 0.55rem;
-  background: #e8f4fc;
-  color: #0076ce;
+  color: currentColor;
 }
 
 .scroll-cue__arrow {

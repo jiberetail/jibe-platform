@@ -123,19 +123,19 @@ export default function CompanyPage() {
       [
         'meta[name="description"]',
         meta.seoDescription,
-        "Explore Jibe Pro, Jibe Retail, and Jibe AI—three purpose-built products for customer experience, retail demand, and interaction intelligence.",
+        "Explore Jibe Pro, Jibe Retail, and Jibe AI—three purpose-built products for frontline performance, in-venue surveys and ecommerce, and interaction intelligence.",
       ],
       ['meta[property="og:title"]', title, "Jibe Platform | Choose Your Platform"],
       [
         'meta[property="og:description"]',
         meta.seoDescription,
-        "Three purpose-built products for frontline performance, retail demand, and interaction intelligence.",
+        "Three purpose-built products for frontline performance, in-venue surveys and ecommerce, and interaction intelligence.",
       ],
       ['meta[name="twitter:title"]', title, "Jibe Platform | Choose Your Platform"],
       [
         'meta[name="twitter:description"]',
         meta.seoDescription,
-        "Three purpose-built products for frontline performance, retail demand, and interaction intelligence.",
+        "Three purpose-built products for frontline performance, in-venue surveys and ecommerce, and interaction intelligence.",
       ],
     ] as const;
 
@@ -159,14 +159,14 @@ export default function CompanyPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#F7F7F4]">
-      <section className="jibe-ui-page-hero flex min-h-[58svh] items-center overflow-hidden border-b border-[#D9D9D5] bg-[#F7F7F4] px-6 pb-16 pt-36 lg:px-10 lg:pb-20 lg:pt-44">
-        <div className="mx-auto max-w-[1320px]">
+    <main className="min-h-screen bg-[#F4F7F9]">
+      <section className="flex min-h-[54svh] items-center overflow-hidden border-b border-[#D7E0E8] bg-white px-6 pb-16 pt-36 lg:px-10 lg:pb-20 lg:pt-44">
+        <div className="mx-auto w-full max-w-[1320px]">
           <div className={section === "leadership" ? "mx-auto max-w-[900px] text-center" : ""}>
             <div className={`mb-7 flex items-center gap-4 ${section === "leadership" ? "justify-center" : ""}`}>
-              <span className="jibe-ui-eyebrow">Company</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#0076CE]">Company</span>
             </div>
-            <h1 className="max-w-[900px] font-['Inter'] text-[48px] font-semibold leading-[0.98] tracking-[-0.04em] text-[#2F2F2F] sm:text-[62px] lg:text-[76px]">
+            <h1 className="max-w-[900px] font-['Instrument_Serif'] text-[52px] leading-[0.96] tracking-[-0.025em] text-[#243443] sm:text-[68px] lg:text-[84px]">
               {meta.title}
             </h1>
             <p className={`mt-7 max-w-[650px] text-[17px] leading-[1.7] text-[#686A6D] sm:text-[18px] ${section === "leadership" ? "mx-auto" : ""}`}>
@@ -176,8 +176,8 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      <nav aria-label="Company pages" className="border-b border-[#D9D9D5] bg-[#EEF2F6]">
-        <div className="mx-auto flex max-w-[1320px] gap-2 overflow-x-auto px-6 py-4 lg:px-10">
+      <nav aria-label="Company pages" className="border-b border-[#D7E0E8] bg-white">
+        <div className="mx-auto flex max-w-[1320px] gap-8 overflow-x-auto px-6 lg:px-10">
           {companyLinks.map((link) => {
             const active = link.slug === section;
             return (
@@ -185,10 +185,10 @@ export default function CompanyPage() {
                 key={link.slug}
                 to={`/company/${link.slug}`}
                 aria-current={active ? "page" : undefined}
-                className={`shrink-0 rounded-full border px-4 py-2 text-[12px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0076CE] ${
+                className={`shrink-0 border-b-2 px-0 py-5 text-[12px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0076CE] ${
                   active
-                    ? "border-[#0076CE] bg-[#0076CE] text-white"
-                    : "border-[#D0D2CE] bg-white text-[#4E504D] hover:border-[#9FCFEB] hover:text-[#0076CE]"
+                    ? "border-[#0076CE] text-[#0076CE]"
+                    : "border-transparent text-[#5B6874] hover:border-[#9FCFEB] hover:text-[#0076CE]"
                 }`}
               >
                 {link.label}
@@ -227,7 +227,7 @@ export default function CompanyPage() {
 
 function LeadershipContent() {
   return (
-    <section aria-labelledby="leadership-list-heading" className="bg-[#EBEBEB] px-6 py-20 lg:px-10 lg:py-28">
+    <section aria-labelledby="leadership-list-heading" className="bg-[#F4F7F9] px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1320px]">
         <h2 id="leadership-list-heading" className="sr-only">Leadership profiles</h2>
         <div className="space-y-16 lg:space-y-24">
@@ -237,7 +237,7 @@ function LeadershipContent() {
               className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16 ${index % 2 === 1 ? "lg:grid-flow-dense" : ""}`}
             >
               <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
-                <div className="mx-auto aspect-[4/5] w-full max-w-[460px] overflow-hidden rounded-[24px] border border-[#D2D4D0] bg-[#E2E3E0] shadow-[0_24px_70px_rgba(25,31,38,0.13)] lg:h-[512px] lg:aspect-auto">
+                <div className="mx-auto aspect-[4/5] w-full max-w-[460px] overflow-hidden rounded-[18px] border border-[#D7E0E8] bg-[#E9EEF2] lg:h-[512px] lg:aspect-auto">
                   <img
                     src={assetUrl(leader.image)}
                     alt={leader.alt}
@@ -249,12 +249,12 @@ function LeadershipContent() {
               </div>
 
               <div className={index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}>
-                <div className="jibe-ui-panel rounded-[24px] border border-[#D9D9D5] border-l-4 border-l-[#0076CE] bg-white p-7 shadow-[0_18px_50px_rgba(25,31,38,0.08)] sm:p-9 lg:p-10">
-                  <h3 className="font-['Instrument_Serif'] text-[42px] leading-none tracking-[-0.025em] text-[#2F2F2F] sm:text-[50px]">
+                <div className="border-t-2 border-[#0076CE] pt-8">
+                  <h3 className="font-['Instrument_Serif'] text-[42px] leading-none tracking-[-0.025em] text-[#243443] sm:text-[50px]">
                     {leader.name}
                   </h3>
                   <p className="mt-3 text-[18px] font-semibold text-[#0076CE] sm:text-[20px]">{leader.title}</p>
-                  <p className="mt-7 text-[15px] leading-[1.8] text-[#5D5F62] sm:text-[16px]">{leader.bio}</p>
+                  <p className="mt-7 text-[15px] leading-[1.8] text-[#566676] sm:text-[16px]">{leader.bio}</p>
                 </div>
               </div>
             </article>
@@ -270,10 +270,10 @@ function ArticleContent({ section }: { section: Exclude<CompanySlug, "leadership
   const isMedia = section === "media-inquiries";
 
   return (
-    <section aria-labelledby={`${section}-content-heading`} className="bg-[#EBEBEB] px-6 py-20 lg:px-10 lg:py-28">
+    <section aria-labelledby={`${section}-content-heading`} className="bg-[#F4F7F9] px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
-          <div className="overflow-hidden rounded-[26px] border border-[#D9D9D5] bg-white shadow-[0_22px_60px_rgba(25,31,38,0.08)] lg:sticky lg:top-28">
+          <div className="overflow-hidden rounded-[18px] border border-[#D7E0E8] bg-white lg:sticky lg:top-28">
             <img
               src={assetUrl(article.image)}
               alt={article.imageAlt}
@@ -307,9 +307,9 @@ function ArticleContent({ section }: { section: Exclude<CompanySlug, "leadership
           {isMedia && (
             <a
               href="mailto:info@zacoustic.com"
-              className="mt-9 inline-flex items-center gap-4 rounded-2xl border border-[#D9D9D5] bg-white px-5 py-4 transition-colors hover:border-[#0076CE] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#0076CE]"
+              className="mt-9 inline-flex items-center gap-4 border-y border-[#C9D4DE] py-4 transition-colors hover:border-[#0076CE] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#0076CE]"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EAF5FC] text-[#0076CE]">
+              <span className="flex h-10 w-10 items-center justify-center text-[#0076CE]">
                 <Mail aria-hidden="true" size={17} />
               </span>
               <span>

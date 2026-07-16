@@ -13,7 +13,7 @@ const companyLinks = [
   { label: "History", href: "/company/history" },
   { label: "IP Protection", href: "/company/ip-protection" },
   { label: "Media Inquiries", href: "/company/media-inquiries" },
-  { label: "Clients", href: "/jibe-pro#reason-02" },
+  { label: "Clients", href: "/jibe-pro#clients" },
   { label: "Contact", href: "/demo" },
 ];
 
@@ -65,7 +65,7 @@ export default function Footer() {
 
         <div className="flex flex-col gap-4 pt-6 text-[12px] text-[#777976] sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Jibe. All rights reserved.</p>
-          <p>Customer intelligence for teams, retail, and enterprise operations.</p>
+          <p>Frontline performance, in-venue experiences, and interaction intelligence.</p>
         </div>
       </div>
     </footer>

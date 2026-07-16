@@ -8,6 +8,7 @@ const TILT_DUR = 1.6;
 const TEXT_DUR = 0.9;
 const HALO_RY  = 0.115;
 const SETTLED  = DRAW_DUR + TILT_DUR;
+const FINAL_TIME = SETTLED + TEXT_DUR + 0.08;
 
 function easeInOut(t: number) {
   const c = Math.max(0, Math.min(1, t));
@@ -85,11 +86,12 @@ export default function HeroVisual3D({ productLabel }: HeroVisual3DProps) {
     const CX = SIZE / 2;
     const CY = SIZE / 2 - 40;
 
-    let startTime: number | null = null;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let startTime: number | null = reduceMotion ? performance.now() - FINAL_TIME * 1000 : null;
     let frame: number;
 
     const draw = (now: number) => {
-      if (!startTime) startTime = now;
+      if (startTime === null) startTime = now;
       const elapsed = (now - startTime) / 1000;
       ctx.clearRect(0, 0, SIZE, SIZE);
 
@@ -181,7 +183,9 @@ export default function HeroVisual3D({ productLabel }: HeroVisual3DProps) {
         }
       }
 
-      frame = requestAnimationFrame(draw);
+      if (elapsed < FINAL_TIME) {
+        frame = requestAnimationFrame(draw);
+      }
     };
 
     frame = requestAnimationFrame(draw);

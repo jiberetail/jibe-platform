@@ -86,10 +86,7 @@ function NotFound() {
 function PageLoader() {
   return (
     <div className="flex min-h-[70vh] items-center justify-center bg-[#F7F7F4] pt-24" role="status" aria-live="polite">
-      <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[#777976]">
-        <span className="h-2 w-2 animate-pulse rounded-full bg-[#0076CE]" />
-        Loading Jibe
-      </div>
+      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#777976]">Loading Jibe</p>
     </div>
   );
 }
@@ -112,8 +109,8 @@ function AppContent() {
           <Route path="/jibe-pro/how-it-works" element={<HowItWorksPage />} />
           <Route path="/how-it-works" element={<Navigate to="/jibe-pro/how-it-works" replace />} />
           <Route path="/demo" element={<BookDemoPage />} />
-          <Route path="/clients" element={<Navigate to="/jibe-pro#reason-02" replace />} />
-          <Route path="/customers" element={<Navigate to="/jibe-pro#reason-02" replace />} />
+          <Route path="/clients" element={<Navigate to="/jibe-pro#clients" replace />} />
+          <Route path="/customers" element={<Navigate to="/jibe-pro#clients" replace />} />
           <Route path="/company" element={<Navigate to="/company/leadership" replace />} />
           <Route path="/company/:section" element={<CompanyPage />} />
           <Route path="/leadership" element={<Navigate to="/company/leadership" replace />} />

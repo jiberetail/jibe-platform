@@ -8,13 +8,13 @@ const portalProducts = [
     key: "pro",
     label: "PRO",
     href: "/jibe-pro",
-    ariaLabel: "Explore Jibe Pro, customer experience intelligence",
+    ariaLabel: "Explore Jibe Pro, customer experience performance",
   },
   {
     key: "retail",
     label: "RETAIL",
     href: "/jibe-retail",
-    ariaLabel: "Explore Jibe Retail, in-store demand intelligence",
+    ariaLabel: "Explore Jibe Retail, in-venue surveys and ecommerce",
   },
   {
     key: "ai",

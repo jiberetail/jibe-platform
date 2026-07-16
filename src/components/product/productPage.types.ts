@@ -1,0 +1,112 @@
+export type ProductLabel = "Pro" | "Retail" | "AI";
+
+export type ProductSlug = "pro" | "retail" | "ai";
+
+export type ProductHeroContent = {
+  productName: string;
+  productLabel: ProductLabel;
+  descriptor: string;
+  line1: string;
+  line2: string;
+  description: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref: string;
+  secondaryLabel: string;
+  proofPoints: readonly string[];
+};
+
+export type ProductSectionIntro = {
+  eyebrow: string;
+  title: string;
+  description: string;
+};
+
+export type ProductPathway = {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  outcomes: readonly string[];
+};
+
+export type ProductMediaItem = {
+  id: string;
+  label: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  src?: string;
+  alt?: string;
+  images?: readonly {
+    src: string;
+    alt: string;
+  }[];
+  orientation?: "landscape" | "portrait";
+  disclosure?: string;
+};
+
+export type ProductWorkflowStep = {
+  number: string;
+  title: string;
+  description: string;
+};
+
+export type ProductCapability = {
+  title: string;
+  description: string;
+};
+
+export type ProductProofMetric = {
+  value: string;
+  label: string;
+};
+
+export type ProductProofItem = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  metrics?: readonly ProductProofMetric[];
+};
+
+export type ProductLogo = {
+  src: string;
+  alt: string;
+};
+
+export type ProductPageConfig = {
+  slug: ProductSlug;
+  hero: ProductHeroContent;
+  pathways: ProductSectionIntro & {
+    items: readonly [ProductPathway, ProductPathway, ProductPathway];
+  };
+  media: ProductSectionIntro & {
+    items: readonly ProductMediaItem[];
+  };
+  workflow: ProductSectionIntro & {
+    steps: readonly [
+      ProductWorkflowStep,
+      ProductWorkflowStep,
+      ProductWorkflowStep,
+      ProductWorkflowStep,
+    ];
+  };
+  capabilities: ProductSectionIntro & {
+    items: readonly ProductCapability[];
+  };
+  proof: ProductSectionIntro & {
+    items: readonly ProductProofItem[];
+    logos?: {
+      label: string;
+      items: readonly ProductLogo[];
+    };
+    note?: string;
+  };
+  cta: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    href: string;
+    label: string;
+  };
+};

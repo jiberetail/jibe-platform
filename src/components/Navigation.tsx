@@ -6,17 +6,17 @@ import { assetUrl } from "../assetUrl";
 const products = [
   {
     label: "Jibe Pro",
-    description: "Develop people. Elevate performance.",
+    description: "Coach with evidence. Prove what changed.",
     href: "/jibe-pro",
   },
   {
     label: "Jibe Retail",
-    description: "Capture missed demand. Recover revenue.",
+    description: "Survey, extend the aisle, or connect both.",
     href: "/jibe-retail",
   },
   {
     label: "Jibe AI",
-    description: "Turn interaction data into action.",
+    description: "Explain outcomes. Know the next move.",
     href: "/jibe-ai",
   },
 ];
@@ -45,7 +45,7 @@ const companyPages = [
 ];
 
 const sectionLinks = [
-  { label: "Clients", href: "/jibe-pro#reason-02" },
+  { label: "Clients", href: "/jibe-pro#clients" },
   { label: "Contact", href: "/demo" },
 ];
 
@@ -59,6 +59,9 @@ export default function Navigation() {
   const [portalNavVisible, setPortalNavVisible] = useState(!isPortalLanding);
   const productsRef = useRef<HTMLDivElement>(null);
   const companyRef = useRef<HTMLDivElement>(null);
+  const mobileDialogRef = useRef<HTMLDivElement>(null);
+  const mobileTriggerRef = useRef<HTMLButtonElement>(null);
+  const mobileCloseRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -104,6 +107,62 @@ export default function Navigation() {
       document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
+  }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const backgroundElements = Array.from(document.querySelectorAll<HTMLElement>("header, main, footer"));
+    const previousInertState = backgroundElements.map((element) => element.inert);
+    backgroundElements.forEach((element) => {
+      element.inert = true;
+    });
+    const focusFrame = window.requestAnimationFrame(() => mobileCloseRef.current?.focus());
+
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab" || !mobileDialogRef.current) return;
+
+      const focusable = Array.from(
+        mobileDialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((element) => element.getClientRects().length > 0);
+
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", trapFocus);
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener("keydown", trapFocus);
+      document.body.style.overflow = previousOverflow;
+      backgroundElements.forEach((element, index) => {
+        element.inert = previousInertState[index];
+      });
+      mobileTriggerRef.current?.focus();
+    };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    const desktopBreakpoint = window.matchMedia("(min-width: 1024px)");
+    const closeAtDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setMobileOpen(false);
+    };
+
+    desktopBreakpoint.addEventListener("change", closeAtDesktop);
+    return () => desktopBreakpoint.removeEventListener("change", closeAtDesktop);
   }, []);
 
   if (isPortalLanding && !portalNavVisible) return null;
@@ -218,6 +277,7 @@ export default function Navigation() {
           </div>
 
           <button
+            ref={mobileTriggerRef}
             type="button"
             onClick={() => setMobileOpen(true)}
             className="rounded-lg p-2.5 text-[#2F2F2F] hover:bg-white focus-visible:outline-2 focus-visible:outline-[#0076CE] lg:hidden"
@@ -229,12 +289,19 @@ export default function Navigation() {
       </header>
 
       {mobileOpen && (
-        <div className="fixed inset-0 z-[100] flex flex-col bg-[#F7F7F4] lg:hidden" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <div
+          ref={mobileDialogRef}
+          className="fixed inset-0 z-[100] flex flex-col bg-[#F7F7F4] lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
+        >
           <div className="flex h-[76px] items-center justify-between border-b border-[#D9D9D5] px-5 sm:px-6">
-            <Link to="/" aria-label="Jibe home">
+            <Link to="/" aria-label="Jibe home" onClick={() => setMobileOpen(false)}>
               <img src={assetUrl("assets/logos/jibe.png")} alt="Jibe" className="h-[46px] w-auto object-contain" />
             </Link>
             <button
+              ref={mobileCloseRef}
               type="button"
               onClick={() => setMobileOpen(false)}
               className="rounded-lg p-2.5 text-[#2F2F2F] hover:bg-white"
@@ -248,7 +315,12 @@ export default function Navigation() {
             <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-[#777976]">Products</p>
             <div className="grid gap-2">
               {products.map((product) => (
-                <Link key={product.href} to={product.href} className="rounded-2xl border border-[#D9D9D5] bg-white p-5">
+                <Link
+                  key={product.href}
+                  to={product.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="rounded-2xl border border-[#D9D9D5] bg-white p-5"
+                >
                   <span className="flex items-center justify-between gap-4 text-[20px] font-semibold text-[#2F2F2F]">
                     {product.label}
                     <ArrowUpRight size={18} className="text-[#0076CE]" />
@@ -261,7 +333,12 @@ export default function Navigation() {
             <div className="mt-8 border-t border-[#D9D9D5] pt-4">
               <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[#777976]">Company</p>
               {companyPages.map((page) => (
-                <Link key={page.href} to={page.href} className="flex items-center justify-between border-b border-[#D9D9D5] py-3.5 text-[19px] font-medium text-[#2F2F2F]">
+                <Link
+                  key={page.href}
+                  to={page.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-between border-b border-[#D9D9D5] py-3.5 text-[19px] font-medium text-[#2F2F2F]"
+                >
                   {page.label}
                   <ArrowUpRight size={17} className="text-[#9B9D9F]" />
                 </Link>
@@ -270,7 +347,12 @@ export default function Navigation() {
 
             <div className="mt-6 border-t border-[#D9D9D5] pt-1">
               {sectionLinks.map((link) => (
-                <Link key={link.href} to={link.href} className="flex items-center justify-between border-b border-[#D9D9D5] py-4 text-[22px] font-medium text-[#2F2F2F]">
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-between border-b border-[#D9D9D5] py-4 text-[22px] font-medium text-[#2F2F2F]"
+                >
                   {link.label}
                   <ArrowUpRight size={18} className="text-[#9B9D9F]" />
                 </Link>
@@ -279,7 +361,11 @@ export default function Navigation() {
           </div>
 
           <div className="border-t border-[#D9D9D5] p-5 sm:p-6">
-            <Link to="/demo" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0076CE] px-6 py-4 text-[15px] font-semibold text-white">
+            <Link
+              to="/demo"
+              onClick={() => setMobileOpen(false)}
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0076CE] px-6 py-4 text-[15px] font-semibold text-white"
+            >
               Book a Demo
               <ArrowUpRight size={16} />
             </Link>

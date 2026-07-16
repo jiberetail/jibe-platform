@@ -51,6 +51,12 @@ export default function ProductHeroSection({
     setTypedCount(0);
     setContentVisible(false);
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setTypedCount(fullText.length);
+      setContentVisible(true);
+      return;
+    }
+
     const pause = setTimeout(() => {
       intervalRef.current = setInterval(() => {
         setTypedCount((previous) => {
@@ -75,8 +81,8 @@ export default function ProductHeroSection({
   }, [fullText]);
 
   const secondaryClasses =
-    "rounded-lg border px-7 py-3.5 text-[14px] font-semibold transition-colors hover:border-[#0076CE] hover:text-[#0076CE]";
-  const secondaryStyle = { borderColor: "#D9D9D5", color: "#6D6D69" };
+    "rounded-md border px-7 py-3.5 text-[14px] font-semibold transition-colors hover:border-[#0076CE] hover:text-[#0076CE]";
+  const secondaryStyle = { borderColor: "#C9D3DE", color: "#26364A" };
   const fallbackScrollTarget = `product-details-${productLabel.toLowerCase()}`;
   const scrollTargetHref = secondaryHref.startsWith("#")
     ? secondaryHref
@@ -102,13 +108,14 @@ export default function ProductHeroSection({
               style={{
                 opacity: contentVisible ? 1 : 0,
                 transform: contentVisible ? "translateY(0)" : "translateY(8px)",
+                visibility: contentVisible ? "visible" : "hidden",
               }}
             >
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#6D6D69]">
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0076CE]">
                 {productName}
               </span>
-              <span className="h-3 w-px bg-[#D9D9D5]" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#6D6D69]">
+              <span className="h-3 w-px bg-[#C9D3DE]" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#5B6B80]">
                 {descriptor}
               </span>
             </div>
@@ -144,6 +151,7 @@ export default function ProductHeroSection({
                 opacity: contentVisible ? 1 : 0,
                 transform: contentVisible ? "translateY(0)" : "translateY(10px)",
                 transition: "opacity 0.5s ease 0.08s, transform 0.5s ease 0.08s",
+                visibility: contentVisible ? "visible" : "hidden",
               }}
             >
               {description}
@@ -155,11 +163,12 @@ export default function ProductHeroSection({
                 opacity: contentVisible ? 1 : 0,
                 transform: contentVisible ? "translateY(0)" : "translateY(10px)",
                 transition: "opacity 0.5s ease 0.16s, transform 0.5s ease 0.16s",
+                visibility: contentVisible ? "visible" : "hidden",
               }}
             >
               <Link
                 to={primaryHref}
-                className="rounded-lg bg-[#0076CE] px-7 py-3.5 text-[14px] font-semibold text-white shadow-[0_2px_8px_rgba(0,118,206,0.22)] transition-colors hover:bg-[#005FA7]"
+                className="rounded-md bg-[#0076CE] px-7 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-[#005FA7]"
               >
                 {primaryLabel}
               </Link>
@@ -174,46 +183,47 @@ export default function ProductHeroSection({
               )}
             </div>
 
-            <div
-              className="grid max-w-[520px] grid-cols-2 gap-2"
-              style={{ opacity: contentVisible ? 1 : 0, transition: "opacity 0.5s ease 0.24s" }}
+            <ul
+              className="jibe-product-proof-list grid max-w-[560px] grid-cols-2"
+              style={{
+                opacity: contentVisible ? 1 : 0,
+                transition: "opacity 0.5s ease 0.24s",
+                visibility: contentVisible ? "visible" : "hidden",
+              }}
             >
               {proofPoints.map((label) => (
-                <span
+                <li
                   key={label}
                   className="jibe-product-proof"
                 >
-                  <i aria-hidden="true" />
                   {label}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
 
             <div
               className="mt-8 lg:hidden"
-              style={{ opacity: contentVisible ? 1 : 0, transition: "opacity 0.5s ease 0.3s" }}
+              style={{
+                opacity: contentVisible ? 1 : 0,
+                transition: "opacity 0.5s ease 0.3s",
+                visibility: contentVisible ? "visible" : "hidden",
+              }}
             >
               <ScrollCue href={scrollTargetHref} />
             </div>
           </div>
 
           <div
-            className="flex items-center justify-center"
+            className="jibe-product-hero__visual flex items-center justify-center"
             style={{
               opacity: contentVisible ? 1 : 0,
               transform: contentVisible ? "translateY(0)" : "translateY(16px)",
               transition: "opacity 0.7s ease 0.12s, transform 0.7s ease 0.12s",
+              visibility: contentVisible ? "visible" : "hidden",
             }}
           >
-            <div className="jibe-product-window w-full max-w-[580px]">
-              <div className="jibe-product-window__bar" aria-hidden="true">
-                <span className="jibe-product-window__lights"><i /><i /><i /></span>
-                <span>Jibe {productLabel} / Platform view</span>
-                <span className="jibe-product-window__status">Live</span>
-              </div>
-              <div className="jibe-product-window__canvas">
-                <HeroVisual3D productLabel={productLabel} />
-              </div>
+            <div className="jibe-product-hero__halo w-full max-w-[580px]">
+              <HeroVisual3D productLabel={productLabel} />
             </div>
           </div>
         </div>
@@ -221,7 +231,11 @@ export default function ProductHeroSection({
 
       <div
         className="absolute bottom-5 left-1/2 z-10 hidden -translate-x-1/2 lg:block"
-        style={{ opacity: contentVisible ? 1 : 0, transition: "opacity 0.5s ease 0.3s" }}
+        style={{
+          opacity: contentVisible ? 1 : 0,
+          transition: "opacity 0.5s ease 0.3s",
+          visibility: contentVisible ? "visible" : "hidden",
+        }}
       >
         <ScrollCue href={scrollTargetHref} />
       </div>

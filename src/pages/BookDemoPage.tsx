@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router";
 const productOptions = [
   { value: "all", label: "Help me choose", description: "A guided look across the Jibe portfolio" },
   { value: "pro", label: "Jibe Pro", description: "Customer experience and frontline performance" },
-  { value: "retail", label: "Jibe Retail", description: "Missed demand, fulfillment, and retail intelligence" },
+  { value: "retail", label: "Jibe Retail", description: "In-venue surveys, ecommerce, or both" },
   { value: "ai", label: "Jibe AI", description: "Interaction intelligence, prediction, and action" },
 ];
 
@@ -69,11 +69,11 @@ export default function BookDemoPage() {
   };
 
   return (
-    <main className="jibe-demo-page min-h-screen bg-[#F7F7F4] px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
+    <main className="min-h-screen bg-[#F4F7F9] px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
       <div className="mx-auto grid max-w-[1240px] gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-        <div className="jibe-demo-intro">
-          <p className="jibe-ui-eyebrow inline-flex">Book a demo</p>
-          <h1 className="mt-6 font-['Inter'] text-[46px] font-semibold leading-[1] tracking-[-0.04em] text-[#2F2F2F] sm:text-[62px]">
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#0076CE]">Book a demo</p>
+          <h1 className="mt-6 font-['Instrument_Serif'] text-[54px] leading-[0.96] tracking-[-0.025em] text-[#243443] sm:text-[70px]">
             Let&apos;s make every interaction count.
           </h1>
           <p className="mt-7 max-w-[500px] text-[16px] leading-[1.7] text-[#686A6D]">
@@ -89,32 +89,36 @@ export default function BookDemoPage() {
             ))}
           </div>
 
-          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            <a href="mailto:info@zacoustic.com" className="rounded-2xl border border-[#D9D9D5] bg-white p-5 transition-colors hover:border-[#0076CE]">
+          <div className="mt-12 divide-y divide-[#D7E0E8] border-y border-[#D7E0E8]">
+            <a href="mailto:info@zacoustic.com" className="flex items-center gap-4 py-5 transition-colors hover:text-[#0076CE]">
               <Mail size={18} className="text-[#0076CE]" />
-              <span className="mt-4 block font-mono text-[9px] uppercase tracking-[0.18em] text-[#8B8D89]">Email</span>
-              <span className="mt-1 block text-[13px] font-semibold text-[#2F2F2F]">info@zacoustic.com</span>
+              <span>
+                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#7A8792]">Email</span>
+                <span className="mt-1 block text-[13px] font-semibold text-[#2F3D49]">info@zacoustic.com</span>
+              </span>
             </a>
-            <a href="tel:+18777342473" className="rounded-2xl border border-[#D9D9D5] bg-white p-5 transition-colors hover:border-[#0076CE]">
+            <a href="tel:+18777342473" className="flex items-center gap-4 py-5 transition-colors hover:text-[#0076CE]">
               <Phone size={18} className="text-[#0076CE]" />
-              <span className="mt-4 block font-mono text-[9px] uppercase tracking-[0.18em] text-[#8B8D89]">Phone</span>
-              <span className="mt-1 block text-[13px] font-semibold text-[#2F2F2F]">(877) 734-2473</span>
+              <span>
+                <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#7A8792]">Phone</span>
+                <span className="mt-1 block text-[13px] font-semibold text-[#2F3D49]">(877) 734-2473</span>
+              </span>
             </a>
           </div>
         </div>
 
-        <div className="jibe-ui-panel rounded-[28px] border border-[#D9D9D5] border-l-4 border-l-[#0076CE] bg-white p-6 shadow-[0_24px_70px_rgba(25,31,38,0.09)] sm:p-8 lg:p-10">
+        <div className="border-t-2 border-[#0076CE] pt-8">
           <div className="border-b border-[#E1E3DF] pb-7">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#777976]">Choose your conversation</p>
-            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            <div className="mt-4 grid gap-px border border-[#D7E0E8] bg-[#D7E0E8] sm:grid-cols-2">
               {productOptions.map((option) => (
                 <button
                   type="button"
                   key={option.value}
                   onClick={() => setProduct(option.value)}
                   aria-pressed={product === option.value}
-                  className={`rounded-lg border p-4 text-left transition-all focus-visible:outline-2 focus-visible:outline-[#0076CE] ${
-                    product === option.value ? "border-[#0076CE] bg-[#EDF7FD]" : "border-[#D9D9D5] bg-white hover:border-[#9FCFEB]"
+                  className={`p-4 text-left transition-colors focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-[#0076CE] ${
+                    product === option.value ? "bg-[#EDF7FD]" : "bg-white hover:bg-[#F5F7FA]"
                   }`}
                 >
                   <span className={`block text-[13px] font-semibold ${product === option.value ? "text-[#0076CE]" : "text-[#2F2F2F]"}`}>{option.label}</span>
@@ -151,7 +155,7 @@ export default function BookDemoPage() {
               <textarea id="message" value={form.message} onChange={(event) => setField("message", event.target.value)} className={`${fieldClass(false)} min-h-[120px] resize-y`} placeholder="Tell us about the challenge, team, or customer journey you want to explore." />
             </Field>
 
-            <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0076CE] px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-[#005FA7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0076CE]">
+            <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-md bg-[#0076CE] px-6 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-[#005FA7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0076CE]">
               Prepare My Demo Request
               <ArrowRight size={16} />
             </button>
@@ -161,7 +165,7 @@ export default function BookDemoPage() {
             </p>
 
             {emailPrepared && (
-              <div role="status" className="rounded-xl border border-[#B9DDF4] bg-[#EDF7FD] p-4 text-[12px] leading-relaxed text-[#005A9C]">
+              <div role="status" className="border border-[#B9DDF4] bg-[#EDF7FD] p-4 text-[12px] leading-relaxed text-[#005A9C]">
                 Your demo request is ready in your email app. If it did not open, email <a className="font-semibold underline" href="mailto:info@zacoustic.com">info@zacoustic.com</a>.
               </div>
             )}
@@ -185,5 +189,5 @@ function Field({ id, label, error, required, children }: { id: string; label: st
 }
 
 function fieldClass(invalid: boolean) {
-  return `w-full rounded-lg border bg-white px-4 py-3.5 text-[14px] text-[#2F2F2F] outline-none transition-all placeholder:text-[#A7AAA5] focus:border-[#0076CE] focus:ring-4 focus:ring-[#0076CE]/10 ${invalid ? "border-[#B85A50]" : "border-[#D2D4D0]"}`;
+  return `w-full rounded-md border bg-white px-4 py-3.5 text-[14px] text-[#2F2F2F] outline-none transition-all placeholder:text-[#A7AAA5] focus:border-[#0076CE] focus:ring-4 focus:ring-[#0076CE]/10 ${invalid ? "border-[#B85A50]" : "border-[#D2D4D0]"}`;
 }
