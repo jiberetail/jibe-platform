@@ -41,8 +41,9 @@ export type ProductMediaItem = {
   images?: readonly {
     src: string;
     alt: string;
+    label?: string;
   }[];
-  orientation?: "landscape" | "portrait";
+  orientation?: "landscape" | "portrait" | "tall";
   disclosure?: string;
 };
 

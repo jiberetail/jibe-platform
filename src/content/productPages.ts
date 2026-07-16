@@ -360,14 +360,17 @@ export const productPages = {
             {
               src: "assets/podiums/jibe-retail-mlb.png",
               alt: "Jibe Retail podium with an MLB wrap and a merchandise discovery experience on screen.",
+              label: "MLB NYC",
             },
             {
               src: "assets/podiums/jibe-retail-nhl.png",
               alt: "Jibe Retail podium with an NHL wrap and an ecommerce home-delivery experience on screen.",
+              label: "NHL",
             },
             {
               src: "assets/podiums/jibe-retail-fan-town.png",
               alt: "Jibe Retail podium with a Fan Town wrap and a Spanish-language product finder on screen.",
+              label: "Fan Town Mexico",
             },
           ],
           orientation: "portrait",
@@ -579,6 +582,7 @@ export const productPages = {
             "Move from performance and quartile analysis to agent impact, transcripts, and best-practice guidance grounded in stronger outcomes.",
           src: "assets/jibe-ai/best-practice-opportunity.png",
           alt: "Jibe AI root cause analysis showing performance, quartile analysis, agent impact, and recommended best practices.",
+          orientation: "tall",
           disclosure: "Product interface shown with example program data.",
         },
       ],

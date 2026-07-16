@@ -236,13 +236,18 @@ export default function ClientsPage() {
 function ProductContextVisual({ product }: { product: (typeof productContexts)[number]["key"] }) {
   if (product === "retail") {
     return (
-      <div className="grid aspect-[16/10] grid-cols-3 gap-2 overflow-hidden rounded-2xl bg-[#101820] p-2">
+      <div className="grid aspect-[16/10] grid-cols-3 gap-2 overflow-hidden rounded-[26px] border border-white/10 bg-[#101820] p-3 shadow-[0_24px_54px_rgba(16,24,32,0.22)]">
         {[
-          ["assets/podiums/jibe-retail-mlb.png", "Representative MLB-branded Jibe Retail podium"],
-          ["assets/podiums/jibe-retail-nhl.png", "Representative NHL-branded Jibe Retail podium"],
-          ["assets/podiums/jibe-retail-fan-town.png", "Representative Fan Town-branded Jibe Retail podium"],
-        ].map(([src, alt]) => (
-          <img key={src} src={assetUrl(src)} alt={alt} loading="lazy" decoding="async" className="h-full w-full rounded-xl object-cover" />
+          ["assets/podiums/jibe-retail-mlb.png", "Representative MLB-branded Jibe Retail podium", "MLB NYC"],
+          ["assets/podiums/jibe-retail-nhl.png", "Representative NHL-branded Jibe Retail podium", "NHL"],
+          ["assets/podiums/jibe-retail-fan-town.png", "Representative Fan Town-branded Jibe Retail podium", "Fan Town"],
+        ].map(([src, alt, label]) => (
+          <figure key={src} className="relative flex min-w-0 items-center justify-center overflow-hidden rounded-[15px] bg-[#16212B]">
+            <img src={assetUrl(src)} alt={alt} loading="lazy" decoding="async" className="h-full w-full object-contain" />
+            <figcaption className="absolute left-2 top-2 rounded-md bg-[#101820]/90 px-2 py-1 font-mono text-[6px] font-semibold uppercase tracking-[0.12em] text-white">
+              {label}
+            </figcaption>
+          </figure>
         ))}
       </div>
     );
@@ -260,8 +265,14 @@ function ProductContextVisual({ product }: { product: (typeof productContexts)[n
         };
 
   return (
-    <div className="aspect-[16/10] overflow-hidden rounded-2xl border border-[#D9D9D9] bg-white p-2">
-      <img src={assetUrl(image.src)} alt={image.alt} loading="lazy" decoding="async" className="h-full w-full rounded-xl object-contain" />
+    <div className="flex aspect-[16/10] items-center justify-center overflow-hidden rounded-[26px] border border-white/10 bg-[#101820] p-4 shadow-[0_24px_54px_rgba(16,24,32,0.22)]">
+      <img
+        src={assetUrl(image.src)}
+        alt={image.alt}
+        loading="lazy"
+        decoding="async"
+        className="h-auto max-h-full w-full rounded-[16px] border border-white/70 bg-white object-contain shadow-[0_16px_32px_rgba(0,0,0,0.28)]"
+      />
     </div>
   );
 }

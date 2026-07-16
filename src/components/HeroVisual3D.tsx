@@ -26,9 +26,6 @@ function drawArc(
   startA: number, endA: number, lw: number
 ) {
   ctx.save();
-  ctx.shadowColor   = "rgba(0,60,140,0.15)";
-  ctx.shadowBlur    = 5;
-  ctx.shadowOffsetY = 2;
   ctx.beginPath();
   ctx.ellipse(cx, cy, rx, ry, 0, startA, endA);
   ctx.strokeStyle = "#0076CE";

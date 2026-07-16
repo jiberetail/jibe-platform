@@ -6,12 +6,20 @@ import {
   type KeyboardEvent,
   type RefObject,
 } from "react";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Maximize2,
+  MousePointerClick,
+} from "lucide-react";
 import { Link } from "react-router";
 import { assetUrl } from "../../assetUrl";
 import ProductHeroSection from "../ProductHeroSection";
 import type {
   ProductPageConfig,
+  ProductMediaItem,
   ProductPathway,
   ProductSectionIntro,
 } from "./productPage.types";
@@ -96,6 +104,46 @@ function SectionIntro({
   );
 }
 
+function InteractionPrompt({
+  id,
+  title,
+  description,
+  current,
+  total,
+  dark = false,
+}: {
+  id?: string;
+  title: string;
+  description: string;
+  current: number;
+  total: number;
+  dark?: boolean;
+}) {
+  return (
+    <div
+      id={id}
+      className="flex flex-wrap items-center justify-between gap-4 px-1 py-1"
+    >
+      <div className="flex items-center gap-3">
+        <span
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
+            dark ? "bg-[#0076CE] text-white" : "bg-white text-[#0076CE] shadow-[0_2px_8px_rgba(24,24,24,0.08)]"
+          }`}
+        >
+          <MousePointerClick aria-hidden="true" size={17} />
+        </span>
+        <span>
+          <span className={`block text-[12px] font-semibold ${dark ? "text-white" : "text-[#26364A]"}`}>{title}</span>
+          <span className={`mt-0.5 block text-[11px] ${dark ? "text-white/55" : "text-[#5F5F5F]"}`}>{description}</span>
+        </span>
+      </div>
+      <span className={`font-mono text-[10px] font-semibold tracking-[0.16em] ${dark ? "text-white/55" : "text-[#777777]"}`}>
+        {String(current).padStart(2, "0")} / {String(total).padStart(2, "0")}
+      </span>
+    </div>
+  );
+}
+
 function ProductAnchorNav({ productName }: { productName: string }) {
   const links = [
     ["#overview", "Overview"],
@@ -109,16 +157,20 @@ function ProductAnchorNav({ productName }: { productName: string }) {
       className="product-page__anchor-nav sticky top-[76px] z-20 border-b border-[#D9D9D9] bg-white/95 backdrop-blur-sm"
       aria-label={`${productName} page sections`}
     >
-      <div className="mx-auto flex max-w-[1320px] gap-7 overflow-x-auto px-6 py-4 lg:px-10">
-        {links.map(([href, label]) => (
-          <a
-            key={href}
-            href={href}
-            className={`shrink-0 border-b border-transparent pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5F5F5F] transition-colors hover:border-[#0076CE] hover:text-[#0076CE] ${focusRing}`}
-          >
-            {label}
-          </a>
-        ))}
+      <div className="mx-auto flex max-w-[1320px] items-center gap-3 overflow-x-auto px-6 py-3 lg:px-10">
+        <span className="shrink-0 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-[#777777]">On this page</span>
+        <span aria-hidden="true" className="h-5 w-px shrink-0 bg-[#D9D9D9]" />
+        <div className="flex gap-2">
+          {links.map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className={`flex min-h-10 shrink-0 items-center rounded-full border border-[#D9D9D9] bg-white px-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#5F5F5F] transition-colors hover:border-[#0076CE] hover:bg-[#F5F5F5] hover:text-[#0076CE] ${focusRing}`}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
       </div>
     </nav>
   );
@@ -138,11 +190,19 @@ function ProductPathways({ config }: { config: ProductPageConfig["pathways"] }) 
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
-        <div className="mt-14 border-y border-[#D9D9D9] lg:mt-16">
+        <div className="mt-14 lg:mt-16">
+          <InteractionPrompt
+            id={`${idPrefix}-pathway-instructions`}
+            title="Choose what to explore"
+            description="Select a focus area to change the story below."
+            current={activeIndex + 1}
+            total={config.items.length}
+          />
           <div
             role="tablist"
             aria-label={config.eyebrow}
-            className="product-page__pathway-tabs flex overflow-x-auto border-b border-[#D9D9D9]"
+            aria-describedby={`${idPrefix}-pathway-instructions`}
+            className="product-page__pathway-tabs mt-3 grid grid-cols-1 gap-2 rounded-2xl border border-[#D9D9D9] bg-[#F5F5F5] p-2 sm:grid-cols-3"
           >
             {config.items.map((item, index) => {
               const selected = index === activeIndex;
@@ -162,26 +222,28 @@ function ProductPathways({ config }: { config: ProductPageConfig["pathways"] }) 
                   onKeyDown={(event) =>
                     focusAndSelectTab(event, index, config.items.length, tabRefs, setActiveIndex)
                   }
-                  className={`relative min-w-[150px] flex-1 px-5 py-5 text-left text-[13px] font-semibold transition-colors sm:px-7 ${
-                    selected ? "text-[#0076CE]" : "text-[#5F5F5F] hover:text-[#26364A]"
+                  className={`group relative flex min-h-[76px] cursor-pointer touch-manipulation items-center rounded-xl border px-5 py-4 text-left text-[13px] font-semibold transition-all sm:px-6 ${
+                    selected
+                      ? "border-[#0076CE] bg-[#0076CE] text-white shadow-[0_8px_22px_rgba(0,118,206,0.2)]"
+                      : "border-[#D9D9D9] bg-white text-[#26364A] hover:-translate-y-0.5 hover:border-[#0076CE] hover:text-[#0076CE] hover:shadow-[0_8px_20px_rgba(24,24,24,0.08)]"
                   } ${focusRing}`}
                 >
-                  <span className="mr-3 text-[10px] font-bold tracking-[0.15em] text-[#888888]">
+                  <span className={`mr-3 text-[10px] font-bold tracking-[0.15em] ${selected ? "text-white/65" : "text-[#888888]"}`}>
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  {item.label}
-                  <span
-                    aria-hidden="true"
-                    className={`absolute inset-x-0 bottom-0 h-0.5 bg-[#0076CE] transition-opacity ${
-                      selected ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
+                  <span>{item.label}</span>
+                  <span className={`ml-auto flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.12em] ${selected ? "text-white/75" : "text-[#777777] group-hover:text-[#0076CE]"}`}>
+                    {selected ? "Selected" : "Explore"}
+                    <ChevronRight aria-hidden="true" size={13} />
+                  </span>
                 </button>
               );
             })}
           </div>
 
-          <PathwayPanel key={activePathway.id} pathway={activePathway} idPrefix={idPrefix} />
+          <div className="mt-3 overflow-hidden rounded-2xl border border-[#D9D9D9] bg-white px-6 sm:px-8 lg:px-10">
+            <PathwayPanel key={activePathway.id} pathway={activePathway} idPrefix={idPrefix} />
+          </div>
         </div>
       </div>
     </section>
@@ -227,6 +289,8 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
     ...image,
     url: assetUrl(image.src),
   }));
+  const previousItem = () => setActiveIndex((current) => (current - 1 + config.items.length) % config.items.length);
+  const nextItem = () => setActiveIndex((current) => (current + 1) % config.items.length);
 
   return (
     <section
@@ -237,10 +301,42 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} dark />
 
         <div className="mt-14 lg:mt-16">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="min-w-[240px] flex-1">
+              <InteractionPrompt
+                id={`${idPrefix}-media-instructions`}
+                title="Choose a product view"
+                description="Select a role or experience to update the showcase."
+                current={activeIndex + 1}
+                total={config.items.length}
+                dark
+              />
+            </div>
+            <div className="flex shrink-0 gap-2" aria-label="Browse product views">
+              <button
+                type="button"
+                onClick={previousItem}
+                aria-label="Show previous product view"
+                className="flex h-12 w-12 cursor-pointer touch-manipulation items-center justify-center rounded-xl border border-white/15 bg-white/[0.06] text-white transition-colors hover:border-[#4A9CFF] hover:bg-[#0076CE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
+              >
+                <ChevronLeft aria-hidden="true" size={18} />
+              </button>
+              <button
+                type="button"
+                onClick={nextItem}
+                aria-label="Show next product view"
+                className="flex h-12 w-12 cursor-pointer touch-manipulation items-center justify-center rounded-xl border border-white/15 bg-white/[0.06] text-white transition-colors hover:border-[#4A9CFF] hover:bg-[#0076CE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
+              >
+                <ChevronRight aria-hidden="true" size={18} />
+              </button>
+            </div>
+          </div>
+
           <div
             role="tablist"
             aria-label={config.eyebrow}
-            className="product-page__media-tabs flex gap-7 overflow-x-auto border-b border-white/15"
+            aria-describedby={`${idPrefix}-media-instructions`}
+            className="product-page__media-tabs mt-3 flex flex-wrap gap-2 rounded-2xl border border-white/15 bg-white/[0.04] p-2"
           >
             {config.items.map((item, index) => {
               const selected = index === activeIndex;
@@ -260,17 +356,16 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                   onKeyDown={(event) =>
                     focusAndSelectTab(event, index, config.items.length, tabRefs, setActiveIndex)
                   }
-                  className={`relative shrink-0 pb-4 text-[12px] font-semibold transition-colors ${
-                    selected ? "text-white" : "text-white/50 hover:text-white/80"
+                  className={`relative shrink-0 cursor-pointer touch-manipulation rounded-xl border px-4 py-3 text-left text-[12px] font-semibold transition-all ${
+                    selected
+                      ? "border-[#4A9CFF] bg-[#0076CE] text-white shadow-[0_8px_22px_rgba(0,118,206,0.24)]"
+                      : "border-white/10 bg-white/[0.04] text-white/60 hover:border-white/30 hover:bg-white/[0.09] hover:text-white"
                   } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]`}
                 >
+                  <span className={`mr-2 font-mono text-[9px] tracking-[0.12em] ${selected ? "text-white/65" : "text-white/35"}`}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   {item.label}
-                  <span
-                    aria-hidden="true"
-                    className={`absolute inset-x-0 bottom-0 h-0.5 bg-[#4A9CFF] transition-opacity ${
-                      selected ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
                 </button>
               );
             })}
@@ -281,9 +376,9 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
             role="tabpanel"
             aria-labelledby={`${idPrefix}-media-tab-${activeItem.id}`}
             tabIndex={0}
-            className="product-page__media-panel grid items-center gap-10 py-10 lg:grid-cols-12 lg:gap-12 lg:py-14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
+            className="product-page__media-panel grid gap-10 py-10 lg:grid-cols-12 lg:gap-12 lg:py-14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
           >
-            <div className="lg:col-span-4">
+            <div className="max-w-[760px] lg:col-span-8">
               <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">
                 {activeItem.eyebrow}
               </p>
@@ -291,57 +386,17 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                 {activeItem.title}
               </h3>
               <p className="mt-5 text-[14px] leading-[1.75] text-white/60">{activeItem.description}</p>
-              {imageUrl && (
-                <a
-                  href={imageUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-7 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#4A9CFF] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
-                >
-                  View full image <ArrowUpRight aria-hidden="true" size={14} />
-                </a>
-              )}
             </div>
 
-            <figure className="product-page__media-figure lg:col-span-8">
-              {imageUrl && (
-                <img
-                  key={activeItem.id}
-                  src={imageUrl}
-                  alt={activeItem.alt ?? ""}
-                  loading="lazy"
-                  decoding="async"
-                  className={`block rounded-2xl bg-white ${
-                    activeItem.orientation === "portrait"
-                      ? "mx-auto max-h-[760px] w-auto max-w-full"
-                      : "h-auto w-full"
-                  }`}
-                />
-              )}
-              {galleryImages && (
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  {galleryImages.map((image) => (
-                    <a
-                      key={image.src}
-                      href={image.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`View full image: ${image.alt}`}
-                      className="block overflow-hidden rounded-2xl bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
-                    >
-                      <img
-                        src={image.url}
-                        alt={image.alt}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-auto w-full rounded-2xl"
-                      />
-                    </a>
-                  ))}
-                </div>
-              )}
+            <figure className="product-page__media-figure lg:col-span-12">
+              <ProductMediaStage
+                key={activeItem.id}
+                item={activeItem}
+                imageUrl={imageUrl}
+                galleryImages={galleryImages}
+              />
               {activeItem.disclosure && (
-                <figcaption className="mt-4 text-[10px] leading-[1.6] text-white/45">
+                <figcaption className="mt-4 text-[11px] leading-[1.65] text-white/60">
                   {activeItem.disclosure}
                 </figcaption>
               )}
@@ -353,8 +408,90 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
   );
 }
 
+function ProductMediaStage({
+  item,
+  imageUrl,
+  galleryImages,
+}: {
+  item: ProductMediaItem;
+  imageUrl: string | null;
+  galleryImages?: readonly { src: string; alt: string; label?: string; url: string }[];
+}) {
+  const portrait = item.orientation === "portrait";
+  const tall = item.orientation === "tall";
+
+  return (
+    <div className="product-page__media-stage-shell">
+      <div className="product-page__media-stage-meta">
+        <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-white/55">{item.label} / Product view</span>
+        {imageUrl ? (
+          <a
+            href={imageUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-white/55 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF]"
+          >
+            Open full size <Maximize2 aria-hidden="true" size={13} />
+          </a>
+        ) : (
+          <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/45">{galleryImages?.length ?? 0} views</span>
+        )}
+      </div>
+
+      <div className={`product-page__media-stage ${portrait ? "product-page__media-stage--portrait" : tall ? "product-page__media-stage--tall" : "product-page__media-stage--landscape"}`}>
+        <div className={`product-page__media-stage-canvas ${portrait ? "product-page__media-stage-canvas--portrait" : tall ? "product-page__media-stage-canvas--tall" : "product-page__media-stage-canvas--landscape"}`}>
+          {imageUrl && (
+            <a
+              href={imageUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Open full-size product view: ${item.alt ?? item.label}`}
+              className={`product-page__media-shot-link product-page__media-shot-link--${item.id} group ${
+                ["team", "finder"].includes(item.id) ? "product-page__media-shot-link--trim-bottom" : ""
+              }`}
+            >
+              <img
+                src={imageUrl}
+                alt={item.alt ?? ""}
+                loading="lazy"
+                decoding="async"
+                className={`product-page__media-shot product-page__media-shot--${item.id} ${portrait ? "product-page__media-shot--portrait" : tall ? "product-page__media-shot--tall" : "product-page__media-shot--landscape"}`}
+              />
+              <span className="product-page__media-shot-action">
+                Open full size <Maximize2 aria-hidden="true" size={14} />
+              </span>
+            </a>
+          )}
+
+          {galleryImages && (
+            <div className="product-page__media-gallery">
+              {galleryImages.map((image) => (
+                <a
+                  key={image.src}
+                  href={image.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open full-size product view: ${image.alt}`}
+                  className="product-page__media-gallery-link group"
+                >
+                  <img src={image.url} alt={image.alt} loading="lazy" decoding="async" />
+                  {image.label && <span className="product-page__media-gallery-label">{image.label}</span>}
+                  <span className="product-page__media-shot-action">
+                    Open <Maximize2 aria-hidden="true" size={13} />
+                  </span>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const activeStep = config.steps[activeIndex];
   const idPrefix = normalizeId(useId());
 
@@ -366,28 +503,47 @@ function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) 
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
-        <div className="mt-14 border-y border-[#D9D9D9] lg:mt-16">
-          <ol className="grid grid-cols-1 md:grid-cols-4">
+        <div className="mt-14 lg:mt-16">
+          <InteractionPrompt
+            id={`${idPrefix}-workflow-instructions`}
+            title="Choose a step"
+            description="Select any stage to see what happens there."
+            current={activeIndex + 1}
+            total={config.steps.length}
+          />
+          <ol
+            role="tablist"
+            aria-label={config.eyebrow}
+            aria-describedby={`${idPrefix}-workflow-instructions`}
+            className="mt-3 grid grid-cols-2 gap-2 rounded-2xl border border-[#D9D9D9] bg-white p-2 md:grid-cols-4"
+          >
             {config.steps.map((step, index) => {
               const selected = index === activeIndex;
               return (
-                <li key={step.number} className="border-b border-[#D9D9D9] last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+                <li key={step.number} role="presentation">
                   <button
+                    ref={(node) => {
+                      tabRefs.current[index] = node;
+                    }}
+                    id={`${idPrefix}-workflow-tab-${index}`}
                     type="button"
-                    aria-pressed={selected}
+                    role="tab"
+                    aria-selected={selected}
+                    aria-controls={`${idPrefix}-workflow-panel`}
+                    tabIndex={selected ? 0 : -1}
                     onClick={() => setActiveIndex(index)}
-                    className={`product-page__workflow-step relative flex min-h-[104px] w-full items-center gap-4 px-5 py-5 text-left transition-colors hover:bg-white ${
-                      selected ? "bg-white text-[#0076CE]" : "text-[#5F5F5F]"
+                    onKeyDown={(event) =>
+                      focusAndSelectTab(event, index, config.steps.length, tabRefs, setActiveIndex)
+                    }
+                    className={`product-page__workflow-step group relative flex min-h-[96px] w-full cursor-pointer touch-manipulation items-center gap-4 rounded-xl border px-5 py-5 text-left transition-all ${
+                      selected
+                        ? "border-[#0076CE] bg-[#0076CE] text-white shadow-[0_8px_22px_rgba(0,118,206,0.2)]"
+                        : "border-[#D9D9D9] bg-[#F7F7F7] text-[#26364A] hover:-translate-y-0.5 hover:border-[#0076CE] hover:bg-white hover:text-[#0076CE] hover:shadow-[0_8px_20px_rgba(24,24,24,0.08)]"
                     } ${focusRing}`}
                   >
-                    <span className="text-[10px] font-bold tracking-[0.16em] text-[#888888]">{step.number}</span>
+                    <span className={`text-[10px] font-bold tracking-[0.16em] ${selected ? "text-white/65" : "text-[#888888]"}`}>{step.number}</span>
                     <span className="text-[14px] font-semibold">{step.title}</span>
-                    <span
-                      aria-hidden="true"
-                      className={`absolute inset-x-0 top-0 h-0.5 bg-[#0076CE] transition-opacity ${
-                        selected ? "opacity-100" : "opacity-0"
-                      }`}
-                    />
+                    <ChevronRight aria-hidden="true" size={15} className={`ml-auto ${selected ? "text-white/75" : "text-[#888888] group-hover:text-[#0076CE]"}`} />
                   </button>
                 </li>
               );
@@ -397,7 +553,10 @@ function ProductWorkflow({ config }: { config: ProductPageConfig["workflow"] }) 
           <div
             key={activeStep.number}
             id={`${idPrefix}-workflow-panel`}
-            className="product-page__workflow-panel grid gap-5 border-t border-[#D9D9D9] bg-white px-6 py-8 sm:px-8 lg:grid-cols-12 lg:px-10 lg:py-10"
+            role="tabpanel"
+            aria-labelledby={`${idPrefix}-workflow-tab-${activeIndex}`}
+            tabIndex={0}
+            className="product-page__workflow-panel mt-3 grid gap-5 rounded-2xl border border-[#D9D9D9] bg-white px-6 py-8 sm:px-8 lg:grid-cols-12 lg:px-10 lg:py-10"
             aria-live="polite"
           >
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#0076CE] lg:col-span-2">

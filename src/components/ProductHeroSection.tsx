@@ -81,8 +81,7 @@ export default function ProductHeroSection({
   }, [fullText]);
 
   const secondaryClasses =
-    "rounded-md border px-7 py-3.5 text-[14px] font-semibold transition-colors hover:border-[#0076CE] hover:text-[#0076CE]";
-  const secondaryStyle = { borderColor: "#CCCCCC", color: "#26364A" };
+    "rounded-md border border-[#CCCCCC] px-7 py-3.5 text-[14px] font-semibold text-[#26364A] transition-colors hover:border-[#0076CE] hover:text-[#0076CE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0076CE] focus-visible:ring-offset-3";
   const fallbackScrollTarget = `product-details-${productLabel.toLowerCase()}`;
   const scrollTargetHref = secondaryHref.startsWith("#")
     ? secondaryHref
@@ -168,16 +167,16 @@ export default function ProductHeroSection({
             >
               <Link
                 to={primaryHref}
-                className="rounded-md bg-[#0076CE] px-7 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-[#005FA7]"
+                className="rounded-md bg-[#0076CE] px-7 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-[#005FA7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0076CE] focus-visible:ring-offset-3"
               >
                 {primaryLabel}
               </Link>
               {secondaryHref.startsWith("#") ? (
-                <a href={secondaryHref} className={secondaryClasses} style={secondaryStyle}>
+                <a href={secondaryHref} className={secondaryClasses}>
                   {secondaryLabel}
                 </a>
               ) : (
-                <Link to={secondaryHref} className={secondaryClasses} style={secondaryStyle}>
+                <Link to={secondaryHref} className={secondaryClasses}>
                   {secondaryLabel}
                 </Link>
               )}
