@@ -452,51 +452,100 @@
   --podium-drift: -5px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1199px) {
   .product-page--retail .retail-ambient-podium:nth-child(1) {
     left: -7%;
-    bottom: -36%;
+    bottom: -32%;
     --podium-opacity: 0.09;
   }
 
   .product-page--retail .retail-ambient-podium:nth-child(2) {
     left: 8%;
-    bottom: -34%;
+    bottom: -30%;
     width: clamp(180px, 19vw, 300px);
     --podium-opacity: 0.12;
   }
 
   .product-page--retail .retail-ambient-podium:nth-child(3) {
     left: 27%;
-    bottom: -31%;
+    bottom: -27%;
     width: clamp(175px, 19vw, 300px);
     --podium-opacity: 0.12;
   }
 
   .product-page--retail .retail-ambient-podium:nth-child(4) {
-    left: 46%;
-    bottom: -20%;
+    left: 51%;
+    bottom: -14%;
+    width: clamp(260px, 27vw, 340px);
+    --podium-opacity: 0.26;
+  }
+
+  .product-page--retail .retail-ambient-podium:nth-child(5) {
+    left: 72%;
+    bottom: -17%;
+    width: clamp(195px, 20vw, 320px);
+    --podium-opacity: 0.19;
+  }
+
+  .product-page--retail .retail-ambient-podium:nth-child(6) {
+    left: 88%;
+    bottom: -22%;
+    width: clamp(175px, 18vw, 290px);
+    --podium-opacity: 0.14;
+  }
+
+  .product-page--retail .retail-ambient-podium:nth-child(7) {
+    left: 98%;
+    bottom: -30%;
+    --podium-opacity: 0.09;
+  }
+}
+
+@media (min-width: 1200px) {
+  .product-page--retail .retail-ambient-podium:nth-child(1) {
+    left: -7%;
+    bottom: -30%;
+    --podium-opacity: 0.09;
+  }
+
+  .product-page--retail .retail-ambient-podium:nth-child(2) {
+    left: 8%;
+    bottom: -27%;
+    width: clamp(180px, 19vw, 300px);
+    --podium-opacity: 0.12;
+  }
+
+  .product-page--retail .retail-ambient-podium:nth-child(3) {
+    left: 27%;
+    bottom: -23%;
+    width: clamp(175px, 19vw, 300px);
+    --podium-opacity: 0.12;
+  }
+
+  .product-page--retail .retail-ambient-podium:nth-child(4) {
+    left: 44%;
+    bottom: -9%;
     width: clamp(280px, 29vw, 460px);
     --podium-opacity: 0.26;
   }
 
   .product-page--retail .retail-ambient-podium:nth-child(5) {
     left: 67%;
-    bottom: -23%;
+    bottom: -12%;
     width: clamp(205px, 22vw, 350px);
     --podium-opacity: 0.19;
   }
 
   .product-page--retail .retail-ambient-podium:nth-child(6) {
     left: 83%;
-    bottom: -27%;
+    bottom: -16%;
     width: clamp(180px, 19vw, 300px);
     --podium-opacity: 0.14;
   }
 
   .product-page--retail .retail-ambient-podium:nth-child(7) {
     left: 96%;
-    bottom: -34%;
+    bottom: -25%;
     --podium-opacity: 0.09;
   }
 }
