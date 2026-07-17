@@ -49,13 +49,13 @@ const headlineBase: CSSProperties = {
 
 function RetailPodiumAtmosphere() {
   const podiums = [
-    "jibe-retail-mlb-cutout.png",
+    "jibe-retail-mlb-survey-cutout.png",
     "jibe-retail-nhl-cutout.png",
-    "jibe-retail-fan-town-cutout.png",
-    "jibe-retail-mlb-cutout.png",
+    "jibe-retail-fan-town-search-cutout.png",
+    "jibe-retail-mlb-survey-cutout.png",
     "jibe-retail-nhl-cutout.png",
-    "jibe-retail-fan-town-cutout.png",
-    "jibe-retail-mlb-cutout.png",
+    "jibe-retail-fan-town-search-cutout.png",
+    "jibe-retail-mlb-survey-cutout.png",
   ];
 
   return (
@@ -243,23 +243,25 @@ export default function ProductHeroSection({
               )}
             </div>
 
-            <ul
-              className="jibe-product-proof-list grid max-w-[560px] grid-cols-2"
-              style={{
-                opacity: contentVisible ? 1 : 0,
-                transition: "opacity 0.5s ease 0.24s",
-                visibility: contentVisible ? "visible" : "hidden",
-              }}
-            >
-              {proofPoints.map((label) => (
-                <li
-                  key={label}
-                  className="jibe-product-proof"
-                >
-                  {label}
-                </li>
-              ))}
-            </ul>
+            {productLabel !== "Retail" && (
+              <ul
+                className="jibe-product-proof-list grid max-w-[560px] grid-cols-2"
+                style={{
+                  opacity: contentVisible ? 1 : 0,
+                  transition: "opacity 0.5s ease 0.24s",
+                  visibility: contentVisible ? "visible" : "hidden",
+                }}
+              >
+                {proofPoints.map((label) => (
+                  <li
+                    key={label}
+                    className="jibe-product-proof"
+                  >
+                    {label}
+                  </li>
+                ))}
+              </ul>
+            )}
 
             <div
               className="mt-8 lg:hidden"
