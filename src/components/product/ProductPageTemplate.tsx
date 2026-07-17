@@ -3,7 +3,7 @@ import {
   useId,
   useRef,
   useState,
-  type KeyboardEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
   type RefObject,
 } from "react";
 import {
@@ -12,6 +12,7 @@ import {
   ChevronRight,
   Maximize2,
   MousePointerClick,
+  X,
 } from "lucide-react";
 import { Link } from "react-router";
 import { assetUrl } from "../../assetUrl";
@@ -35,7 +36,7 @@ function normalizeId(value: string) {
 }
 
 function getNextTabIndex(
-  event: KeyboardEvent<HTMLButtonElement>,
+  event: ReactKeyboardEvent<HTMLButtonElement>,
   currentIndex: number,
   count: number,
 ) {
@@ -54,7 +55,7 @@ function getNextTabIndex(
 }
 
 function focusAndSelectTab(
-  event: KeyboardEvent<HTMLButtonElement>,
+  event: ReactKeyboardEvent<HTMLButtonElement>,
   index: number,
   count: number,
   refs: RefObject<(HTMLButtonElement | null)[]>,
@@ -270,133 +271,167 @@ function PathwayPanel({ pathway, idPrefix }: { pathway: ProductPathway; idPrefix
 
 function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const idPrefix = normalizeId(useId());
   const activeItem = config.items[activeIndex];
   const imageUrl = activeItem.src ? assetUrl(activeItem.src) : null;
-  const galleryImages = activeItem.images?.map((image) => ({
-    ...image,
-    url: assetUrl(image.src),
-  }));
+
+  useEffect(() => {
+    if (!expanded) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setExpanded(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [expanded]);
 
   return (
     <section
       id="product"
-      className="product-page__media scroll-mt-32 border-b border-white/10 bg-[#101820] py-20 text-white lg:py-28"
+      className="product-page__media scroll-mt-32 border-b border-[#D9D9D9] bg-[#F2F2F2] py-20 lg:py-28"
     >
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-        <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} dark />
+        <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
-        <div className="mt-14 lg:mt-16">
-          <div
-            id={`${idPrefix}-media-instructions`}
-            className="flex flex-wrap items-center justify-between gap-3 px-1 py-1"
-          >
-            <div className="flex items-center gap-2.5 text-[12px] text-white/55">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#0076CE] text-white">
-                <MousePointerClick aria-hidden="true" size={15} />
-              </span>
-              <span>
-                <strong className="font-semibold text-white">Choose a product view</strong>
-                <span className="ml-2">— the preview updates directly below.</span>
-              </span>
-            </div>
-          </div>
+        <div className="product-page__media-console mt-14 lg:mt-16">
+          <aside className="product-page__media-console-rail">
+            <InteractionPrompt
+              id={`${idPrefix}-media-instructions`}
+              title="Choose a product view"
+              description="The screen changes beside this control."
+              dark
+            />
 
-          <div
-            role="tablist"
-            aria-label={config.eyebrow}
-            aria-describedby={`${idPrefix}-media-instructions`}
-            className="product-page__media-tabs mt-3 rounded-2xl border border-white/15 bg-white/[0.04] p-2"
-          >
-            {config.items.map((item, index) => {
-              const selected = index === activeIndex;
-              const thumbnailUrl = item.src
-                ? assetUrl(item.src)
-                : item.images?.[0]
-                  ? assetUrl(item.images[0].src)
-                  : null;
-              return (
-                <button
-                  key={item.id}
-                  ref={(node) => {
-                    tabRefs.current[index] = node;
-                  }}
-                  id={`${idPrefix}-media-tab-${item.id}`}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  aria-controls={`${idPrefix}-media-panel`}
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => setActiveIndex(index)}
-                  onKeyDown={(event) =>
-                    focusAndSelectTab(event, index, config.items.length, tabRefs, setActiveIndex)
-                  }
-                  className="product-page__media-tab focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
-                >
-                  <span className="product-page__media-tab-thumb" aria-hidden="true">
-                    {thumbnailUrl && (
-                      <img src={thumbnailUrl} alt="" loading="lazy" decoding="async" />
-                    )}
-                  </span>
-                  <span className="product-page__media-tab-copy">
+            <div
+              role="tablist"
+              aria-label={config.eyebrow}
+              aria-describedby={`${idPrefix}-media-instructions`}
+              className="product-page__media-tabs"
+            >
+              {config.items.map((item, index) => {
+                const selected = index === activeIndex;
+                return (
+                  <button
+                    key={item.id}
+                    ref={(node) => {
+                      tabRefs.current[index] = node;
+                    }}
+                    id={`${idPrefix}-media-tab-${item.id}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={selected}
+                    aria-controls={`${idPrefix}-media-panel`}
+                    tabIndex={selected ? 0 : -1}
+                    onClick={() => setActiveIndex(index)}
+                    onKeyDown={(event) =>
+                      focusAndSelectTab(event, index, config.items.length, tabRefs, setActiveIndex)
+                    }
+                    className="product-page__media-tab"
+                  >
+                    <span className="product-page__media-tab-marker" aria-hidden="true" />
                     <span className="product-page__media-tab-label">{item.label}</span>
-                    <span className="product-page__media-tab-status">
-                      {selected ? "Viewing now" : "View screen"}
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                    <ChevronRight aria-hidden="true" className="product-page__media-tab-arrow" size={15} />
+                  </button>
+                );
+              })}
+            </div>
 
-          <div
-            id={`${idPrefix}-media-panel`}
-            role="tabpanel"
-            aria-labelledby={`${idPrefix}-media-tab-${activeItem.id}`}
-            tabIndex={0}
-            className="product-page__media-panel pt-3 pb-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
-          >
             <div className="product-page__media-summary">
-              <div>
+              <div id={`${idPrefix}-media-copy`}>
                 <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">
                   {activeItem.eyebrow}
                 </p>
-                <h3 className="mt-3 max-w-[720px] text-[clamp(27px,3vw,42px)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
+                <h3 className="mt-3 text-[clamp(25px,2.2vw,34px)] font-semibold leading-[1.05] tracking-[-0.03em] text-white">
                   {activeItem.title}
                 </h3>
-                <p className="mt-4 max-w-[720px] text-[14px] leading-[1.75] text-white/60">
+                <p className="mt-4 text-[13px] leading-[1.7] text-white/62">
                   {activeItem.description}
                 </p>
               </div>
               {imageUrl && (
-                <a
-                  href={imageUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  type="button"
+                  onClick={() => setExpanded(true)}
                   className="product-page__media-fullscreen"
                 >
-                  View full screen <Maximize2 aria-hidden="true" size={15} />
-                </a>
+                  Open full view <Maximize2 aria-hidden="true" size={15} />
+                </button>
               )}
             </div>
+          </aside>
 
-            <figure className="product-page__media-figure">
+          <figure
+            id={`${idPrefix}-media-panel`}
+            role="tabpanel"
+            aria-labelledby={`${idPrefix}-media-tab-${activeItem.id}`}
+            aria-describedby={`${idPrefix}-media-copy`}
+            tabIndex={0}
+            className="product-page__media-figure"
+          >
+            <div className="product-page__media-viewport-label">
+              <span>Product view</span>
+              <strong>{activeItem.label}</strong>
+            </div>
+            <div className="product-page__media-viewport">
               <ProductMediaStage
                 key={activeItem.id}
                 item={activeItem}
                 imageUrl={imageUrl}
-                galleryImages={galleryImages}
+                onExpand={() => setExpanded(true)}
               />
-              {activeItem.disclosure && (
-                <figcaption className="mt-4 text-[11px] leading-[1.65] text-white/60">
-                  {activeItem.disclosure}
-                </figcaption>
-              )}
-            </figure>
-          </div>
+            </div>
+            {activeItem.disclosure && (
+              <figcaption className="product-page__media-disclosure">
+                {activeItem.disclosure}
+              </figcaption>
+            )}
+          </figure>
         </div>
       </div>
+
+      {expanded && imageUrl && (
+        <div
+          className="product-page__media-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${activeItem.label} full product view`}
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setExpanded(false);
+          }}
+        >
+          <div className="product-page__media-lightbox-frame">
+            <div className="product-page__media-lightbox-header">
+              <div>
+                <span>Jibe product view</span>
+                <strong>{activeItem.label}</strong>
+              </div>
+              <button
+                type="button"
+                onClick={() => setExpanded(false)}
+                aria-label="Close full product view"
+                autoFocus
+              >
+                <X aria-hidden="true" size={19} />
+              </button>
+            </div>
+            <div className="product-page__media-lightbox-canvas">
+              <img src={imageUrl} alt={activeItem.alt ?? ""} />
+            </div>
+            {activeItem.disclosure && (
+              <p className="product-page__media-lightbox-disclosure">{activeItem.disclosure}</p>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -499,62 +534,35 @@ function ProductMediaGallery({ config }: { config: ProductPageConfig["media"] })
 function ProductMediaStage({
   item,
   imageUrl,
-  galleryImages,
+  onExpand,
 }: {
   item: ProductMediaItem;
   imageUrl: string | null;
-  galleryImages?: readonly { src: string; alt: string; label?: string; url: string }[];
+  onExpand: () => void;
 }) {
   const portrait = item.orientation === "portrait";
   const tall = item.orientation === "tall";
 
   return (
-    <div className="product-page__media-stage-shell">
-      <div className={`product-page__media-stage ${portrait ? "product-page__media-stage--portrait" : tall ? "product-page__media-stage--tall" : "product-page__media-stage--landscape"}`}>
-        <div className={`product-page__media-stage-canvas ${portrait ? "product-page__media-stage-canvas--portrait" : tall ? "product-page__media-stage-canvas--tall" : "product-page__media-stage-canvas--landscape"}`}>
-          {imageUrl && (
-            <a
-              href={imageUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`Open full-size product view: ${item.alt ?? item.label}`}
-              className={`product-page__media-shot-link product-page__media-shot-link--${item.id} group ${
-                ["team", "finder"].includes(item.id) ? "product-page__media-shot-link--trim-bottom" : ""
-              }`}
-            >
-              <img
-                src={imageUrl}
-                alt={item.alt ?? ""}
-                loading="lazy"
-                decoding="async"
-                className={`product-page__media-shot product-page__media-shot--${item.id} ${portrait ? "product-page__media-shot--portrait" : tall ? "product-page__media-shot--tall" : "product-page__media-shot--landscape"}`}
-              />
-            </a>
-          )}
-
-          {galleryImages && (
-            <div className="product-page__media-gallery">
-              {galleryImages.map((image) => (
-                <a
-                  key={image.src}
-                  href={image.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Open full-size product view: ${image.alt}`}
-                  className="product-page__media-gallery-link group"
-                >
-                  <img src={image.url} alt={image.alt} loading="lazy" decoding="async" />
-                  {image.label && <span className="product-page__media-gallery-label">{image.label}</span>}
-                  <span className="product-page__media-shot-action">
-                    Open <Maximize2 aria-hidden="true" size={13} />
-                  </span>
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+    <button
+      type="button"
+      onClick={onExpand}
+      aria-label={`Open full-size product view: ${item.alt ?? item.label}`}
+      className={`product-page__media-stage ${portrait ? "product-page__media-stage--portrait" : tall ? "product-page__media-stage--tall" : "product-page__media-stage--landscape"}`}
+    >
+      {imageUrl && (
+        <img
+          src={imageUrl}
+          alt={item.alt ?? ""}
+          loading="lazy"
+          decoding="async"
+          className="product-page__media-shot"
+        />
+      )}
+      <span className="product-page__media-stage-action">
+        Expand view <Maximize2 aria-hidden="true" size={14} />
+      </span>
+    </button>
   );
 }
 
