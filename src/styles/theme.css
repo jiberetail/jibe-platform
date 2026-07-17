@@ -294,21 +294,8 @@
     --product-hero-heading-size: clamp(52px, 5.2vw, 78px);
   }
 
-  .product-page--retail .jibe-product-hero__layout {
-    grid-template-columns: minmax(0, 1.16fr) minmax(360px, 0.84fr);
-  }
-
   .product-page--retail .jibe-product-hero__copy {
     transform: translateY(clamp(-36px, -3vh, -20px));
-  }
-
-  .product-page--retail .jibe-product-hero__visual {
-    justify-content: flex-end;
-  }
-
-  .product-page--retail .jibe-product-hero__halo {
-    max-width: 440px;
-    transform: translate3d(24px, clamp(-140px, -12vh, -104px), 0);
   }
 }
 
