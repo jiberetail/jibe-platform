@@ -247,25 +247,23 @@ export default function ProductHeroSection({
               )}
             </div>
 
-            {productLabel !== "Retail" && (
-              <ul
-                className="jibe-product-proof-list grid max-w-[560px] grid-cols-2"
-                style={{
-                  opacity: contentVisible ? 1 : 0,
-                  transition: "opacity 0.5s ease 0.24s",
-                  visibility: contentVisible ? "visible" : "hidden",
-                }}
-              >
-                {proofPoints.map((label) => (
-                  <li
-                    key={label}
-                    className="jibe-product-proof"
-                  >
-                    {label}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <ul
+              className="jibe-product-proof-list grid max-w-[560px] grid-cols-2"
+              style={{
+                opacity: contentVisible ? 1 : 0,
+                transition: "opacity 0.5s ease 0.24s",
+                visibility: contentVisible ? "visible" : "hidden",
+              }}
+            >
+              {proofPoints.map((label) => (
+                <li
+                  key={label}
+                  className="jibe-product-proof"
+                >
+                  {label}
+                </li>
+              ))}
+            </ul>
 
             <div
               className="mt-8 lg:hidden"

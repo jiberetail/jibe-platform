@@ -11,22 +11,21 @@ function rgba(color: string, alpha: number) {
   return `rgba(${color}, ${Math.max(0, Math.min(1, alpha))})`;
 }
 
-function dataColor(blueMix: number, alpha: number) {
-  const mix = Math.max(0, Math.min(1, blueMix));
-  const red = Math.round(38 * (1 - mix));
-  const green = Math.round(54 + (118 - 54) * mix);
-  const blue = Math.round(74 + (206 - 74) * mix);
-  return `rgba(${red}, ${green}, ${blue}, ${Math.max(0, Math.min(1, alpha))})`;
-}
-
-function hashUnit(seed: number) {
-  const value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
-  return value - Math.floor(value);
-}
-
-function smoothStep(min: number, max: number, value: number) {
-  const normalized = Math.max(0, Math.min(1, (value - min) / (max - min)));
-  return normalized * normalized * (3 - 2 * normalized);
+function drawAiBit(
+  context: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  size: number,
+  bit: 0 | 1,
+  alpha: number,
+) {
+  context.save();
+  context.fillStyle = rgba(BLUE, alpha);
+  context.font = `500 ${size}px "IBM Plex Mono", ui-monospace, monospace`;
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+  context.fillText(String(bit), x, y);
+  context.restore();
 }
 
 function drawAiRain(
@@ -37,70 +36,33 @@ function drawAiRain(
   reducedMotion: boolean,
 ) {
   const compact = width < 760;
-  const now = reducedMotion ? 4200 : time;
-  const packetCount = compact ? 64 : 104;
-  const cycle = height + 280;
-  const layerAlpha = [0.11, 0.18, 0.29];
+  const streamCount = compact ? 8 : 15;
+  const spacing = width / streamCount;
+  const now = reducedMotion ? 3200 : time;
 
-  for (let packet = 0; packet < packetCount; packet += 1) {
-    const seed = packet * 17.37 + 1;
-    const layer = packet % 3;
-    const depth = (layer + 1) / 3;
-    const speed = 0.018 + layer * 0.008 + hashUnit(seed + 7) * 0.009;
-    const y = ((hashUnit(seed + 19) * cycle + now * speed) % cycle) - 140;
-    if (y < -70 || y > height + 70) continue;
+  for (let stream = 0; stream < streamCount; stream += 1) {
+    const bitCount = 6 + (stream % 4);
+    const speed = 0.028 + (stream % 5) * 0.004;
+    const cycle = height + 440;
+    const startOffset = ((stream * 0.317 + 0.11) % 1) * cycle;
+    const headY = ((startOffset + now * speed) % cycle) - 200;
+    const x = spacing * (stream + 0.5) + Math.sin(stream * 2.1) * spacing * 0.12;
+    const gap = compact ? 34 : 40;
 
-    const rawX = hashUnit(seed + 37) * width;
-    const organizationBand = width * (((packet % 5) + 0.5) / 5);
-    const lowerProgress = Math.max(0, Math.min(1, y / Math.max(1, height)));
-    const organization = 0.07 + Math.pow(lowerProgress, 1.7) * 0.14;
-    const sway =
-      Math.sin(now * (0.00035 + depth * 0.00008) + hashUnit(seed + 23) * Math.PI * 2) *
-      (2 + depth * 5);
-    const x = rawX + (organizationBand - rawX) * organization + sway;
-
-    const edgeFade =
-      smoothStep(-25, 100, y) * (1 - smoothStep(height - 120, height + 35, y));
-    const copyFade = compact ? 0.82 : 0.32 + smoothStep(0.18, 0.5, x / width) * 0.68;
-    const logoDistance = Math.hypot(
-      (x - width * 0.75) / (width * 0.2),
-      (y - height * 0.48) / (height * 0.3),
-    );
-    const logoQuietZone = compact ? 1 : 0.38 + smoothStep(0.68, 1.14, logoDistance) * 0.62;
-    const pulse = 0.82 + Math.sin(now * 0.001 + seed) * 0.18;
-    const alpha = layerAlpha[layer] * edgeFade * copyFade * logoQuietZone * pulse;
-    if (alpha <= 0.002) continue;
-
-    const isNode = hashUnit(seed + 43) < 0.34;
-    const blueMix = packet % 7 === 0 ? 1 : 0.48 + hashUnit(seed + 47) * 0.46;
-    const packetHeight = isNode ? 4 + depth * 2 : 2.4 + depth * 1.5;
-    const packetWidth = isNode ? packetHeight : 10 + hashUnit(seed + 59) * (18 + depth * 20);
-
-    if (packet % 7 === 0) {
-      const trailLength = 28 + hashUnit(seed + 61) * 28;
-      context.beginPath();
-      context.moveTo(x, y - trailLength);
-      context.lineTo(x, y - packetHeight * 1.5);
-      context.strokeStyle = dataColor(blueMix, alpha * 0.42);
-      context.lineWidth = 0.7 + depth * 0.45;
-      context.lineCap = "round";
-      context.stroke();
+    for (let bitIndex = 0; bitIndex < bitCount; bitIndex += 1) {
+      const y = headY - bitIndex * gap;
+      if (y < -40 || y > height + 40) continue;
+      const edgeFade = Math.min(1, Math.max(0, y / 105), Math.max(0, (height - y) / 125));
+      const pulse = 0.86 + Math.sin(now * 0.0017 + stream * 0.8 + bitIndex) * 0.14;
+      const headBoost = bitIndex === 0 ? 1.16 : 1;
+      const alpha =
+        (0.18 + ((stream + bitIndex) % 4) * 0.034) * edgeFade * pulse * headBoost;
+      const size = (compact ? 11 : 13) + ((stream + bitIndex) % 3) * 2;
+      const bit = (
+        Math.sin((stream + 1) * 91.7 + (bitIndex + 1) * 37.3) > 0 ? 1 : 0
+      ) as 0 | 1;
+      drawAiBit(context, x, y, size, bit, alpha);
     }
-
-    context.fillStyle = dataColor(blueMix, alpha);
-    context.beginPath();
-    if (isNode) {
-      context.arc(x, y, packetWidth / 2, 0, Math.PI * 2);
-    } else {
-      context.roundRect(
-        x - packetWidth / 2,
-        y - packetHeight / 2,
-        packetWidth,
-        packetHeight,
-        packetHeight,
-      );
-    }
-    context.fill();
   }
 }
 
