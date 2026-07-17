@@ -462,7 +462,7 @@
 
 @media (min-width: 1700px) {
   .product-page--retail .retail-ambient-podium:nth-child(1) {
-    left: 0;
+    left: -250px;
     width: 460px;
     --podium-opacity: 0.1;
     --podium-sink: 18%;
