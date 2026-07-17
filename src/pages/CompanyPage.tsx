@@ -78,13 +78,9 @@ const leaders = [
 // VERIFY / BLOCKED — COMPANY-01 / D-11: history, entity, IP, copyright, and
 // media statements require factual and legal verification before release.
 const articlePages: Record<Exclude<CompanySlug, "leadership">, {
-  image: string;
-  imageAlt: string;
   paragraphs: string[];
 }> = {
   history: {
-    image: "assets/company/history.jpg",
-    imageAlt: "A visual representation of Jibe's company history",
     paragraphs: [
       "Jibe’s story began in Austin, Texas, in 2010, when Tim Lavin and Daniel Pearce founded Zacoustic. Their experience in the contact-center industry had made one challenge clear: customer experience needed to become a core operational metric, not an occasional research exercise.",
       "Traditional surveys reached only a small share of customers—often around ten percent. The founders focused instead on the other participant in every interaction: the agent. They developed a model in which agents predict customer outcomes, then use naturally occurring survey responses to audit and strengthen the accuracy of those predictions.",
@@ -92,8 +88,6 @@ const articlePages: Record<Exclude<CompanySlug, "leadership">, {
     ],
   },
   "ip-protection": {
-    image: "assets/company/ip-protection.png",
-    imageAlt: "Jibe AI customer experience dashboard",
     paragraphs: [
       "The technology and methodologies behind Jibe are protected by patents issued in the United States and internationally. This protection covers core features, algorithms, and functionality developed to make customer experience intelligence more complete and actionable.",
       "We take those intellectual property rights seriously. Unauthorized use, reproduction, distribution, or infringement of protected Jibe or Zacoustic technology is not permitted and may be subject to enforcement.",
@@ -102,8 +96,6 @@ const articlePages: Record<Exclude<CompanySlug, "leadership">, {
     ],
   },
   "media-inquiries": {
-    image: "assets/company/media-inquiries.jpg",
-    imageAlt: "A presenter beside a broadcast video camera",
     paragraphs: [
       "We welcome inquiries from journalists, researchers, and industry professionals seeking interviews, research collaboration, expert commentary, or participation in speaking engagements and tradeshows.",
       "Our team can discuss customer experience intelligence, the Jibe Data Stream, emerging industry trends, and the role of better evidence in customer-centric decision making.",
@@ -166,14 +158,14 @@ export default function CompanyPage() {
     <main className="min-h-screen bg-[#F5F5F5]">
       <section className="flex min-h-[54svh] items-center overflow-hidden border-b border-[#D9D9D9] bg-white px-6 pb-16 pt-36 lg:px-10 lg:pb-20 lg:pt-44">
         <div className="mx-auto w-full max-w-[1320px]">
-          <div className={section === "leadership" ? "mx-auto max-w-[900px] text-center" : ""}>
-            <div className={`mb-7 flex items-center gap-4 ${section === "leadership" ? "justify-center" : ""}`}>
+          <div className="mx-auto max-w-[900px] text-center">
+            <div className="mb-7 flex items-center justify-center gap-4">
               <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#0076CE]">Company</span>
             </div>
-            <h1 className="max-w-[900px] font-['Instrument_Serif'] text-[52px] leading-[0.96] tracking-[-0.025em] text-[#243443] sm:text-[68px] lg:text-[84px]">
+            <h1 className="mx-auto max-w-[900px] font-['Instrument_Serif'] text-[52px] leading-[0.96] tracking-[-0.025em] text-[#243443] sm:text-[68px] lg:text-[84px]">
               {meta.title}
             </h1>
-            <p className={`mt-7 max-w-[650px] text-[17px] leading-[1.7] text-[#686A6D] sm:text-[18px] ${section === "leadership" ? "mx-auto" : ""}`}>
+            <p className="mx-auto mt-7 max-w-[650px] text-[17px] leading-[1.7] text-[#686A6D] sm:text-[18px]">
               {meta.intro}
             </p>
           </div>
@@ -276,28 +268,18 @@ function ArticleContent({ section }: { section: Exclude<CompanySlug, "leadership
 
   return (
     <section aria-labelledby={`${section}-content-heading`} className="bg-[#F5F5F5] px-6 py-20 lg:px-10 lg:py-28">
-      <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
-          <div className="overflow-hidden rounded-[18px] border border-[#D9D9D9] bg-white lg:sticky lg:top-28">
-            <img
-              src={assetUrl(article.image)}
-              alt={article.imageAlt}
-              className={`aspect-[4/3] w-full ${section === "ip-protection" ? "bg-[#F7F7F7] object-contain p-4 sm:p-6" : "object-cover"}`}
-            />
-          </div>
-        </div>
-
-        <article className="lg:col-span-7">
+      <div className="mx-auto max-w-[820px] text-center">
+        <article>
           <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-[#6D6D6D]">Company perspective</p>
-          <h2 id={`${section}-content-heading`} className="max-w-[680px] font-['Instrument_Serif'] text-[43px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[54px]">
+          <h2 id={`${section}-content-heading`} className="mx-auto max-w-[680px] font-['Instrument_Serif'] text-[43px] leading-[0.98] tracking-[-0.02em] text-[#2F2F2F] sm:text-[54px]">
             {section === "history" && "Customer perception became the point of truth."}
             {section === "ip-protection" && "Innovation is strongest when original work is respected."}
             {section === "media-inquiries" && "Let’s add useful evidence to the conversation."}
           </h2>
 
-          <div className="mt-9 border-t border-[#D2D2D2] pt-8">
+          <div className="mx-auto mt-9 max-w-[720px] border-t border-[#D2D2D2] pt-8">
             {article.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="mb-6 max-w-[720px] text-[16px] leading-[1.8] text-[#4E4E4E] last:mb-0">
+              <p key={paragraph} className="mb-6 text-[16px] leading-[1.8] text-[#4E4E4E] last:mb-0">
                 {paragraph}
               </p>
             ))}
@@ -314,7 +296,7 @@ function ArticleContent({ section }: { section: Exclude<CompanySlug, "leadership
             <div className="mt-9 border-y border-[#CCCCCC] py-5">
               <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#777777]">Media relations</span>
               <span className="mt-2 block text-[14px] font-semibold text-[#2F2F2F]">Contact channel under review</span>
-              <span className="mt-2 block max-w-[560px] text-[12px] leading-[1.65] text-[#6D6D6D]">
+              <span className="mx-auto mt-2 block max-w-[560px] text-[12px] leading-[1.65] text-[#6D6D6D]">
                 Jibe is verifying the correct media contact before publishing a destination.
               </span>
             </div>

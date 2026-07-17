@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router";
 import { assetUrl } from "../assetUrl";
 import HeroVisual3D from "./HeroVisual3D";
+import ProductAtmosphereCanvas from "./ProductAtmosphereCanvas";
 import ScrollCue from "./ScrollCue";
 
 const TYPE_SPEED = 51;
@@ -151,6 +152,9 @@ export default function ProductHeroSection({
       className="jibe-product-hero relative flex min-h-screen items-center overflow-hidden border-b"
     >
       {productLabel === "Retail" && <RetailPodiumAtmosphere />}
+      {productLabel !== "Retail" && (
+        <ProductAtmosphereCanvas mode={productLabel} reducedMotion={reducedMotion} />
+      )}
 
       {!secondaryHref.startsWith("#") && (
         <span
