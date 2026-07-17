@@ -6,26 +6,75 @@ type ProductAtmosphereCanvasProps = {
 };
 
 const BLUE = "0, 118, 206";
+const AI_DATA_COLORS = [
+  "20, 92, 184",
+  "50, 109, 206",
+  "71, 125, 221",
+  "95, 143, 234",
+  "73, 196, 244",
+  "154, 220, 255",
+] as const;
 
 function rgba(color: string, alpha: number) {
   return `rgba(${color}, ${Math.max(0, Math.min(1, alpha))})`;
 }
 
-function drawAiBit(
+function hash01(primary: number, secondary: number) {
+  const raw = Math.sin(primary * 127.1 + secondary * 311.7) * 43758.5453123;
+  return raw - Math.floor(raw);
+}
+
+function drawAiDataCell(
   context: CanvasRenderingContext2D,
   x: number,
   y: number,
   size: number,
-  bit: 0 | 1,
+  color: string,
   alpha: number,
+  variant: number,
 ) {
-  context.save();
-  context.fillStyle = rgba(BLUE, alpha);
-  context.font = `500 ${size}px "IBM Plex Mono", ui-monospace, monospace`;
-  context.textAlign = "center";
-  context.textBaseline = "middle";
-  context.fillText(String(bit), x, y);
-  context.restore();
+  const cellSize = Math.max(3, Math.round(size));
+  const left = Math.round(x - cellSize / 2);
+  const top = Math.round(y - cellSize / 2);
+  const thickness = Math.max(1, Math.round(cellSize * 0.2));
+  const segment = Math.max(thickness * 2, Math.round(cellSize * 0.48));
+
+  context.fillStyle = rgba(color, alpha);
+  context.strokeStyle = rgba(color, alpha);
+
+  if (variant === 1) {
+    context.lineWidth = thickness;
+    context.strokeRect(
+      left + thickness / 2,
+      top + thickness / 2,
+      cellSize - thickness,
+      cellSize - thickness,
+    );
+  } else if (variant === 2) {
+    // A framed, half-built cell: it still reads as a square rather than a dash.
+    context.lineWidth = thickness;
+    context.strokeStyle = rgba(color, alpha * 0.64);
+    context.strokeRect(
+      left + thickness / 2,
+      top + thickness / 2,
+      cellSize - thickness,
+      cellSize - thickness,
+    );
+    context.fillRect(
+      left + thickness,
+      top + Math.round(cellSize * 0.5),
+      cellSize - thickness * 2,
+      Math.max(thickness, Math.round(cellSize * 0.5) - thickness),
+    );
+  } else if (variant === 3) {
+    // Opposing corners imply one square whose data has not fully resolved yet.
+    context.fillRect(left, top, segment, thickness);
+    context.fillRect(left, top, thickness, segment);
+    context.fillRect(left + cellSize - segment, top + cellSize - thickness, segment, thickness);
+    context.fillRect(left + cellSize - thickness, top + cellSize - segment, thickness, segment);
+  } else {
+    context.fillRect(left, top, cellSize, cellSize);
+  }
 }
 
 function drawAiRain(
@@ -36,32 +85,85 @@ function drawAiRain(
   reducedMotion: boolean,
 ) {
   const compact = width < 760;
-  const streamCount = compact ? 8 : 15;
-  const spacing = width / streamCount;
+  const streamCount = compact
+    ? Math.max(11, Math.round(width / 38))
+    : Math.max(20, Math.min(36, Math.round(width / 62)));
   const now = reducedMotion ? 3200 : time;
 
   for (let stream = 0; stream < streamCount; stream += 1) {
-    const bitCount = 6 + (stream % 4);
-    const speed = 0.028 + (stream % 5) * 0.004;
-    const cycle = height + 440;
-    const startOffset = ((stream * 0.317 + 0.11) % 1) * cycle;
-    const headY = ((startOffset + now * speed) % cycle) - 200;
-    const x = spacing * (stream + 0.5) + Math.sin(stream * 2.1) * spacing * 0.12;
-    const gap = compact ? 34 : 40;
+    const streamSeed = hash01(stream + 1, 4.7);
+    const trailCount = 8 + Math.floor(hash01(stream + 1, 9.3) * 12);
+    const baseSize = (compact ? 3.4 : 4.2) + hash01(stream + 1, 16.1) * 4.2;
+    const gap = 8 + baseSize + hash01(stream + 1, 22.4) * 7;
+    const speed = (compact ? 0.025 : 0.031) + hash01(stream + 1, 31.8) * 0.036;
+    const trailLength = trailCount * gap;
+    const cycle = height + trailLength + 260;
+    const startOffset = hash01(stream + 1, 41.2) * cycle;
+    const headY = ((startOffset + now * speed) % cycle) - trailLength - 90;
+    const lanePosition = (stream + 0.22 + streamSeed * 0.56) / streamCount;
+    const baseX = lanePosition * width;
+    const streamDrift = reducedMotion
+      ? 0
+      : Math.sin(now * 0.00026 + stream * 1.31) * (compact ? 0.6 : 1.2);
 
-    for (let bitIndex = 0; bitIndex < bitCount; bitIndex += 1) {
-      const y = headY - bitIndex * gap;
-      if (y < -40 || y > height + 40) continue;
-      const edgeFade = Math.min(1, Math.max(0, y / 105), Math.max(0, (height - y) / 125));
-      const pulse = 0.86 + Math.sin(now * 0.0017 + stream * 0.8 + bitIndex) * 0.14;
-      const headBoost = bitIndex === 0 ? 1.16 : 1;
-      const alpha =
-        (0.18 + ((stream + bitIndex) % 4) * 0.034) * edgeFade * pulse * headBoost;
-      const size = (compact ? 11 : 13) + ((stream + bitIndex) % 3) * 2;
-      const bit = (
-        Math.sin((stream + 1) * 91.7 + (bitIndex + 1) * 37.3) > 0 ? 1 : 0
-      ) as 0 | 1;
-      drawAiBit(context, x, y, size, bit, alpha);
+    for (let cellIndex = 0; cellIndex < trailCount; cellIndex += 1) {
+      const cellSeed = hash01(stream + 1, cellIndex + 57.6);
+      if (cellIndex > 0 && cellSeed < 0.13) continue;
+
+      const y = headY - cellIndex * gap;
+      if (y < -24 || y > height + 24) continue;
+
+      const tailStrength = 1 - cellIndex / (trailCount + 1);
+      const topFade = Math.max(0, Math.min(1, (y + 26) / 100));
+      const bottomFade = Math.max(0, Math.min(1, (height - y + 24) / 120));
+      const edgeFade = Math.min(topFade, bottomFade);
+      const contentLaneFade = compact
+        ? 0.8
+        : 0.5 + Math.pow(Math.max(0, baseX / width), 0.72) * 0.5;
+      const pulse = 0.88 + Math.sin(now * 0.00145 + stream * 0.77 + cellIndex * 0.91) * 0.12;
+      const headBoost = cellIndex === 0 ? 0.1 : 0;
+      const alpha = Math.min(
+        0.62,
+        (0.1 + tailStrength * 0.34 + headBoost) * edgeFade * contentLaneFade * pulse,
+      );
+      const sizeSeed = hash01(stream + 1, cellIndex + 83.1);
+      const sizeScale = compact ? 0.9 : 1;
+      const distributedSize =
+        sizeSeed < 0.15
+          ? 3 + sizeSeed * 3
+          : sizeSeed < 0.75
+            ? 3.7 + ((sizeSeed - 0.15) / 0.6) * 1.9
+            : sizeSeed < 0.95
+              ? 6 + ((sizeSeed - 0.75) / 0.2) * 1.7
+              : 8 + ((sizeSeed - 0.95) / 0.05) * 1.2;
+      const size = Math.min(
+        compact ? 8 : 9.2,
+        Math.max(3, distributedSize * sizeScale * (cellIndex === 0 ? 1.08 : 1)),
+      );
+      const xJitter = (hash01(stream + 1, cellIndex + 101.4) - 0.5) * (compact ? 1.4 : 2.4);
+      const colorIndex = Math.min(
+        AI_DATA_COLORS.length - 1,
+        Math.floor(hash01(stream + 1, cellIndex + 123.7) * AI_DATA_COLORS.length),
+      );
+      const variantSeed = hash01(stream + 1, cellIndex + 149.2);
+      const variant =
+        cellIndex === 0 || variantSeed < 0.66
+          ? 0
+          : variantSeed < 0.8
+            ? 1
+            : variantSeed < 0.91
+              ? 2
+              : 3;
+
+      drawAiDataCell(
+        context,
+        baseX + streamDrift + xJitter,
+        y,
+        size,
+        AI_DATA_COLORS[colorIndex],
+        alpha,
+        variant,
+      );
     }
   }
 }
@@ -128,6 +230,7 @@ export default function ProductAtmosphereCanvas({
     let frame = 0;
     let lastDraw = 0;
     let visible = !document.hidden;
+    let inViewport = true;
     const hardwareThreads = navigator.hardwareConcurrency ?? 8;
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
     const lowPower = hardwareThreads <= 4 || connection?.saveData === true;
@@ -157,7 +260,7 @@ export default function ProductAtmosphereCanvas({
     };
 
     const animate = (time: number) => {
-      if (visible && time - lastDraw >= frameInterval) {
+      if (visible && inViewport && time - lastDraw >= frameInterval) {
         draw(time);
         lastDraw = time;
       }
@@ -170,7 +273,15 @@ export default function ProductAtmosphereCanvas({
     };
 
     const observer = new ResizeObserver(resize);
+    const viewportObserver = new IntersectionObserver(
+      ([entry]) => {
+        inViewport = entry.isIntersecting;
+        if (inViewport) draw(performance.now());
+      },
+      { rootMargin: "160px 0px" },
+    );
     observer.observe(container);
+    viewportObserver.observe(container);
     document.addEventListener("visibilitychange", handleVisibility);
     resize();
 
@@ -180,6 +291,7 @@ export default function ProductAtmosphereCanvas({
 
     return () => {
       observer.disconnect();
+      viewportObserver.disconnect();
       document.removeEventListener("visibilitychange", handleVisibility);
       if (frame) window.cancelAnimationFrame(frame);
     };
