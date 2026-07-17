@@ -69,7 +69,7 @@ const leaders = [
   {
     name: "Isaac Harrison",
     title: "Head of Product & Analytics",
-    image: "assets/company/isaac-harrison-portrait.png",
+    image: "assets/company/isaac-harrison-2026.jpg",
     alt: "Isaac Harrison, Head of Product & Analytics at Zacoustic",
     bio: "Isaac joined Zacoustic in 2023 and has played a key role in driving client success through data, product strategy, and operational insight. With over 20 years of experience in call center and B2B environments, he brings deep expertise in analytics, customer experience, and performance improvement. Isaac has led teams of data scientists and audit researchers, managed large-scale data collection and distribution, and helped clients improve customer satisfaction through practical, data-driven solutions. His strengths span product development, design, analytics, and problem-solving, making him a major contributor to Zacoustic's continued growth and client results.",
   },
