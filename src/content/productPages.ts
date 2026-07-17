@@ -304,6 +304,7 @@ export const productPages = {
       ],
     },
     media: {
+      layout: "gallery",
       // VERIFY / BLOCKED — RET-09 / D-08: all Fan Town, MLB, NHL, team, venue, catalog, and podium assets require written public-use approval.
       eyebrow: "Jibe Retail in action",
       title: "Designed around the venue, the brand, and the shopper.",

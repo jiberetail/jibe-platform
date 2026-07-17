@@ -386,6 +386,101 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
   );
 }
 
+function ProductMediaGallery({ config }: { config: ProductPageConfig["media"] }) {
+  const screenItems = config.items.filter((item) => item.src);
+  const deploymentItem = config.items.find((item) => item.images && item.images.length > 0);
+
+  return (
+    <section
+      id="product"
+      className="product-page__media scroll-mt-32 border-b border-white/10 bg-[#101820] py-20 text-white lg:py-28"
+    >
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+        <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} dark />
+
+        <div className="retail-media-screen-grid mt-14 lg:mt-16">
+          {screenItems.map((item) => {
+            const imageUrl = assetUrl(item.src!);
+            return (
+              <article key={item.id} className="retail-media-screen-item">
+                <a
+                  href={imageUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open full-size product view: ${item.alt ?? item.label}`}
+                  className={`retail-media-screen-link retail-media-screen-link--${item.id} group`}
+                >
+                  <img src={imageUrl} alt={item.alt ?? ""} loading="lazy" decoding="async" />
+                  <span className="product-page__media-shot-action">
+                    Open full size <Maximize2 aria-hidden="true" size={14} />
+                  </span>
+                </a>
+
+                <div className="mt-6 border-t border-white/15 pt-5">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">
+                    {item.eyebrow}
+                  </p>
+                  <h3 className="mt-3 text-[22px] font-semibold leading-[1.08] tracking-[-0.025em] text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-[13px] leading-[1.7] text-white/58">{item.description}</p>
+                  {item.disclosure && (
+                    <p className="mt-4 text-[10px] leading-[1.6] text-white/38">{item.disclosure}</p>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        {deploymentItem?.images && (
+          <div className="retail-media-deployments mt-20 border-t border-white/15 pt-12 lg:mt-24 lg:pt-16">
+            <div className="grid gap-7 lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-7">
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">
+                  {deploymentItem.eyebrow}
+                </p>
+                <h3 className="mt-3 max-w-[700px] text-[clamp(30px,4vw,48px)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
+                  {deploymentItem.title}
+                </h3>
+              </div>
+              <p className="max-w-[520px] text-[14px] leading-[1.75] text-white/60 lg:col-span-4 lg:col-start-9">
+                {deploymentItem.description}
+              </p>
+            </div>
+
+            <div className="retail-media-deployments-grid mt-10">
+              {deploymentItem.images.map((image) => {
+                const imageUrl = assetUrl(image.src);
+                return (
+                  <a
+                    key={image.src}
+                    href={imageUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open full-size product view: ${image.alt}`}
+                    className="product-page__media-gallery-link group"
+                  >
+                    <img src={imageUrl} alt={image.alt} loading="lazy" decoding="async" />
+                    {image.label && <span className="product-page__media-gallery-label">{image.label}</span>}
+                    <span className="product-page__media-shot-action">
+                      Open <Maximize2 aria-hidden="true" size={13} />
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+
+            {deploymentItem.disclosure && (
+              <p className="mt-5 text-[11px] leading-[1.65] text-white/50">{deploymentItem.disclosure}</p>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function ProductMediaStage({
   item,
   imageUrl,
@@ -740,7 +835,11 @@ export default function ProductPageTemplate({ config }: ProductPageTemplateProps
       <ProductHeroSection {...config.hero} />
       <ProductAnchorNav productName={config.hero.productName} />
       <ProductPathways config={config.pathways} />
-      <ProductMediaTour config={config.media} />
+      {config.media.layout === "gallery" ? (
+        <ProductMediaGallery config={config.media} />
+      ) : (
+        <ProductMediaTour config={config.media} />
+      )}
       <ProductWorkflow config={config.workflow} />
       <ProductCapabilities config={config.capabilities} />
       <ProductProof config={config.proof} />

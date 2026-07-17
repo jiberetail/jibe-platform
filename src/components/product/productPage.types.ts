@@ -78,6 +78,7 @@ export type ProductPageConfig = {
     items: readonly ProductPathway[];
   };
   media: ProductSectionIntro & {
+    layout?: "tour" | "gallery";
     items: readonly ProductMediaItem[];
   };
   workflow: ProductSectionIntro & {
