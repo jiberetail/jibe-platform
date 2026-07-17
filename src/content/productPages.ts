@@ -500,19 +500,19 @@ export const productPages = {
       productName: "Jibe AI",
       productLabel: "AI",
       descriptor: "Structured Survey Intelligence",
-      // COPY REVIEW — AI-01 / D-09: precise draft avoids unverified autonomous or accuracy claims.
-      line1: "Predict the survey.",
-      line2: "Explain the change.",
+      // COPY REVIEW — AI-01 / D-09: autonomy is explicitly bounded to transcript analysis and prediction generation.
+      line1: "Autonomous, AI‑driven",
+      line2: "survey prediction.",
       description:
-        "Jibe AI creates AI-generated structured survey predictions from interaction transcripts, organizes changing patterns and evidence, and surfaces recommended next actions. Where actual customer survey responses are available, teams can compare them with the earlier predictions.",
+        "Jibe AI is an autonomous, AI-driven analysis layer that turns available interaction transcripts into AI-generated predictions against a structured survey model. It organizes the evidence behind changing patterns and recommends what to examine next. These predictions are not actual customer responses; where responses are available, teams can compare the two.",
       // COPY REVIEW / BLOCKED — CONTACT-01 / D-10: interim label only; duration and direct scheduling are not approved.
       primaryHref: "/contact?product=ai",
       primaryLabel: "Start a conversation",
       secondaryHref: "#overview",
       secondaryLabel: "Explore Jibe AI",
       proofPoints: [
+        "Autonomous transcript analysis",
         "AI-generated survey predictions",
-        "No frontline prediction step",
         "Evidence-linked root cause",
         "Recommended next actions",
       ],

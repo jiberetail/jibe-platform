@@ -16,9 +16,9 @@ public release remains blocked until the items below are resolved in writing.
 | RET-03 | “Recover the sale when the shelf cannot.” | Final ecommerce/revenue wording. |
 | RET-04 | “When shoppers cannot find it, let them tell you why.” | Final nonpurchase survey wording. |
 | RET-06 / D-06 | Transact → Increased Revenue; Understand → Actionable Insights | Confirm the paired model and final outcome labels. “Increased Revenue” must not be treated as a guaranteed result. |
-| AI-01 / D-09 | “Predict the survey. Explain the change.” | Final hero wording after claim substantiation. |
+| AI-01 / D-09 | “Autonomous, AI-driven survey prediction.” | Final hero wording and substantiation for the autonomous claim. |
 | AI-03 | Structured survey prediction versus available customer responses | Product/legal review of the differentiator and exact comparison language. |
-| CONTACT-01 / D-10 | “Start a conversation” and the low-commitment contact-page draft | Confirm the final CTA, duration, calendar, meeting owner, routing, notifications, privacy behavior, and fallback contact. |
+| CONTACT-01 / D-10 | “Start a conversation,” a local conversation brief, and the current public message/phone actions | Confirm the final CTA, duration, calendar, meeting owner, routing, notifications, privacy behavior, and whether the current Jibe Retail contact channel should serve the full portfolio. |
 
 ## Decisions and evidence required before public release
 
@@ -27,7 +27,7 @@ public release remains blocked until the items below are resolved in writing.
 - **D-07 — Retail product facts:** verify software, payment, integration, security, deployment, support, accessibility, and exact MetroClick hardware specifications.
 - **D-08 — Retail proof:** reconcile the source for `$1.2M`, `3,972`, and `68%`; obtain client approval and rights for every case, logo, venue image, screen, and podium wrap.
 - **D-09 — AI claims:** substantiate any use of autonomous, hands-free, end-to-end, plug-and-play, every interaction, accuracy, calibration/training, customer-audited training, delivery integration, or owned-IP language.
-- **D-10 — Contact:** verify the scheduling account, duration, owner, routing, notifications, timezone behavior, privacy notice, confirmation flow, reschedule/cancel path, analytics events, and fallback inbox/phone. The previously displayed Zacoustic inbox and phone are not approved and have been removed from the draft contact page.
+- **D-10 — Contact:** verify the scheduling account, duration, owner, routing, notifications, timezone behavior, privacy notice, confirmation flow, reschedule/cancel path, analytics events, and fallback inbox/phone. The draft now uses Jibe Retail's current public message form and `(512) 484-7058` phone line as immediate actions; confirm that this channel should serve Jibe Pro and Jibe AI before public launch. The previously displayed Zacoustic inbox and old `877` number remain removed.
 - **D-11 — Company:** verify leadership names, roles, photos, biographies, company history, dates, legal entity/brand relationship, patents/IP wording, copyright owner, and media contact.
 
 ## Asset and rights blockers

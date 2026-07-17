@@ -33,13 +33,13 @@ const routeMetadata = {
     description: "Deploy a branded survey, an extended-aisle ecommerce experience, or both to capture feedback, find merchandise, and continue purchases.",
   },
   "jibe-ai": {
-    title: "Jibe AI | Interaction Intelligence",
-    description: "Analyze the interaction stream, connect performance shifts to root causes and evidence, and surface the next practical action.",
+    title: "Jibe AI | Autonomous Structured Survey Prediction",
+    description: "Turn available interaction transcripts into autonomous, AI-generated structured survey predictions, evidence-linked root causes, and recommended next actions.",
   },
   // COPY REVIEW / BLOCKED — CONTACT-01 / D-10: neutral interim metadata pending approved scheduling details.
   contact: {
     title: "Start a Conversation | Jibe",
-    description: "Ask a question, share the challenge, or explore which Jibe product may fit your operation.",
+    description: "Choose a Jibe product, prepare a concise conversation brief, and contact Jibe through the current message form or phone line.",
   },
   demo: {
     title: "Contact Jibe",
