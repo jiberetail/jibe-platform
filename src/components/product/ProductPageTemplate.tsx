@@ -107,21 +107,17 @@ function InteractionPrompt({
   id,
   title,
   description,
-  current,
-  total,
   dark = false,
 }: {
   id?: string;
   title: string;
   description: string;
-  current: number;
-  total: number;
   dark?: boolean;
 }) {
   return (
     <div
       id={id}
-      className="flex flex-wrap items-center justify-between gap-4 px-1 py-1"
+      className="flex items-center px-1 py-1"
     >
       <div className="flex items-center gap-3">
         <span
@@ -136,9 +132,6 @@ function InteractionPrompt({
           <span className={`mt-0.5 block text-[11px] ${dark ? "text-white/55" : "text-[#5F5F5F]"}`}>{description}</span>
         </span>
       </div>
-      <span className={`font-mono text-[10px] font-semibold tracking-[0.16em] ${dark ? "text-white/55" : "text-[#777777]"}`}>
-        {String(current).padStart(2, "0")} / {String(total).padStart(2, "0")}
-      </span>
     </div>
   );
 }
@@ -194,8 +187,6 @@ function ProductPathways({ config }: { config: ProductPageConfig["pathways"] }) 
             id={`${idPrefix}-pathway-instructions`}
             title="Choose what to explore"
             description="Select a focus area to change the story below."
-            current={activeIndex + 1}
-            total={config.items.length}
           />
           <div
             role="tablist"
@@ -313,9 +304,6 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                 <span className="ml-2">— the preview updates directly below.</span>
               </span>
             </div>
-            <span aria-live="polite" className="font-mono text-[10px] font-semibold tracking-[0.16em] text-white/55">
-              {String(activeIndex + 1).padStart(2, "0")} / {String(config.items.length).padStart(2, "0")}
-            </span>
           </div>
 
           <div
@@ -490,8 +478,6 @@ function ProductSequentialWorkflow({ config }: { config: ProductPageConfig["work
             id={`${idPrefix}-workflow-instructions`}
             title="Choose a step"
             description="Select any stage to see what happens there."
-            current={activeIndex + 1}
-            total={config.steps.length}
           />
           <ol
             role="tablist"
@@ -659,11 +645,11 @@ function ProductProof({ config }: { config: ProductPageConfig["proof"] }) {
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
         <div className="mt-14 divide-y divide-[#D9D9D9] border-y border-[#D9D9D9] lg:mt-16">
-          {config.items.map((item, index) => (
+          {config.items.map((item) => (
             <div key={item.title} className="product-page__proof-item grid gap-8 py-9 lg:grid-cols-12 lg:items-start lg:py-11">
               <div className={item.metrics && item.metrics.length > 0 ? "lg:col-span-5" : "lg:col-span-8"}>
                 <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#0076CE]">
-                  {String(index + 1).padStart(2, "0")} / {item.eyebrow}
+                  {item.eyebrow}
                 </p>
                 <h3 className="mt-4 text-[clamp(26px,3vw,40px)] font-semibold leading-[1.05] tracking-[-0.03em] text-[#26364A]">
                   {item.title}

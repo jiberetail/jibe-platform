@@ -46,6 +46,22 @@ const headlineBase: CSSProperties = {
   display: "block",
 };
 
+function RetailPodiumAtmosphere() {
+  return (
+    <div className="retail-podium-atmosphere" aria-hidden="true">
+      {Array.from({ length: 7 }, (_, index) => (
+        <span className="retail-ambient-podium" key={index}>
+          <span className="retail-ambient-podium__screen">
+            <span className="retail-ambient-podium__screen-line" />
+          </span>
+          <span className="retail-ambient-podium__stand" />
+          <span className="retail-ambient-podium__base" />
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function ProductHeroSection({
   productName,
   descriptor,
@@ -121,6 +137,8 @@ export default function ProductHeroSection({
     <section
       className="jibe-product-hero relative flex min-h-screen items-center overflow-hidden border-b"
     >
+      {productLabel === "Retail" && <RetailPodiumAtmosphere />}
+
       {!secondaryHref.startsWith("#") && (
         <span
           id={fallbackScrollTarget}
@@ -129,7 +147,7 @@ export default function ProductHeroSection({
         />
       )}
 
-      <div className="relative mx-auto w-full max-w-[1320px] px-6 pb-20 pt-28 lg:px-10">
+      <div className="relative z-[1] mx-auto w-full max-w-[1320px] px-6 pb-20 pt-28 lg:px-10">
         <div className="grid min-h-[calc(100svh-12rem)] grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_1fr] lg:gap-4 xl:grid-cols-[1fr_1.05fr]">
           <div className="jibe-product-hero__copy flex flex-col justify-center py-8 lg:py-10">
             <div
