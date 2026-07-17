@@ -19,6 +19,16 @@ function dataColor(blueMix: number, alpha: number) {
   return `rgba(${red}, ${green}, ${blue}, ${Math.max(0, Math.min(1, alpha))})`;
 }
 
+function hashUnit(seed: number) {
+  const value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+  return value - Math.floor(value);
+}
+
+function smoothStep(min: number, max: number, value: number) {
+  const normalized = Math.max(0, Math.min(1, (value - min) / (max - min)));
+  return normalized * normalized * (3 - 2 * normalized);
+}
+
 function drawAiRain(
   context: CanvasRenderingContext2D,
   width: number,
@@ -27,28 +37,70 @@ function drawAiRain(
   reducedMotion: boolean,
 ) {
   const compact = width < 760;
-  const streamCount = compact ? 10 : 18;
-  const spacing = width / streamCount;
-  const blockSize = compact ? 10 : 12;
-  const now = reducedMotion ? 3600 : time;
+  const now = reducedMotion ? 4200 : time;
+  const packetCount = compact ? 64 : 104;
+  const cycle = height + 280;
+  const layerAlpha = [0.11, 0.18, 0.29];
 
-  for (let stream = 0; stream < streamCount; stream += 1) {
-    const blockCount = 6 + (stream % 5);
-    const speed = 0.035 + (stream % 6) * 0.0045;
-    const cycle = height + 520;
-    const startOffset = ((stream * 0.317 + 0.11) % 1) * cycle;
-    const headY = ((startOffset + now * speed) % cycle) - 240;
-    const x = spacing * (stream + 0.5) + Math.sin(stream * 2.1) * spacing * 0.1;
+  for (let packet = 0; packet < packetCount; packet += 1) {
+    const seed = packet * 17.37 + 1;
+    const layer = packet % 3;
+    const depth = (layer + 1) / 3;
+    const speed = 0.018 + layer * 0.008 + hashUnit(seed + 7) * 0.009;
+    const y = ((hashUnit(seed + 19) * cycle + now * speed) % cycle) - 140;
+    if (y < -70 || y > height + 70) continue;
 
-    for (let block = 0; block < blockCount; block += 1) {
-      const y = headY - block * (compact ? 32 : 38);
-      if (y < -40 || y > height + 40) continue;
-      const edgeFade = Math.min(1, Math.max(0, y / 90), Math.max(0, (height - y) / 110));
-      const colorShift = 0.52 + Math.sin(now * 0.00125 + stream * 0.73 + block * 0.58) * 0.48;
-      const alpha = (0.15 + ((stream + block) % 4) * 0.025) * edgeFade;
-      context.fillStyle = dataColor(colorShift, alpha);
-      context.fillRect(x - blockSize / 2, y - blockSize / 2, blockSize, blockSize);
+    const rawX = hashUnit(seed + 37) * width;
+    const organizationBand = width * (((packet % 5) + 0.5) / 5);
+    const lowerProgress = Math.max(0, Math.min(1, y / Math.max(1, height)));
+    const organization = 0.07 + Math.pow(lowerProgress, 1.7) * 0.14;
+    const sway =
+      Math.sin(now * (0.00035 + depth * 0.00008) + hashUnit(seed + 23) * Math.PI * 2) *
+      (2 + depth * 5);
+    const x = rawX + (organizationBand - rawX) * organization + sway;
+
+    const edgeFade =
+      smoothStep(-25, 100, y) * (1 - smoothStep(height - 120, height + 35, y));
+    const copyFade = compact ? 0.82 : 0.32 + smoothStep(0.18, 0.5, x / width) * 0.68;
+    const logoDistance = Math.hypot(
+      (x - width * 0.75) / (width * 0.2),
+      (y - height * 0.48) / (height * 0.3),
+    );
+    const logoQuietZone = compact ? 1 : 0.38 + smoothStep(0.68, 1.14, logoDistance) * 0.62;
+    const pulse = 0.82 + Math.sin(now * 0.001 + seed) * 0.18;
+    const alpha = layerAlpha[layer] * edgeFade * copyFade * logoQuietZone * pulse;
+    if (alpha <= 0.002) continue;
+
+    const isNode = hashUnit(seed + 43) < 0.34;
+    const blueMix = packet % 7 === 0 ? 1 : 0.48 + hashUnit(seed + 47) * 0.46;
+    const packetHeight = isNode ? 4 + depth * 2 : 2.4 + depth * 1.5;
+    const packetWidth = isNode ? packetHeight : 10 + hashUnit(seed + 59) * (18 + depth * 20);
+
+    if (packet % 7 === 0) {
+      const trailLength = 28 + hashUnit(seed + 61) * 28;
+      context.beginPath();
+      context.moveTo(x, y - trailLength);
+      context.lineTo(x, y - packetHeight * 1.5);
+      context.strokeStyle = dataColor(blueMix, alpha * 0.42);
+      context.lineWidth = 0.7 + depth * 0.45;
+      context.lineCap = "round";
+      context.stroke();
     }
+
+    context.fillStyle = dataColor(blueMix, alpha);
+    context.beginPath();
+    if (isNode) {
+      context.arc(x, y, packetWidth / 2, 0, Math.PI * 2);
+    } else {
+      context.roundRect(
+        x - packetWidth / 2,
+        y - packetHeight / 2,
+        packetWidth,
+        packetHeight,
+        packetHeight,
+      );
+    }
+    context.fill();
   }
 }
 
@@ -72,9 +124,9 @@ function drawProVoiceWaves(
     const amplitude = height * (wave === 1 ? 0.085 : 0.055);
     const gradient = context.createLinearGradient(startX, 0, endX, 0);
     gradient.addColorStop(0, rgba(BLUE, 0));
-    gradient.addColorStop(0.24, rgba(BLUE, wave === 1 ? 0.05 : 0.025));
-    gradient.addColorStop(0.48, rgba(BLUE, wave === 1 ? 0.2 : 0.11));
-    gradient.addColorStop(1, rgba(BLUE, wave === 1 ? 0.12 : 0.065));
+    gradient.addColorStop(0.24, rgba(BLUE, wave === 1 ? 0.07 : 0.035));
+    gradient.addColorStop(0.48, rgba(BLUE, wave === 1 ? 0.26 : 0.145));
+    gradient.addColorStop(1, rgba(BLUE, wave === 1 ? 0.155 : 0.085));
     context.strokeStyle = gradient;
     context.lineWidth = wave === 1 ? 1.8 : 1.25;
     context.lineCap = "round";

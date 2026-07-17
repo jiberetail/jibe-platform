@@ -258,7 +258,7 @@ export const productPages = {
       productName: "Jibe Retail",
       productLabel: "Retail",
       descriptor: "In-Venue Surveys & E-commerce",
-      line1: "Survey, e-commerce,",
+      line1: "Survey, E-commerce",
       line2: "or both.",
       description:
         "Jibe Retail helps venues collect feedback, find missing merchandise, and continue purchases for home delivery through a branded survey, an ecommerce experience, or both.",

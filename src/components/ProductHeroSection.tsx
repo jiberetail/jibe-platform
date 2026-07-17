@@ -42,7 +42,7 @@ type ProductHeroSectionProps = {
 
 const headlineBase: CSSProperties = {
   fontFamily: "'Instrument Serif', Georgia, serif",
-  fontSize: "clamp(50px, 6.1vw, 90px)",
+  fontSize: "var(--product-hero-heading-size, clamp(50px, 6.1vw, 90px))",
   lineHeight: 0.93,
   letterSpacing: "-0.025em",
   display: "block",
@@ -165,7 +165,7 @@ export default function ProductHeroSection({
       )}
 
       <div className="relative z-[1] mx-auto w-full max-w-[1320px] px-6 pb-20 pt-28 lg:px-10">
-        <div className="grid min-h-[calc(100svh-12rem)] grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_1fr] lg:gap-4 xl:grid-cols-[1fr_1.05fr]">
+        <div className="jibe-product-hero__layout grid min-h-[calc(100svh-12rem)] grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_1fr] lg:gap-4 xl:grid-cols-[1fr_1.05fr]">
           <div className="jibe-product-hero__copy flex flex-col justify-center py-8 lg:py-10">
             <div
               className="jibe-product-eyebrow mb-8 flex w-fit items-center gap-3 transition-all duration-500"
