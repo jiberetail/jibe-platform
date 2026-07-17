@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { Link } from "react-router";
+import { assetUrl } from "../assetUrl";
 import HeroVisual3D from "./HeroVisual3D";
 import ScrollCue from "./ScrollCue";
 
@@ -47,15 +48,27 @@ const headlineBase: CSSProperties = {
 };
 
 function RetailPodiumAtmosphere() {
+  const podiums = [
+    "jibe-retail-mlb-cutout.png",
+    "jibe-retail-nhl-cutout.png",
+    "jibe-retail-fan-town-cutout.png",
+    "jibe-retail-mlb-cutout.png",
+    "jibe-retail-nhl-cutout.png",
+    "jibe-retail-fan-town-cutout.png",
+    "jibe-retail-mlb-cutout.png",
+  ];
+
   return (
     <div className="retail-podium-atmosphere" aria-hidden="true">
-      {Array.from({ length: 7 }, (_, index) => (
+      {podiums.map((podium, index) => (
         <span className="retail-ambient-podium" key={index}>
-          <span className="retail-ambient-podium__screen">
-            <span className="retail-ambient-podium__screen-line" />
-          </span>
-          <span className="retail-ambient-podium__stand" />
-          <span className="retail-ambient-podium__base" />
+          <img
+            src={assetUrl(`assets/podiums/cutouts/${podium}`)}
+            alt=""
+            className="retail-ambient-podium__image"
+            loading="eager"
+            decoding="async"
+          />
         </span>
       ))}
     </div>
