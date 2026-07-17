@@ -220,9 +220,6 @@ function ProductPathways({ config }: { config: ProductPageConfig["pathways"] }) 
                       : "border-[#D9D9D9] bg-white text-[#26364A] hover:-translate-y-0.5 hover:border-[#0076CE] hover:text-[#0076CE] hover:shadow-[0_8px_20px_rgba(24,24,24,0.08)]"
                   } ${focusRing}`}
                 >
-                  <span className={`mr-3 text-[10px] font-bold tracking-[0.15em] ${selected ? "text-white/65" : "text-[#888888]"}`}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   <span>{item.label}</span>
                   <span className={`ml-auto flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.12em] ${selected ? "text-white/75" : "text-[#777777] group-hover:text-[#0076CE]"}`}>
                     {selected ? "Selected" : "Explore"}
@@ -310,10 +307,15 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
             role="tablist"
             aria-label={config.eyebrow}
             aria-describedby={`${idPrefix}-media-instructions`}
-            className="product-page__media-tabs mt-3 flex flex-wrap gap-2 rounded-2xl border border-white/15 bg-white/[0.04] p-2"
+            className="product-page__media-tabs mt-3 rounded-2xl border border-white/15 bg-white/[0.04] p-2"
           >
             {config.items.map((item, index) => {
               const selected = index === activeIndex;
+              const thumbnailUrl = item.src
+                ? assetUrl(item.src)
+                : item.images?.[0]
+                  ? assetUrl(item.images[0].src)
+                  : null;
               return (
                 <button
                   key={item.id}
@@ -330,16 +332,19 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                   onKeyDown={(event) =>
                     focusAndSelectTab(event, index, config.items.length, tabRefs, setActiveIndex)
                   }
-                  className={`relative shrink-0 cursor-pointer touch-manipulation rounded-xl border px-4 py-3 text-left text-[12px] font-semibold transition-all ${
-                    selected
-                      ? "border-[#4A9CFF] bg-[#0076CE] text-white shadow-[0_8px_22px_rgba(0,118,206,0.24)]"
-                      : "border-white/10 bg-white/[0.04] text-white/60 hover:border-white/30 hover:bg-white/[0.09] hover:text-white"
-                  } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]`}
+                  className="product-page__media-tab focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
                 >
-                  <span className={`mr-2 font-mono text-[9px] tracking-[0.12em] ${selected ? "text-white/65" : "text-white/35"}`}>
-                    {String(index + 1).padStart(2, "0")}
+                  <span className="product-page__media-tab-thumb" aria-hidden="true">
+                    {thumbnailUrl && (
+                      <img src={thumbnailUrl} alt="" loading="lazy" decoding="async" />
+                    )}
                   </span>
-                  {item.label}
+                  <span className="product-page__media-tab-copy">
+                    <span className="product-page__media-tab-label">{item.label}</span>
+                    <span className="product-page__media-tab-status">
+                      {selected ? "Viewing now" : "View screen"}
+                    </span>
+                  </span>
                 </button>
               );
             })}
@@ -352,6 +357,30 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
             tabIndex={0}
             className="product-page__media-panel pt-3 pb-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9CFF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#101820]"
           >
+            <div className="product-page__media-summary">
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">
+                  {activeItem.eyebrow}
+                </p>
+                <h3 className="mt-3 max-w-[720px] text-[clamp(27px,3vw,42px)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
+                  {activeItem.title}
+                </h3>
+                <p className="mt-4 max-w-[720px] text-[14px] leading-[1.75] text-white/60">
+                  {activeItem.description}
+                </p>
+              </div>
+              {imageUrl && (
+                <a
+                  href={imageUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="product-page__media-fullscreen"
+                >
+                  View full screen <Maximize2 aria-hidden="true" size={15} />
+                </a>
+              )}
+            </div>
+
             <figure className="product-page__media-figure">
               <ProductMediaStage
                 key={activeItem.id}
@@ -365,20 +394,6 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
                 </figcaption>
               )}
             </figure>
-
-            <div className="mt-8 grid gap-6 border-t border-white/10 pt-8 lg:grid-cols-12 lg:items-start lg:gap-10">
-              <div className="lg:col-span-6">
-                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#4A9CFF]">
-                  {activeItem.eyebrow}
-                </p>
-                <h3 className="mt-3 text-[clamp(27px,3vw,42px)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
-                  {activeItem.title}
-                </h3>
-              </div>
-              <p className="max-w-[680px] text-[14px] leading-[1.75] text-white/60 lg:col-span-5 lg:col-start-8 lg:pt-5">
-                {activeItem.description}
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -514,9 +529,6 @@ function ProductMediaStage({
                 decoding="async"
                 className={`product-page__media-shot product-page__media-shot--${item.id} ${portrait ? "product-page__media-shot--portrait" : tall ? "product-page__media-shot--tall" : "product-page__media-shot--landscape"}`}
               />
-              <span className="product-page__media-shot-action">
-                Open full size <Maximize2 aria-hidden="true" size={14} />
-              </span>
             </a>
           )}
 
@@ -604,7 +616,6 @@ function ProductSequentialWorkflow({ config }: { config: ProductPageConfig["work
                         : "border-[#D9D9D9] bg-[#F7F7F7] text-[#26364A] hover:-translate-y-0.5 hover:border-[#0076CE] hover:bg-white hover:text-[#0076CE] hover:shadow-[0_8px_20px_rgba(24,24,24,0.08)]"
                     } ${focusRing}`}
                   >
-                    <span className={`text-[10px] font-bold tracking-[0.16em] ${selected ? "text-white/65" : "text-[#888888]"}`}>{step.number}</span>
                     <span className="text-[14px] font-semibold">{step.label ?? step.title}</span>
                     <ChevronRight aria-hidden="true" size={15} className={`ml-auto ${selected ? "text-white/75" : "text-[#888888] group-hover:text-[#0076CE]"}`} />
                   </button>
@@ -623,7 +634,7 @@ function ProductSequentialWorkflow({ config }: { config: ProductPageConfig["work
             aria-live="polite"
           >
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#0076CE] lg:col-span-2">
-              Step {activeStep.number}
+              Process
             </p>
             <div className="lg:col-span-8">
               <h3 className="text-[24px] font-semibold tracking-[-0.025em] text-[#26364A]">{activeStep.title}</h3>
@@ -650,7 +661,7 @@ function ProductPairedWorkflow({ config }: { config: ProductPageConfig["workflow
         <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
 
         <ol className="mt-14 grid gap-4 lg:mt-16 lg:grid-cols-2">
-          {pairs.map((pair, pairIndex) => {
+          {pairs.map((pair) => {
             const capability = pair[0];
             const outcome = pair[1];
             if (!capability || !outcome) return null;
@@ -663,7 +674,7 @@ function ProductPairedWorkflow({ config }: { config: ProductPageConfig["workflow
                 <div className="grid gap-7 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
                   <div>
                     <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-[#0076CE]">
-                      Path {String(pairIndex + 1).padStart(2, "0")} · Capability
+                      Capability
                     </p>
                     <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#0076CE]">
                       {capability.label ?? capability.title}
@@ -710,13 +721,10 @@ function ProductCapabilities({ config }: { config: ProductPageConfig["capabiliti
             return (
               <li
                 key={item.title}
-                className={`grid grid-cols-[auto_1fr] gap-5 border-b border-[#D9D9D9] py-7 md:px-7 ${
+                className={`border-b border-[#D9D9D9] py-7 md:px-7 ${
                   index % 2 === 0 ? "md:border-r" : ""
                 } ${isInLastDesktopRow ? "md:border-b-0" : ""} ${isLastItem ? "border-b-0" : ""}`}
               >
-                <span className="pt-1 text-[10px] font-bold tracking-[0.15em] text-[#0076CE]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
                 <div>
                   <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-[#26364A]">{item.title}</h3>
                   <p className="mt-2 max-w-[480px] text-[13px] leading-[1.7] text-[#5F5F5F]">{item.description}</p>

@@ -51,12 +51,10 @@ const headlineBase: CSSProperties = {
 function RetailPodiumAtmosphere() {
   const podiums = [
     "jibe-retail-mlb-survey-cutout.png",
-    "jibe-retail-nhl-cutout.png",
     "jibe-retail-fan-town-search-cutout.png",
-    "jibe-retail-mlb-survey-cutout.png",
     "jibe-retail-nhl-cutout.png",
-    "jibe-retail-fan-town-search-cutout.png",
     "jibe-retail-mlb-survey-cutout.png",
+    "jibe-retail-fan-town-search-cutout.png",
   ];
 
   return (
