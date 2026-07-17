@@ -587,14 +587,14 @@ export default function BookDemoPage() {
             </div>
 
             {initialLoading ? (
-              <div className="flex min-h-[520px] items-center justify-center rounded-[28px] bg-[#F5F8FB]">
+              <div className="flex min-h-[520px] items-center justify-center rounded-[28px] border border-[#D9D9D9] bg-[#F2F2F2]">
                 <div className="text-center text-[#556572]">
                   <LoaderCircle aria-hidden="true" className="mx-auto animate-spin text-[#0076CE]" size={28} />
                   <p className="mt-4 text-[13px] font-semibold">Loading live availability</p>
                 </div>
               </div>
             ) : errorMessage && !appointmentType ? (
-              <div className="flex min-h-[440px] flex-col items-start justify-center rounded-[28px] bg-[#F5F8FB] p-8 sm:p-12">
+              <div className="flex min-h-[440px] flex-col items-start justify-center rounded-[28px] border border-[#D9D9D9] bg-[#F2F2F2] p-8 sm:p-12">
                 <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#0076CE]">Calendar unavailable</p>
                 <h2 id="scheduler-heading" className="mt-4 max-w-[560px] text-[34px] font-semibold tracking-[-0.035em] text-[#26364A]">
                   The live calendar did not load.
@@ -605,7 +605,7 @@ export default function BookDemoPage() {
                 </div>
               </div>
             ) : stage === "schedule" ? (
-              <div className="rounded-[28px] bg-[#F5F8FB] p-5 sm:p-8 lg:p-10">
+              <div className="rounded-[28px] border border-[#D9D9D9] bg-[#F2F2F2] p-5 shadow-[0_20px_54px_rgba(16,24,32,0.10)] sm:p-8 lg:p-10">
                 <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                   <div>
                     <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#0076CE]">Live calendar</p>
@@ -692,7 +692,7 @@ export default function BookDemoPage() {
                               }}
                               className={`min-h-12 rounded-lg border px-3 text-[13px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0076CE] ${
                                 selected
-                                  ? "border-[#0076CE] bg-[#E5F2FC] text-[#0066B3]"
+                                  ? "border-[#0076CE] bg-[#0076CE] text-white shadow-[0_8px_20px_rgba(0,118,206,0.18)]"
                                   : "border-[#CBD6DF] bg-white text-[#344857] hover:border-[#0076CE] hover:text-[#0076CE]"
                               }`}
                             >
@@ -738,7 +738,7 @@ export default function BookDemoPage() {
                 </div>
               </div>
             ) : stage === "details" ? (
-              <div className="rounded-[28px] bg-[#F5F8FB] p-5 sm:p-8 lg:p-10">
+              <div className="rounded-[28px] border border-[#D9D9D9] bg-[#F2F2F2] p-5 shadow-[0_20px_54px_rgba(16,24,32,0.10)] sm:p-8 lg:p-10">
                 <button
                   type="button"
                   disabled={submitting || bookingOutcomeUnknown}
@@ -879,7 +879,7 @@ export default function BookDemoPage() {
                 </form>
               </div>
             ) : (
-              <div className="flex min-h-[560px] flex-col justify-center rounded-[28px] bg-[#F5F8FB] p-7 sm:p-12 lg:p-16">
+              <div className="flex min-h-[560px] flex-col justify-center rounded-[28px] border border-[#D9D9D9] bg-[#F2F2F2] p-7 shadow-[0_20px_54px_rgba(16,24,32,0.10)] sm:p-12 lg:p-16">
                 <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0076CE] text-white">
                   <Check aria-hidden="true" size={25} strokeWidth={2.2} />
                 </span>
