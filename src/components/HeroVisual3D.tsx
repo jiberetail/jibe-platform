@@ -4,9 +4,9 @@ import { assetUrl } from "../assetUrl";
 const RING_R   = 195;
 const RING_W   = 22;
 const HALO_LW  = 10;
-// Keep the same halo-to-lockup choreography, but bring the finished mark on
-// screen two seconds sooner across Pro, Retail, and AI.
-const DRAW_DUR = 3.2;
+// Keep the same full-circle halo choreography across Pro, Retail, and AI while
+// giving the ring enough time to read before it tilts into the final lockup.
+const DRAW_DUR = 4.2;
 const TILT_DUR = 1.6;
 const TEXT_DUR = 0.9;
 const HALO_RY  = 0.115;
