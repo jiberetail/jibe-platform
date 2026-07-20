@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, MouseEvent as ReactMouseEvent } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import { assetUrl } from "../assetUrl";
 
@@ -10,21 +9,24 @@ const portalProducts = [
     label: "PRO",
     name: "Jibe Pro",
     href: "/jibe-pro",
-    ariaLabel: "Explore Jibe Pro, customer experience performance",
+    description: "Agent predictions improving behavior and analytics.",
+    ariaLabel: "Jibe Pro — agent predictions improving behavior and analytics",
   },
   {
     key: "retail",
     label: "RETAIL",
     name: "Jibe Retail",
     href: "/jibe-retail",
-    ariaLabel: "Explore Jibe Retail, in-venue surveys and ecommerce",
+    description: "In-venue surveys and ecommerce that recover sales and reveal demand.",
+    ariaLabel: "Jibe Retail — in-venue surveys and ecommerce that recover sales and reveal demand",
   },
   {
     key: "ai",
     label: "AI",
     name: "Jibe AI",
     href: "/jibe-ai",
-    ariaLabel: "Explore Jibe AI, interaction intelligence",
+    description: "Autonomous, AI-driven analysis turning every customer interaction into action.",
+    ariaLabel: "Jibe AI — autonomous AI-driven analysis turning every customer interaction into action",
   },
 ] as const;
 
@@ -235,9 +237,7 @@ function PortalCard({
       >
         <span className="portal-card-kicker">JIBE</span>
         <h2 className="portal-card-name">{product.label}</h2>
-        <span className="portal-card-explore">
-          Explore <ArrowUpRight size={16} aria-hidden="true" />
-        </span>
+        <span className="portal-card-description">{product.description}</span>
         <span className="portal-card-opening" aria-hidden={!isOpening}>
           <i aria-hidden="true" /> Opening {product.name}
         </span>

@@ -1912,7 +1912,7 @@
 
 .portal-card-kicker,
 .portal-card-name,
-.portal-card-explore {
+.portal-card-description {
   position: relative;
   z-index: 3;
 }
@@ -1964,28 +1964,28 @@
   letter-spacing: -0.035em;
 }
 
-.portal-card-explore {
+.portal-card-description {
   position: absolute;
   left: clamp(27px, 1.95vw, 36px);
   bottom: clamp(25px, 1.75vw, 33px);
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  opacity: 0;
-  transform: translateY(8px);
+  display: block;
+  width: min(78%, 265px);
+  font-size: clamp(12px, 0.82vw, 14px);
+  font-weight: 540;
+  letter-spacing: 0.005em;
+  line-height: 1.42;
+  opacity: 0.82;
+  transform: translateY(0);
   transition: opacity 220ms ease, transform 220ms ease;
 }
 
-.portal-product-card:hover .portal-card-explore,
-.portal-product-card:focus-visible .portal-card-explore {
-  opacity: 0.82;
-  transform: translateY(0);
+.portal-product-card:hover .portal-card-description,
+.portal-product-card:focus-visible .portal-card-description {
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
-.portal-product-card[data-transition-state="opening"] .portal-card-explore {
+.portal-product-card[data-transition-state="opening"] .portal-card-description {
   opacity: 0;
   transform: translateY(8px);
 }
@@ -2398,10 +2398,12 @@
     font-size: 47px;
   }
 
-  .portal-card-explore {
+  .portal-card-description {
     left: 28px;
     bottom: 27px;
-    opacity: 0.75;
+    width: min(78%, 270px);
+    font-size: 13px;
+    opacity: 0.82;
     transform: none;
   }
 
