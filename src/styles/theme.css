@@ -1965,33 +1965,24 @@
 }
 
 .portal-card-description {
-  position: absolute;
-  left: clamp(27px, 1.95vw, 36px);
-  right: clamp(27px, 1.95vw, 36px);
-  bottom: clamp(25px, 1.75vw, 33px);
+  position: relative;
   display: block;
-  width: auto;
-  padding: 12px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 8px;
-  color: #ffffff;
-  background: rgba(3, 31, 57, 0.94);
-  box-shadow: 0 12px 28px rgba(3, 22, 41, 0.2);
+  width: min(88%, 300px);
+  margin-top: clamp(18px, 1.4vw, 25px);
+  color: inherit;
   font-size: clamp(12px, 0.82vw, 14px);
-  font-weight: 590;
+  font-weight: 560;
   letter-spacing: 0.005em;
-  line-height: 1.42;
+  line-height: 1.48;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 220ms ease, transform 220ms ease;
   pointer-events: none;
 }
 
-.portal-product-card--ai .portal-card-description {
-  border-color: rgba(7, 95, 174, 0.16);
-  color: #075fae;
-  background: rgba(252, 253, 255, 0.96);
-  box-shadow: 0 12px 28px rgba(7, 68, 126, 0.14);
+.portal-product-card--pro .portal-card-description,
+.portal-product-card--retail .portal-card-description {
+  text-shadow: 0 1px 14px rgba(3, 24, 43, 0.3);
 }
 
 .portal-product-card:hover .portal-card-description,
@@ -2414,10 +2405,8 @@
   }
 
   .portal-card-description {
-    left: 28px;
-    right: 28px;
-    bottom: 27px;
-    width: auto;
+    width: min(90%, 285px);
+    margin-top: 19px;
     font-size: 13px;
     opacity: 0;
     transform: translateY(8px);
