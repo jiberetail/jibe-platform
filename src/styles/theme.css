@@ -365,7 +365,7 @@
   opacity: 0;
   transform: translate3d(0, 62%, 0) scale(0.94);
   transform-origin: 50% 100%;
-  animation: retail-podium-mountain-rise 1.9s cubic-bezier(0.22, 1, 0.36, 1) var(--podium-delay) both;
+  animation: retail-podium-mountain-rise 2.85s cubic-bezier(0.22, 1, 0.36, 1) var(--podium-delay) both;
   will-change: transform, opacity;
 }
 
@@ -374,7 +374,7 @@
   display: block;
   width: 100%;
   transform: translate3d(0, var(--podium-sink), 0);
-  animation: retail-podium-mountain-drift 8.5s ease-in-out calc(var(--podium-delay) + 1.9s) infinite alternate;
+  animation: retail-podium-mountain-drift 8.5s ease-in-out calc(var(--podium-delay) + 2.85s) infinite alternate;
   transform-origin: 50% 100%;
   will-change: transform;
 }
