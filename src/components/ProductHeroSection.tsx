@@ -50,26 +50,57 @@ const headlineBase: CSSProperties = {
 
 function RetailPodiumAtmosphere() {
   const podiums = [
-    "jibe-retail-mlb-survey-cutout.png",
-    "jibe-retail-fan-town-search-cutout.png",
-    "jibe-retail-mlb-survey-cutout.png",
-    "jibe-retail-nhl-cutout.png",
-    "jibe-retail-fan-town-search-cutout.png",
-    "jibe-retail-mlb-survey-cutout.png",
-    "jibe-retail-nhl-cutout.png",
+    {
+      podium: "jibe-retail-mlb-survey-cutout.png",
+      screen: "assets/jibe-retail/screens/mlb-front.png",
+      variant: "mlb",
+    },
+    { podium: "jibe-retail-fan-town-search-cutout.png" },
+    {
+      podium: "jibe-retail-mlb-survey-cutout.png",
+      screen: "assets/jibe-retail/screens/mlb-front.png",
+      variant: "mlb",
+    },
+    {
+      podium: "jibe-retail-nhl-cutout.png",
+      screen: "assets/jibe-retail/screens/nhl-front.png",
+      variant: "nhl",
+    },
+    { podium: "jibe-retail-fan-town-search-cutout.png" },
+    {
+      podium: "jibe-retail-mlb-survey-cutout.png",
+      screen: "assets/jibe-retail/screens/mlb-front.png",
+      variant: "mlb",
+    },
+    {
+      podium: "jibe-retail-nhl-cutout.png",
+      screen: "assets/jibe-retail/screens/nhl-front.png",
+      variant: "nhl",
+    },
   ];
 
   return (
     <div className="retail-podium-atmosphere" aria-hidden="true">
-      {podiums.map((podium, index) => (
+      {podiums.map((item, index) => (
         <span className="retail-ambient-podium" key={index}>
-          <img
-            src={assetUrl(`assets/podiums/cutouts/${podium}`)}
-            alt=""
-            className="retail-ambient-podium__image"
-            loading="eager"
-            decoding="async"
-          />
+          <span className={`retail-ambient-podium__art${item.variant ? ` retail-ambient-podium__art--${item.variant}` : ""}`}>
+            <img
+              src={assetUrl(`assets/podiums/cutouts/${item.podium}`)}
+              alt=""
+              className="retail-ambient-podium__image"
+              loading="eager"
+              decoding="async"
+            />
+            {item.screen && (
+              <img
+                src={assetUrl(item.screen)}
+                alt=""
+                className="retail-ambient-podium__screen"
+                loading="eager"
+                decoding="async"
+              />
+            )}
+          </span>
         </span>
       ))}
     </div>

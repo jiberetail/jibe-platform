@@ -369,16 +369,43 @@
   will-change: transform, opacity;
 }
 
+.retail-ambient-podium__art {
+  position: relative;
+  display: block;
+  width: 100%;
+  transform: translate3d(0, var(--podium-sink), 0);
+  animation: retail-podium-mountain-drift 8.5s ease-in-out calc(var(--podium-delay) + 1.9s) infinite alternate;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
 .retail-ambient-podium__image {
   display: block;
   width: 100%;
   height: auto;
   filter: saturate(0.48) contrast(0.96) brightness(0.72);
   clip-path: inset(0 0 var(--podium-base-crop) 0);
-  transform: translate3d(0, var(--podium-sink), 0);
-  animation: retail-podium-mountain-drift 8.5s ease-in-out calc(var(--podium-delay) + 1.9s) infinite alternate;
-  transform-origin: 50% 100%;
-  will-change: transform;
+}
+
+.retail-ambient-podium__screen {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 31.25%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 1.5%;
+  filter: saturate(0.72) contrast(0.96) brightness(0.8);
+}
+
+.retail-ambient-podium__art--mlb .retail-ambient-podium__screen {
+  top: 6.75%;
+  left: 34.15%;
+}
+
+.retail-ambient-podium__art--nhl .retail-ambient-podium__screen {
+  top: 7.25%;
+  left: 36.25%;
 }
 
 .retail-ambient-podium:nth-child(1) {
@@ -616,7 +643,7 @@
     will-change: auto;
   }
 
-  .retail-ambient-podium__image {
+  .retail-ambient-podium__art {
     animation: none !important;
     will-change: auto;
   }
@@ -1139,13 +1166,54 @@
   box-shadow: 0 30px 62px rgba(0, 0, 0, 0.38);
 }
 
-.product-page__media-gallery-link img {
+.retail-podium-composite {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.product-page__media-gallery-link .retail-podium-composite__base {
   display: block;
   width: 100%;
   height: 100%;
   aspect-ratio: 2 / 3;
   object-fit: contain;
   background: #0c1723;
+}
+
+.product-page__media-gallery-link .retail-podium-composite__screen {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 31.25%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 1.5%;
+  background: #08131f;
+  box-shadow: 0 0 0 1px rgba(8, 19, 31, 0.42);
+  pointer-events: none;
+}
+
+.product-page__media-gallery-link .retail-podium-composite--mlb .retail-podium-composite__screen {
+  top: 6.75%;
+  left: 34.15%;
+}
+
+.product-page__media-gallery-link .retail-podium-composite--nhl .retail-podium-composite__screen {
+  top: 7.25%;
+  left: 36.25%;
+  width: 30.25%;
+}
+
+.product-page__media-gallery-link .retail-podium-composite--fan-town .retail-podium-composite__screen {
+  top: 6.85%;
+  left: 34.2%;
+  width: 32.25%;
+}
+
+.retail-podium-composite__video {
+  object-position: top center;
 }
 
 .product-page__media-gallery-label {
@@ -1228,8 +1296,117 @@
   align-items: stretch;
 }
 
+.retail-reporting {
+  background:
+    radial-gradient(circle at 88% 4%, rgba(0, 118, 206, 0.075), transparent 30%),
+    #f7f9fb;
+}
+
+.retail-reporting__featured-grid,
+.retail-reporting__report-grid {
+  display: grid;
+  gap: clamp(20px, 2vw, 30px);
+  align-items: start;
+}
+
+.retail-reporting__featured-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.retail-reporting__report-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.retail-reporting__item {
+  min-width: 0;
+}
+
+.retail-reporting__frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 7px;
+  border: 1px solid rgba(38, 54, 74, 0.17);
+  border-radius: 22px;
+  background: #101820;
+  box-shadow: 0 18px 42px rgba(16, 24, 32, 0.15);
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    box-shadow 260ms ease;
+}
+
+.retail-reporting__frame:hover,
+.retail-reporting__frame:focus-visible {
+  z-index: 2;
+  outline: none;
+  border-color: rgba(0, 118, 206, 0.72);
+  transform: translateY(-4px);
+  box-shadow: 0 26px 58px rgba(16, 24, 32, 0.2);
+}
+
+.retail-reporting__frame:focus-visible {
+  box-shadow:
+    0 0 0 3px rgba(74, 156, 255, 0.38),
+    0 26px 58px rgba(16, 24, 32, 0.2);
+}
+
+.retail-reporting__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.retail-reporting__frame:hover .product-page__media-shot-action,
+.retail-reporting__frame:focus-visible .product-page__media-shot-action {
+  background: #0076ce;
+  transform: translateY(-2px);
+}
+
+.retail-reporting__caption {
+  padding: 20px 4px 0;
+}
+
+.retail-reporting__caption p {
+  color: #0076ce;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.retail-reporting__caption h3 {
+  max-width: 560px;
+  margin-top: 9px;
+  color: #26364a;
+  font-size: clamp(19px, 1.7vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.retail-reporting__item--report .retail-reporting__frame {
+  padding: 6px;
+  border-radius: 19px;
+}
+
+.retail-reporting__item--report .retail-reporting__frame img {
+  border-radius: 13px;
+}
+
+.retail-reporting__item--report .retail-reporting__caption h3 {
+  font-size: clamp(17px, 1.4vw, 21px);
+}
+
 @media (max-width: 1023px) {
   .retail-media-screen-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .retail-reporting__report-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1244,6 +1421,19 @@
     max-width: 430px;
     margin-inline: auto;
     border-radius: 14px;
+  }
+
+  .retail-reporting__featured-grid,
+  .retail-reporting__report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .retail-reporting__frame {
+    border-radius: 16px;
+  }
+
+  .retail-reporting__frame img {
+    border-radius: 11px;
   }
 }
 

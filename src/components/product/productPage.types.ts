@@ -42,9 +42,20 @@ export type ProductMediaItem = {
     src: string;
     alt: string;
     label?: string;
+    screenSrc?: string;
+    videoSrc?: string;
+    screenVariant?: "mlb" | "nhl" | "fan-town";
   }[];
   orientation?: "landscape" | "portrait" | "tall";
   disclosure?: string;
+};
+
+export type ProductReportingView = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  src: string;
+  alt: string;
 };
 
 export type ProductWorkflowStep = {
@@ -80,6 +91,11 @@ export type ProductPageConfig = {
   media: ProductSectionIntro & {
     layout?: "tour" | "gallery";
     items: readonly ProductMediaItem[];
+  };
+  reporting?: ProductSectionIntro & {
+    featured: readonly ProductReportingView[];
+    reports: readonly ProductReportingView[];
+    note?: string;
   };
   workflow: ProductSectionIntro & {
     layout?: "steps" | "paired";

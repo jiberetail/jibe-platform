@@ -137,11 +137,12 @@ function InteractionPrompt({
   );
 }
 
-function ProductAnchorNav({ productName }: { productName: string }) {
+function ProductAnchorNav({ productName, hasReporting }: { productName: string; hasReporting: boolean }) {
   const links = [
     ["#overview", "Overview"],
     ["#product", "Product"],
     ["#how-it-works", "How it works"],
+    ...(hasReporting ? ([["#reporting", "Dashboards & ROI"]] as const) : []),
     ["#proof", "Proof"],
   ] as const;
 
@@ -436,6 +437,58 @@ function ProductMediaTour({ config }: { config: ProductPageConfig["media"] }) {
   );
 }
 
+function RetailPodiumVideo({ src, poster }: { src: string; poster?: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches) return;
+
+    const playVideo = () => {
+      void video.play().catch(() => {
+        // Muted inline playback can still be denied by a browser policy.
+        // The poster remains visible as a complete fallback.
+      });
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      playVideo();
+      return () => video.pause();
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) playVideo();
+        else video.pause();
+      },
+      { rootMargin: "160px 0px", threshold: 0.08 },
+    );
+
+    observer.observe(video);
+    return () => {
+      observer.disconnect();
+      video.pause();
+    };
+  }, [src]);
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      poster={poster}
+      aria-hidden="true"
+      className="retail-podium-composite__screen retail-podium-composite__video"
+      muted
+      loop
+      playsInline
+      preload="metadata"
+    />
+  );
+}
+
 function ProductMediaGallery({ config }: { config: ProductPageConfig["media"] }) {
   const screenItems = config.items.filter((item) => item.src);
   const deploymentItem = config.items.find((item) => item.images && item.images.length > 0);
@@ -502,19 +555,45 @@ function ProductMediaGallery({ config }: { config: ProductPageConfig["media"] })
             <div className="retail-media-deployments-grid mt-10">
               {deploymentItem.images.map((image) => {
                 const imageUrl = assetUrl(image.src);
+                const videoUrl = image.videoSrc ? assetUrl(image.videoSrc) : null;
                 return (
                   <a
                     key={image.src}
-                    href={imageUrl}
+                    href={videoUrl ?? imageUrl}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={`Open full-size product view: ${image.alt}`}
+                    aria-label={`${videoUrl ? "Open podium video" : "Open full-size product view"}: ${image.alt}`}
                     className="product-page__media-gallery-link group"
                   >
-                    <img src={imageUrl} alt={image.alt} loading="lazy" decoding="async" />
+                    <span
+                      className={`retail-podium-composite${image.screenVariant ? ` retail-podium-composite--${image.screenVariant}` : ""}`}
+                    >
+                      <img
+                        src={imageUrl}
+                        alt={image.alt}
+                        className="retail-podium-composite__base"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      {videoUrl ? (
+                        <RetailPodiumVideo
+                          src={videoUrl}
+                          poster={image.screenSrc ? assetUrl(image.screenSrc) : undefined}
+                        />
+                      ) : image.screenSrc ? (
+                        <img
+                          src={assetUrl(image.screenSrc)}
+                          alt=""
+                          aria-hidden="true"
+                          className="retail-podium-composite__screen"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : null}
+                    </span>
                     {image.label && <span className="product-page__media-gallery-label">{image.label}</span>}
                     <span className="product-page__media-shot-action">
-                      Open <Maximize2 aria-hidden="true" size={13} />
+                      {videoUrl ? "Play video" : "Open"} <Maximize2 aria-hidden="true" size={13} />
                     </span>
                   </a>
                 );
@@ -526,6 +605,91 @@ function ProductMediaGallery({ config }: { config: ProductPageConfig["media"] })
             )}
           </div>
         )}
+      </div>
+    </section>
+  );
+}
+
+function RetailReportingSection({
+  config,
+}: {
+  config: NonNullable<ProductPageConfig["reporting"]>;
+}) {
+  return (
+    <section
+      id="reporting"
+      className="retail-reporting scroll-mt-32 border-b border-[#D9D9D9] py-20 lg:py-28"
+    >
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+        <SectionIntro eyebrow={config.eyebrow} title={config.title} description={config.description} />
+
+        <div className="retail-reporting__featured-grid mt-14 lg:mt-16">
+          {config.featured.map((item) => {
+            const imageUrl = assetUrl(item.src);
+            return (
+              <article key={item.id} className="retail-reporting__item retail-reporting__item--featured">
+                <a
+                  href={imageUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open full-size Retail reporting view: ${item.alt}`}
+                  className="retail-reporting__frame group"
+                >
+                  <img src={imageUrl} alt={item.alt} loading="lazy" decoding="async" />
+                  <span className="product-page__media-shot-action">
+                    Open full size <Maximize2 aria-hidden="true" size={14} />
+                  </span>
+                </a>
+                <div className="retail-reporting__caption">
+                  <p>{item.eyebrow}</p>
+                  <h3>{item.title}</h3>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="retail-reporting__reports mt-16 border-t border-[#D9D9D9] pt-10 lg:mt-20 lg:pt-12">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#0076CE]">Decision-ready reporting</p>
+              <h3 className="mt-3 text-[clamp(28px,3vw,42px)] font-semibold leading-[1.04] tracking-[-0.03em] text-[#26364A]">
+                Move from topline ROI to the pattern behind it.
+              </h3>
+            </div>
+            <p className="max-w-[420px] text-[13px] leading-[1.7] text-[#5F5F5F]">
+              Segment, merchandise, timing, and conversion views make the next operating decision easier to see.
+            </p>
+          </div>
+
+          <div className="retail-reporting__report-grid mt-9">
+            {config.reports.map((item) => {
+              const imageUrl = assetUrl(item.src);
+              return (
+                <article key={item.id} className="retail-reporting__item retail-reporting__item--report">
+                  <a
+                    href={imageUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open full-size Retail report: ${item.alt}`}
+                    className="retail-reporting__frame group"
+                  >
+                    <img src={imageUrl} alt={item.alt} loading="lazy" decoding="async" />
+                    <span className="product-page__media-shot-action">
+                      Open full size <Maximize2 aria-hidden="true" size={14} />
+                    </span>
+                  </a>
+                  <div className="retail-reporting__caption">
+                    <p>{item.eyebrow}</p>
+                    <h3>{item.title}</h3>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
+        {config.note && <p className="mt-7 max-w-[980px] text-[10px] leading-[1.7] text-[#5F5F5F]">{config.note}</p>}
       </div>
     </section>
   );
@@ -849,7 +1013,7 @@ export default function ProductPageTemplate({ config }: ProductPageTemplateProps
   return (
     <main className={`product-page product-page--${config.slug} bg-white`}>
       <ProductHeroSection {...config.hero} />
-      <ProductAnchorNav productName={config.hero.productName} />
+      <ProductAnchorNav productName={config.hero.productName} hasReporting={Boolean(config.reporting)} />
       <ProductPathways config={config.pathways} />
       {config.media.layout === "gallery" ? (
         <ProductMediaGallery config={config.media} />
@@ -857,6 +1021,7 @@ export default function ProductPageTemplate({ config }: ProductPageTemplateProps
         <ProductMediaTour config={config.media} />
       )}
       <ProductWorkflow config={config.workflow} />
+      {config.reporting && <RetailReportingSection config={config.reporting} />}
       <ProductCapabilities config={config.capabilities} />
       <ProductProof config={config.proof} />
       <ProductFinalCTA config={config.cta} />
