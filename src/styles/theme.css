@@ -424,8 +424,8 @@
   --podium-opacity: 0.11;
   --podium-delay: 0.04s;
   --podium-drift: -5px;
-  --podium-sink: 14%;
-  --podium-base-crop: 11%;
+  --podium-sink: 17%;
+  --podium-base-crop: 16%;
 }
 
 .retail-ambient-podium:nth-child(6),
@@ -520,8 +520,8 @@
     left: 80%;
     width: 370px;
     --podium-opacity: 0.12;
-    --podium-sink: 12%;
-    --podium-base-crop: 11%;
+    --podium-sink: 17%;
+    --podium-base-crop: 16%;
   }
 }
 
