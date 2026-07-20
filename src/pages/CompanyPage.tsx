@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router";
 import { assetUrl } from "../assetUrl";
@@ -223,40 +223,73 @@ export default function CompanyPage() {
 }
 
 function LeadershipContent() {
+  const [selectedLeaderName, setSelectedLeaderName] = useState(leaders[0].name);
+  const selectedLeader = leaders.find((leader) => leader.name === selectedLeaderName) ?? leaders[0];
+
   return (
     <section aria-labelledby="leadership-list-heading" className="bg-[#F5F5F5] px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1320px]">
         <h2 id="leadership-list-heading" className="sr-only">Leadership profiles</h2>
-        <div className="space-y-16 lg:space-y-24">
-          {leaders.map((leader, index) => (
-            <article
-              key={leader.name}
-              className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16 ${index % 2 === 1 ? "lg:grid-flow-dense" : ""}`}
-            >
-              <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
-                <div className="mx-auto aspect-[4/5] w-full max-w-[460px] overflow-hidden rounded-[18px] border border-[#D9D9D9] bg-[#E9E9E9] lg:h-[512px] lg:aspect-auto">
-                  <img
-                    src={assetUrl(leader.image)}
-                    alt={leader.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover object-top"
-                  />
-                </div>
-              </div>
-
-              <div className={index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}>
-                <div className="border-t-2 border-[#0076CE] pt-8">
-                  <h3 className="font-['Instrument_Serif'] text-[42px] leading-none tracking-[-0.025em] text-[#243443] sm:text-[50px]">
-                    {leader.name}
-                  </h3>
-                  <p className="mt-3 text-[18px] font-semibold text-[#0076CE] sm:text-[20px]">{leader.title}</p>
-                  <p className="mt-7 text-[15px] leading-[1.8] text-[#5F5F5F] sm:text-[16px]">{leader.bio}</p>
-                </div>
-              </div>
-            </article>
-          ))}
+        <div className="mb-8 flex flex-col gap-3 border-b border-[#D2D2D2] pb-6 sm:flex-row sm:items-end sm:justify-between">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#0076CE]">The people behind Jibe</p>
+          <p className="text-[13px] text-[#686A6D]">Select a leader to read their full biography.</p>
         </div>
+
+        <ul className="grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
+          {leaders.map((leader) => {
+            const active = leader.name === selectedLeader.name;
+
+            return (
+              <li key={leader.name} className="min-w-0">
+                <button
+                  type="button"
+                  aria-pressed={active}
+                  aria-label={`View full biography for ${leader.name}`}
+                  onClick={() => setSelectedLeaderName(leader.name)}
+                  className="group w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0076CE]"
+                >
+                  <div
+                    className={`aspect-[4/5] w-full overflow-hidden rounded-[18px] border bg-[#E9E9E9] transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_18px_38px_rgba(36,52,67,0.14)] ${
+                      active
+                        ? "border-[#0076CE] shadow-[0_18px_38px_rgba(0,118,206,0.14)]"
+                        : "border-[#D2D2D2]"
+                    }`}
+                  >
+                    <img
+                      src={assetUrl(leader.image)}
+                      alt={leader.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.025]"
+                    />
+                  </div>
+                  <div className={`mt-4 border-t pt-4 ${active ? "border-[#0076CE]" : "border-[#CFCFCF]"}`}>
+                    <h3 className="font-['Instrument_Serif'] text-[27px] leading-[0.98] tracking-[-0.02em] text-[#243443] min-[1180px]:text-[25px]">
+                      {leader.name}
+                    </h3>
+                    <p className="mt-2 text-[13px] font-semibold leading-[1.4] text-[#0076CE]">{leader.title}</p>
+                    <span className="mt-3 inline-flex text-[11px] font-semibold text-[#5F5F5F] transition-colors group-hover:text-[#0076CE]">
+                      Read full bio
+                    </span>
+                  </div>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        <article aria-live="polite" className="mt-14 grid gap-7 border-t-2 border-[#0076CE] pt-9 lg:mt-16 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-[#6D6D6D]">Full biography</p>
+            <h3 className="mt-4 font-['Instrument_Serif'] text-[42px] leading-[0.96] tracking-[-0.025em] text-[#243443] sm:text-[48px]">
+              {selectedLeader.name}
+            </h3>
+            <p className="mt-3 text-[16px] font-semibold text-[#0076CE]">{selectedLeader.title}</p>
+          </div>
+          <p className="text-[15px] leading-[1.85] text-[#5F5F5F] sm:text-[16px] lg:col-span-8">
+            {selectedLeader.bio}
+          </p>
+        </article>
       </div>
     </section>
   );

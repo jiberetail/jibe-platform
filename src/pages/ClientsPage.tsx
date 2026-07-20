@@ -20,6 +20,8 @@ const clients = [
   { src: logoTMobile, alt: "T-Mobile" },
   { src: logoSutherland, alt: "Sutherland" },
   { src: logoMLB, alt: "Major League Baseball" },
+  { src: assetUrl("assets/clients/colorado-rockies.png"), alt: "Colorado Rockies" },
+  { src: assetUrl("assets/clients/fan-town.webp"), alt: "The Fan Town" },
   { src: logoGoDaddy, alt: "GoDaddy" },
   { src: logoHughesNet, alt: "HughesNet" },
   { src: logoUbiquity, alt: "Ubiquity" },
@@ -144,7 +146,7 @@ export default function ClientsPage() {
             </p>
           </div>
 
-          <ul className="mt-14 grid grid-cols-2 overflow-hidden rounded-2xl border border-[#D9D9D9] bg-[#D9D9D9] gap-px sm:grid-cols-3 lg:mt-16">
+          <ul className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[#D9D9D9] bg-[#D9D9D9] sm:grid-cols-3 lg:mt-16 lg:grid-cols-4">
             {clients.map((client) => (
               <li key={client.alt} className="flex min-h-[126px] items-center justify-center bg-white px-7 py-8 sm:min-h-[142px]">
                 <img
@@ -152,7 +154,7 @@ export default function ClientsPage() {
                   alt={client.alt}
                   loading="lazy"
                   decoding="async"
-                  className="max-h-12 w-full max-w-[170px] object-contain"
+                  className="max-h-16 w-full max-w-[190px] object-contain"
                 />
               </li>
             ))}
