@@ -277,7 +277,7 @@ export const productPages = {
     },
     pathways: {
       eyebrow: "Two connected capabilities",
-      title: "Recover the sale. Understand what stopped it.",
+      title: "Recover the sale.\nUnderstand what\nstopped it.",
       description:
         "Use ecommerce to keep a purchase moving, use survey to learn why a shopper did not buy, or connect the two in one branded experience.",
       items: [

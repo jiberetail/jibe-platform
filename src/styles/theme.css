@@ -966,6 +966,25 @@
   aspect-ratio: 2.1 / 1;
 }
 
+@media (min-width: 1024px) {
+  .product-page__media-viewport {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+  }
+
+  .product-page__media-stage--portrait,
+  .product-page__media-stage--tall {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .product-page__media-stage--portrait .product-page__media-shot,
+  .product-page__media-stage--tall .product-page__media-shot {
+    height: auto;
+  }
+}
+
 .product-page__media-stage:hover .product-page__media-shot,
 .product-page__media-stage:focus-visible .product-page__media-shot {
   transform: scale(1.008);

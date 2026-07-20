@@ -86,7 +86,7 @@ function SectionIntro({
           {eyebrow}
         </p>
         <h2
-          className={`max-w-[900px] text-[clamp(38px,5vw,64px)] font-semibold leading-[0.98] tracking-[-0.035em] ${
+          className={`max-w-[900px] whitespace-pre-line text-[clamp(38px,5vw,64px)] font-semibold leading-[0.98] tracking-[-0.035em] ${
             dark ? "text-white" : "text-[#26364A]"
           }`}
         >
