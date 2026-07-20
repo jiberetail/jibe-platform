@@ -353,7 +353,7 @@
 
 .retail-ambient-podium {
   --podium-opacity: 0.16;
-  --podium-visible-opacity: calc(var(--podium-opacity) * 1.12);
+  --podium-visible-opacity: calc(var(--podium-opacity) * 1.232);
   --podium-delay: 0s;
   --podium-drift: -7px;
   --podium-sink: 18%;
