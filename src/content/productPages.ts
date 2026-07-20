@@ -318,18 +318,6 @@ export const productPages = {
         "The same responsive experience can support a podium, kiosk, mobile device, survey flow, merchandise journey, or connected deployment.",
       items: [
         {
-          id: "fan-town-entry",
-          label: "Fan Town entry",
-          eyebrow: "Fan Town / Localized journey",
-          title: "Begin with an experience built for the market around it.",
-          description:
-            "Fan Town demonstrates a multi-sport entry point for its Mexico retail environment that can lead into a concise survey, product discovery, ecommerce, or a connected journey.",
-          src: "assets/jibe-retail/sport-selector.png",
-          alt: "Fan Town Jibe Retail experience inviting a shopper to select a sport.",
-          orientation: "portrait",
-          disclosure: "Representative Fan Town experience. Available steps and configurations vary by deployment.",
-        },
-        {
           id: "mlb-front",
           label: "MLB survey entry",
           eyebrow: "MLB NYC / Branded survey",
@@ -340,18 +328,6 @@ export const productPages = {
           alt: "MLB NYC Jibe Retail survey entry screen inviting shoppers to start a survey for a store discount.",
           orientation: "portrait",
           disclosure: "Representative branded experience. Incentives and survey configurations vary by deployment.",
-        },
-        {
-          id: "finder",
-          label: "MLB product finder",
-          eyebrow: "MLB NYC / Endless aisle",
-          title: "Find the merchandise the shopper could not find in store.",
-          description:
-            "Search and browse by product type, team, style, and item so an unavailable shelf does not have to end the journey.",
-          src: "assets/jibe-retail/product-finder.png",
-          alt: "Jibe Retail product finder showing a searchable grid of New York Yankees jerseys.",
-          orientation: "portrait",
-          disclosure: "Representative branded experience. Catalogs and product availability vary by deployment.",
         },
         {
           id: "mlb-instore",
