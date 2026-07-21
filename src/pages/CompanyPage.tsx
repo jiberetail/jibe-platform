@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, Building2, ChevronDown } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router";
 import { assetUrl } from "../assetUrl";
 
@@ -71,7 +71,7 @@ const leaders = [
     title: "Head of Product & Analytics",
     image: "assets/company/isaac-harrison-july-2026.png",
     alt: "Isaac Harrison, Head of Product & Analytics at Jibe",
-    bio: "Isaac joined Jibe in 2023 and has played a key role in driving client success through data, product strategy, and operational insight. With over 20 years of experience in call center and B2B environments, he brings deep expertise in analytics, customer experience, and performance improvement. Isaac has led teams of data scientists and audit researchers, managed large-scale data collection and distribution, and helped clients improve customer satisfaction through practical, data-driven solutions. His strengths span product development, design, analytics, and problem-solving, making him a major contributor to Jibe's continued growth and client results.",
+    bio: "Isaac Harrison is the Head of Product & Analytics at Jibe, where he leads product strategy, analytics, and data-driven solution design across the Jibe platform. Since joining Jibe in 2023, Isaac has helped shape the company’s approach to turning customer experience signals into practical tools for operators, leaders, and client teams. With more than 20 years of experience across contact center operations, B2B programs, analytics, and performance improvement, he brings a strong understanding of how data, workflow design, and frontline behavior connect. His work spans product development, analytics, design, and problem-solving, making him a key contributor to Jibe’s continued growth and client impact.",
   },
 ];
 
@@ -139,6 +139,45 @@ const footprintPeople = [
     alt: "Grace Villareal",
     x: "88%",
     y: "66%",
+    hub: true,
+  },
+];
+
+const footprintLocations = [
+  {
+    location: "New York",
+    people: "Isaac Harrison",
+    label: "Product & Analytics",
+    x: "33%",
+    y: "43%",
+  },
+  {
+    location: "Maine",
+    people: "Brad Young",
+    label: "Finance",
+    x: "34%",
+    y: "29%",
+  },
+  {
+    location: "Minnesota",
+    people: "Jacob Raska",
+    label: "Client Success",
+    x: "20%",
+    y: "37%",
+  },
+  {
+    location: "Texas",
+    people: "Tim Lavin · Archer Alvandi",
+    label: "Leadership & Technology",
+    x: "25%",
+    y: "58%",
+  },
+  {
+    location: "Philippines",
+    people: "Operating hub",
+    label: "Client Success & Analytics",
+    x: "82%",
+    y: "59%",
     hub: true,
   },
 ];
@@ -435,32 +474,41 @@ function JibeFootprint() {
               North America → Philippines
             </div>
 
-            {footprintPeople.map((person) => (
+            {footprintLocations.map((location) => (
               <div
-                key={`${person.name}-${person.location}`}
+                key={location.location}
                 className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
-                style={{ left: person.x, top: person.y }}
+                style={{ left: location.x, top: location.y }}
               >
                 <div className="group flex flex-col items-center gap-2">
-                  <div className={`relative h-12 w-12 rounded-full border-2 bg-white p-1 shadow-[0_14px_34px_rgba(36,52,67,0.16)] transition-transform duration-300 group-hover:-translate-y-1 sm:h-14 sm:w-14 ${
-                    person.hub ? "border-[#0076CE]" : "border-[#C8D2DB]"
+                  <div className={`relative flex h-11 w-11 items-center justify-center rounded-2xl border bg-white shadow-[0_14px_34px_rgba(36,52,67,0.16)] transition-transform duration-300 group-hover:-translate-y-1 ${
+                    location.hub ? "border-[#0076CE] text-[#0076CE]" : "border-[#C8D2DB] text-[#243443]"
                   }`}>
-                    <img
-                      src={assetUrl(person.image)}
-                      alt={person.alt}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full rounded-full object-cover object-top"
-                    />
+                    <Building2 aria-hidden="true" size={20} strokeWidth={1.9} />
                     <span className="absolute -bottom-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-white bg-[#0076CE]" />
                   </div>
-                  <div className="rounded-full border border-[#C8D2DB] bg-white/92 px-2.5 py-1.5 text-center shadow-[0_10px_24px_rgba(36,52,67,0.09)] backdrop-blur sm:px-3">
-                    <p className="whitespace-nowrap text-[11px] font-semibold leading-none text-[#243443]">{person.name}</p>
-                    <p className="mt-1 whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.16em] text-[#0076CE]">{person.location}</p>
+                  <div className={`hidden min-w-[150px] rounded-2xl border bg-white/94 px-3 py-2 text-center shadow-[0_10px_24px_rgba(36,52,67,0.09)] backdrop-blur lg:block ${
+                    location.hub ? "border-[#0076CE]" : "border-[#C8D2DB]"
+                  }`}>
+                    <p className="whitespace-nowrap text-[12px] font-semibold leading-none text-[#243443]">{location.location}</p>
+                    <p className="mt-1 whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.16em] text-[#0076CE]">{location.label}</p>
+                    <p className="mt-1 text-[10px] leading-[1.25] text-[#686A6D]">{location.people}</p>
                   </div>
                 </div>
               </div>
             ))}
+
+            <div className="absolute bottom-5 left-5 right-5 grid gap-2 sm:grid-cols-2 lg:hidden">
+              {footprintLocations.map((location) => (
+                <div key={`${location.location}-compact`} className={`rounded-2xl border bg-white/94 px-3 py-2 shadow-[0_10px_24px_rgba(36,52,67,0.09)] backdrop-blur ${
+                  location.hub ? "border-[#0076CE]" : "border-[#C8D2DB]"
+                }`}>
+                  <p className="text-[12px] font-semibold leading-none text-[#243443]">{location.location}</p>
+                  <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#0076CE]">{location.label}</p>
+                  <p className="mt-1 text-[10px] leading-[1.25] text-[#686A6D]">{location.people}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <aside className="border-t border-[#D2D2D2] bg-[#0D1821] p-7 text-white lg:border-l lg:border-t-0">
