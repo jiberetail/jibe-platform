@@ -15,7 +15,7 @@ const companyLinks: Array<{ slug: CompanySlug; label: string }> = [
 const pageMeta: Record<CompanySlug, { title: string; intro: string; seoDescription: string }> = {
   leadership: {
     title: "Leadership Team",
-    intro: "Meet the visionary leaders driving innovation in customer experience intelligence at Zacoustic.",
+    intro: "Meet the visionary leaders driving innovation in customer experience intelligence at Jibe.",
     seoDescription: "Meet the Jibe leadership team spanning customer operations, technology, analytics, product, finance, and client success.",
   },
   history: {
@@ -42,36 +42,36 @@ const leaders = [
     name: "Tim Lavin",
     title: "CEO",
     image: "assets/company/tim-lavin.jpg",
-    alt: "Tim Lavin, CEO of Zacoustic",
-    bio: "Tim Lavin, the co-founder and CEO of Zacoustic, is a visionary leader in the contact center industry, striving to create a revolutionary tool for customer experience management. With a diverse background that includes serving as the Chief Operating Officer for TELUS International and holding senior positions at prominent companies like Cendant Corp., Harte-Hanks, and First USA Bank, Tim brings extensive expertise in driving operational excellence and fostering customer satisfaction. As a decorated U.S. Army combat veteran and graduate of Maine Central Institute, Tim's leadership is characterized by strategic thinking, dedication, and a strong commitment to Zacoustic's mission.",
+    alt: "Tim Lavin, CEO of Jibe",
+    bio: "Tim Lavin, the co-founder and CEO of Jibe, is a visionary leader in the contact center industry, striving to create a revolutionary tool for customer experience management. With a diverse background that includes serving as the Chief Operating Officer for TELUS International and holding senior positions at prominent companies like Cendant Corp., Harte-Hanks, and First USA Bank, Tim brings extensive expertise in driving operational excellence and fostering customer satisfaction. As a decorated U.S. Army combat veteran and graduate of Maine Central Institute, Tim's leadership is characterized by strategic thinking, dedication, and a strong commitment to Jibe's mission.",
   },
   {
     name: "Brad Young",
     title: "CFO",
     image: "assets/company/brad-young.jpg",
-    alt: "Brad Young, CFO of Zacoustic",
-    bio: "Brad Young, the Chief Financial Officer of Zacoustic, joined the company in 2012 as an early investor and advisor. With a strong background in finance and business leadership, Brad brings invaluable expertise to the team. Prior to Zacoustic, he served as the CEO of Vision Care of Maine, successfully driving substantial revenue growth and retiring significant company debt. Brad's passion for innovation and his desire to make a meaningful impact led him to join Zacoustic, where he plays a vital role in investor relations and commercial contract negotiation. His strategic acumen and financial acuity contribute to Zacoustic's vision of revolutionizing the contact center industry.",
+    alt: "Brad Young, CFO of Jibe",
+    bio: "Brad Young, the Chief Financial Officer of Jibe, joined the company in 2012 as an early investor and advisor. With a strong background in finance and business leadership, Brad brings invaluable expertise to the team. Prior to Jibe, he served as the CEO of Vision Care of Maine, successfully driving substantial revenue growth and retiring significant company debt. Brad's passion for innovation and his desire to make a meaningful impact led him to join Jibe, where he plays a vital role in investor relations and commercial contract negotiation. His strategic acumen and financial acuity contribute to Jibe's vision of revolutionizing the contact center industry.",
   },
   {
     name: "Jacob Raska",
     title: "Head of Client Success",
     image: "assets/company/jacob-raska.jpg",
-    alt: "Jacob Raska, Head of Client Success at Zacoustic",
-    bio: "Jacob Raska is the Head of Client Success at Zacoustic, where he is dedicated to supporting clients at the forefront of the customer experience revolution. With a strong background in data analytics, Jacob joined the Zacoustic team in 2018 after working on transformative projects that harnessed data insights to drive organizational change for Fortune 500 companies. Throughout his tenure at Zacoustic, Jacob has successfully led integrations across the globe, working with prestigious clients ranging from the largest bank in New Zealand to Fortune 50 companies spanning multiple continents. Passionate about engaging with customers and shaping data-driven strategies, Jacob is instrumental in redefining the customer experience industry through his work at Zacoustic.",
+    alt: "Jacob Raska, Head of Client Success at Jibe",
+    bio: "Jacob Raska is the Head of Client Success at Jibe, where he is dedicated to supporting clients at the forefront of the customer experience revolution. With a strong background in data analytics, Jacob joined the Jibe team in 2018 after working on transformative projects that harnessed data insights to drive organizational change for Fortune 500 companies. Throughout his tenure at Jibe, Jacob has successfully led integrations across the globe, working with prestigious clients ranging from the largest bank in New Zealand to Fortune 50 companies spanning multiple continents. Passionate about engaging with customers and shaping data-driven strategies, Jacob is instrumental in redefining the customer experience industry through his work at Jibe.",
   },
   {
     name: "Archer Alvandi",
     title: "Head of Technology",
     image: "assets/company/archer-alvandi.jpg",
-    alt: "Archer Alvandi, Head of Technology at Zacoustic",
-    bio: "Archer is the Head of Technology at Zacoustic, where he leads and empowers a top-tier software development team to exceed client expectations in delivering cutting-edge, personalized customer experiences through next-generation digital solutions. Joining Zacoustic in 2018, Archer has held increasingly senior positions within the software development group, driving the company's growth as a customer experience innovator. With a career dedicated to innovative software design and development, Archer has collaborated with renowned industry leaders such as Microsoft and Intel, contributing to the development of True Key, as well as smaller disruptive companies like Hypergrid. Archer is proud to be part of Zacoustic's dynamic and disruptive journey, committed to providing exceptional solutions and services to partners and clients worldwide.",
+    alt: "Archer Alvandi, Head of Technology at Jibe",
+    bio: "Archer is the Head of Technology at Jibe, where he leads and empowers a top-tier software development team to exceed client expectations in delivering cutting-edge, personalized customer experiences through next-generation digital solutions. Joining Jibe in 2018, Archer has held increasingly senior positions within the software development group, driving the company's growth as a customer experience innovator. With a career dedicated to innovative software design and development, Archer has collaborated with renowned industry leaders such as Microsoft and Intel, contributing to the development of True Key, as well as smaller disruptive companies like Hypergrid. Archer is proud to be part of Jibe's dynamic and disruptive journey, committed to providing exceptional solutions and services to partners and clients worldwide.",
   },
   {
     name: "Isaac Harrison",
     title: "Head of Product & Analytics",
     image: "assets/company/isaac-harrison-july-2026.png",
-    alt: "Isaac Harrison, Head of Product & Analytics at Zacoustic",
-    bio: "Isaac joined Zacoustic in 2023 and has played a key role in driving client success through data, product strategy, and operational insight. With over 20 years of experience in call center and B2B environments, he brings deep expertise in analytics, customer experience, and performance improvement. Isaac has led teams of data scientists and audit researchers, managed large-scale data collection and distribution, and helped clients improve customer satisfaction through practical, data-driven solutions. His strengths span product development, design, analytics, and problem-solving, making him a major contributor to Zacoustic's continued growth and client results.",
+    alt: "Isaac Harrison, Head of Product & Analytics at Jibe",
+    bio: "Isaac joined Jibe in 2023 and has played a key role in driving client success through data, product strategy, and operational insight. With over 20 years of experience in call center and B2B environments, he brings deep expertise in analytics, customer experience, and performance improvement. Isaac has led teams of data scientists and audit researchers, managed large-scale data collection and distribution, and helped clients improve customer satisfaction through practical, data-driven solutions. His strengths span product development, design, analytics, and problem-solving, making him a major contributor to Jibe's continued growth and client results.",
   },
 ];
 
@@ -158,7 +158,7 @@ const articlePages: Record<Exclude<CompanySlug, "leadership">, {
   "ip-protection": {
     paragraphs: [
       "The technology and methodologies behind Jibe are protected by patents issued in the United States and internationally. This protection covers core features, algorithms, and functionality developed to make customer experience intelligence more complete and actionable.",
-      "We take those intellectual property rights seriously. Unauthorized use, reproduction, distribution, or infringement of protected Jibe or Zacoustic technology is not permitted and may be subject to enforcement.",
+      "We take those intellectual property rights seriously. Unauthorized use, reproduction, distribution, or infringement of protected Jibe technology is not permitted and may be subject to enforcement.",
       "Organizations that believe a product or service may conflict with this protected technology are encouraged to contact us. Where appropriate, the company is open to discussing authorized use and potential licensing opportunities.",
       "Protecting this work preserves the integrity of Jibe, supports continued investment in research and development, and creates room for the next generation of customer experience innovation.",
     ],
