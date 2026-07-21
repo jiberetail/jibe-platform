@@ -156,16 +156,16 @@ export default function CompanyPage() {
 
   return (
     <main className="min-h-screen bg-[#F5F5F5]">
-      <section className="flex min-h-[54svh] items-center overflow-hidden border-b border-[#D9D9D9] bg-white px-6 pb-16 pt-36 lg:px-10 lg:pb-20 lg:pt-44">
+      <section className="flex min-h-[26svh] items-center overflow-hidden border-b border-[#D9D9D9] bg-white px-6 pb-10 pt-24 lg:px-10 lg:pb-12 lg:pt-28">
         <div className="mx-auto w-full max-w-[1320px]">
           <div className="mx-auto max-w-[900px] text-center">
-            <div className="mb-7 flex items-center justify-center gap-4">
+            <div className="mb-4 flex items-center justify-center gap-4">
               <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#0076CE]">Company</span>
             </div>
-            <h1 className="mx-auto max-w-[900px] font-['Instrument_Serif'] text-[52px] leading-[0.96] tracking-[-0.025em] text-[#243443] sm:text-[68px] lg:text-[84px]">
+            <h1 className="mx-auto max-w-[900px] font-['Instrument_Serif'] text-[42px] leading-[0.96] tracking-[-0.025em] text-[#243443] sm:text-[54px] lg:text-[64px]">
               {meta.title}
             </h1>
-            <p className="mx-auto mt-7 max-w-[650px] text-[17px] leading-[1.7] text-[#686A6D] sm:text-[18px]">
+            <p className="mx-auto mt-4 max-w-[650px] text-[15px] leading-[1.6] text-[#686A6D] sm:text-[16px]">
               {meta.intro}
             </p>
           </div>
