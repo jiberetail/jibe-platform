@@ -144,42 +144,12 @@ const footprintPeople = [
 ];
 
 const footprintLocations = [
-  {
-    location: "New York",
-    people: "Isaac Harrison",
-    label: "Product & Analytics",
-    x: "33%",
-    y: "43%",
-  },
-  {
-    location: "Maine",
-    people: "Brad Young",
-    label: "Finance",
-    x: "34%",
-    y: "29%",
-  },
-  {
-    location: "Minnesota",
-    people: "Jacob Raska",
-    label: "Client Success",
-    x: "20%",
-    y: "37%",
-  },
-  {
-    location: "Texas",
-    people: "Tim Lavin · Archer Alvandi",
-    label: "Leadership & Technology",
-    x: "25%",
-    y: "58%",
-  },
-  {
-    location: "Philippines",
-    people: "Operating hub",
-    label: "Client Success & Analytics",
-    x: "82%",
-    y: "59%",
-    hub: true,
-  },
+  { location: "New York", x: "29%", y: "42%" },
+  { location: "Maine", x: "31%", y: "36%" },
+  { location: "Minnesota", x: "22%", y: "40%" },
+  { location: "Texas", x: "25%", y: "52%" },
+  { location: "Philippines - Manila", x: "79%", y: "56%", hub: true },
+  { location: "Philippines - Cebu", x: "82%", y: "61%", hub: true },
 ];
 
 // VERIFY / BLOCKED — COMPANY-01 / D-11: history, entity, IP, copyright, and
@@ -467,48 +437,23 @@ function JibeFootprint() {
               decoding="async"
               className="absolute left-1/2 top-1/2 w-[112%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-95"
             />
-            <div aria-hidden="true" className="absolute left-[22%] top-[44%] h-px w-[58%] rotate-[7deg] bg-gradient-to-r from-transparent via-[#0076CE]/50 to-transparent" />
-            <div aria-hidden="true" className="absolute left-[30%] top-[46%] h-[160px] w-[50%] rounded-[50%] border-t border-[#0076CE]/25" />
-
-            <div className="absolute left-7 top-7 rounded-full border border-[#C8D2DB] bg-white/90 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5F5F5F] shadow-[0_10px_24px_rgba(36,52,67,0.08)] backdrop-blur">
-              North America → Philippines
-            </div>
-
             {footprintLocations.map((location) => (
               <div
                 key={location.location}
                 className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
                 style={{ left: location.x, top: location.y }}
+                aria-label={`Jibe location: ${location.location}`}
               >
-                <div className="group flex flex-col items-center gap-2">
-                  <div className={`relative flex h-11 w-11 items-center justify-center rounded-2xl border bg-white shadow-[0_14px_34px_rgba(36,52,67,0.16)] transition-transform duration-300 group-hover:-translate-y-1 ${
+                <div
+                  className={`relative flex h-12 w-12 items-center justify-center rounded-2xl border bg-white shadow-[0_14px_34px_rgba(36,52,67,0.16)] transition-transform duration-300 hover:-translate-y-1 sm:h-14 sm:w-14 ${
                     location.hub ? "border-[#0076CE] text-[#0076CE]" : "border-[#C8D2DB] text-[#243443]"
-                  }`}>
-                    <Building2 aria-hidden="true" size={20} strokeWidth={1.9} />
-                    <span className="absolute -bottom-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-white bg-[#0076CE]" />
-                  </div>
-                  <div className={`hidden min-w-[150px] rounded-2xl border bg-white/94 px-3 py-2 text-center shadow-[0_10px_24px_rgba(36,52,67,0.09)] backdrop-blur lg:block ${
-                    location.hub ? "border-[#0076CE]" : "border-[#C8D2DB]"
-                  }`}>
-                    <p className="whitespace-nowrap text-[12px] font-semibold leading-none text-[#243443]">{location.location}</p>
-                    <p className="mt-1 whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.16em] text-[#0076CE]">{location.label}</p>
-                    <p className="mt-1 text-[10px] leading-[1.25] text-[#686A6D]">{location.people}</p>
-                  </div>
+                  }`}
+                >
+                  <Building2 aria-hidden="true" size={22} strokeWidth={1.9} />
+                  <span className="absolute -bottom-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-white bg-[#0076CE]" />
                 </div>
               </div>
             ))}
-
-            <div className="absolute bottom-5 left-5 right-5 grid gap-2 sm:grid-cols-2 lg:hidden">
-              {footprintLocations.map((location) => (
-                <div key={`${location.location}-compact`} className={`rounded-2xl border bg-white/94 px-3 py-2 shadow-[0_10px_24px_rgba(36,52,67,0.09)] backdrop-blur ${
-                  location.hub ? "border-[#0076CE]" : "border-[#C8D2DB]"
-                }`}>
-                  <p className="text-[12px] font-semibold leading-none text-[#243443]">{location.location}</p>
-                  <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#0076CE]">{location.label}</p>
-                  <p className="mt-1 text-[10px] leading-[1.25] text-[#686A6D]">{location.people}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           <aside className="border-t border-[#D2D2D2] bg-[#0D1821] p-7 text-white lg:border-l lg:border-t-0">
