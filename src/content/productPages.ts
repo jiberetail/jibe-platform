@@ -551,10 +551,6 @@ export const productPages = {
       ],
       note:
         "Figures and outcomes are those published by Jibe Retail for these specific deployments; they are not projections or guaranteed results.",
-      source: {
-        href: "https://jiberetail.com/case-study",
-        label: "Read full case studies",
-      },
     },
     cta: {
       eyebrow: "Build the right Retail experience",
