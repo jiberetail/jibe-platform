@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router";
 import { assetUrl } from "../assetUrl";
 
@@ -223,8 +223,8 @@ export default function CompanyPage() {
 }
 
 function LeadershipContent() {
-  const [selectedLeaderName, setSelectedLeaderName] = useState(leaders[0].name);
-  const selectedLeader = leaders.find((leader) => leader.name === selectedLeaderName) ?? leaders[0];
+  const [selectedLeaderName, setSelectedLeaderName] = useState<string | null>(null);
+  const selectedLeader = leaders.find((leader) => leader.name === selectedLeaderName);
 
   return (
     <section aria-labelledby="leadership-list-heading" className="bg-[#F5F5F5] px-6 py-20 lg:px-10 lg:py-28">
@@ -232,21 +232,28 @@ function LeadershipContent() {
         <h2 id="leadership-list-heading" className="sr-only">Leadership profiles</h2>
         <div className="mb-8 flex flex-col gap-3 border-b border-[#D2D2D2] pb-6 sm:flex-row sm:items-end sm:justify-between">
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#0076CE]">The people behind Jibe</p>
-          <p className="text-[13px] text-[#686A6D]">Select a leader to read their full biography.</p>
+          <p className="text-[13px] text-[#686A6D]">Click any leader or select “Read bio” to learn more.</p>
         </div>
 
         <ul className="grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
           {leaders.map((leader) => {
-            const active = leader.name === selectedLeader.name;
+            const active = leader.name === selectedLeaderName;
 
             return (
               <li key={leader.name} className="min-w-0">
                 <button
                   type="button"
-                  aria-pressed={active}
-                  aria-label={`View full biography for ${leader.name}`}
-                  onClick={() => setSelectedLeaderName(leader.name)}
-                  className="group w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0076CE]"
+                  aria-expanded={active}
+                  aria-controls="leadership-biography"
+                  aria-label={`${active ? "Close" : "Read"} biography for ${leader.name}`}
+                  onClick={() => setSelectedLeaderName(active ? null : leader.name)}
+                  className={`group w-full cursor-pointer rounded-[22px] border-2 p-2 text-left transition-[transform,opacity,filter,box-shadow,border-color,background-color] duration-500 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0076CE] focus-visible:opacity-100 focus-visible:grayscale-0 focus-visible:saturate-100 motion-reduce:transform-none motion-reduce:transition-none motion-reduce:hover:transform-none ${
+                    active
+                      ? "relative z-10 -translate-y-2 scale-[1.035] border-[#0076CE] bg-white shadow-[0_22px_50px_rgba(0,118,206,0.2)]"
+                      : selectedLeaderName
+                        ? "scale-[0.96] border-transparent opacity-60 saturate-[0.65] grayscale-[35%] hover:scale-[0.98] hover:border-[#B8D9EF] hover:bg-white/70 hover:opacity-90 hover:grayscale-0 hover:saturate-100"
+                        : "border-transparent hover:-translate-y-1 hover:border-[#B8D9EF] hover:bg-white/70 hover:shadow-[0_16px_34px_rgba(36,52,67,0.1)]"
+                  }`}
                 >
                   <div
                     className={`aspect-[4/5] w-full overflow-hidden rounded-[18px] border bg-[#E9E9E9] transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_18px_38px_rgba(36,52,67,0.14)] ${
@@ -263,13 +270,24 @@ function LeadershipContent() {
                       className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.025]"
                     />
                   </div>
-                  <div className={`mt-4 border-t pt-4 ${active ? "border-[#0076CE]" : "border-[#CFCFCF]"}`}>
+                  <div className={`mx-2 mt-4 border-t pb-2 pt-4 ${active ? "border-[#0076CE]" : "border-[#CFCFCF]"}`}>
                     <h3 className="font-['Instrument_Serif'] text-[27px] leading-[0.98] tracking-[-0.02em] text-[#243443] min-[1180px]:text-[25px]">
                       {leader.name}
                     </h3>
                     <p className="mt-2 text-[13px] font-semibold leading-[1.4] text-[#0076CE]">{leader.title}</p>
-                    <span className="mt-3 inline-flex text-[11px] font-semibold text-[#5F5F5F] transition-colors group-hover:text-[#0076CE]">
-                      Read full bio
+                    <span
+                      className={`mt-4 inline-flex items-center gap-2 rounded-full border px-3 py-2 text-[11px] font-semibold transition-colors ${
+                        active
+                          ? "border-[#0076CE] bg-[#0076CE] text-white"
+                          : "border-[#B9C4CC] bg-white text-[#243443] group-hover:border-[#0076CE] group-hover:text-[#0076CE]"
+                      }`}
+                    >
+                      {active ? "Close bio" : "Read bio"}
+                      <ChevronDown
+                        aria-hidden="true"
+                        size={14}
+                        className={`transition-transform duration-300 ${active ? "rotate-180" : ""}`}
+                      />
                     </span>
                   </div>
                 </button>
@@ -278,18 +296,31 @@ function LeadershipContent() {
           })}
         </ul>
 
-        <article aria-live="polite" className="mt-14 grid gap-7 border-t-2 border-[#0076CE] pt-9 lg:mt-16 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-4">
-            <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-[#6D6D6D]">Full biography</p>
-            <h3 className="mt-4 font-['Instrument_Serif'] text-[42px] leading-[0.96] tracking-[-0.025em] text-[#243443] sm:text-[48px]">
-              {selectedLeader.name}
-            </h3>
-            <p className="mt-3 text-[16px] font-semibold text-[#0076CE]">{selectedLeader.title}</p>
-          </div>
-          <p className="text-[15px] leading-[1.85] text-[#5F5F5F] sm:text-[16px] lg:col-span-8">
-            {selectedLeader.bio}
-          </p>
-        </article>
+        <div id="leadership-biography" aria-live="polite">
+          {selectedLeader && (
+            <article
+              aria-labelledby="leadership-biography-heading"
+              className="mt-10 animate-in overflow-hidden rounded-[22px] border border-[#B8D9EF] bg-white shadow-[0_20px_46px_rgba(36,52,67,0.1)] duration-500 fade-in-0 slide-in-from-top-4 motion-reduce:animate-none lg:mt-12"
+            >
+              <div aria-hidden="true" className="h-1.5 bg-[#0076CE]" />
+              <div className="grid gap-7 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-12 lg:gap-12 lg:px-10">
+                <div className="lg:col-span-4">
+                  <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-[#0076CE]">Selected profile · Full biography</p>
+                  <h3
+                    id="leadership-biography-heading"
+                    className="mt-4 font-['Instrument_Serif'] text-[42px] leading-[0.96] tracking-[-0.025em] text-[#243443] sm:text-[48px]"
+                  >
+                    {selectedLeader.name}
+                  </h3>
+                  <p className="mt-3 text-[16px] font-semibold text-[#0076CE]">{selectedLeader.title}</p>
+                </div>
+                <p className="text-[15px] leading-[1.85] text-[#5F5F5F] sm:text-[16px] lg:col-span-8">
+                  {selectedLeader.bio}
+                </p>
+              </div>
+            </article>
+          )}
+        </div>
       </div>
     </section>
   );

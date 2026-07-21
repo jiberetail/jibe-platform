@@ -105,8 +105,13 @@ export type ProductPageConfig = {
     items: readonly ProductCapability[];
   };
   proof: ProductSectionIntro & {
+    navLabel?: string;
     items: readonly ProductProofItem[];
     note?: string;
+    source?: {
+      href: string;
+      label: string;
+    };
   };
   cta: {
     eyebrow: string;

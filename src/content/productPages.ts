@@ -520,30 +520,41 @@ export const productPages = {
       ],
     },
     proof: {
-      eyebrow: "Demand made visible",
-      title: "See the opportunities that transaction data cannot explain alone.",
+      navLabel: "Case studies",
+      eyebrow: "Case studies",
+      title: "Missed demand, made measurable.",
       description:
-        "Survey responses, product intent, and in-venue behavior create a more complete view of what shoppers wanted and what stood in the way.",
+        "At Coors Field and the MLB NYC Flagship Store, in-venue feedback exposed the merchandise demand and customer friction that completed transactions could not show.",
       items: [
         {
-          eyebrow: "Localized venue journey",
-          title: "Fit the market without changing the platform underneath it.",
+          eyebrow: "Colorado Rockies / Coors Field",
+          title: "Real-time fan feedback revealed where demand was being missed.",
           description:
-            "Language, brand, sport, and journey logic can be configured for a venue while preserving the same survey, product-discovery, and reporting foundation.",
+            "In-store podiums and mobile survey access captured feedback while fans were still inside the retail environment, exposing missed merchandise, size gaps, item categories, and experience issues.",
+          metrics: [
+            { value: "$181K", label: "Revenue opportunity identified" },
+            { value: "600", label: "Missed purchase opportunities" },
+            { value: "+10%", label: "Associate engagement increase" },
+          ],
         },
         {
-          eyebrow: "Item-level demand",
-          title: "Make unmet merchandise demand visible.",
+          eyebrow: "MLB NYC / Flagship Store",
+          title: "Unfulfilled requests became actionable demand intelligence.",
           description:
-            "Recorded shopper intent can expose patterns across merchandise category, product availability, sizing, and navigation—signals that do not appear in completed transaction data.",
-        },
-        {
-          eyebrow: "Connected ecommerce journey",
-          title: "Keep an unavailable item from ending the purchase journey.",
-          description:
-            "Guided product discovery, cart review, and QR handoff can move the basket to the shopper's phone and continue the configured commerce journey.",
+            "Jibe Retail captured what shoppers wanted but could not find, revealing patterns across merchandise categories, teams, sizing, inventory visibility, product discoverability, and store navigation.",
+          metrics: [
+            { value: "$1.2M", label: "Revenue loss identified" },
+            { value: "3,972", label: "Unfulfilled merchandise requests" },
+            { value: "68%", label: "Size-related friction" },
+          ],
         },
       ],
+      note:
+        "Figures and outcomes are those published by Jibe Retail for these specific deployments; they are not projections or guaranteed results.",
+      source: {
+        href: "https://jiberetail.com/case-study",
+        label: "Read full case studies",
+      },
     },
     cta: {
       eyebrow: "Build the right Retail experience",

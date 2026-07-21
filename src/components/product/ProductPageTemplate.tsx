@@ -137,13 +137,21 @@ function InteractionPrompt({
   );
 }
 
-function ProductAnchorNav({ productName, hasReporting }: { productName: string; hasReporting: boolean }) {
+function ProductAnchorNav({
+  productName,
+  hasReporting,
+  proofLabel = "Proof",
+}: {
+  productName: string;
+  hasReporting: boolean;
+  proofLabel?: string;
+}) {
   const links = [
     ["#overview", "Overview"],
     ["#product", "Product"],
     ["#how-it-works", "How it works"],
     ...(hasReporting ? ([["#reporting", "Dashboards & ROI"]] as const) : []),
-    ["#proof", "Proof"],
+    ["#proof", proofLabel],
   ] as const;
 
   return (
@@ -953,7 +961,23 @@ function ProductProof({ config }: { config: ProductPageConfig["proof"] }) {
           ))}
         </div>
 
-        {config.note && <p className="mt-5 max-w-[960px] text-[10px] leading-[1.7] text-[#5F5F5F]">{config.note}</p>}
+        {(config.note || config.source) && (
+          <div className="mt-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            {config.note && (
+              <p className="max-w-[820px] text-[10px] leading-[1.7] text-[#5F5F5F]">{config.note}</p>
+            )}
+            {config.source && (
+              <a
+                href={config.source.href}
+                target="_blank"
+                rel="noreferrer"
+                className={`inline-flex min-h-11 shrink-0 items-center gap-2 self-start border border-[#0076CE] bg-white px-5 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#0076CE] transition-colors hover:bg-[#0076CE] hover:text-white ${focusRing}`}
+              >
+                {config.source.label} <ArrowRight aria-hidden="true" size={14} />
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -1013,7 +1037,11 @@ export default function ProductPageTemplate({ config }: ProductPageTemplateProps
   return (
     <main className={`product-page product-page--${config.slug} bg-white`}>
       <ProductHeroSection {...config.hero} />
-      <ProductAnchorNav productName={config.hero.productName} hasReporting={Boolean(config.reporting)} />
+      <ProductAnchorNav
+        productName={config.hero.productName}
+        hasReporting={Boolean(config.reporting)}
+        proofLabel={config.proof.navLabel}
+      />
       <ProductPathways config={config.pathways} />
       {config.media.layout === "gallery" ? (
         <ProductMediaGallery config={config.media} />
