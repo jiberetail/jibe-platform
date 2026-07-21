@@ -70,6 +70,7 @@ const leaders = [
     name: "Isaac Harrison",
     title: "Head of Product & Analytics",
     image: "assets/company/isaac-harrison-july-2026.jpg",
+    imageClassName: "scale-[1.12] object-[50%_18%]",
     alt: "Isaac Harrison, Head of Product & Analytics at Zacoustic",
     bio: "Isaac joined Zacoustic in 2023 and has played a key role in driving client success through data, product strategy, and operational insight. With over 20 years of experience in call center and B2B environments, he brings deep expertise in analytics, customer experience, and performance improvement. Isaac has led teams of data scientists and audit researchers, managed large-scale data collection and distribution, and helped clients improve customer satisfaction through practical, data-driven solutions. His strengths span product development, design, analytics, and problem-solving, making him a major contributor to Zacoustic's continued growth and client results.",
   },
@@ -267,7 +268,9 @@ function LeadershipContent() {
                       alt={leader.alt}
                       loading="lazy"
                       decoding="async"
-                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.025]"
+                      className={`h-full w-full object-cover object-top transition-transform duration-500 ${
+                        leader.imageClassName ?? "group-hover:scale-[1.025]"
+                      }`}
                     />
                   </div>
                   <div className={`mx-2 mt-4 border-t pb-2 pt-4 ${active ? "border-[#0076CE]" : "border-[#CFCFCF]"}`}>
