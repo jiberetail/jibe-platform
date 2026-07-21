@@ -82,8 +82,8 @@ const footprintPeople = [
     location: "New York",
     image: "assets/company/isaac-harrison-july-2026.png",
     alt: "Isaac Harrison",
-    x: "31%",
-    y: "37%",
+    x: "34%",
+    y: "45%",
   },
   {
     name: "Brad Young",
@@ -91,8 +91,8 @@ const footprintPeople = [
     location: "Maine",
     image: "assets/company/brad-young.jpg",
     alt: "Brad Young",
-    x: "34%",
-    y: "31%",
+    x: "25%",
+    y: "30%",
   },
   {
     name: "Tim Lavin",
@@ -100,8 +100,8 @@ const footprintPeople = [
     location: "Texas",
     image: "assets/company/tim-lavin.jpg",
     alt: "Tim Lavin",
-    x: "25%",
-    y: "49%",
+    x: "20%",
+    y: "61%",
   },
   {
     name: "Archer Alvandi",
@@ -109,8 +109,8 @@ const footprintPeople = [
     location: "Texas",
     image: "assets/company/archer-alvandi.jpg",
     alt: "Archer Alvandi",
-    x: "28%",
-    y: "54%",
+    x: "31%",
+    y: "65%",
   },
   {
     name: "Jacob Raska",
@@ -118,8 +118,8 @@ const footprintPeople = [
     location: "Minnesota",
     image: "assets/company/jacob-raska.jpg",
     alt: "Jacob Raska",
-    x: "24%",
-    y: "34%",
+    x: "16%",
+    y: "40%",
   },
   {
     name: "Eigh Azarcon",
@@ -127,7 +127,7 @@ const footprintPeople = [
     location: "Philippines",
     image: "assets/company/eigh-azarcon.png",
     alt: "Eigh Azarcon",
-    x: "79%",
+    x: "75%",
     y: "56%",
     hub: true,
   },
@@ -137,8 +137,8 @@ const footprintPeople = [
     location: "Philippines",
     image: "assets/company/grace-villareal.png",
     alt: "Grace Villareal",
-    x: "84%",
-    y: "62%",
+    x: "88%",
+    y: "66%",
     hub: true,
   },
 ];
@@ -413,74 +413,63 @@ function JibeFootprint() {
           </h2>
         </div>
         <p className="max-w-[520px] text-[15px] leading-[1.75] text-[#686A6D] lg:col-span-5 lg:justify-self-end">
-          Jibe combines product leadership, technology, analytics, client success, and global operating support so customers get the right expertise around every deployment.
+          Jibe brings product leadership, technology, analytics, client success, and operating support together across the places where the work happens.
         </p>
       </div>
 
       <div className="overflow-hidden rounded-[30px] border border-[#D2D2D2] bg-white shadow-[0_24px_70px_rgba(36,52,67,0.08)]">
-        <div className="grid gap-0 lg:grid-cols-[1fr_340px]">
+        <div className="grid gap-0 lg:grid-cols-[1fr_360px]">
           <div className="relative min-h-[560px] overflow-hidden bg-[#F8FAFC] px-5 py-8 sm:px-8 lg:min-h-[620px]">
-            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(rgba(0,118,206,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(0,118,206,0.045)_1px,transparent_1px)] bg-[size:44px_44px]" />
-            <div aria-hidden="true" className="absolute left-[11%] top-[22%] h-[27%] w-[25%] rounded-[46%_54%_55%_45%] bg-[#DCE5EC]" />
-            <div aria-hidden="true" className="absolute left-[29%] top-[49%] h-[16%] w-[10%] rounded-[55%_45%_58%_42%] bg-[#DCE5EC]" />
-            <div aria-hidden="true" className="absolute left-[46%] top-[18%] h-[22%] w-[14%] rounded-[54%_46%_50%_50%] bg-[#DCE5EC]" />
-            <div aria-hidden="true" className="absolute left-[56%] top-[27%] h-[22%] w-[21%] rounded-[48%_52%_54%_46%] bg-[#DCE5EC]" />
-            <div aria-hidden="true" className="absolute left-[72%] top-[45%] h-[20%] w-[14%] rounded-[52%_48%_45%_55%] bg-[#DCE5EC]" />
-            <div aria-hidden="true" className="absolute left-[76%] top-[67%] h-[12%] w-[12%] rounded-[52%_48%_55%_45%] bg-[#DCE5EC]" />
-            <div aria-hidden="true" className="absolute left-[11%] top-[41%] h-px w-[71%] rotate-[8deg] bg-gradient-to-r from-transparent via-[#0076CE]/45 to-transparent" />
-            <div aria-hidden="true" className="absolute left-[26%] top-[43%] h-[150px] w-[54%] rounded-[50%] border-t border-[#0076CE]/25" />
+            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(rgba(0,118,206,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(0,118,206,0.035)_1px,transparent_1px)] bg-[size:48px_48px]" />
+            <img
+              src={assetUrl("assets/company/world-map-jibe.svg")}
+              alt="World map showing Jibe operating footprint"
+              loading="lazy"
+              decoding="async"
+              className="absolute left-1/2 top-1/2 w-[112%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-95"
+            />
+            <div aria-hidden="true" className="absolute left-[22%] top-[44%] h-px w-[58%] rotate-[7deg] bg-gradient-to-r from-transparent via-[#0076CE]/50 to-transparent" />
+            <div aria-hidden="true" className="absolute left-[30%] top-[46%] h-[160px] w-[50%] rounded-[50%] border-t border-[#0076CE]/25" />
 
-            <div className="absolute left-7 top-7 rounded-full border border-[#C8D2DB] bg-white/85 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5F5F5F] shadow-[0_10px_24px_rgba(36,52,67,0.08)] backdrop-blur">
+            <div className="absolute left-7 top-7 rounded-full border border-[#C8D2DB] bg-white/90 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5F5F5F] shadow-[0_10px_24px_rgba(36,52,67,0.08)] backdrop-blur">
               North America → Philippines
             </div>
 
             {footprintPeople.map((person) => (
               <div
                 key={`${person.name}-${person.location}`}
-                className="absolute z-10"
+                className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
                 style={{ left: person.x, top: person.y }}
               >
-                <div className={`group flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full border bg-white/90 p-1.5 shadow-[0_14px_34px_rgba(36,52,67,0.13)] backdrop-blur transition-transform duration-300 hover:-translate-y-[58%] ${
-                  person.hub ? "border-[#0076CE]" : "border-[#C8D2DB]"
-                }`}>
-                  <img
-                    src={assetUrl(person.image)}
-                    alt={person.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-12 w-12 rounded-full border-2 border-white object-cover object-top shadow-sm"
-                  />
-                  <div className="hidden min-w-[130px] pr-3 sm:block">
-                    <p className="text-[12px] font-semibold leading-none text-[#243443]">{person.name}</p>
-                    <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#0076CE]">{person.location}</p>
+                <div className="group flex flex-col items-center gap-2">
+                  <div className={`relative h-12 w-12 rounded-full border-2 bg-white p-1 shadow-[0_14px_34px_rgba(36,52,67,0.16)] transition-transform duration-300 group-hover:-translate-y-1 sm:h-14 sm:w-14 ${
+                    person.hub ? "border-[#0076CE]" : "border-[#C8D2DB]"
+                  }`}>
+                    <img
+                      src={assetUrl(person.image)}
+                      alt={person.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full rounded-full object-cover object-top"
+                    />
+                    <span className="absolute -bottom-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-white bg-[#0076CE]" />
+                  </div>
+                  <div className="rounded-full border border-[#C8D2DB] bg-white/92 px-2.5 py-1.5 text-center shadow-[0_10px_24px_rgba(36,52,67,0.09)] backdrop-blur sm:px-3">
+                    <p className="whitespace-nowrap text-[11px] font-semibold leading-none text-[#243443]">{person.name}</p>
+                    <p className="mt-1 whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.16em] text-[#0076CE]">{person.location}</p>
                   </div>
                 </div>
               </div>
             ))}
-
-            <div className="absolute bottom-7 left-7 right-7 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-[#D2D2D2] bg-white/86 p-4 shadow-[0_14px_34px_rgba(36,52,67,0.08)] backdrop-blur">
-                <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-[#0076CE]">Product center</p>
-                <p className="mt-2 text-[18px] font-semibold text-[#243443]">New York</p>
-              </div>
-              <div className="rounded-2xl border border-[#D2D2D2] bg-white/86 p-4 shadow-[0_14px_34px_rgba(36,52,67,0.08)] backdrop-blur">
-                <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-[#0076CE]">Leadership base</p>
-                <p className="mt-2 text-[18px] font-semibold text-[#243443]">Texas, Maine, Minnesota</p>
-              </div>
-              <div className="rounded-2xl border border-[#D2D2D2] bg-white/86 p-4 shadow-[0_14px_34px_rgba(36,52,67,0.08)] backdrop-blur">
-                <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-[#0076CE]">Operating hub</p>
-                <p className="mt-2 text-[18px] font-semibold text-[#243443]">Philippines</p>
-              </div>
-            </div>
           </div>
 
           <aside className="border-t border-[#D2D2D2] bg-[#0D1821] p-7 text-white lg:border-l lg:border-t-0">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6FC6FF]">Philippines team hub</p>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6FC6FF]">Philippines operating hub</p>
             <h3 className="mt-4 font-['Instrument_Serif'] text-[40px] leading-[0.95] tracking-[-0.02em]">
               Client success and analytics coverage.
             </h3>
             <p className="mt-5 text-[14px] leading-[1.75] text-white/68">
-              Eigh and Grace anchor Jibe’s Philippines presence, supporting client programs, analytics workflows, reporting quality, and deployment follow-through across time zones.
+              The Philippines operating hub supports client programs, analytics workflows, reporting quality, and deployment follow-through across time zones.
             </p>
 
             <div className="mt-8 space-y-4">
