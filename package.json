@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
+    "build:sites": "vite build && node scripts/prepare-sites-dist.mjs",
     "build:github": "vite build --base=/ && node scripts/prepare-github-pages.mjs",
     "dev": "vite"
   },
