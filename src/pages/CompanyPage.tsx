@@ -91,12 +91,12 @@ const philippinesTeam = [
 ];
 
 const footprintLocations = [
-  { location: "New York", x: "29.5%", y: "37%" },
-  { location: "Maine", x: "31%", y: "34%" },
-  { location: "Minnesota", x: "23.5%", y: "36%" },
-  { location: "Texas", x: "23%", y: "44%" },
-  { location: "Philippines - Manila", x: "84.2%", y: "47%", hub: true },
-  { location: "Philippines - Cebu", x: "83.7%", y: "50%", hub: true },
+  { location: "New York", x: "36.2%", y: "28.5%" },
+  { location: "Maine", x: "37.5%", y: "25.2%" },
+  { location: "Minnesota", x: "29.2%", y: "28.8%" },
+  { location: "Texas", x: "28.9%", y: "35.8%" },
+  { location: "Philippines - Manila", x: "84.2%", y: "48.7%", hub: true },
+  { location: "Philippines - Cebu", x: "84%", y: "52%", hub: true },
 ];
 
 // VERIFY / BLOCKED — COMPANY-01 / D-11: history, entity, IP, copyright, and
@@ -374,7 +374,7 @@ function JibeFootprint() {
         <div className="grid lg:grid-cols-[minmax(0,1fr)_430px]">
           <div className="relative h-[300px] overflow-hidden bg-[#F8FAFC] sm:h-[500px] lg:h-[700px]">
             <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(rgba(0,118,206,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(0,118,206,0.03)_1px,transparent_1px)] bg-[size:48px_48px]" />
-            <div className="absolute inset-x-3 top-1/2 aspect-[1200/620] -translate-y-1/2 sm:inset-x-5 lg:inset-x-7">
+            <div className="absolute inset-x-3 top-1/2 aspect-[1200/620] -translate-y-1/2 scale-[1.06] sm:inset-x-5 sm:scale-[1.1] lg:inset-x-7 lg:scale-[1.14]">
               <img
                 src={assetUrl("assets/company/world-map-jibe.svg")}
                 alt="World map showing Jibe operating footprint"
