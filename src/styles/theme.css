@@ -1982,8 +1982,8 @@
   font-weight: 560;
   letter-spacing: 0.005em;
   line-height: 1.48;
-  opacity: 0;
-  transform: translateY(8px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 220ms ease, transform 220ms ease;
   pointer-events: none;
 }
@@ -1996,12 +1996,12 @@
 .portal-product-card:hover .portal-card-description,
 .portal-product-card:focus-visible .portal-card-description {
   opacity: 1;
-  transform: translateY(-2px);
+  transform: translateY(0);
 }
 
 .portal-product-card[data-transition-state="opening"] .portal-card-description {
-  opacity: 0;
-  transform: translateY(8px);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .portal-pro-wave,
@@ -2416,8 +2416,8 @@
     width: min(90%, 285px);
     margin-top: 19px;
     font-size: 13px;
-    opacity: 0;
-    transform: translateY(8px);
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .portal-card-opening {
