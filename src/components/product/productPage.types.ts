@@ -44,7 +44,7 @@ export type ProductMediaItem = {
     label?: string;
     screenSrc?: string;
     videoSrc?: string;
-    screenVariant?: "mlb" | "nhl" | "fan-town";
+    screenVariant?: "mlb" | "fan-town" | "rockies";
   }[];
   orientation?: "landscape" | "portrait" | "tall";
   disclosure?: string;

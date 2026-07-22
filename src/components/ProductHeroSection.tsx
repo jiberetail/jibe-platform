@@ -62,9 +62,9 @@ function RetailPodiumAtmosphere() {
       variant: "mlb",
     },
     {
-      podium: "jibe-retail-nhl-cutout.png",
-      screen: "assets/jibe-retail/screens/nhl-front.png",
-      variant: "nhl",
+      podium: "jibe-retail-rockies-survey-cutout.png",
+      screen: "assets/jibe-retail/screens/rockies-survey.png",
+      variant: "rockies",
     },
     { podium: "jibe-retail-fan-town-search-cutout.png" },
     {
@@ -73,9 +73,7 @@ function RetailPodiumAtmosphere() {
       variant: "mlb",
     },
     {
-      podium: "jibe-retail-nhl-cutout.png",
-      screen: "assets/jibe-retail/screens/nhl-front.png",
-      variant: "nhl",
+      podium: "jibe-retail-fan-town-search-cutout.png",
     },
   ];
 

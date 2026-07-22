@@ -246,7 +246,7 @@ function ProductContextVisual({ product }: { product: (typeof productContexts)[n
       <div className="grid aspect-[16/10] grid-cols-3 gap-2 overflow-hidden rounded-[26px] border border-white/10 bg-[#101820] p-3 shadow-[0_24px_54px_rgba(16,24,32,0.22)]">
         {[
           ["assets/podiums/jibe-retail-mlb.png", "Representative MLB-branded Jibe Retail podium", "MLB NYC"],
-          ["assets/podiums/jibe-retail-nhl.png", "Representative NHL-branded Jibe Retail podium", "NHL"],
+          ["assets/podiums/jibe-retail-rockies.png", "Representative Colorado Rockies-branded Jibe Retail podium", "Colorado Rockies"],
           ["assets/podiums/jibe-retail-fan-town.png", "Representative Fan Town-branded Jibe Retail podium", "Fan Town"],
         ].map(([src, alt, label]) => (
           <figure key={src} className="relative flex min-w-0 items-center justify-center overflow-hidden rounded-[15px] bg-[#16212B]">
