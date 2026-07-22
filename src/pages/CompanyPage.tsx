@@ -91,12 +91,12 @@ const philippinesTeam = [
 ];
 
 const footprintLocations = [
-  { location: "New York", x: "36.2%", y: "28.5%" },
-  { location: "Maine", x: "37.5%", y: "25.2%" },
-  { location: "Minnesota", x: "29.2%", y: "28.8%" },
-  { location: "Texas", x: "28.9%", y: "35.8%" },
-  { location: "Philippines - Manila", x: "84.2%", y: "48.7%", hub: true },
-  { location: "Philippines - Cebu", x: "84%", y: "52%", hub: true },
+  { location: "New York", x: "29.45%", y: "27.4%" },
+  { location: "Maine", x: "30.8%", y: "25.5%" },
+  { location: "Minnesota", x: "23.9%", y: "24.5%" },
+  { location: "Texas", x: "22.7%", y: "32.8%" },
+  { location: "Philippines - Manila", x: "83.6%", y: "41.9%", hub: true },
+  { location: "Philippines - Cebu", x: "84.4%", y: "44.3%", hub: true },
 ];
 
 // VERIFY / BLOCKED — COMPANY-01 / D-11: history, entity, IP, copyright, and
@@ -374,7 +374,7 @@ function JibeFootprint() {
         <div className="grid lg:grid-cols-[minmax(0,1fr)_430px]">
           <div className="relative h-[300px] overflow-hidden bg-[#F8FAFC] sm:h-[500px] lg:h-[700px]">
             <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(rgba(0,118,206,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(0,118,206,0.03)_1px,transparent_1px)] bg-[size:48px_48px]" />
-            <div className="absolute inset-x-3 top-1/2 aspect-[1200/620] -translate-y-1/2 scale-[1.06] sm:inset-x-5 sm:scale-[1.1] lg:inset-x-7 lg:scale-[1.14]">
+            <div className="absolute left-1/2 top-1/2 aspect-[1200/620] w-[118%] max-w-none -translate-x-1/2 -translate-y-1/2 sm:w-[124%] lg:w-[132%]">
               <img
                 src={assetUrl("assets/company/world-map-jibe.svg")}
                 alt="World map showing Jibe operating footprint"
@@ -385,13 +385,13 @@ function JibeFootprint() {
               {footprintLocations.map((location) => (
                 <span
                   key={location.location}
-                  className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_1px_1px_rgba(255,255,255,0.95)] ${
+                  className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 ${
                     location.hub ? "text-[#0076CE]" : "text-[#243443]"
                   }`}
                   style={{ left: location.x, top: location.y }}
                   aria-label={`Jibe location: ${location.location}`}
                 >
-                  <Building2 aria-hidden="true" className="h-3 w-3 sm:h-3.5 sm:w-3.5 lg:h-4 lg:w-4" strokeWidth={2.35} />
+                  <Building2 aria-hidden="true" className="h-2.5 w-2.5 sm:h-[11px] sm:w-[11px] lg:h-3 lg:w-3" strokeWidth={2.4} />
                 </span>
               ))}
             </div>
