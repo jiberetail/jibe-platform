@@ -63,7 +63,7 @@ export default {
 
     const url = new URL(request.url);
     if (!url.pathname.includes(".")) {
-      return assetFetch(request, env, "/index.html");
+      return assetFetch(request, env, "/");
     }
 
     return findAsset(request, env, url.pathname);
