@@ -75,81 +75,28 @@ const leaders = [
   },
 ];
 
-const footprintPeople = [
-  {
-    name: "Isaac Harrison",
-    title: "Product & Analytics",
-    location: "New York",
-    image: "assets/company/isaac-harrison-july-2026.png",
-    alt: "Isaac Harrison",
-    x: "34%",
-    y: "45%",
-  },
-  {
-    name: "Brad Young",
-    title: "Finance",
-    location: "Maine",
-    image: "assets/company/brad-young.jpg",
-    alt: "Brad Young",
-    x: "25%",
-    y: "30%",
-  },
-  {
-    name: "Tim Lavin",
-    title: "Executive Leadership",
-    location: "Texas",
-    image: "assets/company/tim-lavin.jpg",
-    alt: "Tim Lavin",
-    x: "20%",
-    y: "61%",
-  },
-  {
-    name: "Archer Alvandi",
-    title: "Technology",
-    location: "Texas",
-    image: "assets/company/archer-alvandi.jpg",
-    alt: "Archer Alvandi",
-    x: "31%",
-    y: "65%",
-  },
-  {
-    name: "Jacob Raska",
-    title: "Client Success",
-    location: "Minnesota",
-    image: "assets/company/jacob-raska.jpg",
-    alt: "Jacob Raska",
-    x: "16%",
-    y: "40%",
-  },
+const philippinesTeam = [
   {
     name: "Eigh Azarcon",
     title: "Client Success Manager",
-    location: "Philippines",
     image: "assets/company/eigh-azarcon.png",
     alt: "Eigh Azarcon",
-    x: "75%",
-    y: "56%",
-    hub: true,
   },
   {
     name: "Grace Villareal",
     title: "Analytics Manager",
-    location: "Philippines",
     image: "assets/company/grace-villareal.png",
     alt: "Grace Villareal",
-    x: "88%",
-    y: "66%",
-    hub: true,
   },
 ];
 
 const footprintLocations = [
-  { location: "New York", x: "29%", y: "42%" },
-  { location: "Maine", x: "31%", y: "36%" },
-  { location: "Minnesota", x: "22%", y: "40%" },
-  { location: "Texas", x: "25%", y: "52%" },
-  { location: "Philippines - Manila", x: "79%", y: "56%", hub: true },
-  { location: "Philippines - Cebu", x: "82%", y: "61%", hub: true },
+  { location: "New York", x: "29.5%", y: "37%" },
+  { location: "Maine", x: "31%", y: "34%" },
+  { location: "Minnesota", x: "23.5%", y: "36%" },
+  { location: "Texas", x: "23%", y: "44%" },
+  { location: "Philippines - Manila", x: "84.2%", y: "47%", hub: true },
+  { location: "Philippines - Cebu", x: "83.7%", y: "50%", hub: true },
 ];
 
 // VERIFY / BLOCKED — COMPANY-01 / D-11: history, entity, IP, copyright, and
@@ -406,9 +353,6 @@ function LeadershipContent() {
 }
 
 function JibeFootprint() {
-  const usPeople = footprintPeople.filter((person) => !person.hub);
-  const philippinesPeople = footprintPeople.filter((person) => person.hub);
-
   return (
     <section aria-labelledby="jibe-footprint-heading" className="mt-20 lg:mt-28">
       <div className="mb-8 grid gap-6 border-b border-[#D2D2D2] pb-7 lg:grid-cols-12 lg:items-end">
@@ -427,71 +371,57 @@ function JibeFootprint() {
       </div>
 
       <div className="overflow-hidden rounded-[30px] border border-[#D2D2D2] bg-white shadow-[0_24px_70px_rgba(36,52,67,0.08)]">
-        <div className="grid gap-0 lg:grid-cols-[1fr_360px]">
-          <div className="relative min-h-[560px] overflow-hidden bg-[#F8FAFC] px-5 py-8 sm:px-8 lg:min-h-[620px]">
-            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(rgba(0,118,206,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(0,118,206,0.035)_1px,transparent_1px)] bg-[size:48px_48px]" />
-            <img
-              src={assetUrl("assets/company/world-map-jibe.svg")}
-              alt="World map showing Jibe operating footprint"
-              loading="lazy"
-              decoding="async"
-              className="absolute left-1/2 top-1/2 w-[112%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-95"
-            />
-            {footprintLocations.map((location) => (
-              <div
-                key={location.location}
-                className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
-                style={{ left: location.x, top: location.y }}
-                aria-label={`Jibe location: ${location.location}`}
-              >
-                <div
-                  className={`relative flex h-12 w-12 items-center justify-center rounded-2xl border bg-white shadow-[0_14px_34px_rgba(36,52,67,0.16)] transition-transform duration-300 hover:-translate-y-1 sm:h-14 sm:w-14 ${
-                    location.hub ? "border-[#0076CE] text-[#0076CE]" : "border-[#C8D2DB] text-[#243443]"
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_430px]">
+          <div className="relative h-[300px] overflow-hidden bg-[#F8FAFC] sm:h-[500px] lg:h-[700px]">
+            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(rgba(0,118,206,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(0,118,206,0.03)_1px,transparent_1px)] bg-[size:48px_48px]" />
+            <div className="absolute inset-x-3 top-1/2 aspect-[1200/620] -translate-y-1/2 sm:inset-x-5 lg:inset-x-7">
+              <img
+                src={assetUrl("assets/company/world-map-jibe.svg")}
+                alt="World map showing Jibe operating footprint"
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full opacity-95"
+              />
+              {footprintLocations.map((location) => (
+                <span
+                  key={location.location}
+                  className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_1px_1px_rgba(255,255,255,0.95)] ${
+                    location.hub ? "text-[#0076CE]" : "text-[#243443]"
                   }`}
+                  style={{ left: location.x, top: location.y }}
+                  aria-label={`Jibe location: ${location.location}`}
                 >
-                  <Building2 aria-hidden="true" size={22} strokeWidth={1.9} />
-                  <span className="absolute -bottom-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-white bg-[#0076CE]" />
-                </div>
-              </div>
-            ))}
+                  <Building2 aria-hidden="true" className="h-3 w-3 sm:h-3.5 sm:w-3.5 lg:h-4 lg:w-4" strokeWidth={2.35} />
+                </span>
+              ))}
+            </div>
           </div>
 
-          <aside className="border-t border-[#D2D2D2] bg-[#0D1821] p-7 text-white lg:border-l lg:border-t-0">
+          <aside className="border-t border-white/10 bg-[#0D1821] px-6 py-8 text-white sm:px-8 sm:py-10 lg:border-l lg:border-t-0 lg:px-7 lg:py-9">
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6FC6FF]">Philippines operating hub</p>
-            <h3 className="mt-4 font-['Instrument_Serif'] text-[40px] leading-[0.95] tracking-[-0.02em]">
+            <h3 className="mt-4 font-['Instrument_Serif'] text-[38px] leading-[0.95] tracking-[-0.02em] sm:text-[42px]">
               Client success and analytics coverage.
             </h3>
-            <p className="mt-5 text-[14px] leading-[1.75] text-white/68">
+            <p className="mt-5 text-[14px] leading-[1.7] text-white/68">
               The Philippines operating hub supports client programs, analytics workflows, reporting quality, and deployment follow-through across time zones.
             </p>
 
-            <div className="mt-8 space-y-4">
-              {philippinesPeople.map((person) => (
-                <div key={person.name} className="flex items-center gap-4 rounded-2xl border border-white/12 bg-white/[0.045] p-3">
+            <div className="mt-7 space-y-5">
+              {philippinesTeam.map((person) => (
+                <article key={person.name} className="grid grid-cols-[118px_minmax(0,1fr)] overflow-hidden rounded-[22px] border border-white/12 bg-white/[0.045]">
                   <img
                     src={assetUrl(person.image)}
                     alt={person.alt}
                     loading="lazy"
                     decoding="async"
-                    className="h-16 w-16 rounded-2xl object-cover object-top"
+                    className="h-[150px] w-full object-cover object-top"
                   />
-                  <div>
-                    <p className="text-[16px] font-semibold">{person.name}</p>
-                    <p className="mt-1 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6FC6FF]">{person.title}</p>
+                  <div className="flex min-w-0 flex-col justify-center border-l border-white/10 px-5 py-4">
+                    <p className="text-[18px] font-semibold leading-tight">{person.name}</p>
+                    <p className="mt-3 text-[11px] font-semibold uppercase leading-[1.55] tracking-[0.15em] text-[#6FC6FF]">{person.title}</p>
                   </div>
-                </div>
+                </article>
               ))}
-            </div>
-
-            <div className="mt-8 border-t border-white/12 pt-6">
-              <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/52">U.S. leadership</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {usPeople.map((person) => (
-                  <span key={person.name} className="rounded-full border border-white/12 px-3 py-1.5 text-[12px] text-white/75">
-                    {person.name.split(" ")[0]} · {person.location}
-                  </span>
-                ))}
-              </div>
             </div>
           </aside>
         </div>
