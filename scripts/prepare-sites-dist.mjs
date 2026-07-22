@@ -62,12 +62,11 @@ export default {
     }
 
     const url = new URL(request.url);
-    const response = await findAsset(request, env, url.pathname);
-    if (response.status !== 404) return response;
+    if (!url.pathname.includes(".")) {
+      return assetFetch(request, env, "/index.html");
+    }
 
-    if (url.pathname.includes(".")) return response;
-
-    return findAsset(request, env, "/index.html");
+    return findAsset(request, env, url.pathname);
   },
 };
 `,
