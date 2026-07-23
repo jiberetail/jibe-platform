@@ -1270,6 +1270,54 @@
   object-position: top center;
 }
 
+.client-retail-podium {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+}
+
+.client-retail-podium__base {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.client-retail-podium__screen {
+  position: absolute;
+  top: 6.64%;
+  left: 33.89%;
+  z-index: 1;
+  display: block;
+  width: 31.74%;
+  height: 34.44%;
+  object-fit: fill;
+  clip-path: polygon(0 0, 96.5% 1.15%, 100% 100%, 3.1% 100%);
+  filter: brightness(0.9) contrast(0.96) saturate(0.9);
+  pointer-events: none;
+}
+
+.client-retail-podium--mlb::after,
+.client-retail-podium--rockies::after {
+  position: absolute;
+  top: 6.64%;
+  left: 33.89%;
+  z-index: 2;
+  width: 31.74%;
+  height: 34.44%;
+  background:
+    linear-gradient(112deg, rgba(255, 255, 255, 0.07), transparent 26%, transparent 72%, rgba(255, 255, 255, 0.025)),
+    linear-gradient(to bottom, rgba(6, 13, 21, 0.08), transparent 12%, transparent 86%, rgba(6, 13, 21, 0.16));
+  box-shadow:
+    inset 0 0 0 1px rgba(6, 13, 21, 0.42),
+    inset 0 0 12px rgba(6, 13, 21, 0.2);
+  clip-path: polygon(0 0, 96.5% 1.15%, 100% 100%, 3.1% 100%);
+  opacity: 0.2;
+  content: "";
+  pointer-events: none;
+}
+
 .product-page__media-gallery-label {
   position: absolute;
   top: 12px;

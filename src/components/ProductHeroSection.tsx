@@ -52,24 +52,24 @@ function RetailPodiumAtmosphere() {
   const podiums = [
     {
       podium: "jibe-retail-mlb-survey-cutout.png",
-      screen: "assets/jibe-retail/screens/mlb-front.png",
+      screen: "assets/jibe-retail/screens/mlb-podium-still.png",
       variant: "mlb",
     },
     { podium: "jibe-retail-fan-town-search-cutout.png" },
     {
       podium: "jibe-retail-mlb-survey-cutout.png",
-      screen: "assets/jibe-retail/screens/mlb-front.png",
+      screen: "assets/jibe-retail/screens/mlb-podium-still.png",
       variant: "mlb",
     },
     {
       podium: "jibe-retail-rockies-survey-cutout.png",
-      screen: "assets/jibe-retail/screens/rockies-survey.png",
+      screen: "assets/jibe-retail/screens/rockies-podium-still.png",
       variant: "rockies",
     },
     { podium: "jibe-retail-fan-town-search-cutout.png" },
     {
       podium: "jibe-retail-mlb-survey-cutout.png",
-      screen: "assets/jibe-retail/screens/mlb-front.png",
+      screen: "assets/jibe-retail/screens/mlb-podium-still.png",
       variant: "mlb",
     },
     {

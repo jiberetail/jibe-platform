@@ -242,17 +242,54 @@ export default function ClientsPage() {
 
 function ProductContextVisual({ product }: { product: (typeof productContexts)[number]["key"] }) {
   if (product === "retail") {
+    const podiums = [
+      {
+        src: "assets/podiums/jibe-retail-mlb.png",
+        screen: "assets/jibe-retail/screens/mlb-podium-still.png",
+        alt: "Representative MLB-branded Jibe Retail podium",
+        label: "MLB NYC",
+        variant: "mlb",
+      },
+      {
+        src: "assets/podiums/jibe-retail-rockies.png",
+        screen: "assets/jibe-retail/screens/rockies-podium-still.png",
+        alt: "Representative Colorado Rockies-branded Jibe Retail podium",
+        label: "Colorado Rockies",
+        variant: "rockies",
+      },
+      {
+        src: "assets/podiums/jibe-retail-fan-town.png",
+        alt: "Representative Fan Town-branded Jibe Retail podium",
+        label: "Fan Town",
+        variant: "fan-town",
+      },
+    ] as const;
+
     return (
       <div className="grid aspect-[16/10] grid-cols-3 gap-2 overflow-hidden rounded-[26px] border border-white/10 bg-[#101820] p-3 shadow-[0_24px_54px_rgba(16,24,32,0.22)]">
-        {[
-          ["assets/podiums/jibe-retail-mlb.png", "Representative MLB-branded Jibe Retail podium", "MLB NYC"],
-          ["assets/podiums/jibe-retail-rockies.png", "Representative Colorado Rockies-branded Jibe Retail podium", "Colorado Rockies"],
-          ["assets/podiums/jibe-retail-fan-town.png", "Representative Fan Town-branded Jibe Retail podium", "Fan Town"],
-        ].map(([src, alt, label]) => (
-          <figure key={src} className="relative flex min-w-0 items-center justify-center overflow-hidden rounded-[15px] bg-[#16212B]">
-            <img src={assetUrl(src)} alt={alt} loading="lazy" decoding="async" className="h-full w-full object-contain" />
+        {podiums.map((podium) => (
+          <figure key={podium.src} className="relative flex min-w-0 items-center justify-center overflow-hidden rounded-[15px] bg-[#16212B]">
+            <span className={`client-retail-podium client-retail-podium--${podium.variant}`}>
+              <img
+                src={assetUrl(podium.src)}
+                alt={podium.alt}
+                loading="lazy"
+                decoding="async"
+                className="client-retail-podium__base"
+              />
+              {podium.screen && (
+                <img
+                  src={assetUrl(podium.screen)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="client-retail-podium__screen"
+                  aria-hidden="true"
+                />
+              )}
+            </span>
             <figcaption className="absolute left-2 top-2 rounded-md bg-[#101820]/90 px-2 py-1 font-mono text-[6px] font-semibold uppercase tracking-[0.12em] text-white">
-              {label}
+              {podium.label}
             </figcaption>
           </figure>
         ))}
