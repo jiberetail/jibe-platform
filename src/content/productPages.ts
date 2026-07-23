@@ -324,8 +324,8 @@ export const productPages = {
           title: "Turn a store visit into a measurable customer signal.",
           description:
             "Invite shoppers into a fast, branded survey with a clear incentive—creating feedback the venue can connect to follow-up behavior and conversion.",
-          src: "assets/jibe-retail/screens/mlb-front.png",
-          alt: "MLB NYC Jibe Retail survey entry screen inviting shoppers to start a survey for a store discount.",
+          src: "assets/jibe-retail/screens/mlb-podium-still.png",
+          alt: "MLB NYC Jibe Retail survey entry screen featuring a Mets player and inviting shoppers to start a survey for a store discount.",
           orientation: "portrait",
           disclosure: "Representative branded experience. Incentives and survey configurations vary by deployment.",
         },
@@ -360,8 +360,8 @@ export const productPages = {
           title: "Make feedback feel like part of the ballpark experience.",
           description:
             "Invite fans into a concise, team-branded survey that captures an actionable customer signal while offering a clear in-store incentive.",
-          src: "assets/jibe-retail/screens/rockies-survey.png",
-          alt: "Colorado Rockies Dugout Store Jibe Retail survey screen inviting fans to start a survey for an in-store discount.",
+          src: "assets/jibe-retail/screens/rockies-survey-question.png",
+          alt: "Colorado Rockies Dugout Store Jibe Retail survey asking fans whether they are satisfied with their shopping experience.",
           orientation: "portrait",
           disclosure: "Representative branded experience. Incentives and survey configurations vary by deployment.",
         },
