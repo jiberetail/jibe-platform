@@ -459,15 +459,23 @@ function ArticleContent({ section }: { section: Exclude<CompanySlug, "leadership
             </p>
           )}
 
-          {/* VERIFY / BLOCKED — COMPANY-01 / D-11: do not restore a mailto until the media inbox is approved. */}
           {isMedia && (
-            <div className="mt-9 border-y border-[#CCCCCC] py-5">
-              <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#777777]">Media relations</span>
-              <span className="mt-2 block text-[14px] font-semibold text-[#2F2F2F]">Contact channel under review</span>
-              <span className="mx-auto mt-2 block max-w-[560px] text-[12px] leading-[1.65] text-[#6D6D6D]">
-                Jibe is verifying the correct media contact before publishing a destination.
-              </span>
-            </div>
+            <address className="mt-9 border-y border-[#CCCCCC] py-7 not-italic">
+              <span className="block font-mono text-[9px] uppercase tracking-[0.18em] text-[#777777]">Media Contact</span>
+              <span className="mt-3 block text-[18px] font-semibold text-[#2F2F2F]">Natalie Brooks</span>
+              <a
+                className="mt-2 block text-[14px] text-[#087ECE] transition-colors hover:text-[#005C9E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#087ECE]"
+                href="mailto:Natalie.Brooks@JibeAI.com"
+              >
+                Natalie.Brooks@JibeAI.com
+              </a>
+              <a
+                className="mt-1.5 block text-[14px] text-[#4E4E4E] transition-colors hover:text-[#087ECE] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#087ECE]"
+                href="tel:+15124847058"
+              >
+                512-484-7058
+              </a>
+            </address>
           )}
         </article>
       </div>
