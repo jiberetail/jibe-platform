@@ -45,7 +45,7 @@ const companyPages = [
 ];
 
 const sectionLinks = [
-  { label: "Clients", href: "/clients" },
+  { label: "Industries", href: "/clients" },
   { label: "Contact", href: "/contact" },
 ];
 
