@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import {
   ArrowRight,
-  BarChart3,
   Clapperboard,
   Cpu,
+  Eye,
+  Gamepad2,
   Globe2,
   Headphones,
   HeartPulse,
@@ -19,50 +20,74 @@ const industries = [
   {
     number: "01",
     icon: Clapperboard,
-    title: "Streaming & digital media",
-    signal: "Global audiences. Always-on expectations.",
+    title: "Streaming, television & digital media",
+    signal: "Global audiences. Always-on entertainment.",
     description:
-      "Jibe supports the complex service ecosystems behind the platforms shaping how the world watches, subscribes, and engages.",
+      "Built for the service ecosystems behind category-leading streaming platforms, subscription entertainment, and live television experiences.",
   },
   {
     number: "02",
     icon: RadioTower,
-    title: "Communications & connectivity",
-    signal: "National reach. Millions of critical moments.",
+    title: "Cable, broadband & satellite television",
+    signal: "National reach. Essential connectivity.",
     description:
-      "Built for wireless, broadband, and connectivity organizations managing high-volume care, sales, and technical support.",
+      "Experience spanning one of the nation’s largest cable and broadband operators, nationwide connectivity networks, and a leading satellite television provider.",
   },
   {
     number: "03",
     icon: Cpu,
-    title: "Technology & digital platforms",
-    signal: "Extraordinary scale. Constant change.",
+    title: "Social technology & digital platforms",
+    signal: "Global influence. Extraordinary scale.",
     description:
-      "Jibe helps global technology and digital-service organizations understand customer friction across large, evolving ecosystems.",
+      "Designed for the operational complexity behind one of the world’s largest social platforms—connecting people, creators, advertisers, and businesses at global scale.",
   },
   {
     number: "04",
+    icon: Gamepad2,
+    title: "Interactive entertainment & gaming",
+    signal: "Cultural impact. Immersive worlds.",
+    description:
+      "Customer intelligence for publishers behind landmark open-world franchises and some of interactive entertainment’s most recognizable experiences.",
+  },
+  {
+    number: "05",
+    icon: HeartPulse,
+    title: "Healthcare & employee benefits",
+    signal: "Member trust. Statewide complexity.",
+    description:
+      "Designed for statewide healthcare and employee-benefits organizations serving public-sector workforces, families, and diverse member populations.",
+  },
+  {
+    number: "06",
+    icon: Eye,
+    title: "Vision & eye care",
+    signal: "Optical science. Global reach.",
+    description:
+      "Experience supporting global vision-care and ophthalmic-lens leaders spanning optical technology, professional eye-care networks, and consumer journeys.",
+  },
+  {
+    number: "07",
+    icon: Trophy,
+    title: "Professional sports & global motorsport",
+    signal: "Premier competition. Passionate audiences.",
+    description:
+      "Jibe works across the highest levels of professional baseball, hockey, basketball, American football, and the world’s premier global motorsport.",
+  },
+  {
+    number: "08",
     icon: Headphones,
     title: "Customer experience & BPO",
     signal: "Distributed teams. One performance standard.",
     description:
-      "Designed for global customer care organizations that need consistent insight, evidence-based coaching, and measurable outcomes.",
+      "Built for global customer care and outsourcing organizations that need consistent insight, evidence-based coaching, and measurable outcomes.",
   },
   {
-    number: "05",
-    icon: Trophy,
-    title: "Sports, venues & live experiences",
-    signal: "Major brands. Moments that matter.",
-    description:
-      "Jibe connects feedback, product discovery, and commerce for professional sports organizations, flagship venues, and fan-first environments.",
-  },
-  {
-    number: "06",
+    number: "09",
     icon: ShoppingBag,
-    title: "Retail & consumer services",
-    signal: "Physical and digital, working as one.",
+    title: "Retail, venues & commerce",
+    signal: "Physical and digital. One journey.",
     description:
-      "For enterprise retail journeys where availability, assistance, fulfillment, and post-visit insight directly shape conversion and loyalty.",
+      "For flagship stores, live venues, and enterprise commerce journeys where availability, assistance, fulfillment, and feedback shape conversion and loyalty.",
   },
 ] as const;
 
@@ -174,7 +199,7 @@ export default function ClientsPage() {
 
           <div className="border-t-2 border-[#0076CE] pt-7 lg:col-span-4">
             <p className="text-[17px] leading-[1.7] text-[#5F5F5F]">
-              Jibe works behind complex customer ecosystems—from global streaming and connectivity to customer care, live experiences, and commerce.
+              Jibe works with organizations at the top of their categories—from global social and entertainment platforms to national connectivity providers, statewide health programs, professional sports, and vision care.
             </p>
             <p className="mt-5 text-[14px] leading-[1.7] text-[#777777]">
               Wherever expectations are high and operations are distributed, Jibe turns customer signal into clearer action.
@@ -200,49 +225,49 @@ export default function ClientsPage() {
       <section
         id="industries"
         aria-labelledby="industries-heading"
-        className="scroll-mt-28 bg-[#101820] px-6 py-20 text-white lg:px-10 lg:py-28"
+        className="scroll-mt-28 border-b border-[#D9E2E9] bg-[#F1F5F8] px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-[1320px]">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#4A9CFF]">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#0076CE]">
                 Where Jibe works
               </p>
               <h2
                 id="industries-heading"
-                className="mt-5 max-w-[900px] font-['Instrument_Serif'] text-[44px] leading-[0.98] tracking-[-0.025em] text-white sm:text-[56px] lg:text-[66px]"
+                className="mt-5 max-w-[900px] font-['Instrument_Serif'] text-[44px] leading-[0.98] tracking-[-0.025em] text-[#243443] sm:text-[56px] lg:text-[66px]"
               >
                 Designed for the organizations shaping modern customer experience.
               </h2>
             </div>
-            <p className="max-w-[440px] text-[15px] leading-[1.75] text-white/60 lg:col-span-4">
-              These are environments where one missed signal can disappear inside a vast operation—and where better evidence can change the next customer interaction.
+            <p className="max-w-[440px] text-[15px] leading-[1.75] text-[#5F5F5F] lg:col-span-4">
+              Our experience spans household-name categories, essential-service environments, and audiences measured at national and global scale.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-px overflow-hidden rounded-[24px] border border-white/10 bg-white/10 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
+          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
             {industries.map((industry) => {
               const Icon = industry.icon;
               return (
                 <article
                   key={industry.number}
-                  className="group min-h-[330px] bg-[#101820] p-7 transition-colors duration-300 hover:bg-[#14222D] sm:p-9"
+                  className="group min-h-[320px] rounded-[22px] border border-[#D7E2EA] border-t-2 border-t-[#0076CE] bg-white p-7 shadow-[0_14px_36px_rgba(36,52,67,0.055)] transition-all duration-300 hover:-translate-y-1 hover:border-[#B7D3E8] hover:shadow-[0_22px_48px_rgba(36,52,67,0.10)] sm:p-9"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[9px] font-semibold tracking-[0.2em] text-white/35">
+                    <span className="font-mono text-[9px] font-semibold tracking-[0.2em] text-[#8A969F]">
                       {industry.number}
                     </span>
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-[#4A9CFF] transition-colors group-hover:border-[#4A9CFF]/70">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#C9DCEB] bg-[#F4F8FC] text-[#0076CE] transition-colors group-hover:border-[#0076CE]">
                       <Icon aria-hidden="true" size={20} strokeWidth={1.7} />
                     </span>
                   </div>
-                  <h3 className="mt-12 text-[26px] font-semibold leading-[1.08] tracking-[-0.03em] text-white">
+                  <h3 className="mt-12 text-[26px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#26364A]">
                     {industry.title}
                   </h3>
-                  <p className="mt-4 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-[#4A9CFF]">
+                  <p className="mt-4 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-[#0076CE]">
                     {industry.signal}
                   </p>
-                  <p className="mt-5 text-[14px] leading-[1.75] text-white/60">{industry.description}</p>
+                  <p className="mt-5 text-[14px] leading-[1.75] text-[#5F5F5F]">{industry.description}</p>
                 </article>
               );
             })}
