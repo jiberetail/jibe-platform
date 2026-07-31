@@ -225,7 +225,7 @@ export default function ClientsPage() {
       <section
         id="industries"
         aria-labelledby="industries-heading"
-        className="scroll-mt-28 border-b border-[#D9E2E9] bg-[#F1F5F8] px-6 py-20 lg:px-10 lg:py-28"
+        className="scroll-mt-28 border-b border-[#D9D9D9] bg-[#F4F4F4] px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-[1320px]">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
@@ -251,13 +251,13 @@ export default function ClientsPage() {
               return (
                 <article
                   key={industry.number}
-                  className="group min-h-[320px] rounded-[22px] border border-[#D7E2EA] border-t-2 border-t-[#0076CE] bg-white p-7 shadow-[0_14px_36px_rgba(36,52,67,0.055)] transition-all duration-300 hover:-translate-y-1 hover:border-[#B7D3E8] hover:shadow-[0_22px_48px_rgba(36,52,67,0.10)] sm:p-9"
+                  className="group min-h-[320px] rounded-[22px] border border-[#D6D6D6] border-t-2 border-t-[#0076CE] bg-white p-7 shadow-[0_14px_36px_rgba(36,52,67,0.055)] transition-all duration-300 hover:-translate-y-1 hover:border-[#AFC7DA] hover:shadow-[0_22px_48px_rgba(36,52,67,0.10)] sm:p-9"
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-[9px] font-semibold tracking-[0.2em] text-[#8A969F]">
                       {industry.number}
                     </span>
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#C9DCEB] bg-[#F4F8FC] text-[#0076CE] transition-colors group-hover:border-[#0076CE]">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#BFD3E3] bg-white text-[#0076CE] transition-colors group-hover:border-[#0076CE]">
                       <Icon aria-hidden="true" size={20} strokeWidth={1.7} />
                     </span>
                   </div>
